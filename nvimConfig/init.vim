@@ -158,6 +158,8 @@ if exists("g:load_theme") && strlen(g:load_theme)>0
     if strlen($term)>0
       " for opacity in terminal
       autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+      autocmd vimenter * hi airline_tabfill ctermbg=NONE guibg=NONE
+      autocmd vimenter * hi airline_tabhid ctermbg=NONE guibg=NONE
     endif
   endif
 endif
