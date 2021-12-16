@@ -32,7 +32,7 @@ return {
   },
 
   initial_cols = 160,
-  initial_rows = 45,
+  initial_rows = 50,
 
   -- tab bar appearance config
   -- enable_tab_bar=false,
