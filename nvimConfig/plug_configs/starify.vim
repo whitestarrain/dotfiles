@@ -4,6 +4,7 @@ Plug 'mhinz/vim-startify'
 "-------------------------------------vim-startify------------------------------------
 
 let g:startify_session_before_save = []
+let g:startify_session_savecmds = []
 
 autocmd vimenter * call PlugConfigStarify()
 function! PlugConfigStarify()

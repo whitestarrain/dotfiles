@@ -195,4 +195,9 @@ if exists("g:startify_session_before_save")
   let g:startify_session_before_save +=  ['silent! NvimTreeClose']
 endif
 
+" 自动打开侧边栏
+if exists("g:startify_session_savecmds")
+  let g:startify_session_savecmds += ["silent! NvimTreeOpen"]
+endif
+
 endfunction
