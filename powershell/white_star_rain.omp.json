@@ -39,7 +39,7 @@
           "properties": {
             "home_icon": "",
             "folder_icon": " \uf07b ",
-            "style": "full",
+            "style":"folder" ,
             "prefix": " \uf07b\uf553",
             "enable_hyperlink": true
           }

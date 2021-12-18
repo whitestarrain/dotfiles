@@ -7,7 +7,7 @@ Plug 'junegunn/fzf.vim'
 autocmd vimenter * call PlugConfigFZF()
 function! PlugConfigFZF()
   " FZF
-  nnoremap <silent><leader>ff :FZF<CR>
+  nnoremap <silent><leader>ff :GFiles<CR>
   let g:which_key_map.f.f = 'fzf-file'
 
   nnoremap <silent><leader>fb :Buffers<CR>

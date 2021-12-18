@@ -27,6 +27,5 @@ function! PlugConfigMarkDown()
   let g:vim_markdown_list_item_indent = 2
   " 代码块不隐藏
   let g:vim_markdown_conceal_code_blocks = 0
-  let g:indentLine_conceallevel=0
 endfunction
 "------------------------------------markdown-------------------------------------
