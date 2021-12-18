@@ -80,11 +80,8 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
   LoadScript ./plug_configs/indentline.vim
   LoadScript ./plug_configs/vim_css_color.vim
   LoadScript ./plug_configs/vim_floaterm.vim
+  " LoadScript ./plug_configs/drawit.vim 暂时用不到
 
-  if strlen($term)>0
-    " nvim-qt
-    " LoadScript ./plug_configs/vim_devicons.vim
-  endif
 
   "load selected plugins
   if !exists('g:skip_plugs')
@@ -94,13 +91,14 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       let g:airline_theme='dark'
     endif
 
+    LoadScript ./plug_configs/starify.vim " 加载这个插件的话，放上面，session关闭时处理相关
     " LoadScript ./plug_configs/far.vim
     " LoadScript ./plug_configs/comfortable_motion.vim
     " LoadScript ./plug_configs/nerdcommenter.vim
+    " LoadScript ./plug_configs/asyn_run.vim " 功能强大，但是暂时应该用不到
     " LoadScript ./plug_configs/nerdtree.vim
-    " LoadScript ./plug_configs/asyn_run.vim
-    LoadScript ./plug_configs/starify.vim " 加载这个插件的话，放上面，session关闭时处理相关
     LoadScript ./plug_configs/nvim-tree.vim
+    LoadScript ./plug_configs/vim_devicons.vim " 主要为bufferline,startify 提供icon支持
     LoadScript ./plug_configs/easy_motion.vim
     LoadScript ./plug_configs/git.vim
     LoadScript ./plug_configs/vim_which_key.vim
