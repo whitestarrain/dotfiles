@@ -3,6 +3,8 @@
 Plug 'mhinz/vim-startify'
 "-------------------------------------vim-startify------------------------------------
 
+let g:startify_session_before_save = []
+
 autocmd vimenter * call PlugConfigStarify()
 function! PlugConfigStarify()
   " startify config
@@ -25,16 +27,16 @@ function! PlugConfigStarify()
 
   " 设置自动session保存
   let g:startify_session_persistence = 1
-  " session保存前执行，防止因为懒加载而出现冲突
-  let g:startify_session_before_save = [
-      \ 'echo "Cleaning up before saving.."',
-      \ 'silent! tabonly',
-      \ 'silent! NERDTreeClose',
-      \ 'silent! TagbarClose',
-      \ ''
-      \ ]
   " 开启自动保存的变量名称，保证每个session都可以个性化
   " g:mdip_imgdir: 图片存储路径
+
+  " session保存前执行，防止因为懒加载而出现冲突
+  " 插件加载时，往这里面add
+  let g:startify_session_before_save += [
+      \ 'echo "Cleaning up before saving.."',
+      \ 'silent! tabonly'
+      \ ]
+
   let g:startify_session_savevars = [
           \ 'g:mdip_imgdir',
           \ 'g:mdip_imgdir_intext'

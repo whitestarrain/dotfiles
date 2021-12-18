@@ -27,4 +27,9 @@ function! PlugConfigNerdTree()
   noremap <silent><C-n> :NERDTreeToggle<CR>
   nnoremap <silent><leader>v :NERDTreeFind<cr>
   let g:which_key_map.v = 'NERDTreeFind'
+
+  " starify，seesion关闭时执行操作
+  if exists("g:startify_session_before_save")
+    let g:startify_session_before_save += ['silent! NERDTreeClose']
+  endif
 endfunction

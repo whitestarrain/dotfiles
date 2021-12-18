@@ -21,6 +21,9 @@ set nocompatible
 
 " =========================基础设置========================= 
 filetype plugin indent on  " Load plugins according to detected filetype.
+
+set noswapfile
+
 set number              " 设置行号
 set relativenumber      " 相对行号
 filetype on                " 开启文档类型检查

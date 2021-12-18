@@ -29,6 +29,10 @@ function nvimForRust(){
 function nvimForPython(){
   nvim --cmd "let g:python=1" $args[0]
 }
+function SpaceVim(){
+  nvim -u D:/MyRepo/SpaceVim/init.vim $args[0]
+}
+
 function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
     Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue

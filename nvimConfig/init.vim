@@ -5,10 +5,6 @@
 " 如果按键相关有什么问题可以查一下。比如auto-pairs占了<C-r>
 
 "=================================================leader start===================================================
-if !exists('g:vscode')
-    let g:plug_install_path="D:\\learn\\neovim0.5\\Neovim\\share\\autoload"
-endif
-" 配置项设置,g:plug_install_path 可通过 -c 参数传入
 if strlen($term)==0
   " nvim-qt
   let g:set_termguicolors=1
@@ -52,6 +48,10 @@ let g:python3_host_prog='D:\\learn\\anaconda3\\envs\\learn\\python.exe'
 let g:absolute_config_path = expand("<sfile>:p")[0:strlen(expand("<sfile>:p"))-strlen(expand("<sfile>:t"))-1]
 command! -nargs=1 LoadScript exec 'source' . ' ' . g:absolute_config_path . '<args>'
 
+if !exists('g:vscode')
+    let g:plug_install_path = g:absolute_config_path . "../vim_plug_download"
+endif
+
 let mapleader="\<space>"
 let g:which_key_map =  {}
 let g:which_key_map.z = { 'name' : '[second]' }
@@ -74,10 +74,12 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
 
   LoadScript ./plug_configs/theme.vim
   LoadScript ./plug_configs/vim_surround.vim
-  LoadScript ./plug_configs/tagbar.vim
+  LoadScript ./plug_configs/tag_bar.vim
   LoadScript ./plug_configs/rainrow.vim
   LoadScript ./plug_configs/auto_pair.vim
   LoadScript ./plug_configs/indentline.vim
+  LoadScript ./plug_configs/vim_css_color.vim
+  LoadScript ./plug_configs/vim_floaterm.vim
 
   if strlen($term)>0
     " nvim-qt
@@ -95,13 +97,15 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     " LoadScript ./plug_configs/far.vim
     " LoadScript ./plug_configs/comfortable_motion.vim
     " LoadScript ./plug_configs/nerdcommenter.vim
+    " LoadScript ./plug_configs/nerdtree.vim
+    " LoadScript ./plug_configs/asyn_run.vim
+    LoadScript ./plug_configs/starify.vim " 加载这个插件的话，放上面，session关闭时处理相关
+    LoadScript ./plug_configs/nvim-tree.vim
     LoadScript ./plug_configs/easy_motion.vim
-    LoadScript ./plug_configs/nerdtree.vim
     LoadScript ./plug_configs/git.vim
     LoadScript ./plug_configs/vim_which_key.vim
     LoadScript ./plug_configs/fzf.vim
     LoadScript ./plug_configs/latex.vim
-    LoadScript ./plug_configs/starify.vim
     LoadScript ./plug_configs/markdown.vim
     LoadScript ./plug_configs/prettier.vim
     LoadScript ./plug_configs/UltiSnips.vim

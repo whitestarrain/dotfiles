@@ -4,6 +4,7 @@ return {
   -- set env for nvim
 
   font = wezterm.font("Hack NF"),
+  font_size = 10.5,
   -- You can specify some parameters to influence the font selection;
   -- for example, this selects a Bold, Italic font variant.
   -- font = wezterm.font("JetBrains Mono", {weight="Bold", italic=true})
@@ -11,15 +12,15 @@ return {
   -- Spawn a fish shell in login mode
   default_prog = {"pwsh"},
 
-  window_background_opacity = 0.85,
-  text_background_opacity = 0.90,
+  window_background_opacity = 0.9,
+  text_background_opacity = 1.0,
 
   -- set to false to disable the tab bar completely
   enable_tab_bar = true,
 
   -- set to true to hide the tab bar when there is only
   -- a single tab in the window
-  hide_tab_bar_if_only_one_tab = false,
+  hide_tab_bar_if_only_one_tab = true,
 
 
   inactive_pane_hsb = {
@@ -140,9 +141,9 @@ return {
   color_schemes = {
   -- ref: https://github.com/wez/wezterm/blob/main/assets/colors/OneHalfDark.toml
       ["My one dark"] = {
-        foreground = "#ebdbb2",
+        foreground = "#a1a170",
         background = "#181921",
-        cursor_bg = "#74e0c8",
+        cursor_bg = "#8af1b0",
         cursor_fg = "black",
         cursor_border = "#52ad70",
         selection_bg = "#ebdbb2",

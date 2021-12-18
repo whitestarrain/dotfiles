@@ -1,8 +1,18 @@
-// `:CocConfig` to open
 {
   // "coc.preferences.extensionUpdateCheck": "daily",
+  "python.venvPath": "D:/learn/anaconda3/envs",
+  "venv": "learn",
   "python.linting.pylintEnabled": true,
   "python.linting.enabled": true,
+  "python.formatting.provider": "yapf",
+  "python.linting.pylintArgs": [
+    //"--errors-only",
+    //"--generated-members=numpy.*, torch.*, cv2.*, cv.*",
+    //"--disable-msg=not-callable",
+    // "--load-plugins",
+    // "pylint_django",
+    "--disable=E1102,E1101"
+  ],
   "suggest.acceptSuggestionOnCommitCharacter": true,
   "suggest.timeout": 5000,
   "suggest.noselect": true,

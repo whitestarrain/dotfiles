@@ -19,4 +19,9 @@ function! PlugConfigTagBar()
   " tagbar map
   nnoremap <leader>t :TagbarToggle<CR>
   let g:which_key_map.t = "tagbar"
+
+ " starify，seesion关闭时执行操作
+if exists("g:startify_session_before_save")
+  let g:startify_session_before_save +=  ['silent! TagbarClose']
+endif
 endfunction
