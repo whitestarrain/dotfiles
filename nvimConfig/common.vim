@@ -23,6 +23,7 @@ set nocompatible
 filetype plugin indent on  " Load plugins according to detected filetype.
 
 set noswapfile
+set updatetime=100
 
 set number              " 设置行号
 set relativenumber      " 相对行号

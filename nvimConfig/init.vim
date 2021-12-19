@@ -72,6 +72,7 @@ let g:which_key_map.h = { 'name' : '[hunk]' }
 let g:which_key_map.f = { 'name' : '[find]' }
 let g:which_key_map.b = { 'name' : '[buffer]' }
 let g:which_key_map.c = { 'name' : '[comment]' }
+let g:which_key_map.h = { 'name' : '[hunk]' }
 "=================================================leader end===================================================
 
 
@@ -109,6 +110,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     " LoadScript ./plug_configs/asyn_run.vim " 功能强大，但是暂时应该用不到
     " LoadScript ./plug_configs/nerdtree.vim
     " LoadScript ./plug_configs/debugger.vim " 暂时应该用不上
+    LoadScript ./plug_configs/telescope.vim
     LoadScript ./plug_configs/nvim-tree.vim
     LoadScript ./plug_configs/treesitter.vim
     LoadScript ./plug_configs/vim_devicons.vim " 主要为bufferline,startify 提供icon支持
@@ -117,7 +119,6 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     LoadScript ./plug_configs/vim_which_key.vim
     LoadScript ./plug_configs/latex.vim
     LoadScript ./plug_configs/vim_markdown.vim
-    LoadScript ./plug_configs/telescope.vim
     LoadScript ./plug_configs/prettier.vim
     LoadScript ./plug_configs/UltiSnips.vim
     LoadScript ./plug_configs/md_img_paste.vim
