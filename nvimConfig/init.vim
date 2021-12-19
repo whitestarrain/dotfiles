@@ -115,9 +115,9 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     LoadScript ./plug_configs/easy_motion.vim
     LoadScript ./plug_configs/git.vim
     LoadScript ./plug_configs/vim_which_key.vim
-    LoadScript ./plug_configs/fzf.vim
     LoadScript ./plug_configs/latex.vim
     LoadScript ./plug_configs/vim_markdown.vim
+    LoadScript ./plug_configs/telescope.vim
     LoadScript ./plug_configs/prettier.vim
     LoadScript ./plug_configs/UltiSnips.vim
     LoadScript ./plug_configs/md_img_paste.vim
