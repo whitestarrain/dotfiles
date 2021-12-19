@@ -23,11 +23,27 @@ require('telescope').setup{
       "%.cache",
       ".git"
     }
+  },
+  pickers = {
+    -- Default configuration for builtin pickers goes here:
+    -- picker_name = {
+    --   picker_config_key = value,
+    --   ...
+    -- 
+    -- Now the picker_config_key will be applied every time you call this
+    -- builtin picker
+  },
+  extensions = {
+    -- Your extension configuration goes here:
+    -- extension_name = {
+    --   extension_config_key = value,
+    -- }
+    -- please take a look at the readme of the extension you want to configure
   }
 }
 EOF
 
-nnoremap <silent><leader>ff :Telescope git_files<CR>
+nnoremap <silent><leader>ff :Telescope find_files<CR>
 let g:which_key_map.f.f = 'find buffers'
 
 nnoremap <silent><leader>fb :Telescope buffers<CR>
