@@ -1,3 +1,5 @@
+" TODO 考虑使用galaxyline 和 bufferline 替换
+
 "-------------------------------------vim-airline------------------------------------
 " 下方提示栏
 Plug 'vim-airline/vim-airline'
