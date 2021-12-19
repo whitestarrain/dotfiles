@@ -6,3 +6,4 @@
 - [ ] lua替换vim配置
 - [ ] 配置结构优化
 - [ ] README补充
+- [ ] airline换掉

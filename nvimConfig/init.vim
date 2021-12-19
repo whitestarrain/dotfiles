@@ -85,12 +85,12 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
 
   LoadScript ./plug_configs/theme.vim
   LoadScript ./plug_configs/vim_surround.vim
-  LoadScript ./plug_configs/tag_bar.vim
   LoadScript ./plug_configs/rainrow.vim
   LoadScript ./plug_configs/auto_pair.vim
   LoadScript ./plug_configs/indentline.vim
   LoadScript ./plug_configs/vim_css_color.vim
   LoadScript ./plug_configs/vim_floaterm.vim
+  LoadScript ./plug_configs/tag_bar.vim
   " LoadScript ./plug_configs/drawit.vim 暂时用不到
 
 

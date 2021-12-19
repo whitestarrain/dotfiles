@@ -1,4 +1,5 @@
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'p00f/nvim-ts-rainbow'
 
 " Plug 'romgrk/nvim-treesitter-context'
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'
@@ -34,6 +35,15 @@ require'nvim-treesitter.configs'.setup {
   indent = {
     disable = {'markdown'},
     enable = true
+  },
+  rainbow = {
+    enable = true,
+    disable = {"markdown"},
+    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    -- colors = {}, -- table of hex strings
+    -- termcolors = {} -- table of colour name strings
   }
 }
 -- 开启 Folding
