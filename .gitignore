@@ -1,2 +1,4 @@
 vim_plug_download
 !vim_plug_download/plug_download_folder
+vim_lua_download
+nvim_lua

@@ -39,7 +39,7 @@ function which ($command) {
 }
 
 # oh-my-posh
-D:\ProgramFiles\scoop\apps\oh-my-posh\current\bin\oh-my-posh.exe --init --shell pwsh --config D:\MyRepo\config_files\powershell\white_star_rain.omp.json | Invoke-Expression
+D:\ProgramFiles\scoop\apps\oh-my-posh\current\bin\oh-my-posh.exe --init --shell pwsh --config D:\MyRepo\dotfiles\powershell\white_star_rain.omp.json | Invoke-Expression
 
 # powershell module import for pwsh
 # other installed module: z
