@@ -5,6 +5,8 @@
 - [ ] 配置结构优化
 - [ ] README补充
 - [x] airline换掉
+- [ ] 换掉插件管理器，runtimepath进行设置(Runtime命令)
+  > 具体可以`set runtimepath`一下，看一下包管理器把runtimepath设置成了什么样
 
 
 # 记录

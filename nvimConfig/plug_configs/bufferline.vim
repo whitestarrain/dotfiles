@@ -2,11 +2,9 @@ Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 " Plug 'ryanoasis/vim-devicons' Icons without colours
 Plug 'akinsho/bufferline.nvim'
 
-
 autocmd vimenter * call PlugConfigBufferLine()
 
 function PlugConfigBufferLine()
-
 
 lua <<EOF
 
@@ -31,6 +29,12 @@ lua <<EOF
 
 EOF
 
+if strlen($term)>0
+  " for opacity in terminal
+  hi BufferLineFill guibg=NONE ctermbg=NONE
+endif
+
 endfunction
+
 
 
