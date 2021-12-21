@@ -1,3 +1,4 @@
+" 考虑换为：goolord/alpha-nvim
 "-------------------------------------vim-startify------------------------------------
 " 开始菜单
 Plug 'mhinz/vim-startify'

@@ -126,6 +126,11 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     let g:load_program = 1
   endif
 
+  if exists("g:python")
+    let g:load_program = 1
+  endif
+
+
   if g:load_program 
     LoadScript plug_configs\coc.vim
   endif
