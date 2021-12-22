@@ -19,7 +19,21 @@ lua <<EOF
               text = "File Explorer",
               highlight = "Directory",
               text_align = "left"
-          }}
+          }},
+          -- 显示lsp报错图标
+          ---@diagnostic disable-next-line: unused-local
+          diagnostics_indicator = function(count, level, diagnostics_dict, context)
+            local s = " "
+            -- if context.buffer:current() then
+            --   return s
+            -- end
+            for e, n in pairs(diagnostics_dict) do
+              local sym = e == "error" and " "
+                or (e == "warning" and " " or "" )
+              s = s .. n .. sym
+            end
+            return s
+          end
       }
   }
 
@@ -29,12 +43,11 @@ lua <<EOF
 
 EOF
 
-if strlen($term)>0
-  " for opacity in terminal
-  hi BufferLineFill guibg=NONE ctermbg=NONE
-endif
 
 endfunction
 
-
+if strlen($term)>0
+  " for opacity in terminal
+  autocmd ColorScheme * hi BufferLineFill guibg=NONE ctermbg=NONE
+endif
 

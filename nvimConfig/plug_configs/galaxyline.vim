@@ -93,7 +93,7 @@ gls.left[7] = {
 gls.left[8] = {
   ScrollBar = {
     provider = 'ScrollBar',
-    highlight = {colors.yellow,colors.bg},
+    highlight = {colors.blue,colors.bg},
   }
 }
 
@@ -239,11 +239,11 @@ gls.short_line_right[1] = {
 
 EOF
 
+endfunction
+
 if strlen($term)>0
   " for opacity in terminal
-  hi StatusLine guibg=NONE ctermbg=NONE
+  autocmd ColorScheme * hi StatusLine guibg=NONE ctermbg=NONE
 endif
-
-endfunction
 
 

@@ -58,6 +58,7 @@ let g:python3_host_prog='D:\\learn\\anaconda3\\envs\\learn\\python.exe'
 " let g:absolute_config_path = expand("%:p")[0:strlen(expand("%:p"))-strlen(expand("%:t"))-1]
 let g:absolute_config_path = expand("<sfile>:p")[0:strlen(expand("<sfile>:p"))-strlen(expand("<sfile>:t"))-1]
 command! -nargs=1 LoadScript exec 'source' . ' ' . g:absolute_config_path . '<args>'
+command! -nargs=1 LoadLua exec 'lua' . ' ' . g:absolute_config_path . '<args>'
 
 if !exists('g:vscode')
     let g:plug_install_path = g:absolute_config_path . "../vim_plug_download"
@@ -118,24 +119,43 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     LoadScript ./plug_configs/md_img_paste.vim
     LoadScript ./plug_configs/bufferline.vim
     LoadScript ./plug_configs/galaxyline.vim
-  endif
+    " LoadScript ./plug_configs/vim_visual_multi.vim" 待安装
 
-  let g:load_program = 0
-  if exists("g:rust")
-    LoadScript ./plug_configs/rust.vim
-    let g:load_program = 1
-  endif
+    let g:load_program = 0
+    if exists("g:rust")
+      LoadScript ./plug_configs/rust.vim
+      let g:load_program = 1
+    endif
 
-  if exists("g:python")
-    let g:load_program = 1
-  endif
+    if exists("g:python")
+      let g:load_program = 1
+    endif
 
+    if exists("g:c")
+      let g:load_program = 1
+    endif
 
-  if g:load_program 
-    LoadScript plug_configs\coc.vim
+    if exists("g:java")
+      let g:load_program = 1
+    endif
+
+    if exists("g:lua")
+      let g:load_program = 1
+    endif
+
+    if g:load_program 
+      LoadScript ./plug_configs/lsp/lsp_conf.vim
+    endif
   endif
 
   call plug#end()
+
+  if exists("g:python")
+    lua require'lspconfig'.pyright.setup{}
+  endif
+  if exists("g:rust")
+    lua require'lspconfig'.rust_analyzer.setup{}
+  endif
 
 endif
 "=================================================plug config end===================================================
@@ -169,7 +189,7 @@ if exists("g:load_theme") && strlen(g:load_theme)>0
 
     if strlen($term)>0
       " for opacity in terminal
-      autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+      autocmd ColorScheme * hi Normal guibg=NONE ctermbg=NONE
     endif
   endif
 endif
@@ -182,3 +202,4 @@ else
 endif
 
 "=================================================theme===================================================
+

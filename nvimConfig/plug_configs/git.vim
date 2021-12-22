@@ -26,9 +26,9 @@ lua <<EOF
 
   require('gitsigns').setup {
     signs = {
-      add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
-      change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-      delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+      add          = {hl = 'GitSignsAdd'   , text = '▊', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+      change       = {hl = 'GitSignsChange', text = '▊', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+      delete       = {hl = 'GitSignsDelete', text = '▊', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
       topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
       changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
     },
@@ -50,7 +50,7 @@ lua <<EOF
       ['v <leader>hr'] = ':Gitsigns reset_hunk<CR>',
       ['n <leader>hR'] = '<cmd>Gitsigns reset_buffer<CR>',
       ['n <leader>hp'] = '<cmd>Gitsigns preview_hunk<CR>',
-      ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line{full=true}<CR>',
+      ['n <leader>hb'] = ':Gitsigns blame_line<CR>',
       ['n <leader>hS'] = '<cmd>Gitsigns stage_buffer<CR>',
       ['n <leader>hU'] = '<cmd>Gitsigns reset_buffer_index<CR>',
 
