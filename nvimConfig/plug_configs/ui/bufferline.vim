@@ -1,5 +1,3 @@
-Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
-" Plug 'ryanoasis/vim-devicons' Icons without colours
 Plug 'akinsho/bufferline.nvim'
 
 autocmd vimenter * call PlugConfigBufferLine()

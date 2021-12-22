@@ -2,7 +2,7 @@
 
 - [ ] coc换为lsp
 - [ ] ~lua替换vim配置~
-- [ ] LoadLua 函数
+- [ ] ~LoadLua 函数~ ,修改`package.path`
 - [ ] 配置结构优化
 - [ ] README补充
 - [x] airline换掉

@@ -22,7 +22,8 @@ require('telescope').setup{
       "%.tux",
       "%.cache",
       ".git"
-    }
+    },
+    layout_strategy = 'vertical',
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
@@ -39,6 +40,9 @@ require('telescope').setup{
     --   extension_config_key = value,
     -- }
     -- please take a look at the readme of the extension you want to configure
+  },
+  preview = {
+    timeout = 500,
   }
 }
 EOF

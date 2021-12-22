@@ -1,10 +1,21 @@
-" 关于帮助文档。:help startify 即可
-" 然后使用 c-] c-i c-o 进行跳转查看
 " nvim-qt 要加上 --no-ext-tabline，才能使用airline的bufferline。加上 --fullscreen全屏显示
-" 命令行模式输入 map ,inoremap ,nnoremap等可以查看 map键的映射
-" 如果按键相关有什么问题可以查一下。比如auto-pairs占了<C-r>
 
-" TODO 切为lua配置
+"=================================================env config start===================================================
+" 定义载入配置命令
+" let g:absolute_config_path = expand("%:p")[0:strlen(expand("%:p"))-strlen(expand("%:t"))-1]
+let g:absolute_config_path = expand("<sfile>:p")[0:strlen(expand("<sfile>:p"))-strlen(expand("<sfile>:t"))-1]
+command! -nargs=1 LoadScript exec 'source' . ' ' . g:absolute_config_path . '<args>'
+command! -nargs=1 LoadLua exec 'luafile' . ' ' . g:absolute_config_path . '<args>'
+
+" 添加不在runtimepath中的lua文件的加载路径
+lua package.path = package.path .. ";" .. vim.g.absolute_config_path .. "./plug_configs/lsp/?.lua"
+
+" python 环境
+let g:python3_host_prog='D:\\learn\\anaconda3\\envs\\learn\\python.exe'
+
+"=================================================env config end===================================================
+
+"=================================================control var start===================================================
 
 " g:load_theme
 " g:set_termguicolors
@@ -13,8 +24,6 @@
 " g:plug_install_path
 " g:python3_host_prog
 " g:vscode
-
-"=================================================leader start===================================================
 
 if strlen($term)==0
   " nvim-qt
@@ -51,19 +60,14 @@ if exists("g:plug_install_path")
   let g:plug_install_path=g:plug_install_path 
 endif
 
-" python 环境
-let g:python3_host_prog='D:\\learn\\anaconda3\\envs\\learn\\python.exe'
-
-" 定义载入配置命令
-" let g:absolute_config_path = expand("%:p")[0:strlen(expand("%:p"))-strlen(expand("%:t"))-1]
-let g:absolute_config_path = expand("<sfile>:p")[0:strlen(expand("<sfile>:p"))-strlen(expand("<sfile>:t"))-1]
-command! -nargs=1 LoadScript exec 'source' . ' ' . g:absolute_config_path . '<args>'
-command! -nargs=1 LoadLua exec 'lua' . ' ' . g:absolute_config_path . '<args>'
-
 if !exists('g:vscode')
     let g:plug_install_path = g:absolute_config_path . "../vim_plug_download"
 endif
 
+"=================================================control var end===================================================
+
+"=================================================leader group start===================================================
+" 按键map规范
 let mapleader="\<space>"
 let g:which_key_map =  {}
 let g:which_key_map.z = { 'name' : '[second]' }
@@ -74,10 +78,9 @@ let g:which_key_map.f = { 'name' : '[find]' }
 let g:which_key_map.b = { 'name' : '[buffer]' }
 let g:which_key_map.c = { 'name' : '[comment]' }
 let g:which_key_map.h = { 'name' : '[hunk]' }
-"=================================================leader end===================================================
+"=================================================leader group end===================================================
 
-
-"=================================================plug config end===================================================
+"=================================================plug load start===================================================
 if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
 
   " Specify a directory for plugins
@@ -85,16 +88,15 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
   " - Avoid using standard Vim directory names like 'plugin'
   call plug#begin(get(g:,"plug_install_path"))
 
-  LoadScript ./plug_configs/theme.vim
+  LoadScript ./plug_configs/ui/theme.vim
   LoadScript ./plug_configs/vim_surround.vim
   LoadScript ./plug_configs/rainrow.vim
   LoadScript ./plug_configs/auto_pair.vim
-  LoadScript ./plug_configs/indentline.vim
+  LoadScript ./plug_configs/ui/indentline.vim
   LoadScript ./plug_configs/vim_css_color.vim
   LoadScript ./plug_configs/vim_floaterm.vim
   LoadScript ./plug_configs/tag_bar.vim
   " LoadScript ./plug_configs/drawit.vim 暂时用不到
-
 
   "load selected plugins
   if !exists('g:skip_plugs')
@@ -105,20 +107,20 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     " LoadScript ./plug_configs/asyn_run.vim " 功能强大，但是暂时应该用不到
     " LoadScript ./plug_configs/nerdtree.vim
     " LoadScript ./plug_configs/debugger.vim " 暂时应该用不上
-    LoadScript ./plug_configs/vim_devicons.vim " 主要为bufferline,startify 提供icon支持，可选
+    LoadScript ./plug_configs/ui/vim_devicons.vim " 主要为startify 提供icon支持，可选
+    LoadScript ./plug_configs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
+    LoadScript ./plug_configs/ui/bufferline.vim
+    LoadScript ./plug_configs/ui/galaxyline.vim
+    LoadScript ./plug_configs/ui/nvim-tree.vim
     LoadScript ./plug_configs/telescope.vim
-    LoadScript ./plug_configs/nvim-tree.vim
     LoadScript ./plug_configs/treesitter.vim
     LoadScript ./plug_configs/easy_motion.vim
     LoadScript ./plug_configs/git.vim
-    LoadScript ./plug_configs/vim_which_key.vim
+    LoadScript ./plug_configs/ui/vim_which_key.vim
     LoadScript ./plug_configs/latex.vim
     LoadScript ./plug_configs/vim_markdown.vim
     LoadScript ./plug_configs/prettier.vim
-    LoadScript ./plug_configs/UltiSnips.vim
     LoadScript ./plug_configs/md_img_paste.vim
-    LoadScript ./plug_configs/bufferline.vim
-    LoadScript ./plug_configs/galaxyline.vim
     " LoadScript ./plug_configs/vim_visual_multi.vim" 待安装
 
     let g:load_program = 0
@@ -145,31 +147,39 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
 
     if g:load_program 
       LoadScript ./plug_configs/lsp/lsp_conf.vim
+      LoadScript ./plug_configs/lsp/diagnostics_list.vim
     endif
+
+    LoadScript ./plug_configs/lsp/auto_complete.vim
+
   endif
 
   call plug#end()
 
   if exists("g:python")
-    lua require'lspconfig'.pyright.setup{}
+    " 通过require("python")返回
+    LoadLua ./plug_configs/lsp-server/pyright_config.lua
   endif
   if exists("g:rust")
-    lua require'lspconfig'.rust_analyzer.setup{}
+    LoadLua ./plug_configs/lsp-server/rust_analyzer_config.lua
+  endif
+  if exists("g:lua")
+    LoadLua ./plug_configs/lsp-server/lua_lsp_config.lua
   endif
 
 endif
-"=================================================plug config end===================================================
+"=================================================plug load end===================================================
 
 "=================================================common config end===================================================
 LoadScript common.vim
 "=================================================commone config end===================================================
 
-"=================================================map start===================================================
+"================================================common =map start===================================================
 LoadScript functions.vim
 LoadScript mappings.vim
-"=================================================map end===================================================
+"=================================================common map end===================================================
 
-"=================================================theme===================================================
+"=================================================theme start===================================================
 
 set synmaxcol=5000       " 高亮显示行数，小一点节省内存，但是可能对大文件出现渲染错误 默认3000
 syntax sync minlines=256
@@ -201,5 +211,5 @@ else
   set notermguicolors 
 endif
 
-"=================================================theme===================================================
+"=================================================theme end===================================================
 

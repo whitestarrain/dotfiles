@@ -1,19 +1,9 @@
 Plug 'neovim/nvim-lspconfig'
-" diagnostics list
-Plug 'folke/trouble.nvim'
 
 
-autocmd vimenter * call PlugConfigLsp()
+autocmd vimenter * call PlugConfigLSP()
 
-function! PlugConfigLsp()
-
-lua <<EOF
-
-  -- 大多数是默认值
-  require("trouble").setup{}
-
-EOF
-
+function! PlugConfigLSP()
+  " LoadLua ./plug_configs/lsp/lsp_keybing_config.lua
 endfunction
-
 
