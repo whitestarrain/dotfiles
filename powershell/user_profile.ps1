@@ -21,7 +21,7 @@ function nvimWithoutConfig() {
   nvim -u NONE $args[0]
 }
 function vimFunction() {
-  nvim --cmd "let g:skip_plugs=1" $args[0]
+  nvim --cmd "let g:skip_project_plugs=1" $args[0]
 }
 function nvimForRust(){
   nvim --cmd "let g:rust=1" $args[0]

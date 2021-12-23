@@ -6,9 +6,7 @@ autocmd vimenter * call PlugConfigRust()
 function PlugConfigRust()
   " 保存时代码自动格式化
   let g:rustfmt_autosave = 1
-
-  let g:which_key_map.r = { 'name' : '[rust]' }
-
+  " let g:which_key_map.r = { 'name' : '[rust]' }
   " 手动调用格式化， Visual 模式下局部格式化，Normal 模式下当前文件内容格式化
   " 有时候代码有错误时，rust.vim 不会调用格式化，手动格式化就很方便
   " vnoremap <leader>rf :RustFmtRange<CR>

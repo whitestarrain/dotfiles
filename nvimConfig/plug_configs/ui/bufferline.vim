@@ -11,13 +11,21 @@ lua <<EOF
       options = {
           -- 使用 nvim 内置lsp
           diagnostics = "nvim_lsp",
+          separator_style = "slant",
           -- 左侧让出 nvim-tree 的位置
           offsets = {{
               filetype = "NvimTree",
               text = "File Explorer",
               highlight = "Directory",
-              text_align = "left"
+              text_align = "center"
           }},
+          -- 默认icon
+          indicator_icon = '▎',
+          buffer_close_icon = '',
+          modified_icon = '●',
+          close_icon = '',
+          left_trunc_marker = '',
+          right_trunc_marker = '',
           -- 显示lsp报错图标
           ---@diagnostic disable-next-line: unused-local
           diagnostics_indicator = function(count, level, diagnostics_dict, context)

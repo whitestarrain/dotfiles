@@ -11,16 +11,10 @@ endif
 Plug 'hrsh7th/cmp-path' "路径补全一定要加
 Plug 'hrsh7th/cmp-cmdline' " 命令模式补全
 
-Plug 'hrsh7th/cmp-vsnip' " snippet 补全
-
-" snip
-
-Plug 'hrsh7th/vim-vsnip' " snippet 引擎
-
-Plug 'rafamadriz/friendly-snippets' "提供一堆snip
+Plug 'hrsh7th/cmp-vsnip' " vsnip snippet 补全
+" Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
 " 图标
-
 Plug 'onsails/lspkind-nvim' "代码提示中，显示分类的小图标支持
 
 

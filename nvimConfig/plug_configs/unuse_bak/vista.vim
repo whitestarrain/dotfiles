@@ -16,4 +16,3 @@ let g:vista#renderer#icons = {
 
 " tagbar map
 nnoremap <leader>t :Vista!!<CR>
-let g:which_key_map.t = "tagbar"
