@@ -6,12 +6,16 @@ function PlugConfigBufferLine()
 
 lua <<EOF
 
-  vim.opt.termguicolors = true
+  local separator_style = "thin"
+  if(not vim.env.term) then
+    -- nvim-qt
+    separator_style = "slant"
+  end
   require("bufferline").setup {
       options = {
           -- 使用 nvim 内置lsp
           diagnostics = "nvim_lsp",
-          separator_style = "slant",
+          separator_style = separator_style,
           -- 左侧让出 nvim-tree 的位置
           offsets = {{
               filetype = "NvimTree",
@@ -43,12 +47,11 @@ lua <<EOF
       }
   }
 
-  -- bufferline 左右Tab切换，buffer已经设置了，这个就不用了
-  -- map("n", "<M-h>", ":BufferLineCyclePrev<CR>", opt)
-  -- map("n", "<M-l>", ":BufferLineCycleNext<CR>", opt)
 
 EOF
 
+  noremap <M-h> :BufferLineCyclePrev<CR>
+  noremap <M-l> :BufferLineCycleNext<CR>
 
 endfunction
 

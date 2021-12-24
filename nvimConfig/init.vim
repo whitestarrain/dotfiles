@@ -54,7 +54,7 @@ if exists("g:load_theme")
 endif
 "
 " 是否设置termguicolors，默认不设置
-let g:set_termguicolors=exists("g:set_termguicolors") && g:set_termguicolors 
+let g:set_termguicolors=exists("g:set_termguicolors") && g:set_termguicolors && exists("&termguicolors") && exists("&winblend")
 
 if exists("g:plug_install_path")
   " 插件安装路径，不设置，则不会加载插件
@@ -89,19 +89,21 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
   " - Avoid using standard Vim directory names like 'plugin'
   call plug#begin(get(g:,"plug_install_path"))
 
+  " LoadScript ./plug_configs/drawit.vim 暂时用不到
   LoadScript ./plug_configs/ui/theme.vim
   LoadScript ./plug_configs/vim_surround.vim
   LoadScript ./plug_configs/rainrow.vim
   LoadScript ./plug_configs/auto_pair.vim
   LoadScript ./plug_configs/ui/indentline.vim
-  LoadScript ./plug_configs/nvim_colorizer.vim
   LoadScript ./plug_configs/tag_bar.vim
   LoadScript ./plug_configs/ui/vim_devicons.vim " 主要为startify 提供icon支持，可选
   LoadScript ./plug_configs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
-  LoadScript ./plug_configs/ui/bufferline.vim
-  LoadScript ./plug_configs/ui/galaxyline.vim
   LoadScript ./plug_configs/ui/nvim-tree.vim
-  " LoadScript ./plug_configs/drawit.vim 暂时用不到
+  if g:set_termguicolors 
+    LoadScript ./plug_configs/ui/bufferline.vim
+    LoadScript ./plug_configs/ui/galaxyline.vim
+    LoadScript ./plug_configs/nvim_colorizer.vim
+  endif
 
   "load selected plugins
   if !exists('g:skip_project_plugs')
@@ -205,7 +207,7 @@ if exists("g:load_theme") && strlen(g:load_theme)>0
   endif
 endif
 
-if exists("&termguicolors") && exists("&winblend") && g:set_termguicolors 
+if g:set_termguicolors 
   set termguicolors " make nvim slow in fluent terminal
   set background=dark
 else

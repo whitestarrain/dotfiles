@@ -9,6 +9,7 @@ Plug 'lewis6991/gitsigns.nvim'
 "-----------------------------------vim-gitgutter--------------------------------------
 
 autocmd vimenter * call PlugConfigGit()
+
 function! PlugConfigGit()
 
   let g:which_key_map.h.p = "preview"
@@ -92,6 +93,7 @@ lua <<EOF
 
 EOF
 
+  hi GitSignsCurrentLineBlame guifg=gray
 
 endfunction
 

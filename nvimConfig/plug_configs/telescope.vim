@@ -21,7 +21,7 @@ require('telescope').setup{
       "%.docx",
       "%.tux",
       "%.cache",
-      ".git"
+      "%.gif",
     },
     layout_strategy = 'vertical',
   },
