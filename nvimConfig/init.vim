@@ -148,7 +148,11 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       let g:load_program = 1
     endif
 
-    if g:load_program 
+    if exists("g:power_lsp")
+      let g:load_program = 1
+    endif
+
+    if g:load_program
       LoadScript ./plug_configs/lsp/lsp_conf.vim
       LoadScript ./plug_configs/lsp/diagnostics_list.vim
     endif
@@ -159,15 +163,21 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
 
   call plug#end()
 
-  if exists("g:python")
+  if exists("g:python") || exists("g:power_lsp")
     " 通过require("python")返回
     LoadLua ./plug_configs/lsp-server/pyright_config.lua
   endif
-  if exists("g:rust")
+  if exists("g:rust") || exists("g:power_lsp")
     LoadLua ./plug_configs/lsp-server/rust_analyzer_config.lua
   endif
-  if exists("g:lua")
+  if exists("g:lua") || exists("g:power_lsp")
     LoadLua ./plug_configs/lsp-server/lua_lsp_config.lua
+  endif
+  if exists("g:front") || exists("g:power_lsp")
+    LoadLua ./plug_configs/lsp-server/tailwindcss.lua
+  endif
+  if exists("g:c") || exists("g:power_lsp")
+    LoadLua ./plug_configs/lsp-server/clangd_config.lua
   endif
 
 endif

@@ -11,7 +11,7 @@ function! <SID>BufCloseOthers()
      endif
    endfor
 endfunction
-map <leader>bo :BcloseOthers<cr><cr>
+nnoremap <silent> <leader>bo :BcloseOthers<cr><cr>
 let g:which_key_map.b.o = "deleteOthers"
 
 " 将链接下的文件下载到指定位置

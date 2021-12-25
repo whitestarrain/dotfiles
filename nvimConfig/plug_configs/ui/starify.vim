@@ -15,6 +15,7 @@ function! PlugConfigStarify()
   let g:startify_change_to_dir = 0
   " 切换header
   let g:startify_custom_header = [
+        \ '                     你今天学到了什么？                   ',
         \ '      ____   U  ___ u  ____              _   _     ____   ',
         \ '   U /"___|   \/"_ \/ |  _"\    ___     | \ |"| U /"___|u ',
         \ '   \| | u     | | | |/| | | |  |_"_|   <|  \| |>\| |  _ / ',

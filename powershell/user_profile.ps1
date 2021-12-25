@@ -12,6 +12,7 @@ Set-Alias vi nvimWithoutConfig
 Set-Alias vim vimFunction
 Set-Alias nvimRu  nvimForRust
 Set-Alias nvimPy nvimForPython
+Set-Alias nvimPower nvimForAllLsp
 Set-Alias ll ls
 Set-Alias tig 'D:\learn\Git\usr\bin\tig.exe'
 Set-Alias grep findstr
@@ -28,6 +29,9 @@ function nvimForRust(){
 }
 function nvimForPython(){
   nvim --cmd "let g:python=1" $args[0]
+}
+function nvimForAllLsp(){
+  nvim --cmd "let g:power_lsp=1" $args[0]
 }
 function SpaceVim(){
   nvim -u D:/MyRepo/SpaceVim/init.vim $args[0]

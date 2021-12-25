@@ -49,6 +49,6 @@ end
 -- end
 
 return {
-  key_bind_on_attach = on_attach
+  on_attach = on_attach
 }
 

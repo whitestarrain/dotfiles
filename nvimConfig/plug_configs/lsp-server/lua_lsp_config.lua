@@ -1,3 +1,5 @@
+local key_binding = require('lsp_keybing_config')
+
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path,"?.lua")
@@ -27,4 +29,8 @@ require'lspconfig'.sumneko_lua.setup{
       },
     },
   },
+  on_attach = key_binding.on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  }
 }

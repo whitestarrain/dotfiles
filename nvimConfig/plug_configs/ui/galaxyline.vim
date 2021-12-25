@@ -93,6 +93,7 @@ gls.left[7] = {
 gls.left[8] = {
   ScrollBar = {
     provider = 'ScrollBar',
+    condition = condition.hide_in_width,
     highlight = {colors.blue,colors.bg},
   }
 }
