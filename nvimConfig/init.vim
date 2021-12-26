@@ -89,96 +89,104 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
   " - Avoid using standard Vim directory names like 'plugin'
   call plug#begin(get(g:,"plug_install_path"))
 
-  " LoadScript ./plug_configs/drawit.vim 暂时用不到
-  LoadScript ./plug_configs/ui/theme.vim
-  LoadScript ./plug_configs/vim_surround.vim
-  LoadScript ./plug_configs/rainrow.vim
-  LoadScript ./plug_configs/auto_pair.vim
-  LoadScript ./plug_configs/ui/indentline.vim
-  LoadScript ./plug_configs/tag_bar.vim
-  LoadScript ./plug_configs/ui/vim_devicons.vim " 主要为startify 提供icon支持，可选
-  LoadScript ./plug_configs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
-  LoadScript ./plug_configs/ui/nvim-tree.vim
-  if g:set_termguicolors 
-    LoadScript ./plug_configs/ui/bufferline.vim
-    LoadScript ./plug_configs/ui/galaxyline.vim
-    LoadScript ./plug_configs/nvim_colorizer.vim
-  endif
-
-  "load selected plugins
-  if !exists('g:skip_project_plugs')
-    LoadScript ./plug_configs/ui/starify.vim " 加载这个插件的话，放上面，session关闭时处理相关
-    LoadScript ./plug_configs/far.vim
-    " LoadScript ./plug_configs/comfortable_motion.vim
-    " LoadScript ./plug_configs/nerdcommenter.vim
-    " LoadScript ./plug_configs/term/asyn_run.vim " 功能强大，但是暂时应该用不到
-    " LoadScript ./plug_configs/debugger.vim " 暂时应该用不上
-    LoadScript ./plug_configs/term/vim_floaterm.vim
-    LoadScript ./plug_configs/telescope.vim
-    LoadScript ./plug_configs/treesitter.vim
-    LoadScript ./plug_configs/easy_motion.vim
-    LoadScript ./plug_configs/git.vim
-    LoadScript ./plug_configs/ui/vim_which_key.vim
-    LoadScript ./plug_configs/lang_support/latex.vim
-    LoadScript ./plug_configs/lang_support/vim_markdown.vim
-    LoadScript ./plug_configs/prettier.vim
-    LoadScript ./plug_configs/md_img_paste.vim
-    LoadScript ./plug_configs/snippets.vim
-    " LoadScript ./plug_configs/vim_visual_multi.vim" 待安装
-
-    let g:load_program = 0
-    if exists("g:rust")
-      LoadScript ./plug_configs/lang_support/rust.vim
-      let g:load_program = 1
-    endif
-    if exists("g:python")
-      let g:load_program = 1
-    endif
-    if exists("g:c")
-      let g:load_program = 1
-    endif
-    if exists("g:java")
-      let g:load_program = 1
-    endif
-    if exists("g:lua")
-      let g:load_program = 1
-    endif
-    if exists("g:front")
-      let g:load_program = 1
-    endif
-    if exists("g:power_lsp")
-      let g:load_program = 1
+    " LoadScript ./plug_configs/drawit.vim 暂时用不到
+    LoadScript ./plug_configs/ui/theme.vim
+    LoadScript ./plug_configs/vim_surround.vim
+    LoadScript ./plug_configs/rainrow.vim
+    LoadScript ./plug_configs/auto_pair.vim
+    LoadScript ./plug_configs/ui/indentline.vim
+    LoadScript ./plug_configs/tag_bar.vim
+    LoadScript ./plug_configs/ui/vim_devicons.vim " 主要为startify 提供icon支持，可选
+    LoadScript ./plug_configs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
+    LoadScript ./plug_configs/ui/nvim-tree.vim
+    if g:set_termguicolors 
+      LoadScript ./plug_configs/ui/bufferline.vim
+      LoadScript ./plug_configs/ui/galaxyline.vim
+      LoadScript ./plug_configs/nvim_colorizer.vim
     endif
 
-    if g:load_program
-      LoadScript ./plug_configs/lsp/lsp_conf.vim
-      LoadScript ./plug_configs/lsp/diagnostics_list.vim
-      LoadScript ./plug_configs/lsp/lspsaga.vim
+    "load selected plugins
+    if !exists('g:skip_project_plugs')
+      LoadScript ./plug_configs/ui/starify.vim " 加载这个插件的话，放上面，session关闭时处理相关
+      " LoadScript ./plug_configs/far.vim
+      " LoadScript ./plug_configs/comfortable_motion.vim
+      " LoadScript ./plug_configs/nerdcommenter.vim
+      " LoadScript ./plug_configs/term/asyn_run.vim " 功能强大，但是暂时应该用不到
+      " LoadScript ./plug_configs/debugger.vim " 暂时应该用不上
+      LoadScript ./plug_configs/term/vim_floaterm.vim
+      LoadScript ./plug_configs/telescope.vim
+      LoadScript ./plug_configs/treesitter.vim
+      LoadScript ./plug_configs/easy_motion.vim
+      LoadScript ./plug_configs/git.vim
+      LoadScript ./plug_configs/ui/vim_which_key.vim
+      LoadScript ./plug_configs/lang_support/latex.vim
+      LoadScript ./plug_configs/lang_support/vim_markdown.vim
+      LoadScript ./plug_configs/prettier.vim
+      LoadScript ./plug_configs/md_img_paste.vim
+      LoadScript ./plug_configs/snippets.vim
+      " LoadScript ./plug_configs/vim_visual_multi.vim" 待安装
+
+      let g:load_program = 0
+      if exists("g:rust")
+        LoadScript ./plug_configs/lang_support/rust.vim
+        let g:load_program = 1
+      endif
+      if exists("g:python")
+        let g:load_program = 1
+      endif
+      if exists("g:c")
+        let g:load_program = 1
+      endif
+      if exists("g:java")
+        let g:load_program = 1
+      endif
+      if exists("g:lua")
+        let g:load_program = 1
+      endif
+      if exists("g:front")
+        let g:load_program = 1
+      endif
+
+      if exists("g:power_lsp")
+        let g:load_program = 1
+      endif
+
+      if g:load_program
+        LoadScript ./plug_configs/lsp/lsp_conf.vim
+        LoadScript ./plug_configs/lsp/diagnostics_list.vim
+        LoadScript ./plug_configs/lsp/lspsaga.vim
+      endif
+
+      LoadScript ./plug_configs/lsp/auto_complete.vim
+
     endif
-
-    LoadScript ./plug_configs/lsp/auto_complete.vim
-
-  endif
 
   call plug#end()
 
-  if exists("g:python") || exists("g:power_lsp")
-    " 通过require("python")返回
-    LoadLua ./plug_configs/lsp-server/pyright_config.lua
-  endif
-  if exists("g:rust") || exists("g:power_lsp")
-    LoadLua ./plug_configs/lsp-server/rust_analyzer_config.lua
-  endif
-  if exists("g:lua") || exists("g:power_lsp")
-    LoadLua ./plug_configs/lsp-server/lua_lsp_config.lua
-  endif
-  " if exists("g:front") || exists("g:power_lsp")
-  "   LoadLua ./plug_configs/lsp-server/denols.lua
-  "   LoadLua ./plug_configs/lsp-server/tailwindcss.lua
-  "   LoadLua ./plug_configs/lsp-server/tsserver.lua
-  " endif
-  if exists("g:c") || exists("g:power_lsp")
-    LoadLua ./plug_configs/lsp-server/clangd_config.lua
+  if !exists('g:skip_project_plugs')
+    if exists("g:python") || exists("g:power_lsp")
+      " 通过require("python")返回
+      LoadLua ./plug_configs/lsp-server/pyright_config.lua
+    endif
+    if exists("g:rust") || exists("g:power_lsp")
+      LoadLua ./plug_configs/lsp-server/rust_analyzer_config.lua
+    endif
+    if exists("g:lua") || exists("g:power_lsp")
+      LoadLua ./plug_configs/lsp-server/lua_lsp_config.lua
+    endif
+    " if exists("g:front") || exists("g:power_lsp")
+    "   LoadLua ./plug_configs/lsp-server/denols.lua
+    "   LoadLua ./plug_configs/lsp-server/tailwindcss.lua
+    "   LoadLua ./plug_configs/lsp-server/tsserver.lua
+    " endif
+    if exists("g:c") || exists("g:power_lsp")
+      LoadLua ./plug_configs/lsp-server/clangd_config.lua
+    endif
+
+    if exists("g:power_lsp")
+      LoadLua ./plug_configs/lsp-server/bash.lua
+    endif
+
   endif
 
 endif
@@ -193,9 +201,7 @@ LoadScript functions.vim
 LoadScript mappings.vim
 "=================================================common map end===================================================
 
-doautocmd User LoadPluginConfig
 "=================================================theme start===================================================
-
 set synmaxcol=5000       " 高亮显示行数，小一点节省内存，但是可能对大文件出现渲染错误 默认3000
 syntax sync minlines=256
 syntax enable
@@ -227,3 +233,5 @@ else
 endif
 
 "=================================================theme end===================================================
+
+doautocmd User LoadPluginConfig
