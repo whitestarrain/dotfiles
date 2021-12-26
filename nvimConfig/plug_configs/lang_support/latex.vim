@@ -3,7 +3,7 @@
 Plug 'lervag/vimtex'
 "------------------------------------latex-------------------------------------
 
-autocmd vimenter * call PlugConfigLatex()
+autocmd User LoadPluginConfig call PlugConfigLatex()
 
 function PlugConfigLatex()
   "编译过程中不忽略警告信息

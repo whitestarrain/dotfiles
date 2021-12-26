@@ -18,7 +18,7 @@ Plug 'hrsh7th/cmp-vsnip' " vsnip snippet 补全
 Plug 'onsails/lspkind-nvim' "代码提示中，显示分类的小图标支持
 
 
-autocmd vimenter * call PlugConfigCMP()
+autocmd User LoadPluginConfig call PlugConfigCMP()
 
 function! PlugConfigCMP()
   LoadLua ./plug_configs/lsp/auto_complete.lua

@@ -1,6 +1,6 @@
 Plug 'voldikss/vim-floaterm'
 
-autocmd vimenter * call PlugConfigFloaterm()
+autocmd User LoadPluginConfig call PlugConfigFloaterm()
 
 function PlugConfigFloaterm()
 

@@ -5,7 +5,7 @@ Plug 'p00f/nvim-ts-rainbow'
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'
 " Plug'nvim-treesitter/playground'
 
-autocmd vimenter * call PlugConfigTreeSitter()
+autocmd User LoadPluginConfig call PlugConfigTreeSitter()
 
 function PlugConfigTreeSitter()
 

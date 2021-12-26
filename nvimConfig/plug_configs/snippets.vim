@@ -4,7 +4,7 @@ Plug 'rafamadriz/friendly-snippets' "提供一堆snip
 "-----------------------------------snippt插件--------------------------------------
 
 
-autocmd vimenter * call PlugConfigSnippet()
+autocmd User LoadPluginConfig call PlugConfigSnippet()
 
 function PlugConfigSnippet()
 

@@ -7,7 +7,7 @@ Plug 'mhinz/vim-startify'
 let g:startify_session_before_save = []
 let g:startify_session_savecmds = []
 
-autocmd vimenter * call PlugConfigStarify()
+autocmd User LoadPluginConfig call PlugConfigStarify()
 function! PlugConfigStarify()
   " startify config
   " 设置Session时不要打开插件，比如NERDTree侧边栏，否则会报错

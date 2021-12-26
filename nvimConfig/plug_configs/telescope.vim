@@ -3,8 +3,7 @@ Plug 'nvim-telescope/telescope.nvim'
 
 " 文件模糊查找
 
-
-autocmd vimenter * call PlugConfigTelescope()
+autocmd User LoadPluginConfig call PlugConfigTelescope()
 function! PlugConfigTelescope()
 
 lua <<EOF

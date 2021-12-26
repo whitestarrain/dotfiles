@@ -2,7 +2,7 @@
 " 代码大纲
 Plug 'majutsushi/tagbar'
 "------------------------------------tagbar-------------------------------------
-autocmd vimenter * call PlugConfigTagBar()
+autocmd User LoadPluginConfig call PlugConfigTagBar()
 function! PlugConfigTagBar()
   " 设置宽度
   " let g:tagbar_width = 30

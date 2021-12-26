@@ -1,6 +1,6 @@
 Plug 'akinsho/bufferline.nvim'
 
-autocmd vimenter * call PlugConfigBufferLine()
+autocmd User LoadPluginConfig call PlugConfigBufferLine()
 
 function PlugConfigBufferLine()
 

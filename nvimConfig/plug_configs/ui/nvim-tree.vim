@@ -1,6 +1,6 @@
 Plug 'kyazdani42/nvim-tree.lua'
 
-autocmd vimenter * call PlugConfigNvimTree()
+autocmd User LoadPluginConfig call PlugConfigNvimTree()
 
 function PlugConfigNvimTree()
 

@@ -4,7 +4,7 @@ Plug 'plasticboy/vim-markdown'
 "-----------------------------------vim-markdown--------------------------------------
 
 "------------------------------------markdown-------------------------------------
-autocmd vimenter * call PlugConfigMarkDown()
+autocmd User LoadPluginConfig call PlugConfigMarkDown()
 function! PlugConfigMarkDown()
   " markdown config
   " 禁用折叠

@@ -1,6 +1,6 @@
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 
-autocmd vimenter * call PlugConfigGalaxyline()
+autocmd User LoadPluginConfig call PlugConfigGalaxyline()
 
 function! PlugConfigGalaxyline()
 

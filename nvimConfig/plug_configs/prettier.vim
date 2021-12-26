@@ -6,7 +6,7 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html', 'java', 'bash', 'c'] }
 "-----------------------------------格式化化插件--------------------------------------
-autocmd vimenter * call PlugConfigAutoPair()
+autocmd User LoadPluginConfig call PlugConfigPrettier()
 function! PlugConfigPrettier()
   " prettier config
   " 取消注解需求

@@ -8,10 +8,9 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 "-----------------------------------vim-gitgutter--------------------------------------
 
-autocmd vimenter * call PlugConfigGit()
+autocmd User LoadPluginConfig call PlugConfigGit()
 
 function! PlugConfigGit()
-
   let g:which_key_map.h.p = "preview"
   let g:which_key_map.h.s = "stage hunk"
   let g:which_key_map.h.S = "stage Buffer"

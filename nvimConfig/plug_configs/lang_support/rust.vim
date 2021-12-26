@@ -1,7 +1,7 @@
 Plug 'rust-lang/rust.vim'
 Plug 'tenfyzhong/tagbar-rust.vim'
 
-autocmd vimenter * call PlugConfigRust()
+autocmd User LoadPluginConfig call PlugConfigRust()
 
 function PlugConfigRust()
   " 保存时代码自动格式化

@@ -6,7 +6,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 "--------------------------------------nerdtree-----------------------------------
 
 
-autocmd vimenter * call PlugConfigNerdTree()
+autocmd User LoadPluginConfig call PlugConfigNerdTree()
 function! PlugConfigNerdTree()
   "自动开启书签栏
   " let NERDTreeShowBookmarks=1

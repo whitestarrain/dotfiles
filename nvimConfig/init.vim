@@ -108,7 +108,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
   "load selected plugins
   if !exists('g:skip_project_plugs')
     LoadScript ./plug_configs/ui/starify.vim " 加载这个插件的话，放上面，session关闭时处理相关
-    " LoadScript ./plug_configs/far.vim
+    LoadScript ./plug_configs/far.vim
     " LoadScript ./plug_configs/comfortable_motion.vim
     " LoadScript ./plug_configs/nerdcommenter.vim
     " LoadScript ./plug_configs/term/asyn_run.vim " 功能强大，但是暂时应该用不到
@@ -155,6 +155,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     if g:load_program
       LoadScript ./plug_configs/lsp/lsp_conf.vim
       LoadScript ./plug_configs/lsp/diagnostics_list.vim
+      LoadScript ./plug_configs/lsp/lspsaga.vim
     endif
 
     LoadScript ./plug_configs/lsp/auto_complete.vim
@@ -192,6 +193,7 @@ LoadScript functions.vim
 LoadScript mappings.vim
 "=================================================common map end===================================================
 
+doautocmd User LoadPluginConfig
 "=================================================theme start===================================================
 
 set synmaxcol=5000       " 高亮显示行数，小一点节省内存，但是可能对大文件出现渲染错误 默认3000
@@ -225,4 +227,3 @@ else
 endif
 
 "=================================================theme end===================================================
-

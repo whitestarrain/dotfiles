@@ -1,7 +1,7 @@
 "------------------------------------easymotion-------------------------------------
 Plug 'easymotion/vim-easymotion'
 "------------------------------------easymotion-------------------------------------
-autocmd vimenter * call PlugConfigEasyMotion()
+autocmd User LoadPluginConfig call PlugConfigEasyMotion()
 function! PlugConfigEasyMotion()
   " easymotion map
   nmap <leader>j <Plug>(easymotion-s2)
