@@ -131,23 +131,21 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       LoadScript ./plug_configs/lang_support/rust.vim
       let g:load_program = 1
     endif
-
     if exists("g:python")
       let g:load_program = 1
     endif
-
     if exists("g:c")
       let g:load_program = 1
     endif
-
     if exists("g:java")
       let g:load_program = 1
     endif
-
     if exists("g:lua")
       let g:load_program = 1
     endif
-
+    if exists("g:front")
+      let g:load_program = 1
+    endif
     if exists("g:power_lsp")
       let g:load_program = 1
     endif
@@ -174,9 +172,11 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
   if exists("g:lua") || exists("g:power_lsp")
     LoadLua ./plug_configs/lsp-server/lua_lsp_config.lua
   endif
-  if exists("g:front") || exists("g:power_lsp")
-    LoadLua ./plug_configs/lsp-server/tailwindcss.lua
-  endif
+  " if exists("g:front") || exists("g:power_lsp")
+  "   LoadLua ./plug_configs/lsp-server/denols.lua
+  "   LoadLua ./plug_configs/lsp-server/tailwindcss.lua
+  "   LoadLua ./plug_configs/lsp-server/tsserver.lua
+  " endif
   if exists("g:c") || exists("g:power_lsp")
     LoadLua ./plug_configs/lsp-server/clangd_config.lua
   endif
