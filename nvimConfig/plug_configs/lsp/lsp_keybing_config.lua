@@ -20,18 +20,19 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('v', 'gca', ':<C-U>lua require("lspsaga.codeaction").range_code_action()<CR>', opts)
   -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
-  -- buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua require("lspsaga.hover").render_hover_doc()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts) -- <c-w>w 可以跳进pop中,<c-w>k可以跳出
+  -- buf_set_keymap('n', 'K', '<cmd>lua require("lspsaga.hover").render_hover_doc()<CR>', opts) -- lspsaga无法正常展示转义字符，使用原生的
 
-  buf_set_keymap('n', '<C-f>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', opts)
-  buf_set_keymap('n', '<C-b>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', opts)
+  -- buf_set_keymap('n', '<C-f>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', opts)
+  -- buf_set_keymap('n', '<C-b>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', opts)
 
   buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   -- buf_set_keymap('n', 'gs', '<cjd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', 'gs', '<cmd>jua require("lspsaga.signaturehelp").signature_help()<CR>', opts)
+  buf_set_keymap('n', 'gs', '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>', opts)
+  buf_set_keymap('i', '<c-p>', '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>', opts)
   buf_set_keymap('n', 'gp', '<cmd>lua require"lspsaga.provider".preview_definition()<CR>', opts)
   -- buf_set_keymap('n', '<space>gr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', 'zgr', '<cmd>lua require("lspsaga.rename").rename()<CR>', opts)
