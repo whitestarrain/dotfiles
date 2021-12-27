@@ -48,3 +48,6 @@ let g:which_key_map.z.l = "compress empty line"
 nnoremap <silent><leader>zk :!markmap %  <cr> 
 let g:which_key_map.z.k = "markmap"
 
+" 终端模式返回普通模式
+tnoremap <c-[> <c-\><c-n>
+tnoremap <Esc> <C-\><C-n>

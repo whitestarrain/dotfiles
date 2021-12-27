@@ -1,12 +1,7 @@
+Plug 'norcalli/nvim-colorizer.lua'
 
-if &termguicolors 
+autocmd User LoadPluginConfig call PlugConfigColorzer()
 
-  Plug 'norcalli/nvim-colorizer.lua'
-
-  autocmd User LoadPluginConfig call PlugConfigColorzer()
-
-  function! PlugConfigColorzer()
-    lua require 'colorizer'.setup({"json","xml","html","css","ps1"})
-  endfunction
-
-endif
+function! PlugConfigColorzer()
+  lua require 'colorizer'.setup({"json","xml","html","css","ps1"})
+endfunction

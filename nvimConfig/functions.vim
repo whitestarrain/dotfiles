@@ -69,3 +69,9 @@ function! SearchOnline(searchUrl)
 endfunction
 vnoremap <silent><m-g> "sy<Esc>:call  SearchOnline("https://www.google.com/search?q=")<CR>
 vnoremap <silent><m-b> "sy<Esc>:call  SearchOnline("https://www.baidu.com/s?wd=")<CR>
+
+" open terminal on ctrl+n
+function! OpenTerminal()
+  split term://bash
+endfunction
+nnoremap <c-`> :call OpenTerminal()<CR>

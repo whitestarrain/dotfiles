@@ -127,27 +127,25 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       " LoadScript ./plug_configs/vim_visual_multi.vim" 待安装
 
       let g:load_program = 0
-      if exists("g:rust")
+      if exists("g:rust") || exists("g:power_lsp")
         LoadScript ./plug_configs/lang_support/rust.vim
         let g:load_program = 1
       endif
-      if exists("g:python")
+      if exists("g:python") || exists("g:power_lsp")
         let g:load_program = 1
       endif
-      if exists("g:c")
+      if exists("g:c") || exists("g:power_lsp")
         let g:load_program = 1
       endif
-      if exists("g:java")
+      if exists("g:java") || exists("g:power_lsp")
         let g:load_program = 1
       endif
-      if exists("g:lua")
+      if exists("g:lua") || exists("g:power_lsp")
         let g:load_program = 1
       endif
-      if exists("g:front")
-        let g:load_program = 1
-      endif
-
-      if exists("g:power_lsp")
+      if exists("g:front") || exists("g:power_lsp")
+        LoadScript ./plug_configs/lang_support/jsx.vim
+        LoadScript ./plug_configs/lang_support/typescript.vim
         let g:load_program = 1
       endif
 
@@ -174,11 +172,16 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     if exists("g:lua") || exists("g:power_lsp")
       LoadLua ./plug_configs/lsp-server/lua_lsp_config.lua
     endif
-    " if exists("g:front") || exists("g:power_lsp")
-    "   LoadLua ./plug_configs/lsp-server/denols.lua
-    "   LoadLua ./plug_configs/lsp-server/tailwindcss.lua
-    "   LoadLua ./plug_configs/lsp-server/tsserver.lua
-    " endif
+    if exists("g:front") || exists("g:power_lsp")
+      " vscode 配套lsp
+      LoadLua ./plug_configs/lsp-server/vscode-lsp.lua
+      " ts和js以及react
+      LoadLua ./plug_configs/lsp-server/tsserver.lua 
+      " 不扫描node_module，还没有解决
+      " LoadLua ./plug_configs/lsp-server/denols.lua 
+      " tailwindcss 框架专属，暂时用不到
+      " LoadLua ./plug_configs/lsp-server/tailwindcss.lua
+    endif
     if exists("g:c") || exists("g:power_lsp")
       LoadLua ./plug_configs/lsp-server/clangd_config.lua
     endif

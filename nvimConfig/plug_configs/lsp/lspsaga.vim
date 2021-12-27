@@ -1,4 +1,5 @@
 " lsp ui美化
+" 一个fort分支，修了原来分支的bug
 Plug 'tami5/lspsaga.nvim'
 
 autocmd User LoadPluginConfig call PlugConfigLspUi()
