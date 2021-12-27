@@ -4,13 +4,17 @@ autocmd User LoadPluginConfig call PlugConfigFloaterm()
 
 function PlugConfigFloaterm()
 
-  " let g:floaterm_position='center'
-  " let g:floaterm_width=0.8
   let g:floaterm_opener='edit'
-  let g:floaterm_wintype='split'
-  let g:floaterm_height=0.3
   let g:floaterm_rootmarkers=['.project', '.git', '.hg', '.svn', '.root', '.gitignore']
-  " let g:floaterm_autoinsert=v:false
+
+  " float 中间
+  let g:floaterm_position='center'
+  let g:floaterm_width=0.8
+  let g:floaterm_height=0.8
+
+  " split 底部
+  " let g:floaterm_wintype='split'
+  " let g:floaterm_height=0.3
 
   nmap <silent> <M-+> :FloatermNew<cr>
   nmap <silent> <M-=> :FloatermToggle<cr>
