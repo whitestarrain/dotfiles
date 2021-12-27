@@ -22,5 +22,6 @@ require'lspconfig'.jsonls.setup {
 
 require'lspconfig'.cssls.setup {
   capabilities = capabilities,
+   on_attach = key_binding.on_attach
 }
 
