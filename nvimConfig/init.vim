@@ -149,6 +149,9 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
         LoadScript ./plug_configs/lang_support/typescript.vim
         let g:load_program = 1
       endif
+      if exists("g:latex") || exists("g:power_lsp")
+        let g:load_program = 1
+      endif
 
       if g:load_program
         LoadScript ./plug_configs/lsp/lsp_conf.vim
@@ -187,6 +190,9 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     endif
     if exists("g:c") || exists("g:power_lsp")
       LoadLua ./plug_configs/lsp-server/clangd_config.lua
+    endif
+    if exists("g:latex") || exists("g:power_lsp")
+      LoadLua ./plug_configs/lsp-server/texlab.lua
     endif
 
     if exists("g:power_lsp")
