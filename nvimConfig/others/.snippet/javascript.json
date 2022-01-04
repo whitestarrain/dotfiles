@@ -12,5 +12,12 @@
       "}"
     ],
     "description": "Class definition template."
+  },
+  "reference-vs": {
+    "prefix": ["ref-vs"],
+    "body": [
+      ""
+    ],
+    "description": "Class definition template."
   }
 }

@@ -5,23 +5,25 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require'lspconfig'.html.setup {
-   capabilities = capabilities,
-   on_attach = key_binding.on_attach
+    capabilities = capabilities,
+    on_attach = key_binding.on_attach
 }
 
--- format: autocmd BufWritePre <buffer> <cmd>EslintFixAll<CR>
-require'lspconfig'.eslint.setup{
-   capabilities = capabilities,
-   on_attach = key_binding.on_attach
-}
+-- format: autocmd BufWritePre <buffer> <cmd>EslintFixAll<CR>local
+if(vim.g.use_eslint) then
+  require'lspconfig'.eslint.setup{
+      capabilities = capabilities,
+      on_attach = key_binding.on_attach,
+  }
+end
 
 require'lspconfig'.jsonls.setup {
-   capabilities = capabilities,
-   on_attach = key_binding.on_attach
+    capabilities = capabilities,
+    on_attach = key_binding.on_attach
 }
 
 require'lspconfig'.cssls.setup {
-  capabilities = capabilities,
-   on_attach = key_binding.on_attach
+    capabilities = capabilities,
+    on_attach = key_binding.on_attach
 }
 

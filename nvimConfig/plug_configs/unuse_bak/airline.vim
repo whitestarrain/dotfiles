@@ -24,10 +24,10 @@ let g:airline#extensions#tabline#left_alt_sep = '>'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 " let g:airline#extensions#tabline#exclude_buffers = ["[defx]", "!", "vimfiler", "nnn", "vista"]
 
-let g:lightline = {
-  \ 'colorscheme': 'onedark',
-  \ }
-let g:airline_theme='onedark'
+" let g:lightline = {
+"   \ 'colorscheme': 'onedark',
+"   \ }
+" let g:airline_theme='onedark'
 
 
 autocmd vimenter * call AirlineConfig()

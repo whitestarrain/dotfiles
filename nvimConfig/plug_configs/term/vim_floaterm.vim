@@ -5,6 +5,7 @@ autocmd User LoadPluginConfig call PlugConfigFloaterm()
 function PlugConfigFloaterm()
 
   let g:floaterm_opener='edit'
+  " let g:floaterm_shell='bash'
   let g:floaterm_rootmarkers=['.project', '.git', '.hg', '.svn', '.root', '.gitignore']
 
   " float 中间
