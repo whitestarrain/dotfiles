@@ -11,20 +11,27 @@ command! -nargs=1 LoadLua exec 'luafile' . ' ' . g:absolute_config_path . '<args
 lua package.path = package.path .. ";" .. vim.g.absolute_config_path .. "./plug_configs/lsp/?.lua"
 
 " python 环境
-let g:python3_host_prog='D:\\learn\\anaconda3\\envs\\learn\\python.exe'
+let g:python3_host_prog='D:\\ProgramFiles\\scoop\\apps\\anaconda3\\current\\envs\\develop\\python.exe'
 
 "=================================================env config end===================================================
 
 "=================================================control var start===================================================
 
 " g:load_theme
-" g:skip_project_plug
+" g:skip_project_plugs
 " g:set_termguicolors
-" g:python
-" g:rust
 " g:plug_install_path
 " g:python3_host_prog
 " g:vscode
+" code
+  " g:python
+  " g:rust
+  " g:c
+  " g:java
+  " g:lua
+  " g:front
+  " g:latex
+  " g:power_lsp
 
 if strlen($term)==0
   " nvim-qt
@@ -127,6 +134,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       LoadScript ./plug_configs/snippets.vim
       " LoadScript ./plug_configs/vim_visual_multi.vim" 待安装
 
+      " lang plug load
       let g:load_program = 0
       if exists("g:rust") || exists("g:power_lsp")
         LoadScript ./plug_configs/lang_support/rust.vim
@@ -153,18 +161,21 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
         let g:load_program = 1
       endif
 
+      " lsp_config load
       if g:load_program
         LoadScript ./plug_configs/lsp/lsp_conf.vim
         LoadScript ./plug_configs/lsp/diagnostics_list.vim
         LoadScript ./plug_configs/lsp/lspsaga.vim
       endif
 
+      " auto complete config. related with load_program
       LoadScript ./plug_configs/lsp/auto_complete.vim
 
     endif
 
   call plug#end()
 
+  " lsp config
   if !exists('g:skip_project_plugs')
     if exists("g:python") || exists("g:power_lsp")
       " 通过require("python")返回

@@ -51,5 +51,14 @@ autocmd User LoadPluginConfig call PlugConfigLatex()
         \ 'LaTeX hooks Warning',
         \ 'Warning: Font',
         \]
+ 
 
+" \li	vimtex-info(文件信息)	n
+" \lt	vimtex-toc-open(打开目录)	n
+" \ll	vimtex-compile(编译文件)	n
+" \lv	vimtex-view(查看pdf文档)	n
+" \li	vimtex-imap-list(查看insert 模式下已定义的映射)	n
+" K  	vim-doc-package(查看宏包信息)	n
+
+" 更多好用的快捷键以及text object：help vimtex-default-mappings
 endfunction

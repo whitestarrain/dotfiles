@@ -1,4 +1,11 @@
+// 这个文件放在项目目录下
 {
   "python.venvPath": "D:/learn/anaconda3/envs",
-  "venv":"learn"
+  "venv": "learn",
+  "executionEnvironments": [
+    // 指定源代码目录，可根据情况调整
+    {
+      "root": "src"
+    }
+  ]
 }

@@ -4,7 +4,7 @@ return {
   -- set env for nvim
 
   font = wezterm.font("Hack NF"),
-  font_size = 10.5,
+  font_size = 14,
   -- You can specify some parameters to influence the font selection;
   -- for example, this selects a Bold, Italic font variant.
   -- font = wezterm.font("JetBrains Mono", {weight="Bold", italic=true})
@@ -48,7 +48,7 @@ return {
       -- The active tab is the one that has focus in the window
       active_tab = {
         -- The color of the background area for the tab
-        bg_color = "#2b2042",
+        bg_color = "#282828",
         -- The color of the text for the tab
         fg_color = "#c0c0c0",
 
@@ -83,7 +83,7 @@ return {
       -- You can configure some alternate styling when the mouse pointer
       -- moves over inactive tabs
       inactive_tab_hover = {
-        bg_color = "#3b3052",
+        bg_color = "#282828",
         fg_color = "#909090",
         italic = true,
 
@@ -142,8 +142,8 @@ return {
   -- ref: https://github.com/wez/wezterm/blob/main/assets/colors/OneHalfDark.toml
       ["My one dark"] = {
         foreground = "#a1a170",
-        background = "#181921",
-        cursor_bg = "#8af1b0",
+        background = "#282828",
+        cursor_bg = "#abb2bf",
         cursor_fg = "black",
         cursor_border = "#52ad70",
         selection_bg = "#ebdbb2",
