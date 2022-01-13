@@ -21,6 +21,7 @@ require('telescope').setup{
       "%.tux",
       "%.cache",
       "%.gif",
+      "%.mm",
     },
     layout_strategy = 'vertical',
   },

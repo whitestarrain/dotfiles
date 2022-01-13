@@ -38,7 +38,7 @@ if strlen($term)==0
   let g:set_termguicolors=1
   let g:load_theme="onedark"
   " let g:load_theme="NeoSolarized"
-  autocmd vimenter * GuiFont! MesloLGS NF:h11
+  autocmd vimenter * GuiFont! MesloLGS NF:h14
 elseif $term=="alacritty"
   " alacritty
   let g:neosolarized_termtrans=1

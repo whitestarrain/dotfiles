@@ -54,7 +54,7 @@ set laststatus=2         " Always show statusline.
 set display=lastline  " Show as much as possible of the last line.
 set nowrap                 " No Wrap lines
 set scrolloff=3
-set linespace=2            " 行距
+set linespace=0            " 行距
 
 set showmode               " Show current mode in command-line.
 set showcmd                " Show already typed keys when more are expected.
