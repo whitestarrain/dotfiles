@@ -10,12 +10,13 @@ require'lspconfig'.html.setup {
 }
 
 -- format: autocmd BufWritePre <buffer> <cmd>EslintFixAll<CR>local
-if(vim.g.use_eslint) then
-  require'lspconfig'.eslint.setup{
-      capabilities = capabilities,
-      on_attach = key_binding.on_attach,
-  }
-end
+-- eslint --init to init eslint config file
+-- add node enviroment: https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
+require'lspconfig'.eslint.setup{
+    capabilities = capabilities,
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue" },
+    on_attach = key_binding.on_attach,
+}
 
 require'lspconfig'.jsonls.setup {
     capabilities = capabilities,

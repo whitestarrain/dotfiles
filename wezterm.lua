@@ -32,8 +32,8 @@ return {
     WEZTERM = "wezterm"
   },
 
-  initial_cols = 160,
-  initial_rows = 50,
+  initial_cols = 150,
+  initial_rows = 42,
 
   -- tab bar appearance config
   -- enable_tab_bar=false,
@@ -48,7 +48,7 @@ return {
       -- The active tab is the one that has focus in the window
       active_tab = {
         -- The color of the background area for the tab
-        bg_color = "#282828",
+        bg_color = "#1b1032",
         -- The color of the text for the tab
         fg_color = "#c0c0c0",
 
@@ -73,7 +73,7 @@ return {
 
       -- Inactive tabs are the tabs that do not have focus
       inactive_tab = {
-        bg_color = "#1b1032",
+        bg_color = "#282828",
         fg_color = "#808080",
 
         -- The same options that were listed under the `active_tab` section above
@@ -93,7 +93,7 @@ return {
 
       -- The new tab button that let you create new tabs
       new_tab = {
-        bg_color = "#1b1032",
+        bg_color = "#282828",
         fg_color = "#808080",
 
         -- The same options that were listed under the `active_tab` section above
