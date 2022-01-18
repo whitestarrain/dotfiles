@@ -105,8 +105,8 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     LoadScript ./plug_configs/tag_bar.vim
     LoadScript ./plug_configs/ui/vim_devicons.vim " 主要为startify 提供icon支持，可选
     LoadScript ./plug_configs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
-    LoadScript ./plug_configs/ui/nvim-tree.vim
     LoadScript ./plug_configs/kommentary.vim
+    LoadScript ./plug_configs/git.vim
     if g:set_termguicolors 
       LoadScript ./plug_configs/ui/bufferline.vim
       LoadScript ./plug_configs/ui/galaxyline.vim
@@ -125,7 +125,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       LoadScript ./plug_configs/telescope.vim
       LoadScript ./plug_configs/treesitter.vim
       LoadScript ./plug_configs/easy_motion.vim
-      LoadScript ./plug_configs/git.vim
+      LoadScript ./plug_configs/ui/nvim-tree.vim
       LoadScript ./plug_configs/ui/vim_which_key.vim
       LoadScript ./plug_configs/lang_support/latex.vim
       LoadScript ./plug_configs/lang_support/vim_markdown.vim
