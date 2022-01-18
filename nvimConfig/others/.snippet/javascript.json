@@ -13,11 +13,11 @@
     ],
     "description": "Class definition template."
   },
-  "reference-vs": {
-    "prefix": ["ref-vs"],
+  "reference-tsserver": {
+    "prefix": ["ref"],
     "body": [
-      ""
+      "\/\/\/ <reference path=\"$1\" \/>"
     ],
-    "description": "Class definition template."
+    "description": "code complete from other file"
   }
 }
