@@ -3,11 +3,11 @@
 - [x] coc换为lsp
 - [ ] ~lua替换vim配置~
 - [x] LoadLua 函数 ,修改`package.path`
-- [ ] 配置结构优化
+- [x] 配置结构优化
 - [ ] README补充
 - [x] airline换掉
 - [x] react 开发环境搭建
-- [ ] 键位整理
+- [ ] 键位整理(重要)
 - [ ] 插件
   - vim-visual-multi
 
