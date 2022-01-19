@@ -137,7 +137,7 @@ lua << EOF
         -- configuration options for the system open command (`s` in the tree by default)
         system_open = {
             -- the command to run this, leaving nil should work in most cases
-            cmd  = "xdg-open",
+            cmd  = nil,  -- windows default is cmd \c start
             -- the command arguments as a list
             args = {}
         },
@@ -191,6 +191,7 @@ lua << EOF
                     { key = "<bs>",                         cb = tree_cb("dir_up") },
                     { key = "q",                            cb = tree_cb("close") },
                     { key = "s",                            cb = tree_cb("vsplit") },
+                    { key = "S",                            cb = tree_cb("system_open") },
                 }
             }
         }
