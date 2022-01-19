@@ -127,7 +127,6 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       LoadScript ./plug_configs/easy_motion.vim
       LoadScript ./plug_configs/ui/nvim-tree.vim
       LoadScript ./plug_configs/ui/vim_which_key.vim
-      LoadScript ./plug_configs/lang_support/latex.vim
       LoadScript ./plug_configs/lang_support/vim_markdown.vim
       LoadScript ./plug_configs/prettier.vim
       LoadScript ./plug_configs/md_img_paste.vim
@@ -158,6 +157,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
         let g:load_program = 1
       endif
       if exists("g:latex") || exists("g:power_lsp")
+        LoadScript ./plug_configs/lang_support/latex.vim
         let g:load_program = 1
       endif
 

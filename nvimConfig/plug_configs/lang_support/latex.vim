@@ -9,7 +9,7 @@ Plug 'lervag/vimtex'
 autocmd User LoadPluginConfig call PlugConfigLatex()
 
   function PlugConfigLatex()
-    "
+
   "使vimtex默认pdf阅读器
   let g:vimtex_view_general_viewer = 'SumatraPDF.exe' 
 
@@ -51,7 +51,36 @@ autocmd User LoadPluginConfig call PlugConfigLatex()
         \ 'LaTeX hooks Warning',
         \ 'Warning: Font',
         \]
+
+  " let g:vimtex_toc_config.split_pos='vert rightbelow'
  
+  let g:vimtex_toc_config = {
+        \ "layer_keys": { "label": "L", "include": "I", "todo": "T", "content": "C" },
+        \ "todo_sorted": 1,
+        \ "split_width": 40,
+        \ "mode": 1,
+        \ "indent_levels": 0,
+        \ "split_pos": "vert botright",
+        \ "name": "Table of contents (VimTeX)",
+        \ "fold_level_start": -1,
+        \ "hotkeys_leader": ";",
+        \ "show_numbers": 1,
+        \ "hotkeys_enabled": 0,
+        \ "fold_enable": 0,
+        \ "hotkeys": "abcdeilmnopuvxyz",
+        \ "show_help": 1,
+        \ "layer_status": { "label": 1, "include": 1, "todo": 1, "content": 1 },
+        \ "hide_line_numbers": 1,
+        \ "refresh_always": 1,
+        \ "tocdepth": 3,
+        \ "resize": 0
+        \ }
+
+  augroup latexMap
+      autocmd!
+      autocmd FileType tex nnoremap <buffer> <leader>t :VimtexTocToggle <CR>
+  augroup END
+
 
 " \li	vimtex-info(文件信息)	n
 " \lt	vimtex-toc-open(打开目录)	n
