@@ -106,7 +106,6 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     LoadScript ./plug_configs/ui/vim_devicons.vim " 主要为startify 提供icon支持，可选
     LoadScript ./plug_configs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
     LoadScript ./plug_configs/kommentary.vim
-    LoadScript ./plug_configs/git.vim
     if g:set_termguicolors 
       LoadScript ./plug_configs/ui/bufferline.vim
       LoadScript ./plug_configs/ui/galaxyline.vim
@@ -122,6 +121,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       " LoadScript ./plug_configs/term/asyn_run.vim " 功能强大，但是暂时应该用不到
       " LoadScript ./plug_configs/debugger.vim " 暂时应该用不上
       LoadScript ./plug_configs/term/vim_floaterm.vim
+      LoadScript ./plug_configs/git.vim
       LoadScript ./plug_configs/telescope.vim
       LoadScript ./plug_configs/treesitter.vim
       LoadScript ./plug_configs/easy_motion.vim
