@@ -1,1 +1,2 @@
 WARN  2022-01-18T10:57:04.401 4948  server_start:154: Failed to start server: address already in use: \\.\pipe\nvim-12696-0
+WARN  2022-01-23T16:31:30.875 3576  server_start:154: Failed to start server: address already in use: \\.\pipe\nvim-10000-0
