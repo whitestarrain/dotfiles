@@ -61,7 +61,7 @@ nnoremap <silent><leader>fa :Telescope<CR>
 let g:which_key_map.f.a = 'all_find_command'
 
 nnoremap <silent><leader>fg :Telescope live_grep<CR>
-let g:which_key_map.f.f = 'all_find_command'
+let g:which_key_map.f.g = 'live_grep'
 
 endfunction
 
