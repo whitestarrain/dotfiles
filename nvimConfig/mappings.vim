@@ -14,6 +14,12 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" 设置窗口大小调整快捷键
+nnoremap <silent><c-left> :vertical resize -1<CR>
+nnoremap <silent><c-right> :vertical resize +1<CR>
+nnoremap <silent><c-up> :resize +1<CR>
+nnoremap <silent><c-down> :resize -1<CR>
+
 " 设置缓冲区跳转
 noremap <M-h> :bp<cr>
 noremap <M-l> :bn<cr>
