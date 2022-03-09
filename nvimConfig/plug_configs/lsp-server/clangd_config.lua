@@ -1,3 +1,5 @@
+-- c++
+
 local key_binding = require('lsp_keybing_config')
 
 require'lspconfig'.clangd.setup{

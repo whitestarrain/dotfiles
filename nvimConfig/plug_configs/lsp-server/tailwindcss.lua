@@ -1,3 +1,5 @@
+-- npm install -g @tailwindcss/language-server
+
 -- 前端lsp：
 -- { "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "edge",
 -- "eelixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", "html-eex",

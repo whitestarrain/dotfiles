@@ -52,7 +52,7 @@ set backspace=indent,eol,start  " Make backspace work as you would expect.
 set hidden                 " Switch between buffers without having to save first.
 set laststatus=2         " Always show statusline.
 set display=lastline  " Show as much as possible of the last line.
-set nowrap                 " No Wrap lines
+set nowrap                 " No Wrap lines 不自动换行
 set scrolloff=3
 set linespace=0            " 行距
 

@@ -1,3 +1,5 @@
+-- npm install -g pyright
+
 local key_binding = require('lsp_keybing_config')
 local util = require("lspconfig/util")
 

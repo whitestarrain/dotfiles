@@ -20,7 +20,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('v', 'gca', ':<C-U>lua require("lspsaga.codeaction").range_code_action()<CR>', opts)
   -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts) -- <c-w>w 可以跳进pop中,<c-w>k或者q可以跳出
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts) -- 两次K可以跳进popup 中，q键可以关闭popup
   -- buf_set_keymap('n', 'K', '<cmd>lua require("lspsaga.hover").render_hover_doc()<CR>', opts) -- lspsaga无法正常展示转义字符，使用原生的
 
   -- lspsaga翻页用，不是太好用

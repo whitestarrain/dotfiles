@@ -1,3 +1,5 @@
+-- 暂时不会用
+
 vim.g.markdown_fenced_languages = {
   "ts=typescript",
   "js=javascript"
