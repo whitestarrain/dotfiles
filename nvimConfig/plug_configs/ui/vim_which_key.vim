@@ -1,4 +1,4 @@
-" leader键提示插件
+" leader键提示插件。（懒加载，使用火才可以查看到文档）
 " On-demand lazy load
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 

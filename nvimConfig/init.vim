@@ -161,7 +161,6 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       if g:load_program
         LoadScript ./plug_configs/lsp/lsp_conf.vim
         LoadScript ./plug_configs/lsp/diagnostics_list.vim
-        LoadScript ./plug_configs/lsp/lspsaga.vim
       endif
 
       " auto complete config. related with load_program
