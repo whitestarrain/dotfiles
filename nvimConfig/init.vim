@@ -126,7 +126,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       LoadScript ./plug_configs/snippets.vim
       " LoadScript ./plug_configs/vim_visual_multi.vim" 待安装
 
-      " lang plug load
+      " 加载语言相关的vim插件
       let g:load_program = 0
       if exists("g:rust") || exists("g:power_lsp")
         LoadScript ./plug_configs/lang_support/rust.vim
@@ -136,6 +136,9 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
         let g:load_program = 1
       endif
       if exists("g:c") || exists("g:power_lsp")
+        let g:load_program = 1
+      endif
+      if exists("g:golang") || exists("g:power_lsp")
         let g:load_program = 1
       endif
       if exists("g:java") || exists("g:power_lsp")
@@ -168,7 +171,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
 
   call plug#end()
 
-  " lsp config
+  " 加载lsp配置
   if !exists('g:skip_project_plugs')
     if exists("g:python") || exists("g:power_lsp")
       " 通过require("python")返回
@@ -194,6 +197,9 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     endif
     if exists("g:c") || exists("g:power_lsp")
       LoadLua ./plug_configs/lsp-server/clangd_config.lua
+    endif
+    if exists("g:golang") || exists("g:power_lsp")
+      LoadLua ./plug_configs/lsp-server/golang.lua
     endif
     if exists("g:latex") || exists("g:power_lsp")
       LoadLua ./plug_configs/lsp-server/texlab.lua

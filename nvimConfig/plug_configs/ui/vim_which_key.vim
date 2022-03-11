@@ -1,14 +1,16 @@
-"-----------------------------------vim-which-key--------------------------------------
-
 " leader键提示插件
 " On-demand lazy load
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+
+let g:which_key_disable_default_offset = 1
+
 autocmd User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
-"-----------------------------------vim-which-key--------------------------------------
+
 autocmd User LoadPluginConfig call PlugConfigWhichKey()
 function! PlugConfigWhichKey()
   " vim-which-key map
   nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+  vnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 endfunction
 
 

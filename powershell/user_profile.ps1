@@ -8,33 +8,30 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8  # fix Unrecognizable Code for `findstr` and `grep`
 
 # Alias
-Set-Alias vi nvimWithoutConfig
-Set-Alias vim vimFunction
-Set-Alias nvimRu  nvimForRust
-Set-Alias nvimPy nvimForPython
-Set-Alias nvimTex nvimForLatex
-Set-Alias nvimPower nvimForAllLsp
 Set-Alias ll ls
 Set-Alias tig 'D:\learn\Git\usr\bin\tig.exe'
 Set-Alias grep findstr
 
 # function
-function nvimWithoutConfig() {
+function vi() {
   nvim -u NONE $args[0]
 }
-function vimFunction() {
+function vim() {
   nvim --cmd "let g:skip_project_plugs=1" $args[0]
 }
-function nvimForRust(){
+function nvimRu(){
   nvim --cmd "let g:rust=1" $args[0]
 }
-function nvimForPython(){
+function nvimPy(){
   nvim --cmd "let g:python=1" $args[0]
 }
-function nvimForLatex(){
+function nvimTex(){
   nvim --cmd "let g:latex=1" $args[0]
 }
-function nvimForAllLsp(){
+function nvimGo(){
+  nvim --cmd "let g:golang=1" $args[0]
+}
+function nvimPower(){
   nvim --cmd "let g:power_lsp=1" $args[0]
 }
 function SpaceVim(){
