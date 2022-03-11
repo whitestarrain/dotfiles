@@ -16,7 +16,7 @@ function! PlugConfigCoc()
   " 
   " "解决coc.nvim大文件卡死状况。超过0.02m的文件，禁用coc补全。我们很多时候要打开log文件，tag文件等嘛！
   let g:trigger_size = 0.02 * 1048576
-  augroup hugefile
+  augroup hugefile_coc
     autocmd!
     autocmd BufReadPre *
           \ let size = getfsize(expand('<afile>')) |

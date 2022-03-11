@@ -33,33 +33,26 @@ let g:python3_host_prog='D:\\ProgramFiles\\scoop\\apps\\anaconda3\\current\\envs
   " g:latex
   " g:power_lsp
 
+let g:load_theme="onedark"
 if strlen($term)==0
   " nvim-qt
   let g:set_termguicolors=1
-  let g:load_theme="onedark"
   " let g:load_theme="NeoSolarized"
   autocmd vimenter * GuiFont! MesloLGS NF:h14
 elseif $term=="alacritty"
   " alacritty
-  let g:neosolarized_termtrans=1
   let g:set_termguicolors=1
-  let g:load_theme="onedark"
+  let g:neosolarized_termtrans=1
 elseif exists("$WEZTERM")
   let g:set_termguicolors=1
-  let g:load_theme="onedark"
 else
   " nvim in terminal
   let g:set_termguicolors=0
-  let g:load_theme="onedark"
 endif
 
 " 配置项说明
 " 配置加载相关变量
-if exists("g:load_theme")
-  " ownTheme,plugTheme,默认不加载
-  let g:load_theme=g:load_theme              
-endif
-"
+
 " 是否设置termguicolors，默认不设置
 let g:set_termguicolors=exists("g:set_termguicolors") && g:set_termguicolors && exists("&termguicolors") && exists("&winblend")
 
@@ -106,6 +99,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     LoadScript ./plug_configs/ui/vim_devicons.vim " 主要为startify 提供icon支持，可选
     LoadScript ./plug_configs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
     LoadScript ./plug_configs/kommentary.vim
+    LoadScript ./plug_configs/treesitter.vim
     if g:set_termguicolors 
       LoadScript ./plug_configs/ui/bufferline.vim
       LoadScript ./plug_configs/ui/galaxyline.vim
@@ -123,7 +117,6 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       LoadScript ./plug_configs/term/vim_floaterm.vim
       LoadScript ./plug_configs/git.vim
       LoadScript ./plug_configs/telescope.vim
-      LoadScript ./plug_configs/treesitter.vim
       LoadScript ./plug_configs/easy_motion.vim
       LoadScript ./plug_configs/ui/nvim-tree.vim
       LoadScript ./plug_configs/ui/vim_which_key.vim
@@ -236,7 +229,7 @@ if exists("g:load_theme") && strlen(g:load_theme)>0
 
   if g:load_theme=="ownTheme"
     " Use own theme
-    LoadScript .\colors\theme.vim
+    LoadScript ./colors/ownTheme.vim
   elseif strlen(g:load_theme)>0
     " use plugTheme
     exe 'colorscheme' . " " . g:load_theme

@@ -1,6 +1,8 @@
 "------------------------------------theme-------------------------------------
 " Using Vim-Plug
-Plug 'joshdick/onedark.vim'
 " Plug 'overcache/NeoSolarized'
 " Plug 'cocopon/iceberg.vim'
-"------------------------------------theme-------------------------------------
+
+Plug 'joshdick/onedark.vim'
+" Plug 'glepnir/zephyr-nvim' " based on nvim-treesitter
+" ------------------------------------theme-------------------------------------
