@@ -31,6 +31,12 @@ function nvimTex(){
 function nvimGo(){
   nvim --cmd "let g:golang=1" $args[0]
 }
+function nvimTS(){
+  nvim --cmd "let g:typescript=1" $args[0]
+}
+function nvimVSC(){
+  nvim --cmd "let g:vscode=1" $args[0]
+}
 function nvimPower(){
   nvim --cmd "let g:power_lsp=1" $args[0]
 }

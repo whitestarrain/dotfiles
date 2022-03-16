@@ -1,0 +1,15 @@
+apps        https://github.com/kkzzhizhou/scoop-apps           
+Ash258      https://github.com/Ash258/Shovel-Ash258            
+dorado      https://github.com/h404bi/dorado                   
+extras      https://github.com/ScoopInstaller/Extras           
+games       https://github.com/Calinou/scoop-games             
+java        https://github.com/ScoopInstaller/Java             
+lemon       https://github.com/hoilc/scoop-lemon               
+main        https://github.com/ScoopInstaller/Main             
+nerd-fonts  https://github.com/matthewjberger/scoop-nerd-fonts 
+nirsoft     https://github.com/kodybrown/scoop-nirsoft         
+nonportable https://github.com/TheRandomLabs/scoop-nonportable 
+raresoft    https://github.com/L-Trump/scoop-raresoft          
+scoopet     https://github.com/ivaquero/scoopet                
+versions    https://github.com/ScoopInstaller/Versions         
+

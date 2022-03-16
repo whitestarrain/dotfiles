@@ -147,9 +147,13 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       if exists("g:lua") || exists("g:power_lsp")
         let g:load_program = 1
       endif
-      if exists("g:front") || exists("g:power_lsp")
+      if exists("g:typescript") || exists("g:front") || exists("g:power_lsp")
         LoadScript ./plug_configs/lang_support/jsx.vim
         LoadScript ./plug_configs/lang_support/typescript.vim
+        let g:load_program = 1
+      endif
+      if exists("g:vscode") || exists("g:front") || exists("g:power_lsp")
+        " vscode lsp
         let g:load_program = 1
       endif
       if exists("g:latex") || exists("g:power_lsp")
@@ -179,14 +183,19 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     if exists("g:rust") || exists("g:power_lsp")
       LoadLua ./plug_configs/lsp-server/rust_analyzer_config.lua
     endif
+    if exists("g:java") || exists("g:power_lsp")
+      LoadLua ./plug_configs/lsp-server/java.lua
+    endif
     if exists("g:lua") || exists("g:power_lsp")
       LoadLua ./plug_configs/lsp-server/lua_lsp_config.lua
     endif
-    if exists("g:front") || exists("g:power_lsp")
-      " vscode 配套lsp
-      LoadLua ./plug_configs/lsp-server/vscode-lsp.lua
+    if exists("g:typescript") || exists("g:front") || exists("g:power_lsp")
       " ts和js以及react
       LoadLua ./plug_configs/lsp-server/tsserver.lua 
+    endif
+    if exists("g:vscode") || exists("g:front") || exists("g:power_lsp")
+      " vscode 配套lsp
+      LoadLua ./plug_configs/lsp-server/vscode-lsp.lua
       " emmet支持
       LoadLua ./plug_configs/lsp-server/emmet.lua 
       " 不扫描node_module，还没有解决

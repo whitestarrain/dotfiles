@@ -51,8 +51,8 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap('i', '<c-p>', '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>', opts) -- [lspsaga] 无法通过<c-f>,<c-b>scroll
 
   -- 重命名，lspsaga
-  -- buf_set_keymap('n', '<space>gr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>cn', '<cmd>lua require("lspsaga.rename").rename()<CR>', opts)
+  -- buf_set_keymap('n', '<leader>cR', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<leader>cR', '<cmd>lua require("lspsaga.rename").rename()<CR>', opts)
 
   -- 显示当前行的诊断报告
   -- buf_set_keymap('n', 'go', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)

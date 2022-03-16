@@ -1,4 +1,4 @@
-# 待做项:
+# 待做项
 
 - [ ] 键位整理(重要)
 - [x] coc换为lsp
@@ -10,6 +10,8 @@
 - [x] react 开发环境搭建
 - [ ] 插件
   - vim-visual-multi
+- [ ] init整理，替换`g:load_program`，各个语言插件单独配置
+  > 主要是java jdtls
 
 # 记录
 
