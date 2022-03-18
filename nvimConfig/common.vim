@@ -43,6 +43,8 @@ autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
 autocmd Filetype java setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
+autocmd Filetype cpp setlocal ts=4 sw=4 sts=0 expandtab
+autocmd Filetype c setlocal ts=4 sw=4 sts=0 expandtab
 
 set autoindent             " 设置自动缩进
 set smartindent            " Smart indent
