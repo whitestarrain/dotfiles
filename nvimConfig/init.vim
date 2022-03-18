@@ -150,10 +150,14 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       if exists("g:typescript") || exists("g:front") || exists("g:power_lsp")
         LoadScript ./plug_configs/lang_support/jsx.vim
         LoadScript ./plug_configs/lang_support/typescript.vim
+        LoadScript ./plug_configs/lang_support/auto_tag.vim
+        LoadScript ./plug_configs/lang_support/javascript.vim
         let g:load_program = 1
       endif
       if exists("g:vscode") || exists("g:front") || exists("g:power_lsp")
         " vscode lsp
+        LoadScript ./plug_configs/lang_support/auto_tag.vim
+        LoadScript ./plug_configs/lang_support/javascript.vim
         let g:load_program = 1
       endif
       if exists("g:latex") || exists("g:power_lsp")

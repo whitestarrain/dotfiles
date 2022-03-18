@@ -31,8 +31,8 @@ filetype on                " 开启文档类型检查
 
 set smarttab               " Be smart when using tabs ;)
 set expandtab              " Use spaces instead of tabs.
-set softtabstop=1          "softtabstop 表示在编辑模式的时候按退格键的时候退回缩进的长度，当使用 expandtab时特别有用。
-set shiftwidth=2           "shiftwidth 表示每一级缩进的长度，一般设置成跟 softtabstop 一样。
+set softtabstop=1          " softtabstop 表示在编辑模式的时候按退格键的时候退回缩进的长度，当使用 expandtab时特别有用。
+set shiftwidth=2           " shiftwidth 表示每一级缩进的长度，一般设置成跟 softtabstop 一样。
 set tabstop=2              " 设置一个tab的空格长度
 "
 " 不同的文件显示不同的缩进
@@ -40,7 +40,7 @@ autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype md setlocal ts=2 sw=2 expandtab
 autocmd Filetype markdown setlocal ts=2 sw=2 expandtab
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
-autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
 autocmd Filetype java setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
 
