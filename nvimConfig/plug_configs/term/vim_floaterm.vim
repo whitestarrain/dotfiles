@@ -1,3 +1,4 @@
+" 更新后，在退出时不会exit terminal。暂时无解
 Plug 'voldikss/vim-floaterm'
 
 autocmd User LoadPluginConfig call PlugConfigFloaterm()
@@ -10,8 +11,8 @@ function PlugConfigFloaterm()
 
   " float 中间
   let g:floaterm_position='center'
-  let g:floaterm_width=0.8
-  let g:floaterm_height=0.8
+  let g:floaterm_width=0.85
+  let g:floaterm_height=0.85
 
   " split 底部
   " let g:floaterm_wintype='split'

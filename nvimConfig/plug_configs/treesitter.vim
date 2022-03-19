@@ -32,6 +32,7 @@ require'nvim-treesitter.configs'.setup {
     }
   },
   -- 启用基于Treesitter的代码格式化(=) . NOTE: This is an experimental feature.
+
   indent = {
     disable = {'markdown'},
     enable = true

@@ -22,16 +22,72 @@ autocmd User LoadPluginConfig call PlugConfigCMP()
 
 function! PlugConfigCMP()
 lua <<EOF
-
+  -- 图标设置
   local lspkind = require('lspkind')
+  lspkind.init({
+      -- default: true
+      -- with_text = true,
+      -- defines how annotations are shown
+      -- default: symbol
+      -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+      mode = 'symbol_text',
+      -- default symbol map
+      -- can be either 'default' (requires nerd-fonts font) or
+      -- 'codicons' for codicon preset (requires vscode-codicons font)
+      --
+      -- default: 'default'
+      preset = 'codicons',
+      -- override preset symbols
+      --
+      -- default: {}
+      symbol_map = {
+        Text = "",
+        Method = "",
+        Function = "",
+        Constructor = "",
+        Field = "ﰠ",
+        Variable = "",
+        Class = "ﴯ",
+        Interface = "",
+        Module = "",
+        Property = "ﰠ",
+        Unit = "塞",
+        Value = "",
+        Enum = "",
+        Keyword = "",
+        Snippet = "",
+        Color = "",
+        File = "",
+        Reference = "",
+        Folder = "",
+        EnumMember = "",
+        Constant = "",
+        Struct = "פּ",
+        Event = "",
+        Operator = "",
+        TypeParameter = ""
+      },
+  })
+
+
+  -- 自动补全设置
   local cmp = require'cmp'
 
+  -- 补全选项
+  vim.g.completeopt = 'menu,menuone,noinsert'
+
+  -- 快捷键配置
   local cmp_keymap = function(cmp)
     return {
       -- 上一个
       -- ['<C-k>'] = cmp.mapping.select_prev_item(),
       -- 下一个
       -- ['<C-j>'] = cmp.mapping.select_next_item(),
+      -- doc浏览
+      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
+      -- 补全
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
       -- 出现补全
       ['<A-.>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
       -- 取消
@@ -44,7 +100,33 @@ lua <<EOF
       -- Set `select` to `false` to only confirm explicitly selected items.
       ['<CR>'] = cmp.mapping.confirm({
         select = true ,
-        behavior = cmp.ConfirmBehavior.Replace
+        -- behavior = cmp.ConfirmBehavior.Replace
+      }),
+      ['<Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif require('luasnip').expand_or_jumpable() then
+          require('luasnip').expand_or_jump()
+        elseif has_words_before() then
+          cmp.complete()
+        else
+          fallback()
+        end
+      end, {
+        'i',
+        's',
+      }),
+      ['<S-Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif require('luasnip').jumpable(-1) then
+          require('luasnip').jump(-1)
+        else
+          fallback()
+        end
+      end, {
+        'i',
+        's',
       }),
       -- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
       ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
@@ -53,14 +135,14 @@ lua <<EOF
   end
 
   local amp_sources = {
-      { name = 'path' },
-      { name = 'vsnip'}
+      { name = 'path' , priority = 5},
+      { name = 'vsnip', priority = 4}
   }
 
   -- 编程模式,添加buffer和lsp补全
   if (1 == vim.g.load_program) then
-    table.insert(amp_sources,{ name = 'nvim_lsp' })
-    table.insert(amp_sources,{ name = 'buffer' })
+    table.insert(amp_sources,{ name = 'nvim_lsp', priority = 10})
+    table.insert(amp_sources,{ name = 'buffer', priority = 1 })
   end
 
   cmp.setup {
@@ -98,7 +180,6 @@ lua <<EOF
         end
       })
     },
-
   }
 
   -- Use buffer source for `/`.

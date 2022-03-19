@@ -10,6 +10,5 @@ nerd-fonts  https://github.com/matthewjberger/scoop-nerd-fonts
 nirsoft     https://github.com/kodybrown/scoop-nirsoft         
 nonportable https://github.com/TheRandomLabs/scoop-nonportable 
 raresoft    https://github.com/L-Trump/scoop-raresoft          
-scoopet     https://github.com/ivaquero/scoopet                
 versions    https://github.com/ScoopInstaller/Versions         
 

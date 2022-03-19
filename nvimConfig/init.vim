@@ -100,20 +100,20 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     LoadScript ./plug_configs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
     LoadScript ./plug_configs/kommentary.vim
     LoadScript ./plug_configs/treesitter.vim
+    LoadScript ./plug_configs/ui/todo.vim
     if g:set_termguicolors 
       LoadScript ./plug_configs/ui/bufferline.vim
       LoadScript ./plug_configs/ui/galaxyline.vim
-      LoadScript ./plug_configs/nvim_colorizer.vim
+      LoadScript ./plug_configs/ui/nvim_colorizer.vim
     endif
 
     "load selected plugins
     if !exists('g:skip_project_plugs')
       LoadScript ./plug_configs/ui/starify.vim " 加载这个插件的话，放上面，session关闭时处理相关
       " LoadScript ./plug_configs/far.vim
-      " LoadScript ./plug_configs/comfortable_motion.vim
-      " LoadScript ./plug_configs/nerdcommenter.vim
       " LoadScript ./plug_configs/term/asyn_run.vim " 功能强大，但是暂时应该用不到
       " LoadScript ./plug_configs/debugger.vim " 暂时应该用不上
+      " LoadScript ./plug_configs/term/vim_floaterm.vim
       LoadScript ./plug_configs/term/vim_floaterm.vim
       LoadScript ./plug_configs/git.vim
       LoadScript ./plug_configs/telescope.vim
