@@ -11,8 +11,7 @@ endif
 Plug 'hrsh7th/cmp-path' "路径补全一定要加
 Plug 'hrsh7th/cmp-cmdline' " 命令模式补全
 
-Plug 'hrsh7th/cmp-vsnip' " vsnip snippet 补全
-" Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+Plug 'hrsh7th/cmp-vsnip' " vsnip snippet 补全。 NOTE: 切换snip插件也要切换这个
 
 " 图标
 Plug 'onsails/lspkind-nvim' "代码提示中，显示分类的小图标支持
@@ -101,32 +100,6 @@ lua <<EOF
       ['<CR>'] = cmp.mapping.confirm({
         select = true ,
         -- behavior = cmp.ConfirmBehavior.Replace
-      }),
-      ['<Tab>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif require('luasnip').expand_or_jumpable() then
-          require('luasnip').expand_or_jump()
-        elseif has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end, {
-        'i',
-        's',
-      }),
-      ['<S-Tab>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif require('luasnip').jumpable(-1) then
-          require('luasnip').jump(-1)
-        else
-          fallback()
-        end
-      end, {
-        'i',
-        's',
       }),
       -- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
       ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),

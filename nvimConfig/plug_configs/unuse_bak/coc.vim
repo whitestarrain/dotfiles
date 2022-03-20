@@ -21,7 +21,7 @@ function! PlugConfigCoc()
     autocmd BufReadPre *
           \ let size = getfsize(expand('<afile>')) |
           \ if (size > g:trigger_size) || (size == -2) |
-          \   echohl WarningMsg | echomsg 'WARNING: altering options for this huge file!' | echohl None |
+          \   echohl WarningMsg | echomsg 'WARNING! altering options for this huge file!' | echohl None |
           \   exec 'CocDisable' |
           \ else |
           \   exec 'CocEnable' |
