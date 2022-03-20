@@ -1,6 +1,8 @@
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'p00f/nvim-ts-rainbow'
 
+" NOTE: 手动卸载重装吧，最好不要使用:PlugUpdate进行更新
+
 " Plug 'romgrk/nvim-treesitter-context'
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'
 " Plug'nvim-treesitter/playground'

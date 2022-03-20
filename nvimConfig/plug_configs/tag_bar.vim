@@ -2,6 +2,7 @@
 " 代码大纲
 Plug 'majutsushi/tagbar'
 "------------------------------------tagbar-------------------------------------
+" NOTE: 需要依赖：ctags
 autocmd User LoadPluginConfig call PlugConfigTagBar()
 function! PlugConfigTagBar()
   " 设置宽度
@@ -19,7 +20,7 @@ function! PlugConfigTagBar()
  "设置tagber对于go的支持
 
  " copy from vim-go:https://github.com/fatih/vim-go/blob/master/ftplugin/go/tagbar.vim
- " 需要安装依赖：get -u github.com/jstemmer/gotags  
+ " NOTE: 需要安装依赖：get -u github.com/jstemmer/gotags  
   let g:tagbar_type_go = {
         \ 'ctagstype' : 'go',
         \ 'kinds'     : [

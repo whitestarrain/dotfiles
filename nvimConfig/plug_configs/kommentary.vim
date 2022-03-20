@@ -11,7 +11,7 @@ lua << EOF
   vim.api.nvim_set_keymap("n", "gc", "<Plug>kommentary_motion_default", {})
   vim.api.nvim_set_keymap("v", "gc", "<Plug>kommentary_visual_default<C-c>", {})
 
-  -- 关于 <C-/>
+  -- NOTE: 关于 <C-/>
   -- For some reason, vim registers <C-/> as <C-_>
   -- (you can see it in insert mode using <C-v><C-/>). It can be the terminal or a historical design thing that terminal apps have to suffer.
   -- And Gvim doesn't even try to recognize <C-/>. Sees it as single /.

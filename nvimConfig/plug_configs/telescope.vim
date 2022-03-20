@@ -1,6 +1,8 @@
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+" NOTE: 依赖：fzf
+
 " 文件模糊查找
 
 autocmd User LoadPluginConfig call PlugConfigTelescope()
