@@ -1,4 +1,4 @@
-Plug 'nvim-lua/plenary.nvim'
+" dependency Plug 'nvim-lua/plenary.nvim'
 Plug 'folke/todo-comments.nvim'
 
 " 记得加冒号`:`

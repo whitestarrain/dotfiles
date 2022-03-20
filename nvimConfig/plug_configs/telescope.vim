@@ -1,4 +1,4 @@
-Plug 'nvim-lua/plenary.nvim'
+" dependency Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 " NOTE: 依赖：fzf

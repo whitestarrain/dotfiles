@@ -90,6 +90,9 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
   call plug#begin(get(g:,"plug_install_path"))
 
     " LoadScript ./plug_configs/drawit.vim 暂时用不到
+    
+    " plenary for {todo.vim,git.vim,telescope.vim}
+    LoadScript ./plug_configs/denpendency/plenary.vim
     LoadScript ./plug_configs/ui/theme.vim
     LoadScript ./plug_configs/vim_surround.vim
     LoadScript ./plug_configs/rainrow.vim

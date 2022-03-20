@@ -4,7 +4,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 
 " 显示文件每行的状态
-Plug 'nvim-lua/plenary.nvim'
+" dependency Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 "-----------------------------------vim-gitgutter--------------------------------------
 
