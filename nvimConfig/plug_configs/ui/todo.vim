@@ -2,6 +2,7 @@
 Plug 'folke/todo-comments.nvim'
 
 " 记得加冒号`:`
+" 显示高亮时，屏幕滚动可能会有些卡顿，但是利大于弊
 
 autocmd User LoadPluginConfig call PlugConfigTODOComments()
 
