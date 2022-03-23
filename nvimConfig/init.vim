@@ -77,7 +77,7 @@ let g:which_key_map.o = { 'name' : '[open in]' }
 let g:which_key_map.h = { 'name' : '[hunk]' }
 let g:which_key_map.f = { 'name' : '[find]' }
 let g:which_key_map.b = { 'name' : '[buffer]' }
-let g:which_key_map.c = { 'name' : '[comment]' }
+let g:which_key_map.c = { 'name' : '[code]' }
 let g:which_key_map.h = { 'name' : '[hunk]' }
 "=================================================leader group end===================================================
 
@@ -113,10 +113,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     "load selected plugins
     if !exists('g:skip_project_plugs')
       LoadScript ./plug_configs/ui/starify.vim " 加载这个插件的话，放上面，session关闭时处理相关
-      " LoadScript ./plug_configs/far.vim
-      " LoadScript ./plug_configs/term/asyn_run.vim " 功能强大，但是暂时应该用不到
-      " LoadScript ./plug_configs/debugger.vim " 暂时应该用不上
-      " LoadScript ./plug_configs/term/vim_floaterm.vim
+      LoadScript ./plug_configs/term/asyn_run.vim " 功能强大，但是暂时应该用不到
       LoadScript ./plug_configs/term/vim_floaterm.vim
       LoadScript ./plug_configs/git.vim
       LoadScript ./plug_configs/telescope.vim

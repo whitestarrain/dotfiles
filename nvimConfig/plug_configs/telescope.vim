@@ -25,7 +25,7 @@ require('telescope').setup{
       "%.gif",
       "%.mm",
     },
-    layout_strategy = 'vertical',
+    layout_strategy = 'horizontal',
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
