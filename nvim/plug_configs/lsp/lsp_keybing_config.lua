@@ -33,6 +33,26 @@ local on_attach = function(client, bufnr)
 
   -- 跳转到definition
   buf_set_keymap('n', '<leader>cd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.cmd(
+    [[
+        autocmd BufEnter *.lua nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.java nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.js nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.jsx nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.ts nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.tsx nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.html nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.css nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.sass nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.go nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.c nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.cpp nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.cc nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.py nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.sh nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.vue nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+    ]]
+  )
 
   -- 查看definition，不跳转
   buf_set_keymap('n', '<leader>cp', '<cmd>lua require"lspsaga.provider".preview_definition()<CR>', opts)

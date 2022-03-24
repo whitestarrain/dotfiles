@@ -4,7 +4,9 @@ local key_binding = require('lsp_keybing_config')
 local runtime_path = {}
 table.insert(runtime_path,"?.lua")
 require'lspconfig'.sumneko_lua.setup{
-  cmd = {"D:/ProgramFiles/lua-language-server/bin/lua-language-server.exe", "-E", "D:/ProgramFiles/lua-language-server/bin/main.lua"},
+  cmd = {vim.g.absolute_config_path  .. "../lsp_exe/lua-language-server/bin/lua-language-server.exe",
+        "-E",
+         vim.g.absolute_config_path .. "../lsp_exe/lua-language-server/bin/main.lua"},
   settings = {
     Lua = {
       runtime = {
