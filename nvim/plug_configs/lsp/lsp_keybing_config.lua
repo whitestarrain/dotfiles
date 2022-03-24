@@ -35,22 +35,22 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>cd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   vim.cmd(
     [[
-        autocmd BufEnter *.lua nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.java nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.js nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.jsx nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.ts nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.tsx nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.html nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.css nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.sass nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.go nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.c nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.cpp nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.cc nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.py nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.sh nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.vue nnoremap <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.lua nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.java nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.js nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.jsx nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.ts nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.tsx nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.html nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.css nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.sass nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.go nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.c nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.cpp nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.cc nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.py nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.sh nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.vue nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
     ]]
   )
 

@@ -11,7 +11,7 @@ command! -nargs=1 LoadLua exec 'luafile' . ' ' . g:absolute_config_path . '<args
 lua package.path = package.path .. ";" .. vim.g.absolute_config_path .. "./plug_configs/lsp/?.lua"
 
 " python 环境
-let g:python3_host_prog='D:\\ProgramFiles\\scoop\\apps\\anaconda3\\current\\envs\\develop\\python.exe'
+let g:python3_host_prog='D:/ProgramFiles/scoop/apps/anaconda3/current/envs/develop/python.exe'
 
 "=================================================env config end===================================================
 
@@ -137,7 +137,6 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       endif
       if exists("g:c") || exists("g:power_lsp")
         let g:load_program = 1
-        " LoadScript ./plug_configs/debug/nvim_dap.vim
       endif
       if exists("g:golang") || exists("g:power_lsp")
         let g:load_program = 1
@@ -210,7 +209,6 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     endif
     if exists("g:c") || exists("g:power_lsp")
       LoadLua ./plug_configs/lsp-server/clangd_config.lua
-      " LoadLua ./plug_configs/debug_dap/vscode-cpptools.lua
     endif
     if exists("g:golang") || exists("g:power_lsp")
       LoadLua ./plug_configs/lsp-server/golang.lua

@@ -1,3 +1,5 @@
+" 配置成功：go
+
 Plug 'mfussenegger/nvim-dap'
 Plug 'theHamsta/nvim-dap-virtual-text' " 内联文本
 Plug 'rcarriga/nvim-dap-ui' " UI界面
