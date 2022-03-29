@@ -3,6 +3,7 @@ local dap = require('dap')
 dap.adapters.cpptools= {
   type = 'executable',
   command = vim.g.absolute_config_path  .. '../debug_dap_exe/vscode-cpptool/extension/debugAdapters/bin/OpenDebugAD7.exe',
+  -- command = "D:/FromC/.vscode/extensions/ms-vscode.cpptools-1.5.1/debugAdapters/bin/OpenDebugAD7.exe",
   name = "cpptools"
 }
 

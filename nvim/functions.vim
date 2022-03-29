@@ -44,9 +44,11 @@ function! OpenUnderCurser(command)
     endif
     execute(":!" . a:command . " " . l:relate_path)
 endfunction
+nnoremap <silent><leader>ocd :call OpenUnderCurser("start")  <cr> 
 nnoremap <silent><leader>ocb :call OpenUnderCurser("chrome") <cr> 
 nnoremap <silent><leader>ocv :call OpenUnderCurser("code")  <cr> 
 let g:which_key_map.o.c = {'name' : '[file under curser]' }
+let g:which_key_map.o.c.d = "default"
 let g:which_key_map.o.c.b = "chrome"
 let g:which_key_map.o.c.v =  "vscode"
 

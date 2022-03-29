@@ -61,6 +61,7 @@ if ($PSVersionTable.PSVersion.Major -eq 7){
   # Import-Module posh-git
   Import-Module -Name Terminal-Icons
   
+  # command history: ~\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine
   # PSReadLine
   Set-PSReadLineOption -EditMode Emacs
   Set-PSReadLineOption -BellStyle None
