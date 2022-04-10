@@ -1,6 +1,6 @@
 Plug 'kyazdani42/nvim-tree.lua'
 
-" NOTE: f977e5c05a87c865 导致写入文件时会有一个wait(message中的[w])，暂时使用 f977e5 ~1
+" NOTE: f977e5c05a87c865 导致写入文件时会有一个wait(message中的[w])，如果保存时有延时，可以暂时使用 f977e5 ~1
 
 autocmd User LoadPluginConfig call PlugConfigNvimTree()
 

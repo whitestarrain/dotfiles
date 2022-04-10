@@ -18,7 +18,7 @@ require'lspconfig'.clangd.setup{
     -- 同时开启的任务数量
     "-j=12",
     -- 告诉clangd用那个clang进行编译，路径参考which clang++的路径
-    -- "--query-driver=",
+    -- '--query-driver="D:/ProgramFiles/LLVM/bin/clang++.exe"',
     -- clang-tidy功能
     "--clang-tidy",
     -- 全局补全（会自动补充头文件）

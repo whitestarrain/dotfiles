@@ -17,37 +17,39 @@ function! PlugConfigTagBar()
       \ 'sort' : 0
   \ }
 
- "设置tagber对于go的支持
+  " let g:tagbar_position = 'leftabove vertical'
 
- " copy from vim-go:https://github.com/fatih/vim-go/blob/master/ftplugin/go/tagbar.vim
- " NOTE: 需要安装依赖：get -u github.com/jstemmer/gotags  
-  let g:tagbar_type_go = {
-        \ 'ctagstype' : 'go',
-        \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-        \ ],
-        \ 'sro' : '.',
-        \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-        \ },
-        \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-        \ },
-        \ 'ctagsbin'  : "gotags",
-        \ 'ctagsargs' : '-sort -silent'
-        \ }
+  " 设置tagber对于go的支持
+
+  " copy from vim-go:https://github.com/fatih/vim-go/blob/master/ftplugin/go/tagbar.vim
+  " NOTE: 需要安装依赖：get -u github.com/jstemmer/gotags  
+    let g:tagbar_type_go = {
+          \ 'ctagstype' : 'go',
+          \ 'kinds'     : [
+          \ 'p:package',
+          \ 'i:imports',
+          \ 'c:constants',
+          \ 'v:variables',
+          \ 't:types',
+          \ 'n:interfaces',
+          \ 'w:fields',
+          \ 'e:embedded',
+          \ 'm:methods',
+          \ 'r:constructor',
+          \ 'f:functions'
+          \ ],
+          \ 'sro' : '.',
+          \ 'kind2scope' : {
+          \ 't' : 'ctype',
+          \ 'n' : 'ntype'
+          \ },
+          \ 'scope2kind' : {
+          \ 'ctype' : 't',
+          \ 'ntype' : 'n'
+          \ },
+          \ 'ctagsbin'  : "gotags",
+          \ 'ctagsargs' : '-sort -silent'
+          \ }
 
   " tagbar map
   nnoremap <leader>t :TagbarToggle<CR>
