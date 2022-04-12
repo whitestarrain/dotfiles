@@ -217,16 +217,6 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       " ts和js以及react
       LoadLua ./plug_configs/lsp-server/tsserver.lua 
     endif
-    if exists("g:vscode")
-      " vscode 配套lsp
-      LoadLua ./plug_configs/lsp-server/vscode-lsp.lua
-      " emmet支持
-      LoadLua ./plug_configs/lsp-server/emmet.lua 
-      " 不扫描node_module，还没有解决
-      " LoadLua ./plug_configs/lsp-server/denols.lua 
-      " tailwindcss 框架专属，暂时用不到
-      " LoadLua ./plug_configs/lsp-server/tailwindcss.lua
-    endif
     if exists("g:c")
       LoadLua ./plug_configs/lsp-server/clangd_config.lua
       " LoadLua ./plug_configs/pre/debug/debug_dap/cpptools.lua
@@ -237,11 +227,22 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     if exists("g:latex")
       LoadLua ./plug_configs/lsp-server/texlab.lua
     endif
+    if exists("g:vscode")
+      " vscode 配套lsp
+      LoadLua ./plug_configs/lsp-server/vscode-lsp.lua
+      " emmet支持
+      LoadLua ./plug_configs/lsp-server/emmet.lua 
+      " 不扫描node_module，还没有解决
+      " LoadLua ./plug_configs/lsp-server/denols.lua 
+      " tailwindcss 框架专属，暂时用不到
+      " LoadLua ./plug_configs/lsp-server/tailwindcss.lua
+    endif
     if exists("g:front")
       " typescript 和 vscode的lsp
       LoadLua ./plug_configs/lsp-server/tsserver.lua 
       LoadLua ./plug_configs/lsp-server/vscode-lsp.lua
       LoadLua ./plug_configs/lsp-server/emmet.lua 
+      " LoadLua ./plug_configs/lsp-server/cssmodule_ls.lua " windows上好像用不了
     endif
     " 全部语言lsp
     if exists("g:power_lsp")

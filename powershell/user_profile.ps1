@@ -40,7 +40,7 @@ function nvimTS(){
 function nvimVSC(){
   nvim --cmd "let g:vscode=1" $args[0]
 }
-function nvimFE(){
+function nvimFE(){ # frond end
   nvim --cmd "let g:front=1" $args[0]
 }
 function nvimPower(){
