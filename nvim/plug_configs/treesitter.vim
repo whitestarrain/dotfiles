@@ -35,9 +35,10 @@ require'nvim-treesitter.configs'.setup {
   },
   -- 启用基于Treesitter的代码格式化(=) . NOTE: This is an experimental feature.
 
+  -- 大多数语言插件会提供indent，个别可以按照需要开启
   indent = {
-    disable = {'markdown'},
-    enable = true
+    disable = true,
+    enable = {}
   },
   rainbow = {
     enable = true,

@@ -128,40 +128,59 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
 
       " 加载语言相关的vim插件
       let g:load_program = 0
-      if exists("g:rust") || exists("g:power_lsp")
+      if exists("g:rust")
         LoadScript ./plug_configs/lang_support/rust.vim
         let g:load_program = 1
       endif
-      if exists("g:python") || exists("g:power_lsp")
+      if exists("g:python")
         let g:load_program = 1
       endif
-      if exists("g:c") || exists("g:power_lsp")
+      if exists("g:c")
         let g:load_program = 1
         " LoadScript ./plug_configs/pre/debug/nvim_dap.vim
       endif
-      if exists("g:golang") || exists("g:power_lsp")
+      if exists("g:golang")
         let g:load_program = 1
       endif
-      if exists("g:java") || exists("g:power_lsp")
+      if exists("g:java")
         let g:load_program = 1
       endif
-      if exists("g:lua") || exists("g:power_lsp")
+      if exists("g:lua")
         let g:load_program = 1
       endif
-      if exists("g:typescript") || exists("g:front") || exists("g:power_lsp")
+      if exists("g:typescript")
         LoadScript ./plug_configs/lang_support/jsx.vim
         LoadScript ./plug_configs/lang_support/typescript.vim
         LoadScript ./plug_configs/lang_support/auto_tag.vim
         LoadScript ./plug_configs/lang_support/javascript.vim
         let g:load_program = 1
       endif
-      if exists("g:vscode") || exists("g:front") || exists("g:power_lsp")
+      if exists("g:vscode")
         " vscode lsp
         LoadScript ./plug_configs/lang_support/auto_tag.vim
         LoadScript ./plug_configs/lang_support/javascript.vim
         let g:load_program = 1
       endif
-      if exists("g:latex") || exists("g:power_lsp")
+      if exists("g:latex")
+        LoadScript ./plug_configs/lang_support/latex.vim
+        let g:load_program = 1
+      endif
+      if exists("g:front")
+        " typescript 和 vscode环境的语言插件
+        LoadScript ./plug_configs/lang_support/jsx.vim
+        LoadScript ./plug_configs/lang_support/typescript.vim
+        LoadScript ./plug_configs/lang_support/auto_tag.vim
+        LoadScript ./plug_configs/lang_support/javascript.vim
+        let g:load_program = 1
+      endif
+      if exists("g:power_lsp")
+        " 全部语言的语言插件
+        LoadScript ./plug_configs/lang_support/rust.vim
+        " LoadScript ./plug_configs/pre/debug/nvim_dap.vim
+        LoadScript ./plug_configs/lang_support/jsx.vim
+        LoadScript ./plug_configs/lang_support/typescript.vim
+        LoadScript ./plug_configs/lang_support/auto_tag.vim
+        LoadScript ./plug_configs/lang_support/javascript.vim
         LoadScript ./plug_configs/lang_support/latex.vim
         let g:load_program = 1
       endif
@@ -172,7 +191,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
         LoadScript ./plug_configs/lsp/diagnostics_list.vim
       endif
 
-      " auto complete config. related with load_program
+      " auto complete config. related with the var "load_program""
       LoadScript ./plug_configs/lsp/auto_complete.vim
 
     endif
@@ -181,24 +200,24 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
 
   " 加载lsp配置
   if !exists('g:skip_project_plugs')
-    if exists("g:python") || exists("g:power_lsp")
+    if exists("g:python")
       " 通过require("python")返回
       LoadLua ./plug_configs/lsp-server/pyright_config.lua
     endif
-    if exists("g:rust") || exists("g:power_lsp")
+    if exists("g:rust")
       LoadLua ./plug_configs/lsp-server/rust_analyzer_config.lua
     endif
-    if exists("g:java") || exists("g:power_lsp")
+    if exists("g:java")
       LoadLua ./plug_configs/lsp-server/java.lua
     endif
-    if exists("g:lua") || exists("g:power_lsp")
+    if exists("g:lua")
       LoadLua ./plug_configs/lsp-server/lua_lsp_config.lua
     endif
-    if exists("g:typescript") || exists("g:front") || exists("g:power_lsp")
+    if exists("g:typescript")
       " ts和js以及react
       LoadLua ./plug_configs/lsp-server/tsserver.lua 
     endif
-    if exists("g:vscode") || exists("g:front") || exists("g:power_lsp")
+    if exists("g:vscode")
       " vscode 配套lsp
       LoadLua ./plug_configs/lsp-server/vscode-lsp.lua
       " emmet支持
@@ -208,19 +227,35 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       " tailwindcss 框架专属，暂时用不到
       " LoadLua ./plug_configs/lsp-server/tailwindcss.lua
     endif
-    if exists("g:c") || exists("g:power_lsp")
+    if exists("g:c")
       LoadLua ./plug_configs/lsp-server/clangd_config.lua
       " LoadLua ./plug_configs/pre/debug/debug_dap/cpptools.lua
     endif
-    if exists("g:golang") || exists("g:power_lsp")
+    if exists("g:golang")
       LoadLua ./plug_configs/lsp-server/golang.lua
     endif
-    if exists("g:latex") || exists("g:power_lsp")
+    if exists("g:latex")
       LoadLua ./plug_configs/lsp-server/texlab.lua
     endif
-
+    if exists("g:front")
+      " typescript 和 vscode的lsp
+      LoadLua ./plug_configs/lsp-server/tsserver.lua 
+      LoadLua ./plug_configs/lsp-server/vscode-lsp.lua
+      LoadLua ./plug_configs/lsp-server/emmet.lua 
+    endif
+    " 全部语言lsp
     if exists("g:power_lsp")
       LoadLua ./plug_configs/lsp-server/bash.lua
+      LoadLua ./plug_configs/lsp-server/rust_analyzer_config.lua
+      LoadLua ./plug_configs/lsp-server/java.lua
+      LoadLua ./plug_configs/lsp-server/lua_lsp_config.lua
+      LoadLua ./plug_configs/lsp-server/tsserver.lua 
+      LoadLua ./plug_configs/lsp-server/pyright_config.lua
+      LoadLua ./plug_configs/lsp-server/vscode-lsp.lua
+      LoadLua ./plug_configs/lsp-server/emmet.lua 
+      LoadLua ./plug_configs/lsp-server/clangd_config.lua
+      LoadLua ./plug_configs/lsp-server/golang.lua
+      LoadLua ./plug_configs/lsp-server/texlab.lua
     endif
 
   endif

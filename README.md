@@ -25,6 +25,10 @@
   - 否则偶尔可能出bug。
   - 吃过那个的苦
 
+- indent
+  - 大多数语言插件会提供indent支持。
+  - 这里默认关闭了treesitter的indent。需要可以到[这里](./nvim/plug_configs/treesitter.vim)开启
+
 # 键位整理
 
 

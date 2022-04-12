@@ -40,6 +40,9 @@ function nvimTS(){
 function nvimVSC(){
   nvim --cmd "let g:vscode=1" $args[0]
 }
+function nvimFE(){
+  nvim --cmd "let g:front=1" $args[0]
+}
 function nvimPower(){
   nvim --cmd "let g:power_lsp=1" $args[0]
 }
