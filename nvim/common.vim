@@ -71,6 +71,9 @@ set lazyredraw             " Only redraw when necessary.
 set splitbelow             " Open new windows below the current window.
 set splitright             " Open new windows right of the current window.
 
+" 中文符号配对
+set showmatch matchtime=0 matchpairs+=<:>,《:》,（:）,【:】,“:”,‘:’
+
 " =========================高亮相关========================= 
 set cursorline             "  光标所在行高亮
 " set cursorcolumn          "  光标所在列高亮，但是移动时可能会卡顿，所以关闭

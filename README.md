@@ -32,4 +32,7 @@
 # 键位整理
 
 
+# 参考配置
 
+- [ ] [voldikss/dotfiles](https://github.com/voldikss/dotfiles/blob/dev/nvim/init.vim)
+- [ ] [craftzdog/dotfiles-public](https://github.com/craftzdog/dotfiles-public)
