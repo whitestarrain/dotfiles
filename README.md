@@ -29,6 +29,16 @@
   - 大多数语言插件会提供indent支持。
   - 这里默认关闭了treesitter的indent。需要可以到[这里](./nvim/plug_configs/treesitter.vim)开启
 
+- css classname auto complate
+  - tailwindcss lsp
+    - 使用tailwind开发时可以用
+    - 同样可以用在react中
+    - 但是需要taildwindcss依赖
+    - [使用示例](https://www.youtube.com/watch?v=GznmPACXBlY&t=6227s)
+  - [cssmodule_ls](https://github.com/antonk52/cssmodules-language-server): 
+    - 比较通用
+    - 但是windows上不太好用
+
 # 键位整理
 
 
@@ -36,3 +46,4 @@
 
 - [ ] [voldikss/dotfiles](https://github.com/voldikss/dotfiles/blob/dev/nvim/init.vim)
 - [ ] [craftzdog/dotfiles-public](https://github.com/craftzdog/dotfiles-public)
+- [ ] [bluz71/dotfiles](https://github.com/bluz71/dotfiles/blob/master/vim/lua/plugin/lsp-config.lua)

@@ -1,11 +1,13 @@
--- 不会用
+-- npm install -g flow-bin
 
 local key_binding = require('lsp_keybing_config')
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(
+  vim.lsp.protocol.make_client_capabilities()
+)
 
 require'lspconfig'.flow.setup {
-  cmd = { "npx", "--no-install", "flow", "lsp" },
+  cmd = { 'cmd.exe', '/C', 'flow', 'lsp'},
   on_attach = key_binding.on_attach,
   capabilities = capabilities
 }

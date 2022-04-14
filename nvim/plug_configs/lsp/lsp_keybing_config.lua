@@ -67,7 +67,7 @@ local on_attach = function(client, bufnr)
   -- 显示方法参数，普通模式和插入模式。lspsaga无法跳转到提示里面，所以不使用
   buf_set_keymap('n', '<leader>cs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts) 
   -- buf_set_keymap('n', '<leader>cs', '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>', opts)  -- [lspsaga] 无法通过<c-f>,<c-b>scroll
-  buf_set_keymap('i', '<c-p>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('i', '<c-p>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts) -- 两次<C-p>可以进去hover
   -- buf_set_keymap('i', '<c-p>', '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>', opts) -- [lspsaga] 无法通过<c-f>,<c-b>scroll
 
   -- 重命名，lspsaga

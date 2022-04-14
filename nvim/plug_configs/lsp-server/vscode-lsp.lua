@@ -28,6 +28,7 @@ require'lspconfig'.jsonls.setup {
 
 require'lspconfig'.cssls.setup {
     capabilities = capabilities,
+    filetypes = { 'css', 'scss', 'less', 'html'},
     on_attach = key_binding.on_attach
 }
 

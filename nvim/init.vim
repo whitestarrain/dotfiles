@@ -240,9 +240,11 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     if exists("g:front")
       " typescript 和 vscode的lsp
       LoadLua ./plug_configs/lsp-server/tsserver.lua 
+      " LoadLua ./plug_configs/lsp-server/flow.lua
       LoadLua ./plug_configs/lsp-server/vscode-lsp.lua
       LoadLua ./plug_configs/lsp-server/emmet.lua 
-      " LoadLua ./plug_configs/lsp-server/cssmodule_ls.lua " windows上好像用不了
+      " windows上好像用不了
+      " LoadLua ./plug_configs/lsp-server/cssmodule_ls.lua
     endif
     " 全部语言lsp
     if exists("g:power_lsp")
