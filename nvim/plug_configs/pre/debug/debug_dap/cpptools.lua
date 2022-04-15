@@ -4,6 +4,15 @@ dap.adapters.cpptools= {
   type = 'executable',
   command = vim.g.absolute_config_path  .. '../debug_dap_exe/vscode-cpptool/extension/debugAdapters/bin/OpenDebugAD7.exe',
   -- command = "D:/FromC/.vscode/extensions/ms-vscode.cpptools-1.5.1/debugAdapters/bin/OpenDebugAD7.exe",
+
+  --[[ command = "cmd",
+  args={
+    "/C",
+    "start",
+    vim.g.absolute_config_path  .. '../debug_dap_exe/vscode-cpptool/extension/debugAdapters/bin/OpenDebugAD7.exe',
+    "1>nul 2>nul"
+  }, ]]
+
   name = "cpptools"
 }
 

@@ -112,10 +112,11 @@ lua <<EOF
       { name = 'vsnip', priority = 4}
   }
 
-  -- 编程模式,添加buffer和lsp补全
+  -- 编程模式,lsp补全
   if (1 == vim.g.load_program) then
     table.insert(amp_sources,{ name = 'nvim_lsp', priority = 10})
-    table.insert(amp_sources,{ name = 'buffer', priority = 1 })
+    -- table.insert(amp_sources,{ name = 'buffer', priority = 1 })
+    -- buffer补全暂不开启
   end
 
   cmp.setup {

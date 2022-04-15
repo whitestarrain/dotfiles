@@ -138,6 +138,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       if exists("g:c")
         let g:load_program = 1
         " LoadScript ./plug_configs/pre/debug/nvim_dap.vim
+        LoadScript ./plug_configs/pre/debug/nvim_gdb.vim
       endif
       if exists("g:golang")
         let g:load_program = 1
@@ -219,7 +220,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
     endif
     if exists("g:c")
       LoadLua ./plug_configs/lsp-server/clangd_config.lua
-      " LoadLua ./plug_configs/pre/debug/debug_dap/cpptools.lua
+      " LoadLua ./plug_configs/pre/debug/debug_dap/lldb.lua
     endif
     if exists("g:golang")
       LoadLua ./plug_configs/lsp-server/golang.lua

@@ -1,6 +1,6 @@
 {
   // "coc.preferences.extensionUpdateCheck": "daily",
-  "python.venvPath": "D:/learn/anaconda3/envs",
+  "python.venvPath": "",
   "venv": "learn",
   "python.linting.pylintEnabled": true,
   "python.linting.enabled": true,

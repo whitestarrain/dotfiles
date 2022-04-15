@@ -20,8 +20,8 @@ dap.configurations.cpp = {
     args = {},
 		externalConsole = false,
     runInTerminal = false,
-		MIMode = 'gdb',
-		MIDebuggerPath = 'gdb.exe',
+		--[[ MIMode = 'gdb',
+		MIDebuggerPath = 'gdb.exe', ]]
   },
 }
 
