@@ -10,4 +10,3 @@ require'lspconfig'.pyright.setup{
         util.path.dirname(fname)
     end,
 }
-
