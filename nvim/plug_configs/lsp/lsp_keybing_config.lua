@@ -33,6 +33,8 @@ local on_attach = function(client, bufnr)
 
   -- 跳转到definition
   buf_set_keymap('n', '<leader>cd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+
+  -- go to definition 快捷键设置
   vim.cmd(
     [[
         autocmd BufEnter *.lua nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
@@ -51,6 +53,7 @@ local on_attach = function(client, bufnr)
         autocmd BufEnter *.py nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
         autocmd BufEnter *.sh nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
         autocmd BufEnter *.vue nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.tex nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
     ]]
   )
 

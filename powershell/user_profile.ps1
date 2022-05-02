@@ -11,6 +11,7 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 Set-Alias ll ls
 Set-Alias tig 'D:\learn\Git\usr\bin\tig.exe'
 Set-Alias grep findstr
+Set-Alias f floaterm
 
 # function
 function vi() {
