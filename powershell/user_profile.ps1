@@ -56,6 +56,12 @@ function which ($command) {
     Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
 
+function update_diary(){
+  cd 'D:\MyRepo\diary'
+  cp D:\note\diary.md D:\MyRepo\diary\diary.md && git add -A && git commit -m "update" && git push
+  cd -
+} 
+
 # oh-my-posh
 D:\ProgramFiles\scoop\apps\oh-my-posh\current\bin\oh-my-posh.exe --init --shell pwsh --config D:\MyRepo\dotfiles\powershell\white_star_rain.omp.json | Invoke-Expression
 
