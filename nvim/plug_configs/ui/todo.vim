@@ -1,4 +1,5 @@
-" dependency Plug 'nvim-lua/plenary.nvim'
+" DEPN: Plug 'nvim-lua/plenary.nvim'
+" DEPN: scoop install ripgrep
 Plug 'folke/todo-comments.nvim'
 
 " 记得加冒号`:`
@@ -23,6 +24,7 @@ lua << EOF
         WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'XXX', 'WARN' } },
         PERF = { icon = ' ', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
         NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
+        DEPN = { icon = ' ', color = '#1e90ff'},
       },
       merge_keywords = true,
       highlight = {

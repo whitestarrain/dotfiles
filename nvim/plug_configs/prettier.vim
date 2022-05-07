@@ -2,7 +2,7 @@
 " prettier 格式化插件
 " post install (yarn install | npm install) then load plugin only for editing supported files
 
-" NOTE: 安装依赖npm install prettier@1.18.2
+" DEPN: 安装依赖npm install prettier@1.18.2
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html', 'java', 'bash', 'c'] }

@@ -48,7 +48,7 @@ lua << EOF
 
   -- https://github.com/mfussenegger/nvim-dap
 
-  -- NOTE: dap 手动下载调试器
+  -- DEPN: dap 手动下载调试器
   -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
 
   local dap = require("dap")

@@ -1,4 +1,4 @@
--- NOTE: npm i -g vscode-langservers-extracted
+-- DEPN: npm i -g vscode-langservers-extracted
 
 local key_binding = require('lsp_keybing_config')
 -- 需要以snip的方式加入到补全中中
