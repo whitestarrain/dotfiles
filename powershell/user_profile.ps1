@@ -44,6 +44,9 @@ function nvimVSC(){
 function nvimFE(){ # frond end
   nvim --cmd "let g:front=1" $args[0]
 }
+function nvimBash(){
+  nvim --cmd "let g:bash=1" $args[0]
+}
 function nvimPower(){
   nvim --cmd "let g:power_lsp=1" $args[0]
 }

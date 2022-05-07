@@ -146,6 +146,9 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       if exists("g:java")
         let g:load_program = 1
       endif
+      if exists("g:bash")
+        let g:load_program = 1
+      endif
       if exists("g:lua")
         let g:load_program = 1
       endif
@@ -247,9 +250,11 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       " windows上好像用不了
       " LoadLua ./plug_configs/lsp-server/cssmodule_ls.lua
     endif
+    if exists("g:bash")
+      LoadLua ./plug_configs/lsp-server/bash.lua
+    endif
     " 全部语言lsp
     if exists("g:power_lsp")
-      LoadLua ./plug_configs/lsp-server/bash.lua
       LoadLua ./plug_configs/lsp-server/rust_analyzer_config.lua
       LoadLua ./plug_configs/lsp-server/java.lua
       LoadLua ./plug_configs/lsp-server/lua_lsp_config.lua
