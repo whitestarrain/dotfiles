@@ -1,3 +1,7 @@
+" DEPN: git checkout -b use 71d7f46
+  " 最新版本和当前配置不兼容。有时间再调
+  " 新版本中c-n需要手动配置 https://github.com/hrsh7th/nvim-cmp/commit/93cf84f7deb2bdb640ffbb1d2f8d6d412a7aa558
+
 " 补全插件
 Plug 'hrsh7th/nvim-cmp'
 
