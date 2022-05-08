@@ -7,7 +7,8 @@ autocmd User LoadPluginConfig call PlugConfigFloaterm()
 function PlugConfigFloaterm()
 
   let g:floaterm_opener='edit'
-  let g:floaterm_shell='bash' " DEPN: 使用git-bash。配置环境变量Path
+  " git-bash中gitui会渲染混乱
+  let g:floaterm_shell='nu' " DEPN: scoop install nushell
   let g:floaterm_rootmarkers=['.project', '.git', '.hg', '.svn', '.root', '.gitignore']
 
   " float 中间
