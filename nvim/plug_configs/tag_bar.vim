@@ -4,12 +4,12 @@ Plug 'majutsushi/tagbar'
 "------------------------------------tagbar-------------------------------------
 " DEPN: 需要依赖：ctags
   " markdown 需要配置.ctags或者.ctags.d/ 到~
-  " 具体根据是否为Exuberant Ctags确定
-  " 里面配置的内容都是一样的
+  " 不过此处人工指定了配置文件位置
+
 autocmd User LoadPluginConfig call PlugConfigTagBar()
 function! PlugConfigTagBar()
   " 
-  let g:tagbar_ctags_options = ['NONE', split(&rtp,",")[0].'/ctags.cnf']
+  let g:tagbar_ctags_options = ['NONE', g:absolute_config_path . './others/.ctags']
 
   " 设置宽度
   " let g:tagbar_width = 30
