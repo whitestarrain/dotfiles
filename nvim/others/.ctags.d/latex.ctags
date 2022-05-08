@@ -1,0 +1,3 @@
+--langdef=latex
+--langmap=latex:.tex
+--regex-latex=/\\label[ \t]*\*?\{[ \t]*([^}]*)\}/\1/l,label/

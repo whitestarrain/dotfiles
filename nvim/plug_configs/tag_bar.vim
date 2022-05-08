@@ -3,8 +3,12 @@
 Plug 'majutsushi/tagbar'
 "------------------------------------tagbar-------------------------------------
 " DEPN: 需要依赖：ctags
+  " markdown 需要配置.ctags
 autocmd User LoadPluginConfig call PlugConfigTagBar()
 function! PlugConfigTagBar()
+  " 
+  let g:tagbar_ctags_options = ['NONE', split(&rtp,",")[0].'/ctags.cnf']
+
   " 设置宽度
   " let g:tagbar_width = 30
 
@@ -55,8 +59,8 @@ function! PlugConfigTagBar()
   nnoremap <leader>t :TagbarToggle<CR>
   let g:which_key_map.t = "tagbar"
 
- " starify，seesion关闭时执行操作
-if exists("g:startify_session_before_save")
-  let g:startify_session_before_save +=  ['silent! TagbarClose']
-endif
+  " starify，seesion关闭时执行操作
+  if exists("g:startify_session_before_save")
+    let g:startify_session_before_save +=  ['silent! TagbarClose']
+  endif
 endfunction
