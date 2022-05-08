@@ -251,7 +251,8 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       " LoadLua ./plug_configs/lsp-server/cssmodule_ls.lua
     endif
     if exists("g:bash")
-      LoadLua ./plug_configs/lsp-server/bash.lua
+      " LoadLua ./plug_configs/lsp-server/bash.lua
+      LoadLua ./plug_configs/lsp-server/efm-lsp.lua
     endif
     " 全部语言lsp
     if exists("g:power_lsp")
