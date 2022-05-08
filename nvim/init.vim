@@ -34,7 +34,7 @@ let g:python3_host_prog='D:/ProgramFiles/scoop/apps/anaconda3/current/envs/devel
   " g:power_lsp
 
 let g:load_theme="onedark"
-if strlen($term)==0
+if strlen($term)==0 && has("win32")
   " nvim-qt
   let g:set_termguicolors=1
   " let g:load_theme="NeoSolarized"
