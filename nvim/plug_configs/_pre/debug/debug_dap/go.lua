@@ -1,4 +1,4 @@
--- DEPN: 安装依赖：
+-- DEPN: go debugger依赖
 -- Install delve
   -- go install github.com/go-delve/delve/cmd/dlv@latest
   -- or via package manager (pacman -S delve)

@@ -1,3 +1,8 @@
+# 前言：
+
+- 尽可能只在init.vim中引入文件加载
+- 保证迁移方便，在配置文件下写`source path/to/init.vim`即可
+
 # 待做项
 
 - [ ] 键位整理(重要)
@@ -38,6 +43,9 @@
   - [cssmodule_ls](https://github.com/antonk52/cssmodules-language-server): 
     - 比较通用
     - 但是windows上不太好用
+
+- `_pre`文件夹下保存一些不太常用的功能
+  - 可能会在未来重新调整一下配置
 
 # 键位整理
 
