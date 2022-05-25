@@ -50,6 +50,9 @@ function nvimBash(){
 function nvimPower(){
   nvim --cmd "let g:power_lsp=1" $args[0]
 }
+function nvimVue(){
+  nvim --cmd "let g:vue=1" $args[0]
+}
 function SpaceVim(){
   nvim -u D:/MyRepo/SpaceVim/init.vim $args[0]
 }

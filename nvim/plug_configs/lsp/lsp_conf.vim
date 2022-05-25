@@ -7,6 +7,7 @@ Plug 'tami5/lspsaga.nvim'
 autocmd User LoadPluginConfig call PlugConfigLSP()
 
 function! PlugConfigLSP()
+  " 加载lsp键位
   LoadLua ./plug_configs/lsp/lsp_keybing_config.lua
 
 lua << EOF

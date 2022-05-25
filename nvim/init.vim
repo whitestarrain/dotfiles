@@ -177,6 +177,9 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
         LoadScript ./plug_configs/lang_support/javascript.vim
         let g:load_program = 1
       endif
+      if exists("g:vue")
+        let g:load_program = 1
+      endif
       if exists("g:power_lsp")
         " 全部语言的语言插件
         LoadScript ./plug_configs/lang_support/rust.vim
@@ -250,8 +253,14 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       " windows上好像用不了
       " LoadLua ./plug_configs/lsp-server/cssmodule_ls.lua
     endif
+    if exists("g:vue")
+      LoadLua ./plug_configs/lsp-server/tsserver.lua 
+      LoadLua ./plug_configs/lsp-server/vuels.lua
+      LoadLua ./plug_configs/lsp-server/vscode-lsp.lua
+      LoadLua ./plug_configs/lsp-server/emmet.lua 
+    endif
     if exists("g:bash")
-      " LoadLua ./plug_configs/lsp-server/bash.lua
+      LoadLua ./plug_configs/lsp-server/bash.lua
       LoadLua ./plug_configs/lsp-server/efm-lsp.lua
     endif
     " 全部语言lsp
@@ -266,6 +275,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       LoadLua ./plug_configs/lsp-server/clangd_config.lua
       LoadLua ./plug_configs/lsp-server/golang.lua
       LoadLua ./plug_configs/lsp-server/texlab.lua
+      LoadLua ./plug_configs/lsp-server/vuels.lua
     endif
 
   endif
