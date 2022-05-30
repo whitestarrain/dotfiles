@@ -41,7 +41,7 @@ require'nvim-treesitter.configs'.setup {
   -- 大多数语言插件会提供indent，个别可以按照需要开启
   indent = {
     disable = true,
-    enable = {}
+    enable = {"vue"}
   },
   rainbow = {
     enable = true,

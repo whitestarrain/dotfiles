@@ -1,7 +1,7 @@
 " 更新后，在退出时不会exit terminal。暂时无解
 Plug 'voldikss/vim-floaterm'
 
-" 重要：终端中在当前vim打开文件：floaterm file
+" NOTE: 重要：终端中在当前vim打开文件：floaterm file
 autocmd User LoadPluginConfig call PlugConfigFloaterm()
 
 function PlugConfigFloaterm()
