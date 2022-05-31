@@ -4,7 +4,7 @@ Plug 'ray-x/go.nvim'
 
 autocmd User LoadPluginConfig call PlugConfigGolang()
 
-function PlugConfigGolang()
+function! PlugConfigGolang()
 
 lua <<EOF
 require 'go'.setup({

@@ -6,7 +6,7 @@ Plug 'rafamadriz/friendly-snippets' "提供一堆snip
 
 autocmd User LoadPluginConfig call PlugConfigSnippet()
 
-function PlugConfigSnippet()
+function! PlugConfigSnippet()
 
   let g:vsnip_snippet_dir = g:absolute_config_path  . "./others/.snippet""
   " Jump forward or backward

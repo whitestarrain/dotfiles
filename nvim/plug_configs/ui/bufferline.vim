@@ -2,7 +2,7 @@ Plug 'akinsho/bufferline.nvim'
 
 autocmd User LoadPluginConfig call PlugConfigBufferLine()
 
-function PlugConfigBufferLine()
+function! PlugConfigBufferLine()
 
 lua <<EOF
 

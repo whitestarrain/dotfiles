@@ -9,7 +9,7 @@ Plug 'p00f/nvim-ts-rainbow'
 
 autocmd User LoadPluginConfig call PlugConfigTreeSitter()
 
-function PlugConfigTreeSitter()
+function! PlugConfigTreeSitter()
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {

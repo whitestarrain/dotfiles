@@ -10,7 +10,7 @@ Plug 'windwp/nvim-ts-autotag'
 
 autocmd User LoadPluginConfig call PlugConfigAutoTag()
 
-function PlugConfigAutoTag()
+function! PlugConfigAutoTag()
 
 lua << EOF
 

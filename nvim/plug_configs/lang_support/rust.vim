@@ -3,7 +3,7 @@ Plug 'tenfyzhong/tagbar-rust.vim'
 
 autocmd User LoadPluginConfig call PlugConfigRust()
 
-function PlugConfigRust()
+function! PlugConfigRust()
   " 保存时代码自动格式化
   let g:rustfmt_autosave = 1
   " let g:which_key_map.r = { 'name' : '[rust]' }

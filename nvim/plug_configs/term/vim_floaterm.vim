@@ -4,7 +4,7 @@ Plug 'voldikss/vim-floaterm'
 " NOTE: 重要：终端中在当前vim打开文件：floaterm file
 autocmd User LoadPluginConfig call PlugConfigFloaterm()
 
-function PlugConfigFloaterm()
+function! PlugConfigFloaterm()
 
   let g:floaterm_opener='edit'
   " git-bash中gitui会渲染混乱

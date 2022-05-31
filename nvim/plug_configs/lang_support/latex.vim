@@ -9,7 +9,7 @@ Plug 'lervag/vimtex'
 
 autocmd User LoadPluginConfig call PlugConfigLatex()
 
-  function PlugConfigLatex()
+function! PlugConfigLatex()
 
   "使vimtex默认pdf阅读器
   let g:vimtex_view_general_viewer = 'SumatraPDF.exe' 
