@@ -57,6 +57,25 @@ function! PlugConfigTagBar()
           \ 'ctagsargs' : '-sort -silent'
           \ }
 
+  let g:tagbar_type_javascript = {
+          \ 'ctagstype' : 'javascript',
+          \ 'kinds'     : [
+              \ 'T:Tags',
+              \ 'A:Arrays',
+              \ 'O:Objects',
+              \ 'P:Properties',
+              \ 'G:Generators',
+              \ 'F:Functions',
+              \ 'C:Classes',
+              \ 'M:Methods',
+              \ 'V:Variables',
+              \ 'I:Imports',
+              \ 'E:Exports',
+              \ 'S:Styled Components',
+          \ ],
+          \ 'sort'    : 0,
+          \}
+
   " tagbar map
   nnoremap <leader>t :TagbarToggle<CR>
   let g:which_key_map.t = "tagbar"
