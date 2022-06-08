@@ -46,13 +46,14 @@ gls.left[2] = {
       vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim.fn.mode()])
       return '  '
     end,
+    condition = function() return condition.buffer_not_empty() and condition.hide_in_width() end,
     highlight = {colors.red,colors.bg,'bold'},
   },
 }
 gls.left[3] = {
   FileSize = {
     provider = 'FileSize',
-    condition = condition.buffer_not_empty,
+    condition = function() return condition.buffer_not_empty() and condition.hide_in_width() end,
     highlight = {colors.fg,colors.bg}
   }
 }
@@ -67,7 +68,7 @@ gls.left[4] ={
 gls.left[5] = {
   FileName = {
     provider = 'FileName',
-    condition = function() return condition.buffer_not_empty() and condition.hide_in_width() end,
+    condition = function() return condition.buffer_not_empty() end,
     highlight = {colors.magenta,colors.bg,'bold'}
   }
 }
@@ -137,7 +138,7 @@ gls.mid[1] = {
       if tbl[vim.bo.filetype] then
         return false
       end
-      return true
+      return condition.buffer_not_empty() and condition.hide_in_width()
     end,
     icon = ' LSP:',
     highlight = {colors.cyan,colors.bg,'bold'}
