@@ -56,4 +56,5 @@ let g:which_key_map.z.k = "markmap"
 
 " 终端模式返回普通模式
 tnoremap <c-[> <c-\><c-n>
-" tnoremap <Esc> <C-\><C-n> " 上面一句已经包含了这一句映射: https://stackoverflow.com/questions/21947783/mapping-to-c-but-not-overriding-esc
+"上面一句已经包含了<esc>的映射: https://stackoverflow.com/questions/21947783/mapping-to-c-but-not-overriding-esc
+tnoremap <Esc> <C-\><C-n> 

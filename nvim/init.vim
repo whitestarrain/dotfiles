@@ -1,5 +1,6 @@
 " nvim-qt 要加上 --no-ext-tabline，才能使用airline的bufferline。加上 --fullscreen全屏显示
 
+
 "=================================================env config start===================================================
 " 定义载入配置命令
 " let g:absolute_config_path = expand("%:p")[0:strlen(expand("%:p"))-strlen(expand("%:t"))-1]
@@ -14,6 +15,26 @@ lua package.path = package.path .. ";" .. vim.g.absolute_config_path .. "./plug_
 let g:python3_host_prog='D:/ProgramFiles/scoop/apps/anaconda3/current/envs/develop/python.exe'
 
 "=================================================env config end===================================================
+
+"=================================================leader group start===================================================
+" 按键map规范
+let mapleader="\<space>"
+let g:which_key_map =  {}
+let g:which_key_map.z = { 'name' : '[second]' }
+let g:which_key_map.s = { 'name' : '[startify]' }
+let g:which_key_map.o = { 'name' : '[open in]' }
+let g:which_key_map.h = { 'name' : '[hunk]' }
+let g:which_key_map.f = { 'name' : '[find]' }
+let g:which_key_map.b = { 'name' : '[buffer]' }
+let g:which_key_map.c = { 'name' : '[code]' }
+let g:which_key_map.h = { 'name' : '[hunk]' }
+"=================================================leader group end===================================================
+
+"=================================================common config start===================================================
+LoadScript common.vim
+LoadScript mappings.vim
+LoadScript functions.vim
+"=================================================common config end===================================================
 
 "=================================================control var start===================================================
 
@@ -66,20 +87,6 @@ if !exists('g:vscode')
 endif
 
 "=================================================control var end===================================================
-
-"=================================================leader group start===================================================
-" 按键map规范
-let mapleader="\<space>"
-let g:which_key_map =  {}
-let g:which_key_map.z = { 'name' : '[second]' }
-let g:which_key_map.s = { 'name' : '[startify]' }
-let g:which_key_map.o = { 'name' : '[open in]' }
-let g:which_key_map.h = { 'name' : '[hunk]' }
-let g:which_key_map.f = { 'name' : '[find]' }
-let g:which_key_map.b = { 'name' : '[buffer]' }
-let g:which_key_map.c = { 'name' : '[code]' }
-let g:which_key_map.h = { 'name' : '[hunk]' }
-"=================================================leader group end===================================================
 
 "=================================================plug load start===================================================
 if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
@@ -282,15 +289,6 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
 
 endif
 "=================================================plug load end===================================================
-
-"=================================================common config end===================================================
-LoadScript common.vim
-"=================================================commone config end===================================================
-
-"================================================common =map start===================================================
-LoadScript functions.vim
-LoadScript mappings.vim
-"=================================================common map end===================================================
 
 "=================================================theme start===================================================
 set synmaxcol=5000       " 高亮显示行数，小一点节省内存，但是可能对大文件出现渲染错误 默认3000
