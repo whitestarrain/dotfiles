@@ -54,6 +54,33 @@
 
 # 键位整理
 
+> TODO: 键位整理
+
+# 图片展示
+
+- lsp
+
+  ![dotfile-1](./image/dotfile-1.png)
+
+  ![dotfile-7](./image/dotfile-7.png)
+
+  ![dotfile-6](./image/dotfile-6.png)
+
+- 自动补全
+
+  ![dotfile-2](./image/dotfile-2.png)
+
+  ![dotfile-3](./image/dotfile-3.png)
+
+  ![dotfile-5](./image/dotfile-5.png)
+
+- 多环境支持
+
+  ![dotfile-4](./image/dotfile-4.png)
+
+- session支持(类似vscode的工作空间)
+
+- ...(有时间再补充)
 
 # 参考配置
 
