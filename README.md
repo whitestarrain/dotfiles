@@ -19,6 +19,7 @@
 - [ ] init整理，替换`g:load_program`，各个语言插件单独配置
   > 主要是java jdtls
 - [ ] bash自动化记录和设置插件版本
+  - `vim-plug`的`PlugSnapshot`命令使用，但有较大局限性，只能在该插件中使用
 - [ ] 拿c写一个启动程序？
 
 # 记录
