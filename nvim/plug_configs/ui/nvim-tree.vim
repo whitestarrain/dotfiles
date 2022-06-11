@@ -163,7 +163,7 @@ lua << EOF
                           { key = "p",                            action = "parent_node" },
                           { key = {"h","x"},                      action = "close_node" },
                           { key = "<Tab>",                        action = "preview" },
-                          { key = "K",                            action = "first_sibling" },
+                          { key = "<C-k>",                            action = "first_sibling" },
                           { key = "J",                            action = "last_sibling" },
                           { key = "I",                            action = "toggle_git_ignored" },
                           { key = ".",                            action = "toggle_dotfiles" },
@@ -187,7 +187,7 @@ lua << EOF
                           { key = "?",                            action = "toggle_help" },
                           { key = "W",                            action = "collapse_all" },
                           -- { key = "S",                            action = "search_node" },
-                          { key = "<C-k>",                        action = "toggle_file_info" },
+                          { key = "K",                        action = "toggle_file_info" },
                           -- { key = ".",                            action = "run_file_command" }
                 }
             }
