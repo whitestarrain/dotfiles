@@ -58,3 +58,7 @@ let g:which_key_map.z.k = "markmap"
 tnoremap <c-[> <c-\><c-n>
 "上面一句已经包含了<esc>的映射: https://stackoverflow.com/questions/21947783/mapping-to-c-but-not-overriding-esc
 tnoremap <Esc> <C-\><C-n> 
+
+" 显示完整文件路径
+nnoremap <leader>zf :echo expand("%:p")<cr>
+let g:which_key_map.z.f = "show full path"

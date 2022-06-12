@@ -10,6 +10,11 @@ autocmd User LoadPluginConfig call PlugConfigTODOComments()
 function! PlugConfigTODOComments()
 lua << EOF
 
+  --NOTE: to fix error report when open command line (q:)
+  local hl = require("todo-comments.highlight")
+  local highlight_win = hl.highlight_win
+  hl.highlight_win = function(win, force) pcall(highlight_win, win, force) end
+
   require("todo-comments").setup {
       signs = true,
       sign_priority = 9,

@@ -80,6 +80,10 @@
 
 - session支持(类似vscode的工作空间)
 
+- todo list
+
+  ![dotfile-8](./image/dotfile-8.png)
+
 - ...(有时间再补充)
 
 # 参考配置
