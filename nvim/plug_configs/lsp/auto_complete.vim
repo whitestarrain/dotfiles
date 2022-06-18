@@ -14,6 +14,7 @@ endif
 
 Plug 'hrsh7th/cmp-path' "路径补全一定要加
 Plug 'hrsh7th/cmp-cmdline' " 命令模式补全
+Plug 'hrsh7th/cmp-nvim-lua'
 
 Plug 'hrsh7th/cmp-vsnip' " vsnip snippet 补全。 NOTE: 切换snip插件也要切换这个
 
@@ -113,7 +114,8 @@ lua <<EOF
 
   local amp_sources = {
       { name = 'path' , priority = 5},
-      { name = 'vsnip', priority = 4}
+      { name = 'vsnip' , priority = 4},
+      { name = 'nvim_lua' , priority = 11}
   }
 
   -- 编程模式,lsp补全

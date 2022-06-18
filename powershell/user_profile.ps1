@@ -23,6 +23,9 @@ function vim() {
 function nvimC(){
   nvim --cmd "let g:c=1" $args[0]
 }
+function nvimLua(){
+  nvim --cmd "let g:lua=1" $args[0]
+}
 function nvimRu(){
   nvim --cmd "let g:rust=1" $args[0]
 }

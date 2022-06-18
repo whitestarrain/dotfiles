@@ -1,8 +1,10 @@
 local key_binding = require('lsp_keybing_config')
 
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
-local runtime_path = {}
-table.insert(runtime_path,"?.lua")
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "?.lua")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
 require'lspconfig'.sumneko_lua.setup{
   cmd = {vim.g.absolute_config_path  .. "../lsp_exe/lua-language-server/bin/lua-language-server.exe",
         "-E",
