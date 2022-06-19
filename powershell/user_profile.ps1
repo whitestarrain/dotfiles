@@ -18,49 +18,43 @@ function vi() {
   nvim -u NONE $args[0]
 }
 function vim() {
-  nvim --cmd "let g:skip_project_plugs=1" $args[0]
+  nvim --cmd 'let g:skip_project_plugs=1' $args[0]
 }
 function nvimC(){
-  nvim --cmd "let g:c=1" $args[0]
+  nvim --cmd "let g:code_language_list=['c']" $args[0]
 }
 function nvimLua(){
-  nvim --cmd "let g:lua=1" $args[0]
+  nvim --cmd "let g:code_language_list=['lua']" $args[0]
 }
 function nvimRu(){
-  nvim --cmd "let g:rust=1" $args[0]
+  nvim --cmd "let g:code_language_list=['rust']" $args[0]
 }
 function nvimPy(){
-  nvim --cmd "let g:python=1" $args[0]
+  nvim --cmd "let g:code_language_list=['python']" $args[0]
 }
 function nvimTex(){
-  nvim --cmd "let g:latex=1" $args[0]
+  nvim --cmd "let g:code_language_list=['latex']" $args[0]
 }
 function nvimGo(){
-  nvim --cmd "let g:golang=1" $args[0]
-}
-function nvimTS(){
-  nvim --cmd "let g:typescript=1" $args[0]
-}
-function nvimVSC(){
-  nvim --cmd "let g:vscode=1" $args[0]
+  nvim --cmd "let g:code_language_list=['golang']" $args[0]
 }
 function nvimFE(){ # frond end
-  nvim --cmd "let g:front=1" $args[0]
-}
-function nvimBash(){
-  nvim --cmd "let g:bash=1" $args[0]
-}
-function nvimVim(){
-  nvim --cmd "let g:vim=1" $args[0]
-}
-function nvimConfig(){
-  nvim --cmd "let g:vim=1 | let g:lua=1 | let g:bash=1" $args[0]
-}
-function nvimPower(){
-  nvim --cmd "let g:power_lsp=1" $args[0]
+  nvim --cmd "let g:code_language_list=['front']" $args[0]
 }
 function nvimVue(){
-  nvim --cmd "let g:vue=1" $args[0]
+  nvim --cmd "let g:code_language_list=['front','vue']" $args[0]
+}
+function nvimBash(){
+  nvim --cmd "let g:code_language_list=['bash']" $args[0]
+}
+function nvimVim(){
+  nvim --cmd "let g:code_language_list=['vim']" $args[0]
+}
+function nvimConfig(){
+  nvim --cmd "let g:code_language_list=['vim','lua','bash']" $args[0]
+}
+function nvimPower(){
+  nvim --cmd "let g:code_language_list=['c','rust','python','latex','golang','front','vue','vim','lua','bash']" $args[0]
 }
 function SpaceVim(){
   nvim -u D:/MyRepo/SpaceVim/init.vim $args[0]
