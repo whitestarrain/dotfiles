@@ -54,6 +54,7 @@ local on_attach = function(client, bufnr)
         autocmd BufEnter *.sh nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
         autocmd BufEnter *.vue nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
         autocmd BufEnter *.tex nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
+        autocmd BufEnter *.vim nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
     ]]
   )
 

@@ -4,9 +4,9 @@
 "=================================================env config start===================================================
 " 定义载入配置命令
 " let g:absolute_config_path = expand("%:p")[0:strlen(expand("%:p"))-strlen(expand("%:t"))-1]
-let g:absolute_config_path = expand("<sfile>:p")[0:strlen(expand("<sfile>:p"))-strlen(expand("<sfile>:t"))-1]
-command! -nargs=1 LoadScript exec 'source' . ' ' . g:absolute_config_path . '<args>'
-command! -nargs=1 LoadLua exec 'luafile' . ' ' . g:absolute_config_path . '<args>'
+let g:absolute_config_path = simplify(expand("<sfile>:p")[0:strlen(expand("<sfile>:p"))-strlen(expand("<sfile>:t"))-1])
+command! -nargs=1 LoadScript exec 'source' . ' ' . simplify(g:absolute_config_path . '<args>')
+command! -nargs=1 LoadLua exec 'luafile' . ' ' .  simplify(g:absolute_config_path . '<args>')
 
 " 添加不在runtimepath中的lua文件的加载路径
 lua package.path = package.path .. ";" .. vim.g.absolute_config_path .. "./plug_configs/lsp/?.lua"
@@ -124,6 +124,7 @@ call plug#begin(get(g:,"plug_install_path"))
     LoadScript ./plug_configs/prettier.vim
     LoadScript ./plug_configs/md_img_paste.vim
     LoadScript ./plug_configs/snippets.vim
+    LoadScript ./plug_configs/vimdoc_cn.vim
     " LoadScript ./plug_configs/vim_visual_multi.vim" 待安装
 
     " 加载lsp相关vim插件

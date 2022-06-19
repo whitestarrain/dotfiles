@@ -66,7 +66,7 @@ endfunction
 
 " 网页搜索选中内容
 function! SearchOnline(searchUrl)
-     let l:searchterm = getreg("s")
+     let l:searchterm = trim(getreg("s"))
      silent! exec "silent! !chrome " . a:searchUrl . l:searchterm
 endfunction
 vnoremap <silent><m-g> "sy<Esc>:call  SearchOnline("https://www.google.com/search?q=")<CR>
