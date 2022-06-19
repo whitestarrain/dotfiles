@@ -50,6 +50,12 @@ function nvimFE(){ # frond end
 function nvimBash(){
   nvim --cmd "let g:bash=1" $args[0]
 }
+function nvimVim(){
+  nvim --cmd "let g:vim=1" $args[0]
+}
+function nvimConfig(){
+  nvim --cmd "let g:vim=1 | let g:lua=1 | let g:bash=1" $args[0]
+}
 function nvimPower(){
   nvim --cmd "let g:power_lsp=1" $args[0]
 }

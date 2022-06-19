@@ -117,7 +117,7 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       LoadScript ./plug_configs/ui/nvim_colorizer.vim
     endif
 
-    "load selected plugins
+    " 加载额外插件
     if !exists('g:skip_project_plugs')
       LoadScript ./plug_configs/ui/starify.vim " 加载这个插件的话，放上面，session关闭时处理相关
       LoadScript ./plug_configs/term/asyn_run.vim " 功能强大，但是暂时应该用不到
@@ -154,6 +154,9 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
         let g:load_program = 1
       endif
       if exists("g:bash")
+        let g:load_program = 1
+      endif
+      if exists("g:vim")
         let g:load_program = 1
       endif
       if exists("g:lua")
@@ -270,6 +273,9 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       LoadLua ./plug_configs/lsp-server/bash.lua
       LoadLua ./plug_configs/lsp-server/efm-lsp.lua
     endif
+    if exists("g:vim")
+      LoadLua ./plug_configs/lsp-server/vimls.lua
+    endif
     " 全部语言lsp
     if exists("g:power_lsp")
       LoadLua ./plug_configs/lsp-server/rust_analyzer_config.lua
@@ -283,6 +289,9 @@ if exists("g:plug_install_path") && strlen(g:plug_install_path)>0
       LoadLua ./plug_configs/lsp-server/golang.lua
       LoadLua ./plug_configs/lsp-server/texlab.lua
       LoadLua ./plug_configs/lsp-server/vuels.lua
+      LoadLua ./plug_configs/lsp-server/vimls.lua
+      LoadLua ./plug_configs/lsp-server/bash.lua
+      LoadLua ./plug_configs/lsp-server/efm-lsp.lua
     endif
 
   endif
