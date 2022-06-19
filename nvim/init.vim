@@ -142,7 +142,9 @@ call plug#begin(get(g:,"plug_install_path"))
       if code_language == "java" | endif
       if code_language == "bash" | endif
       if code_language == "vim" | endif
-      if code_language == "lua" | endif
+      if code_language == "lua" 
+        LoadScript ./plug_configs/lang_support/lua.vim
+      endif
       if code_language == "front"
         " typescript 和 vscode环境的语言插件
         LoadScript ./plug_configs/lang_support/jsx.vim

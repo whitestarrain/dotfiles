@@ -115,7 +115,6 @@ lua <<EOF
   local amp_sources = {
       { name = 'path' , priority = 5},
       { name = 'vsnip' , priority = 4},
-      { name = 'nvim_lua' , priority = 11}
   }
 
   -- 编程模式,lsp补全
