@@ -1,5 +1,7 @@
 -- DEPN: install lsp from https://github.com/sumneko/lua-language-server
 -- 参照：https://github.com/folke/dot/blob/master/config/nvim/lua/plugins.lua
+local util = require("lspconfig/util")
+
 local key_binding = require('lsp_keybing_config')
 
 local runtime_path = vim.split(package.path, ';')
@@ -37,7 +39,11 @@ local luadev = require("lua-dev").setup({
     on_attach = key_binding.on_attach,
     flags = {
       debounce_text_changes = 150,
-    }
+    },
+    root_dir = function(fname)
+      return util.root_pattern(".git")(fname) or
+        util.path.dirname(fname)
+    end,
   }
 })
 

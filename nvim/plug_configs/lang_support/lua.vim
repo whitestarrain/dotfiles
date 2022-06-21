@@ -1,1 +1,1 @@
-Plug 'folke/lua-dev.nvim'
+Plug 'max397574/lua-dev.nvim'

@@ -24,10 +24,6 @@ nnoremap <silent><c-down> :resize -1<CR>
 noremap <M-h> :bp<cr>
 noremap <M-l> :bn<cr>
 
-" 设置tab跳转
-noremap <M-j> :tabnext <cr>
-noremap <M-k> :tabpre<cr>
-
 "设置路径为当前文件所在路径
 nnoremap <silent><leader>zp :cd %:h<cr>
 let g:which_key_map.z.p = "setPathNow"
@@ -39,6 +35,13 @@ let g:which_key_map.d = "deleteNow"
 
 nnoremap < <<
 nnoremap > >>
+
+" 使用中括号进行跳转
+" 设置tab跳转
+noremap ]t :tabnext <cr>
+noremap [t :tabpre<cr>
+
+
 
 " open in ...
 nnoremap <silent><leader>ob :!chrome %:p <cr> <cr>

@@ -104,6 +104,7 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadScript ./plug_configs/kommentary.vim
   LoadScript ./plug_configs/treesitter.vim
   LoadScript ./plug_configs/ui/todo.vim
+  LoadScript ./plug_configs/abolish.vim
   if g:set_termguicolors 
     LoadScript ./plug_configs/ui/bufferline.vim
     LoadScript ./plug_configs/ui/galaxyline.vim
