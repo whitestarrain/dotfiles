@@ -12,3 +12,8 @@ au["User LoadPluginConfig"] = function() -- autocmd调用函数
 		},
 	})
 end
+
+au.group('FormatGroup', {
+    { 'BufWritePost', '*.lua', 'FormatWrite' },
+})
+
