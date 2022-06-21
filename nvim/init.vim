@@ -96,20 +96,20 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadScript ./plug_configs/ui/theme.vim
   LoadScript ./plug_configs/vim_surround.vim
   LoadScript ./plug_configs/rainrow.vim
-  LoadScript ./plug_configs/auto_pair.vim
   LoadScript ./plug_configs/ui/indentline.vim
   LoadScript ./plug_configs/tag_bar.vim
   LoadScript ./plug_configs/ui/vim_devicons.vim " 主要为startify 提供icon支持，可选
   LoadScript ./plug_configs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
-  LoadScript ./plug_configs/kommentary.vim
-  LoadScript ./plug_configs/treesitter.vim
-  LoadScript ./plug_configs/ui/todo.vim
   LoadScript ./plug_configs/abolish.vim
+  LoadLua ./plug_configs/kommentary.lua
+  LoadLua ./plug_configs/treesitter.lua
+  LoadLua ./plug_configs/auto_pair.lua
   LoadLua ./plug_configs/formatter.lua
+  LoadLua ./plug_configs/ui/todo-comments.lua
   if g:set_termguicolors 
-    LoadScript ./plug_configs/ui/bufferline.vim
-    LoadScript ./plug_configs/ui/galaxyline.vim
-    LoadScript ./plug_configs/ui/nvim_colorizer.vim
+    LoadLua ./plug_configs/ui/bufferline.lua
+    LoadLua ./plug_configs/ui/galaxyline.lua
+    LoadLua ./plug_configs/ui/nvim_colorizer.lua
   endif
 
   " 加载额外插件
@@ -117,16 +117,16 @@ call plug#begin(get(g:,"plug_install_path"))
     LoadScript ./plug_configs/ui/starify.vim " 加载这个插件的话，放上面，session关闭时处理相关
     LoadScript ./plug_configs/term/asyn_run.vim " 功能强大，但是暂时应该用不到
     LoadScript ./plug_configs/term/vim_floaterm.vim
-    LoadScript ./plug_configs/git.vim
-    LoadScript ./plug_configs/telescope.vim
     LoadScript ./plug_configs/easy_motion.vim
-    LoadScript ./plug_configs/ui/nvim-tree.vim
     LoadScript ./plug_configs/ui/vim_which_key.vim
     LoadScript ./plug_configs/lang_support/vim_markdown.vim
     LoadScript ./plug_configs/prettier.vim
     LoadScript ./plug_configs/md_img_paste.vim
     LoadScript ./plug_configs/snippets.vim
     LoadScript ./plug_configs/vimdoc_cn.vim
+    LoadLua ./plug_configs/ui/nvim-tree.lua
+    LoadLua ./plug_configs/telescope.lua
+    LoadLua ./plug_configs/git.lua
     " LoadScript ./plug_configs/vim_visual_multi.vim" 待安装
 
     " 加载lsp相关vim插件
@@ -162,8 +162,8 @@ call plug#begin(get(g:,"plug_install_path"))
 
     if len(g:code_language_list)>0
       let g:load_program = 1
-      LoadScript ./plug_configs/lsp/lsp_conf.vim
-      LoadScript ./plug_configs/lsp/diagnostics_list.vim
+      LoadLua ./plug_configs/lsp/lsp_conf.lua
+      LoadLua ./plug_configs/lsp/diagnostics_list.lua
     endif
 
     " auto complete config. related with the var "load_program""

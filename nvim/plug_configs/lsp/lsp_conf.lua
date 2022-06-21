@@ -1,14 +1,11 @@
-Plug 'neovim/nvim-lspconfig'
-" lsp ui美化
+vim.cmd[[
+  Plug 'neovim/nvim-lspconfig'
 
-Plug 'tami5/lspsaga.nvim'
-" 按键映射配置放到了./lsp_keybing_config.lua
+  " lsp ui美化
+  Plug 'tami5/lspsaga.nvim'
+]]
 
-autocmd User LoadPluginConfig call PlugConfigLSP()
-
-function! PlugConfigLSP()
-
-lua << EOF
+require("au")["User LoadPluginConfig"] = function()
 
   -- icon config
   local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
@@ -30,7 +27,4 @@ lua << EOF
     border = "single",
     width = 100,
   })
-
-EOF
-
-endfunction
+end
