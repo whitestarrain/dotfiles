@@ -29,8 +29,9 @@ require("au")["User LoadPluginConfig"] = function()
 		},
 		renderer = {
 			group_empty = true,
-      highlight_git = true,
+			highlight_git = true,
 		},
+		update_cwd = true,
 		sort_by = "case_sensitive",
 		view = {
 			adaptive_size = false,
