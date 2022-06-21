@@ -9,7 +9,7 @@ command! -nargs=1 LoadScript exec 'source' . ' ' . simplify(g:absolute_config_pa
 command! -nargs=1 LoadLua exec 'luafile' . ' ' .  simplify(g:absolute_config_path . '<args>')
 
 " 添加不在runtimepath中的lua文件的加载路径
-lua package.path = package.path .. ";" .. vim.g.absolute_config_path .. "./plug_configs/lsp/?.lua"
+let &runtimepath.="," . g:absolute_config_path[0:-2]
 
 " python 环境
 let g:python3_host_prog='D:/ProgramFiles/scoop/apps/anaconda3/current/envs/develop/python.exe'
@@ -105,6 +105,7 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadScript ./plug_configs/treesitter.vim
   LoadScript ./plug_configs/ui/todo.vim
   LoadScript ./plug_configs/abolish.vim
+  LoadLua ./plug_configs/formatter.lua
   if g:set_termguicolors 
     LoadScript ./plug_configs/ui/bufferline.vim
     LoadScript ./plug_configs/ui/galaxyline.vim
