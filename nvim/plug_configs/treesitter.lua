@@ -1,4 +1,3 @@
-
 -- NOTE: 手动卸载重装吧，最好不要使用:PlugUpdate进行更新
 
 vim.cmd([[
@@ -39,7 +38,7 @@ require("au")["User LoadPluginConfig"] = function()
 		-- 大多数语言插件会提供indent，个别可以按照需要开启
 		indent = {
 			disable = true,
-			enable = { "vue" },
+			enable = { "vue", "lua" },
 		},
 		rainbow = {
 			enable = true,

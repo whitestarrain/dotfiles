@@ -104,7 +104,6 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadLua ./plug_configs/kommentary.lua
   LoadLua ./plug_configs/treesitter.lua
   LoadLua ./plug_configs/auto_pair.lua
-  LoadLua ./plug_configs/formatter.lua
   LoadLua ./plug_configs/ui/todo-comments.lua
   if g:set_termguicolors 
     LoadLua ./plug_configs/ui/bufferline.lua
@@ -164,6 +163,10 @@ call plug#begin(get(g:,"plug_install_path"))
       let g:load_program = 1
       LoadLua ./plug_configs/lsp/lsp_conf.lua
       LoadLua ./plug_configs/lsp/diagnostics_list.lua
+      " lsp不提供格式化的文件类型使用formatter进行格式化
+      LoadLua ./plug_configs/formatter.lua
+      " lsp不提供lint功能的文件类型使用lint工具(替换efm-lsp)
+      LoadLua ./plug_configs/nvim-lint.lua
     endif
 
     " auto complete config. related with the var "load_program""
@@ -197,7 +200,6 @@ for code_language in g:code_language_list
   endif
   if code_language == "bash"
     LoadLua ./plug_configs/lsp-server/bash.lua
-    LoadLua ./plug_configs/lsp-server/efm-lsp.lua
   endif
   if code_language == "vim"
     LoadLua ./plug_configs/lsp-server/vimls.lua

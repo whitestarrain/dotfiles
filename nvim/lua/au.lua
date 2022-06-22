@@ -1,6 +1,9 @@
 -- lua autocmd
 -- https://gist.github.com/numToStr/1ab83dd2e919de9235f9f774ef8076da
 
+-- nvim 0.7 支持nvim_create_autocmd,nvim_create_augroup创建自动命令。
+-- 任务组的那个最好封装一下再用
+
 local cmd = vim.api.nvim_command
 
 local function autocmd(this, event, spec)
