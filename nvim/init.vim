@@ -101,6 +101,7 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadScript ./plug_configs/ui/vim_devicons.vim " 主要为startify 提供icon支持，可选
   LoadScript ./plug_configs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
   LoadScript ./plug_configs/abolish.vim
+  LoadLua ./plug_configs/mdSectionNumber.lua
   LoadLua ./plug_configs/kommentary.lua
   LoadLua ./plug_configs/treesitter.lua
   LoadLua ./plug_configs/auto_pair.lua
@@ -114,7 +115,6 @@ call plug#begin(get(g:,"plug_install_path"))
   " 加载额外插件
   if !exists('g:skip_project_plugs')
     LoadScript ./plug_configs/ui/starify.vim " 加载这个插件的话，放上面，session关闭时处理相关
-    LoadScript ./plug_configs/term/asyn_run.vim " 功能强大，但是暂时应该用不到
     LoadScript ./plug_configs/term/vim_floaterm.vim
     LoadScript ./plug_configs/easy_motion.vim
     LoadScript ./plug_configs/ui/vim_which_key.vim
@@ -127,6 +127,7 @@ call plug#begin(get(g:,"plug_install_path"))
     LoadLua ./plug_configs/telescope.lua
     LoadLua ./plug_configs/git.lua
     " LoadScript ./plug_configs/vim_visual_multi.vim" 待安装
+    " LoadScript ./plug_configs/term/asyn_run.vim " 功能强大，但是暂时应该用不到
 
     " 加载lsp相关vim插件
     let g:load_program = 0

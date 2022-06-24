@@ -1,10 +1,14 @@
 -- git插件
-vim.cmd("Plug 'tpope/vim-fugitive'")
-vim.cmd("Plug 'junegunn/gv.vim'")
+vim.cmd([[
+  Plug 'tpope/vim-fugitive'
+  Plug 'junegunn/gv.vim'
+]])
 
 -- 显示文件每行的状态
 -- dependency Plug 'nvim-lua/plenary.nvim'
-vim.cmd("Plug 'lewis6991/gitsigns.nvim'")
+vim.cmd([[
+  Plug 'lewis6991/gitsigns.nvim', {'branch':'main'}
+]])
 
 vim.cmd([[
   let g:which_key_map.h.p = "preview"
