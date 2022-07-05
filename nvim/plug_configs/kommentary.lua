@@ -13,9 +13,11 @@ require("au")["User LoadPluginConfig"] = function()
 	-- (you can see it in insert mode using <C-v><C-/>). It can be the terminal or a historical design thing that terminal apps have to suffer.
 	-- And Gvim doesn't even try to recognize <C-/>. Sees it as single /.
 	vim.api.nvim_set_keymap("n", "<C-_>", "<Plug>kommentary_line_default", {})
+	vim.api.nvim_set_keymap("i", "<C-_>", "<C-\\><C-O><Plug>kommentary_line_default", {})
 	vim.api.nvim_set_keymap("v", "<C-_>", "<Plug>kommentary_visual_default<C-c>", {})
 
 	-- 针对nvim-qt
 	vim.api.nvim_set_keymap("n", "<C-/>", "<Plug>kommentary_line_default", {})
+	vim.api.nvim_set_keymap("i", "<C-/>", "<C-\\><C-O><Plug>kommentary_line_default", {})
 	vim.api.nvim_set_keymap("v", "<C-/>", "<Plug>kommentary_visual_default<C-c>", {})
 end

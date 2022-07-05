@@ -38,7 +38,7 @@ require("au")["User LoadPluginConfig"] = function()
 		-- 大多数语言插件会提供indent，个别可以按照需要开启
 		indent = {
 			disable = true,
-			enable = { "vue", "lua" },
+			enable = { "vue", "lua", "html" },
 		},
 		rainbow = {
 			enable = true,

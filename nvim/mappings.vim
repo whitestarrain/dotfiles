@@ -1,3 +1,6 @@
+" By default timeoutlen is 1000 ms
+set timeoutlen=500
+
 "map syntax sync fromstart，大文件渲染
 nnoremap <leader>p :syntax sync fromstart<cr>
 let g:which_key_map.p = "syntax"
@@ -31,7 +34,10 @@ let g:which_key_map.z.p = "setPathNow"
 nnoremap <silent>o A<cr>
 
 nnoremap <silent><leader>d :bp\|bd # <cr>
-let g:which_key_map.d = "deleteNow"
+let g:which_key_map.d = "deleteBuf"
+
+nnoremap <silent><leader>w :w <cr>
+let g:which_key_map.w = "writeBuf"
 
 nnoremap < <<
 nnoremap > >>

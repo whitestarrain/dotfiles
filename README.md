@@ -23,7 +23,7 @@
 - [ ] 拿c写一个启动程序？
 - [ ] 把插件配置写到`after/plugin`，写一些`pcall`或者全局变量 什么的来判断是否加载？
 
-# 记录
+# 备忘记录
 
 - icon支持
   - 针对vimscript插件:`ryanoasis/vim-devicons`
