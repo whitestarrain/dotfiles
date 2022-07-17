@@ -13,8 +13,10 @@ function! PlugConfigPrettier()
   " 取消注解需求
   let g:prettier#autoformat_require_pragma = 0
 
-  " 开启自动格式化
-  let g:prettier#autoformat = 1
-  let g:prettier#autoformat_config_present = 1
+  " 关闭自动格式化
+  let g:prettier#autoformat = 0
+  let g:prettier#autoformat_config_present = 0
+
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.svelte,*.yaml,*.html Prettier
 
 endfunction

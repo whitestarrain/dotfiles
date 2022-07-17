@@ -227,6 +227,9 @@ for code_language in g:code_language_list
   if code_language == "latex"
     LoadLua ./plug_configs/lsp-server/texlab.lua
   endif
+  if code_language == "dot"
+    LoadLua ./plug_configs/lsp-server/dot.lua
+  endif
 endfor
 
 "=================================================plug load end===================================================

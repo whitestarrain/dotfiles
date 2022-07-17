@@ -51,10 +51,13 @@ function nvimVim(){
   nvim --cmd "let g:code_language_list=['vim']" $args[0]
 }
 function nvimConfig(){
-  nvim --cmd "let g:code_language_list=['vim','lua','bash']" $args[0]
+  nvim --cmd "let g:code_language_list=['vim','lua','bash','dot']" $args[0]
+}
+function nvimDot(){
+  nvim --cmd "let g:code_language_list=['dot']" $args[0]
 }
 function nvimPower(){
-  nvim --cmd "let g:code_language_list=['c','rust','python','latex','golang','front','vue','vim','lua','bash']" $args[0]
+  nvim --cmd "let g:code_language_list=['c','rust','python','latex','golang','front','vue','vim','lua','bash','dot']" $args[0]
 }
 function SpaceVim(){
   nvim -u D:/MyRepo/SpaceVim/init.vim $args[0]
