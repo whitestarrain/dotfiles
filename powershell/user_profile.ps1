@@ -75,8 +75,13 @@ function update_diary(){
 } 
 
 # oh-my-posh
-D:\ProgramFiles\scoop\apps\oh-my-posh\current\bin\oh-my-posh.exe --init --shell pwsh --config D:\MyRepo\dotfiles\powershell\white_star_rain.omp.json | Invoke-Expression
+oh-my-posh --init --shell pwsh --config D:\MyRepo\dotfiles\powershell\white_star_rain.omp.json | Invoke-Expression
 
+# DEPN: Install-Module -Name z
+# DEPN: Install-Module -Name Terminal-Icons -Repository PSGallery -Force
+# DEPN: Install-Module -Name PSReadLine --AllowPrerelease -Scope CurrentUser -Force -SkipPublisherCheck
+# DEPN: scoop install fzf
+# DEPN: Install-Module -Name PSFzf -Scope CurrentUser -Force
 # powershell module import for pwsh
 # other installed module: z
 if ($PSVersionTable.PSVersion.Major -eq 7){
