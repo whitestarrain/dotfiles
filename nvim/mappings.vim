@@ -5,6 +5,10 @@ set timeoutlen=500
 nnoremap <leader>p :syntax sync fromstart<cr>
 let g:which_key_map.p = "syntax"
 
+" wrap line 移动
+nnoremap <silent>j gj
+nnoremap <silent>k gk
+
 " 设置插入模式下光标左右移动方式
 inoremap <C-l> <Right>
 inoremap <C-h> <Left>
@@ -46,8 +50,6 @@ nnoremap > >>
 " 设置tab跳转
 noremap ]t :tabnext <cr>
 noremap [t :tabpre<cr>
-
-
 
 " open in ...
 nnoremap <silent><leader>ob :!chrome %:p <cr> <cr>

@@ -44,11 +44,11 @@ require("au")["User LoadPluginConfig"] = function()
 	})
 	vim.cmd([[
     nnoremap <silent><leader>ff :Telescope find_files<CR>
-    let g:which_key_map.f.f = 'find buffers'
+    let g:which_key_map.f.f = 'find files'
 
     nnoremap <silent><leader>fb :Telescope buffers<CR>
     nnoremap <silent><leader>/ :Telescope buffers<CR>
-    let g:which_key_map.f.b = 'find files'
+    let g:which_key_map.f.b = 'find buffers'
 
     nnoremap <silent><leader>fc :Telescope commands<CR>
     let g:which_key_map.f.c = 'find command'
