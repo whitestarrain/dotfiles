@@ -101,6 +101,7 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadScript ./plug_configs/ui/vim_devicons.vim " 主要为startify 提供icon支持，可选
   LoadScript ./plug_configs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
   LoadScript ./plug_configs/abolish.vim
+  LoadScript ./plug_configs/lang_support/plantuml.vim
   LoadLua ./plug_configs/mdSectionNumber.lua
   LoadLua ./plug_configs/kommentary.lua
   LoadLua ./plug_configs/treesitter.lua
