@@ -1,0 +1,1574 @@
+{
+    "apps": [
+        {
+            "Name": "7zip",
+            "Updated": "2022-01-13T16:15:20.9639165+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "21.07"
+        },
+        {
+            "Name": "ag",
+            "Updated": "2021-12-19T11:25:22.1749358+08:00",
+            "Info": "",
+            "Source": "D:\\ProgramFiles\\scoop\\buckets\\main\\bucket\\ag.json",
+            "Version": "2.2.5"
+        },
+        {
+            "Name": "Alacritty",
+            "Updated": "2022-03-10T11:57:58.6902436+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "0.10.1"
+        },
+        {
+            "Name": "anaconda3",
+            "Updated": "2022-01-06T16:17:59.5819355+08:00",
+            "Info": "",
+            "Source": "dorado",
+            "Version": "2021.11"
+        },
+        {
+            "Name": "aria2",
+            "Updated": "2022-01-13T16:12:19.6393391+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "1.36.0-1"
+        },
+        {
+            "Name": "AutoHotkey",
+            "Updated": "2022-03-13T15:51:02.406791+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "1.1.33.10"
+        },
+        {
+            "Name": "BaiduPcs-Go",
+            "Updated": "2022-03-13T19:46:35.2130957+08:00",
+            "Info": "",
+            "Source": "lemon",
+            "Version": "3.8.7"
+        },
+        {
+            "Name": "beyondcompare-zh-cn",
+            "Updated": "2022-04-23T10:34:05.9831386+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "4.4.2.26348"
+        },
+        {
+            "Name": "cajviewerlite",
+            "Updated": "2022-03-01T09:36:32.1569538+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "7.2"
+        },
+        {
+            "Name": "calibre-np",
+            "Updated": "2022-03-06T10:32:53.9279013+08:00",
+            "Info": "",
+            "Source": "nonportable",
+            "Version": "5.38.0"
+        },
+        {
+            "Name": "cloudmusic_Ryanjiena",
+            "Updated": "2022-03-13T16:10:06.6492634+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "2.9.6.199543"
+        },
+        {
+            "Name": "cmake",
+            "Updated": "2022-03-21T23:14:43.3109853+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "3.22.3"
+        },
+        {
+            "Name": "copytranslator",
+            "Updated": "2022-03-15T13:52:39.0033694+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "9.1.0"
+        },
+        {
+            "Name": "cpu-z",
+            "Updated": "2022-06-20T10:32:43.8243841+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "2.01"
+        },
+        {
+            "Name": "crow-translate",
+            "Updated": "2022-03-11T15:27:03.1185106+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "2.9.2"
+        },
+        {
+            "Name": "ctags",
+            "Updated": "2022-03-13T09:53:43.8868708+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "5.8"
+        },
+        {
+            "Name": "dark",
+            "Updated": "2021-12-12T22:24:43.2791863+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "3.11.2"
+        },
+        {
+            "Name": "deepl",
+            "Updated": "2022-04-06T11:26:10.1090214+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "3.4.15088"
+        },
+        {
+            "Name": "deno",
+            "Updated": "2022-01-13T16:20:18.756154+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "1.17.3"
+        },
+        {
+            "Name": "dismplusplus",
+            "Updated": "2022-03-10T13:44:49.5432146+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "10.1.1002.1"
+        },
+        {
+            "Name": "docker",
+            "Updated": "2022-06-16T19:52:46.649006+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "20.10.17"
+        },
+        {
+            "Name": "dont-sleep",
+            "Updated": "2022-05-07T13:55:25.4736459+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "8.77"
+        },
+        {
+            "Name": "downkyi",
+            "Updated": "2022-04-03T19:39:16.616489+08:00",
+            "Info": "",
+            "Source": "dorado",
+            "Version": "1.5.0-alpha6"
+        },
+        {
+            "Name": "doxygen",
+            "Updated": "2022-06-20T23:09:50.124097+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "1.8.15"
+        },
+        {
+            "Name": "drawio",
+            "Updated": "2022-07-14T22:46:57.3565582+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "19.0.3"
+        },
+        {
+            "Name": "elasticsearch",
+            "Updated": "2022-04-20T14:03:25.2264192+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "8.1.2"
+        },
+        {
+            "Name": "emacs",
+            "Updated": "2022-03-11T15:23:48.0669853+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "27.2"
+        },
+        {
+            "Name": "everything",
+            "Updated": "2022-03-11T17:40:21.0745877+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "1.4.1.1015"
+        },
+        {
+            "Name": "ffmpeg",
+            "Updated": "2022-01-16T21:53:03.4329646+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "5.0"
+        },
+        {
+            "Name": "filezilla",
+            "Updated": "2022-04-17T15:22:32.1293384+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "3.59.0"
+        },
+        {
+            "Name": "firacode-nf",
+            "Updated": "2022-04-27T23:13:34.4691467+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "2.1.0"
+        },
+        {
+            "Name": "firefox",
+            "Updated": "2022-05-14T13:59:20.3338424+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "100.0"
+        },
+        {
+            "Name": "frp",
+            "Updated": "2022-03-10T21:47:10.7021545+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "0.39.1"
+        },
+        {
+            "Name": "fzf",
+            "Updated": "2022-01-13T16:20:20.9058136+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "0.29.0"
+        },
+        {
+            "Name": "gitui",
+            "Updated": "2022-04-27T23:27:01.628272+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "0.20.1"
+        },
+        {
+            "Name": "goland-rc",
+            "Updated": "2022-03-11T19:42:57.1475623+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "2021.3-213.5744.186"
+        },
+        {
+            "Name": "gow",
+            "Updated": "2022-04-17T22:37:43.6784035+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "0.8.0"
+        },
+        {
+            "Name": "graphviz",
+            "Updated": "2022-07-14T22:52:06.2465051+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "5.0.0"
+        },
+        {
+            "Name": "gzip",
+            "Updated": "2022-03-12T09:20:29.0325773+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "1.3.12"
+        },
+        {
+            "Name": "hack-nf-mono",
+            "Updated": "2021-12-12T14:32:40.559964+08:00",
+            "Info": "",
+            "Source": "nerd-fonts",
+            "Version": "2.1.0"
+        },
+        {
+            "Name": "helix",
+            "Updated": "2022-04-14T09:10:41.3467146+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "22.03"
+        },
+        {
+            "Name": "hyper",
+            "Updated": "2022-01-13T16:20:52.1425871+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "3.1.5"
+        },
+        {
+            "Name": "imewlconverter",
+            "Updated": "2022-06-01T14:26:24.3235581+08:00",
+            "Info": "",
+            "Source": "dorado",
+            "Version": "2.9.0"
+        },
+        {
+            "Name": "innounp",
+            "Updated": "2021-12-12T14:07:16.4479059+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "0.50"
+        },
+        {
+            "Name": "jmeter",
+            "Updated": "2022-03-10T11:54:20.791201+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "5.4.3"
+        },
+        {
+            "Name": "kaiheila",
+            "Updated": "2022-04-22T14:54:58.0950769+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "0.0.49.0"
+        },
+        {
+            "Name": "lazygit",
+            "Updated": "2022-03-29T18:10:35.2519568+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "0.34"
+        },
+        {
+            "Name": "lessmsi",
+            "Updated": "2021-12-12T22:24:41.4755445+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "1.10.0"
+        },
+        {
+            "Name": "lf",
+            "Updated": "2021-12-18T14:08:53.1932978+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "r26"
+        },
+        {
+            "Name": "lingoes",
+            "Updated": "2022-01-09T15:23:10.4768269+08:00",
+            "Info": "",
+            "Source": "https://raw.githubusercontent.com/naderi/scoop-bucket/master/bucket/lingoes.json",
+            "Version": "2.9.2"
+        },
+        {
+            "Name": "lua",
+            "Updated": "2021-12-17T13:19:59.3462166+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "5.4.2"
+        },
+        {
+            "Name": "Luarocks",
+            "Updated": "2021-12-22T21:35:28.9823269+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "3.8.0"
+        },
+        {
+            "Name": "lux",
+            "Updated": "2022-03-17T16:17:05.6549571+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "0.14.0"
+        },
+        {
+            "Name": "mcedit2",
+            "Updated": "2022-05-02T17:33:10.8078961+08:00",
+            "Info": "",
+            "Source": "games",
+            "Version": "2.0.0-beta14"
+        },
+        {
+            "Name": "memreduct",
+            "Updated": "2022-04-21T20:23:55.1273451+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "3.4"
+        },
+        {
+            "Name": "Meslo-NF-Mono",
+            "Updated": "2021-12-12T14:05:56.0629564+08:00",
+            "Info": "",
+            "Source": "nerd-fonts",
+            "Version": "2.1.0"
+        },
+        {
+            "Name": "Microsoft.NETDesktopRuntime-Install",
+            "Updated": "2022-03-11T15:53:50.1998507+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "6.0.3"
+        },
+        {
+            "Name": "multrin",
+            "Updated": "2022-06-06T16:22:57.2611344+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "1.3.0"
+        },
+        {
+            "Name": "nbtexplorer",
+            "Updated": "2022-04-20T16:31:18.0650611+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "2.8.0"
+        },
+        {
+            "Name": "neovide-dev",
+            "Updated": "2022-03-25T12:26:02.6833395+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "0.7.0"
+        },
+        {
+            "Name": "neovim",
+            "Updated": "2022-07-31T23:52:21.0017335+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "0.7.2"
+        },
+        {
+            "Name": "netch",
+            "Updated": "2022-06-06T12:03:46.0851894+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "1.9.2"
+        },
+        {
+            "Name": "netron",
+            "Updated": "2022-03-10T10:34:31.7116259+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "5.6.2"
+        },
+        {
+            "Name": "nginx",
+            "Updated": "2022-07-23T11:22:17.7024179+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "1.23.1"
+        },
+        {
+            "Name": "NuShell",
+            "Updated": "2022-04-27T23:24:11.4907807+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "0.61.0"
+        },
+        {
+            "Name": "oh-my-posh",
+            "Updated": "2022-01-20T17:29:47.8113705+08:00",
+            "Info": "",
+            "Source": "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json",
+            "Version": "7.4.0"
+        },
+        {
+            "Name": "openssh",
+            "Updated": "2021-12-13T22:12:30.4594463+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "8.6.0.0p1"
+        },
+        {
+            "Name": "pandoc",
+            "Updated": "2022-03-10T11:57:18.7492746+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "2.17.1.1"
+        },
+        {
+            "Name": "posh-git",
+            "Updated": "2021-12-12T14:06:39.9846917+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "1.0.0"
+        },
+        {
+            "Name": "pycharm-professional",
+            "Updated": "2022-03-16T13:53:04.5439585+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "2021.3.2-213.6777.50"
+        },
+        {
+            "Name": "python-bucket-utils",
+            "Updated": "2022-07-09T17:39:20.7759472+08:00",
+            "Info": "Install failed",
+            "Source": null,
+            "Version": null
+        },
+        {
+            "Name": "quicklook",
+            "Updated": "2022-01-16T22:05:19.4765088+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "3.7.1"
+        },
+        {
+            "Name": "ripgrep",
+            "Updated": "2021-12-19T14:53:01.8860997+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "13.0.0"
+        },
+        {
+            "Name": "rust",
+            "Updated": "2021-12-18T10:30:12.3933509+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "1.57.0"
+        },
+        {
+            "Name": "rustup",
+            "Updated": "2021-12-15T20:39:40.4475257+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "1.24.3"
+        },
+        {
+            "Name": "screentogif",
+            "Updated": "2022-06-24T13:00:48.737367+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "2.37"
+        },
+        {
+            "Name": "shellcheck",
+            "Updated": "2022-05-07T23:36:11.3244286+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "0.8.0"
+        },
+        {
+            "Name": "spacesniffer",
+            "Updated": "2022-06-25T16:25:39.7299917+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "1.3.0.2"
+        },
+        {
+            "Name": "Starship",
+            "Updated": "2022-04-27T23:51:46.0147684+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "1.6.3"
+        },
+        {
+            "Name": "stylua",
+            "Updated": "2022-06-21T19:36:14.1885713+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "0.13.1"
+        },
+        {
+            "Name": "sudo",
+            "Updated": "2021-12-12T14:06:23.0641992+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "0.2020.01.26"
+        },
+        {
+            "Name": "tar",
+            "Updated": "2022-03-12T09:20:39.5056123+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "1.23"
+        },
+        {
+            "Name": "tcc",
+            "Updated": "2022-03-30T23:21:07.1806489+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "0.9.27"
+        },
+        {
+            "Name": "teamviewer",
+            "Updated": "2022-01-20T16:35:58.6437621+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "15.25.8"
+        },
+        {
+            "Name": "telegram",
+            "Updated": "2022-06-04T11:55:23.6249354+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "3.7.3"
+        },
+        {
+            "Name": "texlive-full",
+            "Updated": "2022-01-06T12:52:04.6156043+08:00",
+            "Info": "",
+            "Source": "dorado",
+            "Version": "2021"
+        },
+        {
+            "Name": "Tim-mod-portable",
+            "Updated": "2022-03-09T16:37:28.4586236+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "3.3.9.22051"
+        },
+        {
+            "Name": "tortoisesvn",
+            "Updated": "2022-04-06T21:09:13.2784675+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "1.14.2.29370"
+        },
+        {
+            "Name": "trash",
+            "Updated": "2022-03-09T16:31:04.2573611+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "2.0.0"
+        },
+        {
+            "Name": "unzip",
+            "Updated": "2022-03-24T18:51:43.2196728+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "6.00"
+        },
+        {
+            "Name": "v2ray",
+            "Updated": "2022-01-12T20:59:04.1204345+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "4.44.0"
+        },
+        {
+            "Name": "v2rayn",
+            "Updated": "2022-07-05T08:56:08.0988011+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "5.26"
+        },
+        {
+            "Name": "vcredist2008",
+            "Updated": "2022-01-27T17:27:34.7912558+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "9.0.30729.6161"
+        },
+        {
+            "Name": "vcredist2010",
+            "Updated": "2022-03-09T16:25:29.3690461+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "10.0.40219.473"
+        },
+        {
+            "Name": "vcredist2012",
+            "Updated": "2022-01-27T17:27:45.3148417+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "11.0.61030"
+        },
+        {
+            "Name": "vcredist-aio",
+            "Updated": "2022-03-31T19:19:18.1137359+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "0.59.0"
+        },
+        {
+            "Name": "vifm",
+            "Updated": "2021-12-18T14:14:46.1407911+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "0.12"
+        },
+        {
+            "Name": "vscode",
+            "Updated": "2022-07-05T18:20:11.3248881+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "1.68.1"
+        },
+        {
+            "Name": "wezterm",
+            "Updated": "2022-07-30T22:17:19.3461198+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "20220624-141144-bd1b7c5d"
+        },
+        {
+            "Name": "xpdf-tools-all",
+            "Updated": "2022-03-19T10:50:33.0265186+08:00",
+            "Info": "",
+            "Source": "apps",
+            "Version": "4.03"
+        },
+        {
+            "Name": "xray",
+            "Updated": "2022-03-11T10:35:39.1108568+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "1.5.3"
+        },
+        {
+            "Name": "youtube-dl",
+            "Updated": "2022-03-11T17:14:35.0029028+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "2021.12.17"
+        },
+        {
+            "Name": "yt-dlp",
+            "Updated": "2022-03-13T16:16:54.414567+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "2022.03.08.1"
+        },
+        {
+            "Name": "zerobrane-studio",
+            "Updated": "2022-06-19T10:02:34.0484692+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "1.90"
+        },
+        {
+            "Name": "zotero",
+            "Updated": "2022-01-12T20:42:12.4716137+08:00",
+            "Info": "",
+            "Source": "extras",
+            "Version": "5.0.96.3"
+        },
+        {
+            "Name": "zoxide",
+            "Updated": "2022-04-27T23:35:56.7800642+08:00",
+            "Info": "",
+            "Source": "main",
+            "Version": "0.8.1"
+        },
+        {
+            "Name": "7zip",
+            "Updated": "2022-01-13T16:15:20.9639165+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "21.07"
+        },
+        {
+            "Name": "ag",
+            "Updated": "2021-12-19T11:25:22.1749358+08:00",
+            "Info": "Global install",
+            "Source": "D:\\ProgramFiles\\scoop\\buckets\\main\\bucket\\ag.json",
+            "Version": "2.2.5"
+        },
+        {
+            "Name": "Alacritty",
+            "Updated": "2022-03-10T11:57:58.6902436+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "0.10.1"
+        },
+        {
+            "Name": "anaconda3",
+            "Updated": "2022-01-06T16:17:59.5819355+08:00",
+            "Info": "Global install",
+            "Source": "dorado",
+            "Version": "2021.11"
+        },
+        {
+            "Name": "aria2",
+            "Updated": "2022-01-13T16:12:19.6393391+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "1.36.0-1"
+        },
+        {
+            "Name": "AutoHotkey",
+            "Updated": "2022-03-13T15:51:02.406791+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "1.1.33.10"
+        },
+        {
+            "Name": "BaiduPcs-Go",
+            "Updated": "2022-03-13T19:46:35.2130957+08:00",
+            "Info": "Global install",
+            "Source": "lemon",
+            "Version": "3.8.7"
+        },
+        {
+            "Name": "beyondcompare-zh-cn",
+            "Updated": "2022-04-23T10:34:05.9831386+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "4.4.2.26348"
+        },
+        {
+            "Name": "cajviewerlite",
+            "Updated": "2022-03-01T09:36:32.1569538+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "7.2"
+        },
+        {
+            "Name": "calibre-np",
+            "Updated": "2022-03-06T10:32:53.9279013+08:00",
+            "Info": "Global install",
+            "Source": "nonportable",
+            "Version": "5.38.0"
+        },
+        {
+            "Name": "cloudmusic_Ryanjiena",
+            "Updated": "2022-03-13T16:10:06.6492634+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "2.9.6.199543"
+        },
+        {
+            "Name": "cmake",
+            "Updated": "2022-03-21T23:14:43.3109853+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "3.22.3"
+        },
+        {
+            "Name": "copytranslator",
+            "Updated": "2022-03-15T13:52:39.0033694+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "9.1.0"
+        },
+        {
+            "Name": "cpu-z",
+            "Updated": "2022-06-20T10:32:43.8243841+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "2.01"
+        },
+        {
+            "Name": "crow-translate",
+            "Updated": "2022-03-11T15:27:03.1185106+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "2.9.2"
+        },
+        {
+            "Name": "ctags",
+            "Updated": "2022-03-13T09:53:43.8868708+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "5.8"
+        },
+        {
+            "Name": "dark",
+            "Updated": "2021-12-12T22:24:43.2791863+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "3.11.2"
+        },
+        {
+            "Name": "deepl",
+            "Updated": "2022-04-06T11:26:10.1090214+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "3.4.15088"
+        },
+        {
+            "Name": "deno",
+            "Updated": "2022-01-13T16:20:18.756154+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "1.17.3"
+        },
+        {
+            "Name": "dismplusplus",
+            "Updated": "2022-03-10T13:44:49.5432146+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "10.1.1002.1"
+        },
+        {
+            "Name": "docker",
+            "Updated": "2022-06-16T19:52:46.649006+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "20.10.17"
+        },
+        {
+            "Name": "dont-sleep",
+            "Updated": "2022-05-07T13:55:25.4736459+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "8.77"
+        },
+        {
+            "Name": "downkyi",
+            "Updated": "2022-04-03T19:39:16.616489+08:00",
+            "Info": "Global install",
+            "Source": "dorado",
+            "Version": "1.5.0-alpha6"
+        },
+        {
+            "Name": "doxygen",
+            "Updated": "2022-06-20T23:09:50.124097+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "1.8.15"
+        },
+        {
+            "Name": "drawio",
+            "Updated": "2022-07-14T22:46:57.3565582+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "19.0.3"
+        },
+        {
+            "Name": "elasticsearch",
+            "Updated": "2022-04-20T14:03:25.2264192+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "8.1.2"
+        },
+        {
+            "Name": "emacs",
+            "Updated": "2022-03-11T15:23:48.0669853+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "27.2"
+        },
+        {
+            "Name": "everything",
+            "Updated": "2022-03-11T17:40:21.0745877+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "1.4.1.1015"
+        },
+        {
+            "Name": "ffmpeg",
+            "Updated": "2022-01-16T21:53:03.4329646+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "5.0"
+        },
+        {
+            "Name": "filezilla",
+            "Updated": "2022-04-17T15:22:32.1293384+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "3.59.0"
+        },
+        {
+            "Name": "firacode-nf",
+            "Updated": "2022-04-27T23:13:34.4691467+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "2.1.0"
+        },
+        {
+            "Name": "firefox",
+            "Updated": "2022-05-14T13:59:20.3338424+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "100.0"
+        },
+        {
+            "Name": "frp",
+            "Updated": "2022-03-10T21:47:10.7021545+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "0.39.1"
+        },
+        {
+            "Name": "fzf",
+            "Updated": "2022-01-13T16:20:20.9058136+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "0.29.0"
+        },
+        {
+            "Name": "gitui",
+            "Updated": "2022-04-27T23:27:01.628272+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "0.20.1"
+        },
+        {
+            "Name": "goland-rc",
+            "Updated": "2022-03-11T19:42:57.1475623+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "2021.3-213.5744.186"
+        },
+        {
+            "Name": "gow",
+            "Updated": "2022-04-17T22:37:43.6784035+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "0.8.0"
+        },
+        {
+            "Name": "graphviz",
+            "Updated": "2022-07-14T22:52:06.2465051+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "5.0.0"
+        },
+        {
+            "Name": "gzip",
+            "Updated": "2022-03-12T09:20:29.0325773+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "1.3.12"
+        },
+        {
+            "Name": "hack-nf-mono",
+            "Updated": "2021-12-12T14:32:40.559964+08:00",
+            "Info": "Global install",
+            "Source": "nerd-fonts",
+            "Version": "2.1.0"
+        },
+        {
+            "Name": "helix",
+            "Updated": "2022-04-14T09:10:41.3467146+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "22.03"
+        },
+        {
+            "Name": "hyper",
+            "Updated": "2022-01-13T16:20:52.1425871+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "3.1.5"
+        },
+        {
+            "Name": "imewlconverter",
+            "Updated": "2022-06-01T14:26:24.3235581+08:00",
+            "Info": "Global install",
+            "Source": "dorado",
+            "Version": "2.9.0"
+        },
+        {
+            "Name": "innounp",
+            "Updated": "2021-12-12T14:07:16.4479059+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "0.50"
+        },
+        {
+            "Name": "jmeter",
+            "Updated": "2022-03-10T11:54:20.791201+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "5.4.3"
+        },
+        {
+            "Name": "kaiheila",
+            "Updated": "2022-04-22T14:54:58.0950769+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "0.0.49.0"
+        },
+        {
+            "Name": "lazygit",
+            "Updated": "2022-03-29T18:10:35.2519568+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "0.34"
+        },
+        {
+            "Name": "lessmsi",
+            "Updated": "2021-12-12T22:24:41.4755445+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "1.10.0"
+        },
+        {
+            "Name": "lf",
+            "Updated": "2021-12-18T14:08:53.1932978+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "r26"
+        },
+        {
+            "Name": "lingoes",
+            "Updated": "2022-01-09T15:23:10.4768269+08:00",
+            "Info": "Global install",
+            "Source": "https://raw.githubusercontent.com/naderi/scoop-bucket/master/bucket/lingoes.json",
+            "Version": "2.9.2"
+        },
+        {
+            "Name": "lua",
+            "Updated": "2021-12-17T13:19:59.3462166+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "5.4.2"
+        },
+        {
+            "Name": "Luarocks",
+            "Updated": "2021-12-22T21:35:28.9823269+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "3.8.0"
+        },
+        {
+            "Name": "lux",
+            "Updated": "2022-03-17T16:17:05.6549571+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "0.14.0"
+        },
+        {
+            "Name": "mcedit2",
+            "Updated": "2022-05-02T17:33:10.8078961+08:00",
+            "Info": "Global install",
+            "Source": "games",
+            "Version": "2.0.0-beta14"
+        },
+        {
+            "Name": "memreduct",
+            "Updated": "2022-04-21T20:23:55.1273451+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "3.4"
+        },
+        {
+            "Name": "Meslo-NF-Mono",
+            "Updated": "2021-12-12T14:05:56.0629564+08:00",
+            "Info": "Global install",
+            "Source": "nerd-fonts",
+            "Version": "2.1.0"
+        },
+        {
+            "Name": "Microsoft.NETDesktopRuntime-Install",
+            "Updated": "2022-03-11T15:53:50.1998507+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "6.0.3"
+        },
+        {
+            "Name": "multrin",
+            "Updated": "2022-06-06T16:22:57.2611344+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "1.3.0"
+        },
+        {
+            "Name": "nbtexplorer",
+            "Updated": "2022-04-20T16:31:18.0650611+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "2.8.0"
+        },
+        {
+            "Name": "neovide-dev",
+            "Updated": "2022-03-25T12:26:02.6833395+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "0.7.0"
+        },
+        {
+            "Name": "neovim",
+            "Updated": "2022-07-31T23:52:21.0017335+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "0.7.2"
+        },
+        {
+            "Name": "netch",
+            "Updated": "2022-06-06T12:03:46.0851894+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "1.9.2"
+        },
+        {
+            "Name": "netron",
+            "Updated": "2022-03-10T10:34:31.7116259+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "5.6.2"
+        },
+        {
+            "Name": "nginx",
+            "Updated": "2022-07-23T11:22:17.7024179+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "1.23.1"
+        },
+        {
+            "Name": "NuShell",
+            "Updated": "2022-04-27T23:24:11.4907807+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "0.61.0"
+        },
+        {
+            "Name": "oh-my-posh",
+            "Updated": "2022-01-20T17:29:47.8113705+08:00",
+            "Info": "Global install",
+            "Source": "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json",
+            "Version": "7.4.0"
+        },
+        {
+            "Name": "openssh",
+            "Updated": "2021-12-13T22:12:30.4594463+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "8.6.0.0p1"
+        },
+        {
+            "Name": "pandoc",
+            "Updated": "2022-03-10T11:57:18.7492746+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "2.17.1.1"
+        },
+        {
+            "Name": "posh-git",
+            "Updated": "2021-12-12T14:06:39.9846917+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "1.0.0"
+        },
+        {
+            "Name": "pycharm-professional",
+            "Updated": "2022-03-16T13:53:04.5439585+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "2021.3.2-213.6777.50"
+        },
+        {
+            "Name": "python-bucket-utils",
+            "Updated": "2022-07-09T17:39:20.7759472+08:00",
+            "Info": "Global install, Install failed",
+            "Source": null,
+            "Version": null
+        },
+        {
+            "Name": "quicklook",
+            "Updated": "2022-01-16T22:05:19.4765088+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "3.7.1"
+        },
+        {
+            "Name": "ripgrep",
+            "Updated": "2021-12-19T14:53:01.8860997+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "13.0.0"
+        },
+        {
+            "Name": "rust",
+            "Updated": "2021-12-18T10:30:12.3933509+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "1.57.0"
+        },
+        {
+            "Name": "rustup",
+            "Updated": "2021-12-15T20:39:40.4475257+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "1.24.3"
+        },
+        {
+            "Name": "screentogif",
+            "Updated": "2022-06-24T13:00:48.737367+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "2.37"
+        },
+        {
+            "Name": "shellcheck",
+            "Updated": "2022-05-07T23:36:11.3244286+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "0.8.0"
+        },
+        {
+            "Name": "spacesniffer",
+            "Updated": "2022-06-25T16:25:39.7299917+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "1.3.0.2"
+        },
+        {
+            "Name": "Starship",
+            "Updated": "2022-04-27T23:51:46.0147684+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "1.6.3"
+        },
+        {
+            "Name": "stylua",
+            "Updated": "2022-06-21T19:36:14.1885713+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "0.13.1"
+        },
+        {
+            "Name": "sudo",
+            "Updated": "2021-12-12T14:06:23.0641992+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "0.2020.01.26"
+        },
+        {
+            "Name": "tar",
+            "Updated": "2022-03-12T09:20:39.5056123+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "1.23"
+        },
+        {
+            "Name": "tcc",
+            "Updated": "2022-03-30T23:21:07.1806489+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "0.9.27"
+        },
+        {
+            "Name": "teamviewer",
+            "Updated": "2022-01-20T16:35:58.6437621+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "15.25.8"
+        },
+        {
+            "Name": "telegram",
+            "Updated": "2022-06-04T11:55:23.6249354+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "3.7.3"
+        },
+        {
+            "Name": "texlive-full",
+            "Updated": "2022-01-06T12:52:04.6156043+08:00",
+            "Info": "Global install",
+            "Source": "dorado",
+            "Version": "2021"
+        },
+        {
+            "Name": "Tim-mod-portable",
+            "Updated": "2022-03-09T16:37:28.4586236+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "3.3.9.22051"
+        },
+        {
+            "Name": "tortoisesvn",
+            "Updated": "2022-04-06T21:09:13.2784675+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "1.14.2.29370"
+        },
+        {
+            "Name": "trash",
+            "Updated": "2022-03-09T16:31:04.2573611+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "2.0.0"
+        },
+        {
+            "Name": "unzip",
+            "Updated": "2022-03-24T18:51:43.2196728+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "6.00"
+        },
+        {
+            "Name": "v2ray",
+            "Updated": "2022-01-12T20:59:04.1204345+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "4.44.0"
+        },
+        {
+            "Name": "v2rayn",
+            "Updated": "2022-07-05T08:56:08.0988011+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "5.26"
+        },
+        {
+            "Name": "vcredist2008",
+            "Updated": "2022-01-27T17:27:34.7912558+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "9.0.30729.6161"
+        },
+        {
+            "Name": "vcredist2010",
+            "Updated": "2022-03-09T16:25:29.3690461+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "10.0.40219.473"
+        },
+        {
+            "Name": "vcredist2012",
+            "Updated": "2022-01-27T17:27:45.3148417+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "11.0.61030"
+        },
+        {
+            "Name": "vcredist-aio",
+            "Updated": "2022-03-31T19:19:18.1137359+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "0.59.0"
+        },
+        {
+            "Name": "vifm",
+            "Updated": "2021-12-18T14:14:46.1407911+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "0.12"
+        },
+        {
+            "Name": "vscode",
+            "Updated": "2022-07-05T18:20:11.3248881+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "1.68.1"
+        },
+        {
+            "Name": "wezterm",
+            "Updated": "2022-07-30T22:17:19.3461198+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "20220624-141144-bd1b7c5d"
+        },
+        {
+            "Name": "xpdf-tools-all",
+            "Updated": "2022-03-19T10:50:33.0265186+08:00",
+            "Info": "Global install",
+            "Source": "apps",
+            "Version": "4.03"
+        },
+        {
+            "Name": "xray",
+            "Updated": "2022-03-11T10:35:39.1108568+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "1.5.3"
+        },
+        {
+            "Name": "youtube-dl",
+            "Updated": "2022-03-11T17:14:35.0029028+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "2021.12.17"
+        },
+        {
+            "Name": "yt-dlp",
+            "Updated": "2022-03-13T16:16:54.414567+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "2022.03.08.1"
+        },
+        {
+            "Name": "zerobrane-studio",
+            "Updated": "2022-06-19T10:02:34.0484692+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "1.90"
+        },
+        {
+            "Name": "zotero",
+            "Updated": "2022-01-12T20:42:12.4716137+08:00",
+            "Info": "Global install",
+            "Source": "extras",
+            "Version": "5.0.96.3"
+        },
+        {
+            "Name": "zoxide",
+            "Updated": "2022-04-27T23:35:56.7800642+08:00",
+            "Info": "Global install",
+            "Source": "main",
+            "Version": "0.8.1"
+        }
+    ],
+    "buckets": [
+        {
+            "Name": "apps",
+            "Source": "https://github.com/kkzzhizhou/scoop-apps",
+            "Updated": "2022-07-31T12:59:06+08:00",
+            "Manifests": 8241
+        },
+        {
+            "Name": "Ash258",
+            "Source": "https://github.com/Ash258/Shovel-Ash258",
+            "Updated": "2022-07-30T22:03:37+08:00",
+            "Manifests": 343
+        },
+        {
+            "Name": "cvp",
+            "Source": "https://github.com/SayCV/scoop-cvp.git",
+            "Updated": "2022-07-17T19:32:35+08:00",
+            "Manifests": 256
+        },
+        {
+            "Name": "dorado",
+            "Source": "https://github.com/h404bi/dorado",
+            "Updated": "2022-07-31T08:13:58+08:00",
+            "Manifests": 215
+        },
+        {
+            "Name": "extras",
+            "Source": "https://github.com/ScoopInstaller/Extras",
+            "Updated": "2022-07-31T20:29:49+08:00",
+            "Manifests": 1621
+        },
+        {
+            "Name": "games",
+            "Source": "https://github.com/Calinou/scoop-games",
+            "Updated": "2022-07-31T20:31:27+08:00",
+            "Manifests": 233
+        },
+        {
+            "Name": "java",
+            "Source": "https://github.com/ScoopInstaller/Java",
+            "Updated": "2022-07-30T07:45:01+08:00",
+            "Manifests": 225
+        },
+        {
+            "Name": "lemon",
+            "Source": "https://github.com/hoilc/scoop-lemon",
+            "Updated": "2022-07-31T20:33:44+08:00",
+            "Manifests": 579
+        },
+        {
+            "Name": "main",
+            "Source": "https://github.com/ScoopInstaller/Main",
+            "Updated": "2022-07-31T20:30:56+08:00",
+            "Manifests": 1065
+        },
+        {
+            "Name": "nerd-fonts",
+            "Source": "https://github.com/matthewjberger/scoop-nerd-fonts",
+            "Updated": "2022-07-26T02:19:02+08:00",
+            "Manifests": 202
+        },
+        {
+            "Name": "nirsoft",
+            "Source": "https://github.com/kodybrown/scoop-nirsoft",
+            "Updated": "2022-06-22T00:00:55+08:00",
+            "Manifests": 271
+        },
+        {
+            "Name": "nonportable",
+            "Source": "https://github.com/TheRandomLabs/scoop-nonportable",
+            "Updated": "2022-07-29T21:31:58+08:00",
+            "Manifests": 80
+        },
+        {
+            "Name": "raresoft",
+            "Source": "https://github.com/L-Trump/scoop-raresoft",
+            "Updated": "2020-09-01T17:57:23+08:00",
+            "Manifests": 87
+        },
+        {
+            "Name": "versions",
+            "Source": "https://github.com/ScoopInstaller/Versions",
+            "Updated": "2022-07-31T20:57:19+08:00",
+            "Manifests": 350
+        }
+    ]
+}
