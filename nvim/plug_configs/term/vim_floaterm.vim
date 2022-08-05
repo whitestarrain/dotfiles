@@ -31,5 +31,11 @@ function! PlugConfigFloaterm()
       au FIleType floaterm tnoremap <buffer> <silent> <M-l> <c-\><c-n>:FloatermNext<CR>
   augroup END
 
+  nnoremap <silent> <leader>l :FloatermNew lf<cr>
+  let g:which_key_map.l = 'lf'
+
+  nnoremap <silent> <leader>k :FloatermNew lf -- "./"<cr>
+  let g:which_key_map.k = 'lf(current path)'
+
 endfunction
 

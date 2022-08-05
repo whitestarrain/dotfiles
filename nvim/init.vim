@@ -102,6 +102,7 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadScript ./plug_configs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
   LoadScript ./plug_configs/abolish.vim
   LoadScript ./plug_configs/lang_support/plantuml.vim
+  LoadScript ./plug_configs/term/vim_floaterm.vim
   LoadLua ./plug_configs/mdSectionNumber.lua
   LoadLua ./plug_configs/kommentary.lua
   LoadLua ./plug_configs/treesitter.lua
@@ -116,7 +117,6 @@ call plug#begin(get(g:,"plug_install_path"))
   " 加载额外插件
   if !exists('g:skip_project_plugs')
     LoadScript ./plug_configs/ui/starify.vim " 加载这个插件的话，放上面，session关闭时处理相关
-    LoadScript ./plug_configs/term/vim_floaterm.vim
     LoadScript ./plug_configs/easy_motion.vim
     LoadScript ./plug_configs/ui/vim_which_key.vim
     LoadScript ./plug_configs/lang_support/vim_markdown.vim
