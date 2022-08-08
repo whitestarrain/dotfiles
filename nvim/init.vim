@@ -52,7 +52,7 @@ LoadScript functions.vim
 if !exists("g:code_language_list") 
   let g:code_language_list=[] 
 endif
-if !exists('g:vscode')
+if !exists("g:vscode")
     let g:plug_install_path = g:absolute_config_path . "../vim_plug_download"
 endif
 

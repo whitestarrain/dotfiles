@@ -22,6 +22,9 @@
   - `vim-plug`的`PlugSnapshot`命令使用，但有较大局限性，只能在该插件中使用
 - [ ] 拿c写一个启动程序？
 - [ ] 把插件配置写到`after/plugin`，写一些`pcall`或者全局变量 什么的来判断是否加载？
+- [ ] mklink 一些配置文件到dotfiles文件夹
+  - 整理配置脚本
+- lua配置中，require替换为pcall
 
 # 备忘记录
 
@@ -58,6 +61,13 @@
 > TODO: 键位整理
 
 # 图片展示
+
+- Session
+
+   点击进入session后会还原之前编辑的文件，编辑位置，界面布局等等。
+
+  ![dotfile-9](./image/dotfile-9.png)
+
 
 - lsp
 
