@@ -20,13 +20,43 @@ require("au")["User LoadPluginConfig"] = function()
 
 	local condition = require("galaxyline.condition")
 	local gls = gl.section
-	gl.short_line_list = { "NvimTree", "vista", "dbui", "packer" }
+
+	local function short_hide_condition()
+		local buf_name = vim.fn.bufname()
+		for _, short_line_buf_name in ipairs(gl.short_line_list) do
+			local s, e = string.find(string.lower(buf_name), string.lower(short_line_buf_name))
+			if s ~= nil then
+				return false
+			end
+		end
+		return true
+	end
+
+	local get_lsp_client = function(msg)
+		msg = msg or ""
+		local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+		local clients = vim.lsp.get_active_clients()
+		if next(clients) == nil then
+			return msg
+		end
+
+		for _, client in ipairs(clients) do
+			local filetypes = client.config.filetypes
+			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+				return client.name
+			end
+		end
+		return msg
+	end
+
+	gl.short_line_list = { "NvimTree", "vista", "dbui", "packer", "TagBar" }
 
 	gls.left[1] = {
 		RainbowRed = {
 			provider = function()
 				return "▊ "
 			end,
+			condition = short_hide_condition,
 			highlight = { colors.blue, colors.bg },
 		},
 	}
@@ -60,7 +90,7 @@ require("au")["User LoadPluginConfig"] = function()
 				return "  "
 			end,
 			condition = function()
-				return condition.buffer_not_empty() and condition.hide_in_width()
+				return condition.buffer_not_empty() and condition.hide_in_width() and short_hide_condition()
 			end,
 			highlight = { colors.red, colors.bg, "bold" },
 		},
@@ -69,7 +99,7 @@ require("au")["User LoadPluginConfig"] = function()
 		FileSize = {
 			provider = "FileSize",
 			condition = function()
-				return condition.buffer_not_empty() and condition.hide_in_width()
+				return condition.buffer_not_empty() and condition.hide_in_width() and short_hide_condition()
 			end,
 			highlight = { colors.fg, colors.bg },
 		},
@@ -77,7 +107,9 @@ require("au")["User LoadPluginConfig"] = function()
 	gls.left[4] = {
 		FileIcon = {
 			provider = "FileIcon",
-			condition = condition.buffer_not_empty,
+			condition = function()
+				return condition.buffer_not_empty() and short_hide_condition()
+			end,
 			highlight = { require("galaxyline.provider_fileinfo").get_file_icon_color, colors.bg },
 		},
 	}
@@ -86,7 +118,7 @@ require("au")["User LoadPluginConfig"] = function()
 		FileName = {
 			provider = "FileName",
 			condition = function()
-				return condition.buffer_not_empty()
+				return condition.buffer_not_empty() and short_hide_condition()
 			end,
 			highlight = { colors.magenta, colors.bg, "bold" },
 		},
@@ -151,7 +183,7 @@ require("au")["User LoadPluginConfig"] = function()
 
 	gls.mid[1] = {
 		ShowLspClient = {
-			provider = "GetLspClient",
+			provider = get_lsp_client,
 			condition = function()
 				local tbl = { ["dashboard"] = true, [""] = true }
 				if tbl[vim.bo.filetype] then
@@ -214,7 +246,9 @@ require("au")["User LoadPluginConfig"] = function()
 			provider = function()
 				return "  "
 			end,
-			condition = condition.check_git_workspace,
+			condition = function()
+				return condition.check_git_workspace() and short_hide_condition()
+			end,
 			separator = " ",
 			separator_highlight = { "NONE", colors.bg },
 			highlight = { colors.violet, colors.bg, "bold" },
@@ -224,48 +258,25 @@ require("au")["User LoadPluginConfig"] = function()
 	gls.right[7] = {
 		GitBranch = {
 			provider = "GitBranch",
-			condition = condition.check_git_workspace,
+			condition = function()
+				return condition.check_git_workspace() and short_hide_condition()
+			end,
 			highlight = { colors.violet, colors.bg, "bold" },
 		},
 	}
 
-	gls.right[8] = {
-		RainbowBlue = {
-			provider = function()
-				return "  ▊"
-			end,
-			highlight = { colors.blue, colors.bg },
-		},
-	}
-
-	gls.short_line_left[1] = {
-		BufferType = {
-			provider = "FileTypeName",
-			separator = " ",
-			separator_highlight = { "NONE", colors.bg },
-			highlight = { colors.blue, colors.bg, "bold" },
-		},
-	}
-
-	gls.short_line_left[2] = {
-		SFileName = {
-			provider = "SFileName",
-			condition = condition.buffer_not_empty,
-			highlight = { colors.fg, colors.bg, "bold" },
-		},
-	}
-
-	gls.short_line_right[1] = {
-		BufferIcon = {
-			provider = "BufferIcon",
-			highlight = { colors.fg, colors.bg },
-		},
-	}
+	gls.short_line_left[1] = gls.left[1]
+	gls.short_line_left[2] = gls.left[2]
+	gls.short_line_left[3] = gls.left[3]
+	gls.short_line_left[4] = gls.left[4]
+	gls.short_line_left[5] = gls.left[5]
+	gls.short_line_right[6] = gls.right[6]
+	gls.short_line_right[7] = gls.right[7]
 end
 
-vim.cmd[[
+vim.cmd([[
   if strlen($term)>0
     " for opacity in terminal
     autocmd ColorScheme * hi StatusLine guibg=NONE ctermbg=NONE
   endif
-]]
+]])

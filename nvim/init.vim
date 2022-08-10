@@ -93,7 +93,7 @@ call plug#begin(get(g:,"plug_install_path"))
   
   " plenary for {todo.vim,git.vim,telescope.vim}
   LoadScript ./plug_configs/denpendency/plenary.vim
-  LoadScript ./plug_configs/ui/theme.vim
+  LoadScript ./plug_configs/theme.vim
   LoadScript ./plug_configs/vim_surround.vim
   LoadScript ./plug_configs/rainrow.vim
   LoadScript ./plug_configs/ui/indentline.vim
@@ -174,7 +174,7 @@ call plug#begin(get(g:,"plug_install_path"))
     endif
 
     " auto complete config. related with the var "load_program""
-    LoadScript ./plug_configs/lsp/auto_complete.vim
+    LoadScript ./plug_configs/lsp/auto_complete.lua
 
   endif
 

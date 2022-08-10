@@ -77,7 +77,7 @@ function! PlugConfigTagBar()
           \}
 
   " tagbar map
-  nnoremap <leader>t :TagbarToggle<CR>
+  nnoremap <silent><leader>t :TagbarToggle<CR>
   let g:which_key_map.t = "tagbar"
 
   " starify，seesion关闭时执行操作
