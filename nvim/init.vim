@@ -82,7 +82,7 @@ call plug#begin(get(g:,"plug_install_path"))
 
   " plenary for {todo.vim,git.vim,telescope.vim}
   LoadScript ./plug_configs/denpendency/plenary.vim
-  LoadScript ./plug_configs/theme.vim
+  LoadScript ./plug_configs/theme/onedark.vim
   LoadScript ./plug_configs/vim_surround.vim
   LoadScript ./plug_configs/rainrow.vim
   LoadScript ./plug_configs/ui/indentline.vim

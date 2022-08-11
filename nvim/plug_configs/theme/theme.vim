@@ -11,8 +11,6 @@ Plug 'joshdick/onedark.vim' " 原版onedark，不支持cmp
 
 " cmp 支持
 
-" highlight Visual cterm=NONE ctermbg=236 ctermfg=NONE guibg=Grey40
-
 autocmd User LoadPluginConfig call PlugConfigTheme()
 
 function! PlugConfigTheme()
