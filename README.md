@@ -5,9 +5,14 @@
 
 # 待做项
 
+- **配置优化(重要)**
+  - [ ] 暂不考虑纯lua配置。
+  - [ ] 优化为符合vim配置规范的配置目录
+    - `if !exists('g:loaded_xxxxxx') | finish | endif`
+    - `pcall`
+  - [ ] **init.vim 主题配置简化**
 - [ ] 键位整理(重要)
 - [x] coc换为lsp
-- [ ] ~lua替换vim配置~
 - [x] LoadLua 函数 ,修改`package.path`
 - [x] 配置结构优化
 - [ ] README补充

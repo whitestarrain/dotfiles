@@ -38,23 +38,17 @@ LoadScript functions.vim
 
 "=================================================control var start===================================================
 
-" 配置项说明
-" 配置加载相关变量
-  " g:load_theme
-  " g:skip_project_plugs
-  " g:set_termguicolors
-  " g:plug_install_path
-  " g:python3_host_prog
-  " g:vscode
-  " g:code_language_list
+" g:load_theme
+" g:skip_project_plugs
+" g:set_termguicolors
+" g:plug_install_path
+" g:code_language_list
 
 " 默认值处理
 if !exists("g:code_language_list") 
   let g:code_language_list=[] 
 endif
-if !exists("g:vscode")
-    let g:plug_install_path = g:absolute_config_path . "../vim_plug_download"
-endif
+let g:plug_install_path = g:absolute_config_path . "../vim_plug_download"
 
 
 " 主题以及set_termguicolors
@@ -84,13 +78,8 @@ endif
 
 "=================================================plug load start===================================================
 
-" Specify a directory for plugins
-" - For Neovim: stdpath('data') . '/plugged'  "即 C:\Users\稀落的星\AppData\Local\nvim-data\plugs
-" - Avoid using standard Vim directory names like 'plugin'
 call plug#begin(get(g:,"plug_install_path"))
 
-  " LoadScript ./plug_configs/drawit.vim 暂时用不到
-  
   " plenary for {todo.vim,git.vim,telescope.vim}
   LoadScript ./plug_configs/denpendency/plenary.vim
   LoadScript ./plug_configs/theme.vim
