@@ -110,7 +110,7 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadLua ./plug_configs/ui/todo-comments.lua
   if g:set_termguicolors 
     LoadLua ./plug_configs/ui/bufferline.lua
-    LoadLua ./plug_configs/ui/galaxyline.lua
+    LoadLua ./plug_configs/ui/lualine.lua
     LoadLua ./plug_configs/ui/nvim_colorizer.lua
   endif
 
