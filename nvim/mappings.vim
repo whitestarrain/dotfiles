@@ -1,3 +1,15 @@
+" mapping standard
+let mapleader="\<space>"
+let g:which_key_map =  {}
+let g:which_key_map.z = { 'name' : '[second]' }
+let g:which_key_map.s = { 'name' : '[startify]' }
+let g:which_key_map.o = { 'name' : '[open in]' }
+let g:which_key_map.h = { 'name' : '[hunk]' }
+let g:which_key_map.f = { 'name' : '[find]' }
+let g:which_key_map.b = { 'name' : '[buffer]' }
+let g:which_key_map.c = { 'name' : '[code]' }
+let g:which_key_map.h = { 'name' : '[hunk]' }
+
 " By default timeoutlen is 1000 ms
 set timeoutlen=500
 

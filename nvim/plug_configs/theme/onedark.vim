@@ -8,6 +8,8 @@ autocmd User LoadPluginConfig call PlugConfigTheme()
 
 function! PlugConfigTheme()
 
+  colorscheme onedark
+
   " 自动补全颜色显示
   highlight CmpItemAbbrDeprecated  gui=strikethrough guifg=#5c6370
   highlight CmpItemAbbrDeprecatedDefault  guifg=#8992a1

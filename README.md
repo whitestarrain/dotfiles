@@ -31,6 +31,12 @@
   - 整理配置脚本
 - lua配置中，require替换为pcall
 
+# 准备尝试插件
+
+- vim-visual-multi
+- asyn_run.vim
+- asynctasks
+
 # 备忘记录
 
 - icon支持
