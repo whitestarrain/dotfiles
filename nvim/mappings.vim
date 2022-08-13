@@ -85,3 +85,8 @@ tnoremap <Esc> <C-\><C-n>
 " 显示完整文件路径
 nnoremap <leader>zf :echo expand("%:p")<cr>
 let g:which_key_map.z.f = "show full path"
+
+" win: disable man
+if has("win32")
+  nnoremap K <nop>
+endif

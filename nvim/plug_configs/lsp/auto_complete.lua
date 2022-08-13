@@ -23,7 +23,6 @@ Plug 'hrsh7th/cmp-vsnip' " vsnip snippet 补全。 NOTE: 切换snip插件也要�
 " 图标
 Plug 'onsails/lspkind-nvim' "代码提示中，显示分类的小图标支持
 
-
 ]])
 
 require("au")["User LoadPluginConfig"] = function()
@@ -84,9 +83,9 @@ require("au")["User LoadPluginConfig"] = function()
 	local cmp_keymap = function(cmp)
 		return {
 			-- 上一个
-			-- ['<C-k>'] = cmp.mapping.select_prev_item(),
+			["<C-p>"] = cmp.mapping.select_prev_item(),
 			-- 下一个
-			-- ['<C-j>'] = cmp.mapping.select_next_item(),
+			["<C-n>"] = cmp.mapping.select_next_item(),
 			-- doc浏览
 			["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 			["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
@@ -124,6 +123,7 @@ require("au")["User LoadPluginConfig"] = function()
 		-- buffer补全暂不开启
 	end
 
+	---@diagnostic disable-next-line: redundant-parameter
 	cmp.setup({
 		-- 指定 snippet 引擎
 		snippet = {
@@ -141,6 +141,12 @@ require("au")["User LoadPluginConfig"] = function()
 				-- require'snippy'.expand_snippet(args.body)
 			end,
 		},
+
+		window = {
+			-- completion = cmp.config.window.bordered(),
+			documentation = cmp.config.window.bordered(),
+		},
+
 		-- 来源
 		sources = cmp.config.sources(amp_sources),
 
@@ -163,6 +169,7 @@ require("au")["User LoadPluginConfig"] = function()
 
 	-- Use buffer source for `/`.
 	cmp.setup.cmdline("/", {
+		mapping = cmp.mapping.preset.cmdline(),
 		sources = {
 			{ name = "buffer" },
 		},
@@ -170,6 +177,7 @@ require("au")["User LoadPluginConfig"] = function()
 
 	-- Use cmdline & path source for ':'.
 	cmp.setup.cmdline(":", {
+		mapping = cmp.mapping.preset.cmdline(),
 		sources = cmp.config.sources({
 			{ name = "path" },
 		}, {

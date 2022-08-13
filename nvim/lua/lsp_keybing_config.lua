@@ -82,10 +82,10 @@ local on_attach = function(client, bufnr)
 	-- buf_set_keymap('n', 'go', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 	buf_set_keymap("n", "<leader>ce", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>', opts)
 
-	-- 诊断问题代码前后跳转
-	buf_set_keymap("n", "[e", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+	-- 诊断问题代码前后跳转，文档中没有加border的说明，需要看底层代码调用
+	buf_set_keymap("n", "[e", '<cmd>lua vim.diagnostic.goto_prev({float = {border = "single"}})<CR>', opts)
 	-- buf_set_keymap('n', 'gp', '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()<CR>', opts) -- [lspsaga]有nil报错
-	buf_set_keymap("n", "]e", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+	buf_set_keymap("n", "]e", '<cmd>lua vim.diagnostic.goto_next({float = {border = "single"}})<CR>', opts)
 	-- buf_set_keymap('n', 'gn', '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_next()<CR>', opts) -- [lspsaga]有nil报错
 
 	-- 代码格式化
