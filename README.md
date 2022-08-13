@@ -1,3 +1,6 @@
+
+![dotfile-10](./image/dotfile-10.png)
+
 # 前言：
 
 - 尽可能只在init.vim中引入文件加载
