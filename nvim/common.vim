@@ -10,8 +10,8 @@ filetype plugin indent on  " Load plugins according to detected filetype.
 filetype on                " 开启文档类型检查
 set noswapfile
 set updatetime=100
-set number              " 设置行号
-set relativenumber      " 相对行号
+set number                 " 设置行号
+set relativenumber         " 相对行号
 set nowrap                 " No Wrap lines 不自动换行
 set scrolloff=3
 set linespace=0            " 行距
@@ -44,9 +44,9 @@ set autoindent             " 设置自动缩进
 set smartindent            " Smart indent
 set shiftround             " >> indents to next multiple of 'shiftwidth'.
 set backspace=indent,eol,start  " Make backspace work as you would expect.
-set hidden                 " Switch between buffers without having to save first.
-set laststatus=2         " Always show statusline.
-set display=lastline  " Show as much as possible of the last line.
+set hidden                      " Switch between buffers without having to save first.
+set laststatus=2                " Always show statusline.
+set display=lastline            " Show as much as possible of the last line.
 
 " 中文符号配对
 set showmatch matchtime=0 matchpairs+=<:>,《:》,（:）,【:】,“:”,‘:’
