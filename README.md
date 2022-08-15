@@ -8,7 +8,7 @@
 
 # 待做项
 
-- **配置优化(重要)**
+- [ ] **配置优化(重要)**
   - [ ] 暂不考虑纯lua配置。
   - [ ] 优化为符合vim配置规范的配置目录
     - `if !exists('g:loaded_xxxxxx') | finish | endif`
@@ -32,7 +32,7 @@
 - [ ] 把插件配置写到`after/plugin`，写一些`pcall`或者全局变量 什么的来判断是否加载？
 - [ ] mklink 一些配置文件到dotfiles文件夹
   - 整理配置脚本
-- lua配置中，require替换为pcall
+- [ ] lua配置中，require替换为pcall
 
 # 准备尝试插件
 

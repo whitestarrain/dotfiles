@@ -8,9 +8,9 @@ command! -nargs=1 LoadLua exec 'luafile' . ' ' .  simplify(g:absolute_config_pat
 
 let &runtimepath.="," . g:absolute_config_path[0:-2] " add runtimepath
 
-LoadScript common.vim
-LoadScript mappings.vim
-LoadScript functions.vim
+LoadScript base/common.vim
+LoadScript base/mappings.vim
+LoadScript base/functions.vim
 
 if !exists("g:code_language_list") 
   let g:code_language_list=[] 
