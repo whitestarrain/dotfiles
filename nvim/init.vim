@@ -41,7 +41,7 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadLua ./plug_configs/auto_pair.lua
   LoadLua ./plug_configs/ui/todo-comments.lua
 
-  if exists("$WEZTERM")
+  if exists("$WEZTERM") || exists("$ALACRITTY_LOG")
     LoadLua ./plug_configs/theme/neosolarized_nvim.lua
   else 
     LoadScript ./plug_configs/theme/onedark.vim

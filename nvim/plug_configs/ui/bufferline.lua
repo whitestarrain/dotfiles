@@ -3,10 +3,9 @@ vim.cmd([[
 ]])
 
 require("au")["User LoadPluginConfig"] = function()
-	local separator_style = "thin"
-	if not vim.env.term then
-		-- nvim-qt
-		separator_style = "slant"
+	local separator_style = "slant"
+	if vim.g.colors_name == "neosolarized" then
+		separator_style = "thin"
 	end
 	require("bufferline").setup({
 		options = {
@@ -51,9 +50,9 @@ require("au")["User LoadPluginConfig"] = function()
   ]])
 end
 
-vim.cmd[[
+vim.cmd([[
   if strlen($term)>0
     " for opacity in terminal
     autocmd ColorScheme * hi BufferLineFill guibg=NONE ctermbg=NONE
   endif
-]]
+]])
