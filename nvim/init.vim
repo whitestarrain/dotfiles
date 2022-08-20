@@ -82,14 +82,11 @@ call plug#begin(get(g:,"plug_install_path"))
       if code_language == "bash" | endif
       if code_language == "vim" | endif
       if code_language == "lua" 
-        LoadScript ./plug_configs/lang_support/lua.vim
-        LoadScript ./plug_configs/nvim-luapad.lua 
+        LoadLua ./plug_configs/lang_support/lua_dev.lua
+        LoadLua ./plug_configs/nvim-luapad.lua 
       endif
       if code_language == "front"
-        LoadScript ./plug_configs/lang_support/jsx.vim
-        LoadScript ./plug_configs/lang_support/typescript.vim
-        LoadScript ./plug_configs/lang_support/auto_tag.vim
-        LoadScript ./plug_configs/lang_support/javascript.vim
+        LoadLua ./plug_configs/lang_support/auto_tag.lua
       endif
       if code_language == "vue" | endif
       if code_language == "latex"
