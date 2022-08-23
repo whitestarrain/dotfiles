@@ -101,6 +101,9 @@ local on_attach = function(client, bufnr)
 
 	-- 用trouble插件代替
 	-- buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+
+	-- outline显示
+	buf_set_keymap("n", "<space>ct", ":SymbolsOutline<CR>", opts)
 end
 
 return {

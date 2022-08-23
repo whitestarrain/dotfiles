@@ -98,6 +98,7 @@ call plug#begin(get(g:,"plug_install_path"))
       let g:load_program = 1
       LoadLua ./plug_configs/lsp/lsp_conf.lua
       LoadLua ./plug_configs/lsp/diagnostics_list.lua
+      LoadLua ./plug_configs/lsp/symbols_outline.lua
     endif
 
     " format and lint tool
