@@ -4,7 +4,18 @@
 # 前言
 
 - 尽可能只在init.vim中引入文件加载
-- 保证迁移方便，在配置文件下写`source path/to/init.vim`即可
+- 插件的加载和插件的配置会放到一个文件中。
+  - 唯一例外：`nvim\lua\lsp_keybing_config.lua`中会配置多个插件的keymap
+- `nvim/lua`中放一些需要按需加载的文件
+  - `au.lua`为手动封装的autocmd方法
+  - `lsp_keybing_config.lua`为lsp所有相关的keymap
+- 插件依赖的配置文件也会放到dotfiles所在目录下的`nvim/others`文件夹下
+- 保证迁移方便，在默认配置文件下写`source path/to/init.vim`即可
+  - 或者在启动nvim时 `nvim -u path/to/init.vim`
+- 两个核心参数可以通过`--cmd 'let g:xxxx = "sss"'` 传入
+  > 可参照 [powershell config](./powershell/user_profile.ps1)
+  - `let g:skip_project_plugs=1` 会跳过大多数插件，适合单文件编辑
+  - `let g:code_language_list=['rust']` 会为指定语言开启lsp以及自动补全
 
 # 待做项
 
@@ -62,7 +73,6 @@
    点击进入session后会还原之前编辑的文件，编辑位置，界面布局等等。
 
   ![dotfile-9](./image/dotfile-9.png)
-
 
 - lsp
 
@@ -149,7 +159,6 @@ vista.vim
   - 可能会在未来重新调整一下配置
 
 - 配置修改后使用nvimPower看一下有没有报错
-
 
 # 参考配置
 
