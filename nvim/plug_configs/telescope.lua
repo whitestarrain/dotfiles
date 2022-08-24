@@ -1,5 +1,4 @@
 vim.cmd([[
-  " dependency Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
 ]])
 
@@ -21,6 +20,10 @@ require("au")["User LoadPluginConfig"] = function()
 				"%.mm",
 			},
 			layout_strategy = "horizontal",
+			prompt_prefix = "❯ ",
+			layout_config = {
+				prompt_position = "top",
+			},
 		},
 		pickers = {
 			-- Default configuration for builtin pickers goes here:
@@ -31,24 +34,17 @@ require("au")["User LoadPluginConfig"] = function()
 			-- Now the picker_config_key will be applied every time you call this
 			-- builtin picker
 		},
-		extensions = {
-			-- Your extension configuration goes here:
-			-- extension_name = {
-			--   extension_config_key = value,
-			-- }
-			-- please take a look at the readme of the extension you want to configure
-		},
+		extensions = {},
 		preview = {
 			timeout = 500,
 		},
 	})
+
 	vim.cmd([[
     nnoremap <silent><leader>ff :Telescope find_files<CR>
     let g:which_key_map.f.f = 'find files'
 
-    nnoremap <silent><leader>fb :Telescope buffers<CR>
     nnoremap <silent><leader>/ :Telescope buffers<CR>
-    let g:which_key_map.f.b = 'find buffers'
 
     nnoremap <silent><leader>fc :Telescope commands<CR>
     let g:which_key_map.f.c = 'find command'

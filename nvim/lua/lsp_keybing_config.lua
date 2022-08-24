@@ -103,7 +103,7 @@ local on_attach = function(client, bufnr)
 	-- buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
 	-- outline显示
-	buf_set_keymap("n", "<space>ct", ":SymbolsOutline<CR>", opts)
+	buf_set_keymap("n", "<space>t", ":SymbolsOutline<CR>", opts)
 end
 
 return {

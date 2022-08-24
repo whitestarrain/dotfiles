@@ -47,4 +47,11 @@ require("au")["User LoadPluginConfig"] = function()
 			TypeParameter = { icon = "", hl = "TSParameter" },
 		},
 	})
+
+	vim.cmd([[
+    " starify，seesion关闭时执行操作
+    if exists("g:startify_session_before_save")
+      let g:startify_session_before_save +=  ['silent! SymbolsOutlineClose']
+    endif
+  ]])
 end
