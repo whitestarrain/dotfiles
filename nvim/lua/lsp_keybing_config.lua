@@ -36,27 +36,7 @@ local on_attach = function(client, bufnr)
 	-- 跳转到definition
 	buf_set_keymap("n", "<leader>cd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 
-	-- go to definition 快捷键设置
-	vim.cmd([[
-        autocmd BufEnter *.lua nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.java nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.js nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.jsx nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.ts nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.tsx nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.html nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.css nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.sass nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.go nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.c nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.cpp nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.cc nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.py nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.sh nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.vue nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.tex nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-        autocmd BufEnter *.vim nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<cr>
-    ]])
+	buf_set_keymap("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition() <cr>", opts)
 
 	-- 查看definition，不跳转
 	buf_set_keymap("n", "<leader>cp", '<cmd>lua require"lspsaga.provider".preview_definition()<CR>', opts)
@@ -103,7 +83,7 @@ local on_attach = function(client, bufnr)
 	-- buf_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
 	-- outline显示
-	buf_set_keymap("n", "<space>t", ":SymbolsOutline<CR>", opts)
+	buf_set_keymap("n", "<space>ct", ":SymbolsOutline<CR>", opts)
 end
 
 return {

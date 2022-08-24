@@ -1,32 +1,37 @@
--- DEPN: git checkout -b use 71d7f46
--- 最新版本和当前配置不兼容。有时间再调
--- 新版本中c-n需要手动配置 https://github.com/hrsh7th/nvim-cmp/commit/93cf84f7deb2bdb640ffbb1d2f8d6d412a7aa558
-
 vim.cmd([[
+  " 补全插件
+  Plug 'hrsh7th/nvim-cmp'
 
-" 补全插件
-Plug 'hrsh7th/nvim-cmp'
+  " 补全来源
+  if len(g:code_language_list)>0
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer' " 编辑文档比较多，一般还是别开buffer补全了
+  endif
 
-" 补全来源
+  Plug 'hrsh7th/cmp-path' "路径补全一定要加
+  Plug 'hrsh7th/cmp-cmdline' " 命令模式补全
+  Plug 'hrsh7th/cmp-nvim-lua'
 
-if g:load_program 
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/cmp-buffer' " 编辑文档比较多，一般还是别开buffer补全了
-endif
+  Plug 'hrsh7th/cmp-vsnip' " vsnip snippet 补全。 NOTE: 切换snip插件也要切换这个
 
-Plug 'hrsh7th/cmp-path' "路径补全一定要加
-Plug 'hrsh7th/cmp-cmdline' " 命令模式补全
-Plug 'hrsh7th/cmp-nvim-lua'
-
-Plug 'hrsh7th/cmp-vsnip' " vsnip snippet 补全。 NOTE: 切换snip插件也要切换这个
-
-" 图标
-Plug 'onsails/lspkind-nvim' "代码提示中，显示分类的小图标支持
-
+  " 图标
+  Plug 'onsails/lspkind-nvim' "代码提示中，显示分类的小图标支持
 ]])
 
 require("au")["User LoadPluginConfig"] = function()
 	-- 图标设置
+	local function border(hl_name)
+		return {
+			{ "╭", hl_name },
+			{ "─", hl_name },
+			{ "╮", hl_name },
+			{ "│", hl_name },
+			{ "╯", hl_name },
+			{ "─", hl_name },
+			{ "╰", hl_name },
+			{ "│", hl_name },
+		}
+	end
 	local lspkind = require("lspkind")
 	lspkind.init({
 		-- default: true
@@ -117,10 +122,9 @@ require("au")["User LoadPluginConfig"] = function()
 	}
 
 	-- 编程模式,lsp补全
-	if 1 == vim.g.load_program then
+	if #vim.g.code_language_list > 0 then
 		table.insert(amp_sources, { name = "nvim_lsp", priority = 10 })
-		-- table.insert(amp_sources,{ name = 'buffer', priority = 1 })
-		-- buffer补全暂不开启
+		-- table.insert(amp_sources, { name = 'buffer', priority = 1 })
 	end
 
 	---@diagnostic disable-next-line: redundant-parameter
@@ -143,8 +147,13 @@ require("au")["User LoadPluginConfig"] = function()
 		},
 
 		window = {
-			-- completion = cmp.config.window.bordered(),
-			documentation = cmp.config.window.bordered(),
+			completion = {
+				border = border("CmpBorder"),
+				winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+			},
+			documentation = {
+				border = border("CmpDocBorder"),
+			},
 		},
 
 		-- 来源

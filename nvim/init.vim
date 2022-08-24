@@ -1,6 +1,7 @@
 " nvim-qt option in windows: --no-ext-tabline -fullscreen
 
 " variables: g:skip_project_plugs
+"            g:code_language_list
 
 let g:absolute_config_path = simplify(expand("<sfile>:p")[0:strlen(expand("<sfile>:p"))-strlen(expand("<sfile>:t"))-1])
 command! -nargs=1 LoadScript exec 'source' . ' ' . simplify(g:absolute_config_path . '<args>')
@@ -67,7 +68,6 @@ call plug#begin(get(g:,"plug_install_path"))
     LoadLua ./plug_configs/git.lua
 
     " code language support plugin
-    let g:load_program = 0
     for code_language in g:code_language_list
       if code_language == "rust"
         LoadScript ./plug_configs/lang_support/rust.vim
@@ -95,7 +95,6 @@ call plug#begin(get(g:,"plug_install_path"))
     endfor
 
     if len(g:code_language_list)>0
-      let g:load_program = 1
       LoadLua ./plug_configs/lsp/lsp_conf.lua
       LoadLua ./plug_configs/lsp/diagnostics_list.lua
       LoadLua ./plug_configs/lsp/symbols_outline.lua

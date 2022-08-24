@@ -27,7 +27,6 @@
 - [x] 自动补全颜色
 - [ ] 插件
   - vim-visual-multi
-- [ ] init整理，替换`g:load_program`，各个语言插件单独配置
   > 主要是java jdtls
 - [ ] bash自动化记录和设置插件版本
   - `vim-plug`的`PlugSnapshot`命令使用，但有较大局限性，只能在该插件中使用
@@ -38,6 +37,7 @@
 - [ ] lua配置中，require替换为pcall
 - [ ] **java开发环境配置**
   - 参考：[JavaHello/nvim](https://github.com/JavaHello/nvim)
+- lf工具详细配置
 
 # 准备尝试插件
 
@@ -156,3 +156,4 @@ vista.vim
 - [ ] [voldikss/dotfiles](https://github.com/voldikss/dotfiles/blob/dev/nvim/init.vim)
 - [ ] [craftzdog/dotfiles-public](https://github.com/craftzdog/dotfiles-public)
 - [ ] [bluz71/dotfiles](https://github.com/bluz71/dotfiles/blob/master/vim/lua/plugin/lsp-config.lua)
+- [ ] **[NvChad/NvChad](https://github.com/NvChad/NvChad)**
