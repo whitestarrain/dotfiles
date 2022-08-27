@@ -150,7 +150,7 @@ vista.vim
 
 - indent
   - 大多数语言插件会提供indent支持。
-  - 这里默认关闭了treesitter的indent。需要可以到[这里](./nvim/plug_configs/treesitter.vim)开启
+  - 这里默认开着treesitter的indent。需要可以到[这里](./nvim/plugs/treesitter.vim)关闭
 
 - css classname auto complate
   - tailwindcss lsp

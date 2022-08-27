@@ -78,11 +78,11 @@ require("au")["User LoadPluginConfig"] = function()
 		},
 	})
 
+	-- 补全选项
+	vim.o.completeopt = "menu,menuone,noinsert"
+
 	-- 自动补全设置
 	local cmp = require("cmp")
-
-	-- 补全选项
-	vim.g.completeopt = "menu,menuone,noinsert"
 
 	-- 快捷键配置
 	local cmp_keymap = function(cmp)

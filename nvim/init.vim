@@ -26,86 +26,86 @@ endif
 call plug#begin(get(g:,"plug_install_path"))
 
   " plenary for {todo.vim,git.vim,telescope.vim}
-  LoadScript ./plug_configs/denpendency/plenary.vim
-  LoadScript ./plug_configs/vim_surround.vim
-  LoadScript ./plug_configs/rainrow.vim
-  LoadScript ./plug_configs/ui/indentline.vim
-  LoadScript ./plug_configs/tag_bar.vim
-  LoadScript ./plug_configs/ui/vim_devicons.vim " 主要为startify 提供icon支持，可选
-  LoadScript ./plug_configs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
-  LoadScript ./plug_configs/abolish.vim
-  LoadScript ./plug_configs/lang_support/plantuml.vim
-  LoadScript ./plug_configs/term/vim_floaterm.vim
-  LoadLua ./plug_configs/mdSectionNumber.lua
-  LoadLua ./plug_configs/kommentary.lua
-  LoadLua ./plug_configs/treesitter.lua
-  LoadLua ./plug_configs/auto_pair.lua
-  LoadLua ./plug_configs/ui/todo-comments.lua
+  LoadScript ./plugs/denpendency/plenary.vim
+  LoadScript ./plugs/vim_surround.vim
+  LoadScript ./plugs/rainrow.vim
+  LoadScript ./plugs/ui/indentline.vim
+  LoadScript ./plugs/tag_bar.vim
+  LoadScript ./plugs/ui/vim_devicons.vim " 主要为startify 提供icon支持，可选
+  LoadScript ./plugs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
+  LoadScript ./plugs/abolish.vim
+  LoadScript ./plugs/lang_support/plantuml.vim
+  LoadScript ./plugs/term/vim_floaterm.vim
+  LoadLua ./plugs/mdSectionNumber.lua
+  LoadLua ./plugs/kommentary.lua
+  LoadLua ./plugs/treesitter.lua
+  LoadLua ./plugs/auto_pair.lua
+  LoadLua ./plugs/ui/todo-comments.lua
 
   if exists("$WEZTERM") || exists("$ALACRITTY_LOG")
-    LoadLua ./plug_configs/theme/neosolarized_nvim.lua
+    LoadLua ./plugs/theme/neosolarized_nvim.lua
   else 
-    LoadScript ./plug_configs/theme/onedark.vim
+    LoadScript ./plugs/theme/onedark.vim
   endif
 
   " plugin that need after theme config
-  LoadLua ./plug_configs/ui/bufferline.lua
-  LoadLua ./plug_configs/ui/lualine.lua
-  LoadLua ./plug_configs/ui/nvim_colorizer.lua
+  LoadLua ./plugs/ui/bufferline.lua
+  LoadLua ./plugs/ui/lualine.lua
+  LoadLua ./plugs/ui/nvim_colorizer.lua
 
   " extral plugin
   if !exists('g:skip_project_plugs')
-    LoadScript ./plug_configs/ui/starify.vim
-    LoadScript ./plug_configs/easy_motion.vim
-    LoadScript ./plug_configs/ui/vim_which_key.vim
-    LoadScript ./plug_configs/lang_support/vim_markdown.vim
-    LoadScript ./plug_configs/prettier.vim
-    LoadScript ./plug_configs/md_img_paste.vim
-    LoadScript ./plug_configs/snippets.vim
-    LoadScript ./plug_configs/vimdoc_cn.vim
-    LoadLua ./plug_configs/ui/nvim-tree.lua
-    LoadLua ./plug_configs/telescope.lua
-    LoadLua ./plug_configs/git.lua
+    LoadScript ./plugs/ui/starify.vim
+    LoadScript ./plugs/easy_motion.vim
+    LoadScript ./plugs/ui/vim_which_key.vim
+    LoadScript ./plugs/lang_support/vim_markdown.vim
+    LoadScript ./plugs/prettier.vim
+    LoadScript ./plugs/md_img_paste.vim
+    LoadScript ./plugs/snippets.vim
+    LoadScript ./plugs/vimdoc_cn.vim
+    LoadLua ./plugs/ui/nvim-tree.lua
+    LoadLua ./plugs/telescope.lua
+    LoadLua ./plugs/git.lua
 
     " code language support plugin
     for code_language in g:code_language_list
       if code_language == "rust"
-        LoadScript ./plug_configs/lang_support/rust.vim
+        LoadScript ./plugs/lang_support/rust.vim
       endif
       if code_language == "python" | endif
       if code_language == "c"
-        " LoadScript ./plug_configs/_pre/debug/nvim_dap.vim
-        LoadScript ./plug_configs/_pre/debug/nvim_gdb.vim
+        " LoadScript ./plugs/_pre/debug/nvim_dap.vim
+        LoadScript ./plugs/_pre/debug/nvim_gdb.vim
       endif
       if code_language == "golang" | endif
       if code_language == "java" | endif
       if code_language == "bash" | endif
       if code_language == "vim" | endif
       if code_language == "lua" 
-        LoadLua ./plug_configs/lang_support/lua_dev.lua
-        LoadLua ./plug_configs/nvim-luapad.lua 
+        LoadLua ./plugs/lang_support/lua_dev.lua
+        LoadLua ./plugs/nvim-luapad.lua 
       endif
       if code_language == "front"
-        LoadLua ./plug_configs/lang_support/auto_tag.lua
+        LoadLua ./plugs/lang_support/auto_tag.lua
       endif
       if code_language == "vue" | endif
       if code_language == "latex"
-        LoadScript ./plug_configs/lang_support/latex.vim
+        LoadScript ./plugs/lang_support/latex.vim
       endif
     endfor
 
     if len(g:code_language_list)>0
-      LoadLua ./plug_configs/lsp/lsp_conf.lua
-      LoadLua ./plug_configs/lsp/diagnostics_list.lua
-      LoadLua ./plug_configs/lsp/symbols_outline.lua
+      LoadLua ./plugs/lsp/lsp_conf.lua
+      LoadLua ./plugs/lsp/diagnostics_list.lua
+      LoadLua ./plugs/lsp/symbols_outline.lua
     endif
 
     " format and lint tool
-    LoadLua ./plug_configs/formatter.lua
-    LoadLua ./plug_configs/nvim-lint.lua
+    LoadLua ./plugs/formatter.lua
+    LoadLua ./plugs/nvim-lint.lua
 
     " auto complete
-    LoadScript ./plug_configs/lsp/auto_complete.lua
+    LoadScript ./plugs/lsp/auto_complete.lua
 
   endif
 
@@ -117,50 +117,50 @@ for code_language in g:code_language_list
     break
   endif
   if code_language == "rust"
-    LoadLua ./plug_configs/lsp-server/rust_analyzer_config.lua
+    LoadLua ./plugs/lsp-server/rust_analyzer_config.lua
   endif
   if code_language == "python"
     " 通过require("python")返回
-    LoadLua ./plug_configs/lsp-server/pyright_config.lua
+    LoadLua ./plugs/lsp-server/pyright_config.lua
   endif
   if code_language == "c"
-    LoadLua ./plug_configs/lsp-server/clangd_config.lua
-    " LoadLua ./plug_configs/_pre/debug/debug_dap/lldb.lua
+    LoadLua ./plugs/lsp-server/clangd_config.lua
+    " LoadLua ./plugs/_pre/debug/debug_dap/lldb.lua
   endif
   if code_language == "golang"
-    LoadLua ./plug_configs/lsp-server/golang.lua
+    LoadLua ./plugs/lsp-server/golang.lua
   endif
   if code_language == "java"
-    LoadLua ./plug_configs/lsp-server/java.lua
+    LoadLua ./plugs/lsp-server/java.lua
   endif
   if code_language == "bash"
-    LoadLua ./plug_configs/lsp-server/bash.lua
+    LoadLua ./plugs/lsp-server/bash.lua
   endif
   if code_language == "vim"
-    LoadLua ./plug_configs/lsp-server/vimls.lua
+    LoadLua ./plugs/lsp-server/vimls.lua
   endif
   if code_language == "lua"
-    LoadLua ./plug_configs/lsp-server/lua_lsp_config.lua
+    LoadLua ./plugs/lsp-server/lua_lsp_config.lua
   endif
   if code_language == "front"
-    LoadLua ./plug_configs/lsp-server/tsserver.lua 
+    LoadLua ./plugs/lsp-server/tsserver.lua 
     " vscode 配套lsp
-    LoadLua ./plug_configs/lsp-server/vscode-lsp.lua
+    LoadLua ./plugs/lsp-server/vscode-lsp.lua
     " emmet支持
-    LoadLua ./plug_configs/lsp-server/emmet.lua 
+    LoadLua ./plugs/lsp-server/emmet.lua 
     " 不扫描node_module，还没有解决
-    " LoadLua ./plug_configs/lsp-server/denols.lua 
+    " LoadLua ./plugs/lsp-server/denols.lua 
     " tailwindcss 框架专属，暂时用不到
-    " LoadLua ./plug_configs/lsp-server/tailwindcss.lua
+    " LoadLua ./plugs/lsp-server/tailwindcss.lua
   endif
   if code_language == "vue"
-    LoadLua ./plug_configs/lsp-server/vuels.lua
+    LoadLua ./plugs/lsp-server/vuels.lua
   endif
   if code_language == "latex"
-    LoadLua ./plug_configs/lsp-server/texlab.lua
+    LoadLua ./plugs/lsp-server/texlab.lua
   endif
   if code_language == "dot"
-    LoadLua ./plug_configs/lsp-server/dot.lua
+    LoadLua ./plugs/lsp-server/dot.lua
   endif
 endfor
 
