@@ -39,28 +39,35 @@
 - [ ] 插件
   - vim-visual-multi
   > 主要是java jdtls
-- [ ] bash自动化记录和设置插件版本
-  - `vim-plug`的`PlugSnapshot`命令使用，但有较大局限性，只能在该插件中使用
+- [ ] ~bash自动化记录和设置插件版本~
+  - `vim-plug`的`PlugSnapshot`命令暂且够用
 - [ ] ~拿c写一个启动程序？~
 - [ ] 把插件配置写到`after/plugin`，写一些`pcall`或者全局变量 什么的来判断是否加载？
 - [ ] mklink 一些配置文件到dotfiles文件夹
-  - 整理配置脚本
 - [ ] lua配置中，require替换为pcall
 - [ ] **java开发环境配置**
   - 参考：[JavaHello/nvim](https://github.com/JavaHello/nvim)
-- lf工具详细配置
+  - 反编译以及跳转不太好搞，暂且老老实实用ide吧
+- [ ] lf工具详细配置
 
 # 准备尝试插件
 
+- [ ] nvim-dap
+  - 调试利器，go配置成功了，但是c++总是配置不好
+  - 因不提供断点保存功能，这里有断点保存配置方案，也有已经整理好的插件[issue跳转](https://github.com/mfussenegger/nvim-dap/issues/198)
 - [ ] vim-visual-multi
 - [ ] asyn_run.vim
 - [ ] asynctasks
 - [ ] vim-table-mode
+  - 格式化的话，markdown中，感觉用prettier就够用了
+  - 不过这个还提供类似excel公式计算的功能
 - [ ] toggletask.nvim
 - [ ] symbols-outline.nvim
   - 依赖lsp的大纲插件
 - [ ] mason
-  - 自动化太多了，不是太想用
+  - 自动化封装了好多，不是太尝试
+- [ ] 全局替换插件：[nvim-spectre](https://github.com/nvim-pack/nvim-spectre)
+-
 
 # 键位整理
 
@@ -166,3 +173,4 @@ vista.vim
 - [ ] [craftzdog/dotfiles-public](https://github.com/craftzdog/dotfiles-public)
 - [ ] [bluz71/dotfiles](https://github.com/bluz71/dotfiles/blob/master/vim/lua/plugin/lsp-config.lua)
 - [ ] **[NvChad/NvChad](https://github.com/NvChad/NvChad)**
+- [ ] [JavaHello/nvim](https://github.com/JavaHello/nvim)
