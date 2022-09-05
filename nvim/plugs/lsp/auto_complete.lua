@@ -148,8 +148,8 @@ require("au")["User LoadPluginConfig"] = function()
 
 		window = {
 			completion = {
-				border = border("CmpBorder"),
-				winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+				-- border = border("CmpBorder"),
+				-- winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel",
 			},
 			documentation = {
 				border = border("CmpDocBorder"),

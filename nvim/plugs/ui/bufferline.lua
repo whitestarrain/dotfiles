@@ -5,7 +5,7 @@ vim.cmd([[
 require("au")["User LoadPluginConfig"] = function()
 	local separator_style = "slant"
 	if vim.g.colors_name == "neosolarized" then
-		separator_style = "thin"
+		separator_style = { "", "" }
 	end
 	require("bufferline").setup({
 		options = {
@@ -22,12 +22,15 @@ require("au")["User LoadPluginConfig"] = function()
 				},
 			},
 			-- 默认icon
-			indicator_icon = "▎",
+			indicator_icon = " ",
 			buffer_close_icon = "",
+			show_buffer_icons = false,
 			modified_icon = "●",
 			close_icon = "",
 			left_trunc_marker = "",
 			right_trunc_marker = "",
+			show_buffer_close_icons = false,
+			show_close_icon = false,
 			-- 显示lsp报错图标
 			---@diagnostic disable-next-line: unused-local
 			diagnostics_indicator = function(count, level, diagnostics_dict, context)

@@ -49,8 +49,9 @@
   - 参考：[JavaHello/nvim](https://github.com/JavaHello/nvim)
   - 反编译以及跳转不太好搞，暂且老老实实用ide吧
 - [ ] lf工具详细配置
+- [ ] wezterm 快捷键配置调整。[参考](https://github.com/ivaquero/oxidizer.sh/blob/master/defaults/wezterm.lua)
 
-# 准备尝试插件
+# nvim准备尝试插件
 
 - [ ] nvim-dap
   - 调试利器，go配置成功了，但是c++总是配置不好
@@ -69,9 +70,14 @@
 - [ ] 全局替换插件：[nvim-spectre](https://github.com/nvim-pack/nvim-spectre)
 -
 
-# 键位整理
+# nvim键位整理
 
 > TODO: 键位整理
+
+# 待尝试工具
+
+- Zellij + alacritty 替代wezterm
+  - Zellij 的windows支持已提上日程。多平台支持，可以用来替换tmux
 
 # 图片展示
 

@@ -5,6 +5,15 @@ vim.cmd([[
 require("au")["User LoadPluginConfig"] = function()
 	require("telescope").setup({
 		defaults = {
+			vimgrep_arguments = {
+				"rg",
+				"--color=never",
+				"--no-heading",
+				"--with-filename",
+				"--line-number",
+				"--column",
+				"--smart-case",
+			},
 			-- lua regex
 			file_ignore_patterns = {
 				"%.png",
@@ -19,21 +28,19 @@ require("au")["User LoadPluginConfig"] = function()
 				"%.gif",
 				"%.mm",
 			},
+			sorting_strategy = "ascending",
 			layout_strategy = "horizontal",
 			prompt_prefix = "❯ ",
 			layout_config = {
 				prompt_position = "top",
+				vertical = {
+					mirror = false,
+				},
+				preview_cutoff = 120,
 			},
 		},
-		pickers = {
-			-- Default configuration for builtin pickers goes here:
-			-- picker_name = {
-			--   picker_config_key = value,
-			--   ...
-			--
-			-- Now the picker_config_key will be applied every time you call this
-			-- builtin picker
-		},
+		path_display = { "truncate" },
+		winblend = 0,
 		extensions = {},
 		preview = {
 			timeout = 500,

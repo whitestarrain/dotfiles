@@ -64,4 +64,8 @@ require("au")["User LoadPluginConfig"] = function()
 	Group.new("markdownOrderedListMarker", colors.red)
 	Group.new("markdownRule", colors.gray)
 	Group.new("markdownUrl", colors.cyan)
+
+	-- autocomplete color
+	Group.new("CmpItemAbbrMatch", colors.green)
+	Group.new("CmpItemAbbrMatchFuzzy", colors.green)
 end
