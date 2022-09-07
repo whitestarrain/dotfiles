@@ -31,6 +31,7 @@ require("au")["User LoadPluginConfig"] = function()
 			right_trunc_marker = "",
 			show_buffer_close_icons = false,
 			show_close_icon = false,
+			show_buffer_icons = true,
 			-- 显示lsp报错图标
 			---@diagnostic disable-next-line: unused-local
 			diagnostics_indicator = function(count, level, diagnostics_dict, context)
