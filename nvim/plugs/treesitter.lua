@@ -42,7 +42,7 @@ require("au")["User LoadPluginConfig"] = function()
 		-- 启用缩进
 		indent = {
 			enable = true,
-			disable = { "markdown" },
+			disable = { "markdown", "html" },
 		},
 
 		-- 启用彩虹括号
