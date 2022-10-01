@@ -9,7 +9,7 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 
 # Alias
 Set-Alias ll ls
-Set-Alias tig 'D:\learn\Git\usr\bin\tig.exe'
+Set-Alias tig 'D:\scoop\shims\tig.exe'
 Set-Alias grep findstr
 Set-Alias f floaterm
 
@@ -59,20 +59,11 @@ function nvimDot(){
 function nvimPower(){
   nvim --cmd "let g:code_language_list=['c','rust','python','latex','golang','front','vue','vim','lua','bash','dot']" $args[0]
 }
-function SpaceVim(){
-  nvim -u D:/MyRepo/SpaceVim/init.vim $args[0]
-}
 
 function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
     Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
-
-function update_diary(){
-  cd 'D:\MyRepo\diary'
-  cp D:\note\diary.md D:\MyRepo\diary\diary.md && git add -A && git commit -m "update" && git push
-  cd -
-} 
 
 # oh-my-posh
 oh-my-posh --init --shell pwsh --config D:\MyRepo\dotfiles\powershell\white_star_rain.omp.json | Invoke-Expression

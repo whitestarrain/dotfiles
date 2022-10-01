@@ -42,11 +42,7 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadLua ./plugs/auto_pair.lua
   LoadLua ./plugs/ui/todo-comments.lua
 
-  if exists("$WEZTERM") || exists("$ALACRITTY_LOG")
-    LoadLua ./plugs/theme/neosolarized_nvim.lua
-  else 
-    LoadScript ./plugs/theme/onedark.vim
-  endif
+  LoadLua ./plugs/theme/neosolarized_nvim.lua
 
   " plugin that need after theme config
   LoadLua ./plugs/ui/bufferline.lua

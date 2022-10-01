@@ -48,6 +48,8 @@ require("au")["User LoadPluginConfig"] = function()
 	local cConstant = groups.Constant.fg
 	Group.new("markdownBlockquote", colors.gray)
 	Group.new("markdownBold", colors.yellow)
+	Group.new("htmlBold", colors.yellow)
+	Group.new("mkdBold", colors.yellow)
 	Group.new("markdownBoldItalic", colors.green)
 	Group.new("markdownCode", cConstant)
 	Group.new("markdownCodeBlock", colors.green)

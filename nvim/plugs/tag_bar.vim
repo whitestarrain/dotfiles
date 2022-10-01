@@ -12,7 +12,7 @@ function! PlugConfigTagBar()
   let g:tagbar_ctags_options = ['NONE', g:absolute_config_path . './others/.ctags']
 
   " 设置宽度
-  " let g:tagbar_width = 30
+  let g:tagbar_width = 30
 
   "设置tagber对于markdown的支持
   let g:tagbar_type_markdown = {
