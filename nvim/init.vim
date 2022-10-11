@@ -58,7 +58,7 @@ call plug#begin(get(g:,"plug_install_path"))
     LoadScript ./plugs/ui/starify.vim
     LoadScript ./plugs/easy_motion.vim
     LoadScript ./plugs/ui/vim_which_key.vim
-    LoadScript ./plugs/lang_support/vim_markdown.vim
+    LoadScript ./plugs/bullets.vim
     LoadScript ./plugs/prettier.vim
     LoadScript ./plugs/md_img_paste.vim
     LoadScript ./plugs/snippets.vim
