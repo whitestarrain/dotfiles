@@ -1,10 +1,5 @@
-"-----------------------------------vim-markdown--------------------------------------
-"markdonw 语法高亮
-"-----------------------------------vim-markdown--------------------------------------
-
 Plug 'whitestarrain/bullets.vim'
 
-"------------------------------------markdown-------------------------------------
 autocmd User LoadPluginConfig call PlugConfigMarkDown()
 function! PlugConfigMarkDown()
   let g:bullets_enabled_file_types = [
@@ -19,4 +14,3 @@ function! PlugConfigMarkDown()
     \ ['nmap', 'o', '<Plug>(bullets-newline)'],
     \ ]
 endfunction
-"------------------------------------markdown-------------------------------------
