@@ -158,6 +158,9 @@ for code_language in g:code_language_list
   if code_language == "dot"
     LoadLua ./plugs/lsp-server/dot.lua
   endif
+  if code_language == "php"
+    LoadLua ./plugs/lsp-server/php_intelephense.lua
+  endif
 endfor
 
 doautocmd User LoadPluginConfig

@@ -1,4 +1,5 @@
 -- DEPN: install lsp from https://github.com/sumneko/lua-language-server
+-- scoop 安装可能会出问题
 -- 参照：https://github.com/folke/dot/blob/master/config/nvim/lua/plugins.lua
 local util = require("lspconfig/util")
 
