@@ -13,6 +13,7 @@ require("au")["User LoadPluginConfig"] = function()
 		-- 安装 language parser。默认不自动安装
 		-- :TSInstallInfo 命令查看支持的语言
 		-- DEPN: :TSInstall <lang>
+		-- markdown不要装，尽管disable了，但也会调用parse，导致拖慢速度。
 
 		-- 禁止自动安装解析器
 		auto_install = false,
