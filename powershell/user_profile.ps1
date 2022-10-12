@@ -56,6 +56,9 @@ function nvimConfig(){
 function nvimDot(){
   nvim --cmd "let g:code_language_list=['dot']" $args[0]
 }
+function nvimPhp(){
+  nvim --cmd "let g:code_language_list=['php']" $args[0]
+}
 function nvimPower(){
   nvim --cmd "let g:code_language_list=['c','rust','python','latex','golang','front','vue','vim','lua','bash','dot']" $args[0]
 }
