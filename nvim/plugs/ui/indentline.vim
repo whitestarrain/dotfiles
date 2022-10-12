@@ -3,4 +3,5 @@
 Plug 'yggdroot/indentline'
 " Plug 'nathanaelkane/vim-indent-guides'
 "---------------------------------------缩进线----------------------------------
-let g:indentLine_conceallevel=0
+let g:indentLine_conceallevel=2
+let g:markdown_syntax_conceal=0
