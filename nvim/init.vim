@@ -169,3 +169,5 @@ endfor
 
 doautocmd User LoadPluginConfig
 
+delcommand LoadScript
+delcommand LoadLua
