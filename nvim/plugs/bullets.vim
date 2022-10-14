@@ -1,4 +1,4 @@
-Plug 'whitestarrain/bullets.vim'
+Plug 'dkarter/bullets.vim'
 
 let g:bullets_enabled_file_types = [
     \ 'markdown',
@@ -8,6 +8,5 @@ let g:bullets_enabled_file_types = [
 let g:bullets_set_mappings = 0
 
 let g:bullets_custom_mappings = [
-  \ ['imap', '<cr>', '<Plug>(bullets-newline)'],
-  \ ['nmap', 'o', '<Plug>(bullets-newline)'],
+  \ ['imap', '<C-CR>', '<plug>(bullets-newline)'],
   \ ]

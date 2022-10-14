@@ -28,9 +28,11 @@ require("au")["User LoadPluginConfig"] = function()
 			close_icon = "",
 			left_trunc_marker = "",
 			right_trunc_marker = "",
-			indicator_icon = " ",
+			indicator = {
+				icon = " ",
+				style = "icon",
+			},
 			-- 显示设置
-			show_buffer_icons = false,
 			show_buffer_close_icons = false,
 			show_close_icon = false,
 			show_buffer_icons = true,

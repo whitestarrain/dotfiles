@@ -7,7 +7,7 @@ let g:absolute_config_path = simplify(expand("<sfile>:p")[0:strlen(expand("<sfil
 command! -nargs=1 LoadScript exec 'source' . ' ' . simplify(g:absolute_config_path . '<args>')
 command! -nargs=1 LoadLua exec 'luafile' . ' ' .  simplify(g:absolute_config_path . '<args>')
 
-let &runtimepath.="," . g:absolute_config_path[0:-2] " add runtimepath
+let &runtimepath.="," . g:absolute_config_path[0:-2] . "\\runtime" " add runtimepath
 
 LoadScript base/common.vim
 LoadScript base/mappings.vim
