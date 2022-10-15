@@ -108,7 +108,7 @@ require("au")["User LoadPluginConfig"] = function()
 				{
 					"diff",
 					colored = true, -- Displays a colored diff status if set to true
-					symbols = { added = "  ", modified = " 柳", removed = "  " }, -- Changes the symbols used by the diff.
+					symbols = { added = "  ", modified = " ", removed = " " }, -- Changes the symbols used by the diff.
 					source = get_hunks_data,
 					separator = { left = nil, right = nil },
 					cond = conditions.hide_in_width,
