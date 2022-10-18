@@ -1,3 +1,6 @@
+if exists('b:did_indent') | finish | endif
+let b:did_indent = 1
+
 setlocal nolisp
 setlocal autoindent
 
@@ -9,9 +12,6 @@ setlocal comments=b:>
 setlocal formatoptions-=c
 " Accept various markers as bullets
 setlocal comments+=b:*,b:+,b:-
-
-if exists('b:markdown_indent_dotfiles') | finish | endif
-let b:markdown_indent_dotfiles = 1
 
 setlocal indentexpr=GetMarkdownIndent()
 
