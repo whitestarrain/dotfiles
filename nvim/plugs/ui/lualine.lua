@@ -4,6 +4,7 @@ vim.cmd([[
 
 require("au")["User LoadPluginConfig"] = function()
 	local status, lualine = pcall(require, "lualine")
+	local lsp_status, _ = pcall(require, "lspconfig")
 	if not status then
 		return
 	end
@@ -66,12 +67,16 @@ require("au")["User LoadPluginConfig"] = function()
 		return msg
 	end
 
+	local hide_width_len = 110
+	if not lsp_status then
+		hide_width_len = 80
+	end
 	local conditions = {
 		buffer_not_empty = function()
 			return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
 		end,
 		hide_in_width = function()
-			return vim.fn.winwidth(0) > 110
+			return vim.fn.winwidth(0) > hide_width_len
 		end,
 		check_git_workspace = function()
 			local filepath = vim.fn.expand("%:p:h")

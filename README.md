@@ -5,7 +5,7 @@
 
 - 尽可能只在init.vim中引入文件加载
 - 插件的加载和插件的配置会放到一个文件中。
-  - 唯一例外：`nvim\lua\lsp_keybing_config.lua`中会配置多个插件的keymap
+  - 唯一例外：`./nvim/runtime`中会配置自动加载项。
 - `nvim/lua`中放一些需要按需加载的文件
   - `au.lua`为手动封装的autocmd方法
   - `lsp_keybing_config.lua`为lsp所有相关的keymap
