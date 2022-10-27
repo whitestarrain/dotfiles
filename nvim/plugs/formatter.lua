@@ -10,7 +10,7 @@ au["User LoadPluginConfig"] = function() -- autocmd调用函数
 			lua = {
 				require("formatter.filetypes.lua").stylua,
 			},
-      -- DEPN: scoop install shfmt
+			-- DEPN: scoop install shfmt
 			sh = {
 				function()
 					return {
@@ -27,8 +27,9 @@ au["User LoadPluginConfig"] = function() -- autocmd调用函数
 		},
 	})
 end
-
+--[[
 au.group("FormatGroup", {
 	{ "BufWritePost", "*.lua", "FormatWrite" },
 	{ "BufWritePost", "*.sh", "FormatWrite" },
 })
+ ]]
