@@ -94,11 +94,10 @@ call plug#begin(get(g:,"plug_install_path"))
       LoadLua ./plugs/lsp/lsp_conf.lua
       LoadLua ./plugs/lsp/diagnostics_list.lua
       LoadLua ./plugs/lsp/symbols_outline.lua
+      " format and lint tool
+      LoadLua ./plugs/formatter.lua
+      LoadLua ./plugs/nvim-lint.lua
     endif
-
-    " format and lint tool
-    LoadLua ./plugs/formatter.lua
-    LoadLua ./plugs/nvim-lint.lua
 
     " auto complete
     LoadScript ./plugs/lsp/auto_complete.lua
