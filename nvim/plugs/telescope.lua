@@ -70,8 +70,8 @@ require("au")["User LoadPluginConfig"] = function()
           vertical = {
             mirror = false,
           },
-          preview_cutoff = 120,
-          preview_width = 50,
+          -- preview_cutoff = 120,
+          -- preview_width = 50,
         },
 				-- disables netrw and use telescope-file-browser in its place
 				hijack_netrw = true,
@@ -106,7 +106,9 @@ require("au")["User LoadPluginConfig"] = function()
 			respect_gitignore = false,
 			hidden = true,
 			grouped = true,
+      previewer = false,
 			initial_mode = "normal",
+      layout_config = { width = 60 }
 		})
 	end)
 
