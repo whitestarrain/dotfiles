@@ -1,6 +1,5 @@
 vim.cmd([[
   Plug 'nvim-telescope/telescope.nvim'
-  Plug 'whitestarrain/telescope-file-browser.nvim'
 ]])
 
 require("au")["User LoadPluginConfig"] = function()
@@ -10,11 +9,6 @@ require("au")["User LoadPluginConfig"] = function()
 	end
 
 	local actions = require("telescope.actions")
-	local fb_actions = require("telescope").extensions.file_browser.actions
-
-	local function telescope_buffer_dir()
-		return vim.fn.expand("%:p:h")
-	end
 
 	telescope.setup({
 		defaults = {
@@ -64,53 +58,11 @@ require("au")["User LoadPluginConfig"] = function()
 		path_display = { "truncate" },
 		winblend = 0,
 		extensions = {
-			file_browser = {
-        layout_config = {
-          prompt_position = "top",
-          vertical = {
-            mirror = false,
-          },
-          -- preview_cutoff = 120,
-          -- preview_width = 50,
-        },
-				-- disables netrw and use telescope-file-browser in its place
-				hijack_netrw = true,
-        hide_parent_dir = true,
-				mappings = {
-					["i"] = {
-						["<C-w>"] = function()
-							vim.cmd("normal vbd")
-						end,
-					},
-					["n"] = {
-						["A"] = fb_actions.create,
-            ["d"] = fb_actions.remove,
-            ["D"] = fb_actions.remove,
-						["h"] = fb_actions.goto_parent_dir,
-						["l"] = actions.select_default,
-					},
-				},
-			},
 		},
 		preview = {
 			timeout = 500,
 		},
 	})
-
-	require("telescope").load_extension("file_browser")
-
-	vim.keymap.set("n", "fh", function()
-		telescope.extensions.file_browser.file_browser({
-			path = "%:p:h",
-			cwd = telescope_buffer_dir(),
-			respect_gitignore = false,
-			hidden = true,
-			grouped = true,
-      previewer = false,
-			initial_mode = "normal",
-      layout_config = { width = 60 }
-		})
-	end)
 
 	vim.cmd([[
     nnoremap <silent><leader>ff :Telescope find_files<CR>

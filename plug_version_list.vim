@@ -44,7 +44,6 @@ silent! let g:plugs['rust.vim'].commit = '1cdc5cb4bd061bc30b502e07321682b5a4396d
 silent! let g:plugs['symbols-outline.nvim'].commit = '6a3ed24c5631da7a5d418bced57c16b32af7747c'
 silent! let g:plugs['tagbar'].commit = '69659cfc9d081caf31c8d548dd4c19593839317b'
 silent! let g:plugs['tagbar-rust.vim'].commit = 'f5a46d174c8fb322caa1cc823f165842892a4959'
-silent! let g:plugs['telescope-file-browser.nvim'].commit = 'e75f2cdae1512963e66ba79b8ae50ccd59eaad9d'
 silent! let g:plugs['telescope.nvim'].commit = 'f174a0367b4fc7cb17710d867e25ea792311c418'
 silent! let g:plugs['todo-comments.nvim'].commit = '98b1ebf198836bdc226c0562b9f906584e6c400e'
 silent! let g:plugs['trouble.nvim'].commit = '929315ea5f146f1ce0e784c76c943ece6f36d786'
