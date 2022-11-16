@@ -1,4 +1,4 @@
--- npm install -g typescript typescript-language-server
+--DEPN: npm install -g typescript typescript-language-server
 
 local key_binding = require('lsp_keybing_config')
 local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -17,7 +17,7 @@ set scrolloff=3
 set linespace=0            " 行距
 set showmode               " Show current mode in command-line.
 set showcmd                " Show already typed keys when more are expected.
-set re=1                   " 设置regex模式
+set re=0                   " 设置regex模式。为1时，过于复杂会导致vim挂起
 set incsearch              " 设置增量搜索
 set hlsearch               " 设置搜索高亮
 set ttyfast                " Faster redrawing.
