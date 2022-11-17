@@ -36,6 +36,7 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadScript ./plugs/abolish.vim
   LoadScript ./plugs/lang_support/plantuml.vim
   LoadScript ./plugs/term/vim_floaterm.vim
+  LoadScript ./plugs/tabular.vim
   LoadLua ./plugs/mdSectionNumber.lua
   LoadLua ./plugs/kommentary.lua
   LoadLua ./plugs/treesitter.lua
