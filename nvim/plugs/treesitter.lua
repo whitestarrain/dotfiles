@@ -3,9 +3,6 @@
 vim.cmd([[
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'p00f/nvim-ts-rainbow'
-  " Plug 'romgrk/nvim-treesitter-context'
-  " Plug 'nvim-treesitter/nvim-treesitter-refactor'
-  " Plug'nvim-treesitter/playground'
 ]])
 
 require("au")["User LoadPluginConfig"] = function()

@@ -1,7 +1,5 @@
-"-----------------------------------snippt插件--------------------------------------
 Plug 'hrsh7th/vim-vsnip' " snippet 引擎
 Plug 'rafamadriz/friendly-snippets' "提供一堆snip
-"-----------------------------------snippt插件--------------------------------------
 
 
 autocmd User LoadPluginConfig call PlugConfigSnippet()

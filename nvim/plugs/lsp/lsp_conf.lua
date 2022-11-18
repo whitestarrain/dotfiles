@@ -14,7 +14,7 @@ require("au")["User LoadPluginConfig"] = function()
 	end
 
 	-- handler 配置，添加参数
-	-- help vim.lsp.util.open_floating_preview() -- 读读源码，这部份实现不算难
+	-- help vim.lsp.util.open_floating_preview() -- 读读源码，这部分实现不算难
 	local lsp = vim.lsp
 	-- Global handlers.
 	lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, {

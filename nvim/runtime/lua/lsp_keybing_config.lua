@@ -16,10 +16,13 @@ local on_attach = function(client, bufnr)
 
 	-- code action，具体由lsp来定
 	buf_set_keymap("n", "<leader>ca", '<cmd>lua require("lspsaga.codeaction").code_action()<CR>', opts)
+	buf_set_keymap("n", "<M-enter>", '<cmd>lua require("lspsaga.codeaction").code_action()<CR>', opts)
+	buf_set_keymap("n", "<leader>cv", '^v$:<C-U>lua require("lspsaga.codeaction").range_code_action()<CR>', opts)
 	-- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
 	-- code action，针对选定的部分代码
 	buf_set_keymap("v", "<leader>ca", ':<C-U>lua require("lspsaga.codeaction").range_code_action()<CR>', opts)
+	buf_set_keymap("v", "<M-enter>", ':<C-U>lua require("lspsaga.codeaction").range_code_action()<CR>', opts)
 	-- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
 
 	-- hover显示文档

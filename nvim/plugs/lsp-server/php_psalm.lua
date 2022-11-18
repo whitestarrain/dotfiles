@@ -1,5 +1,5 @@
 -- DEPN: https://github.com/vimeo/psalm
--- composer global require --dev vimeo/psalm
+  -- composer global require --dev vimeo/psalm
 
 local key_binding = require("lsp_keybing_config")
 
