@@ -56,7 +56,6 @@ call plug#begin(get(g:,"plug_install_path"))
     LoadScript ./plugs/easy_motion.vim
     LoadScript ./plugs/ui/vim_which_key.vim
     LoadScript ./plugs/bullets.vim
-    LoadScript ./plugs/prettier.vim
     LoadScript ./plugs/md_img_paste.vim
     LoadScript ./plugs/snippets.vim
     LoadScript ./plugs/vimdoc_cn.vim
@@ -95,15 +94,11 @@ call plug#begin(get(g:,"plug_install_path"))
       LoadLua ./plugs/lsp/lsp_conf.lua
       LoadLua ./plugs/lsp/diagnostics_list.lua
       LoadLua ./plugs/lsp/symbols_outline.lua
-      " lint tool
-      LoadLua ./plugs/nvim-lint.lua
+      LoadLua ./plugs/null-ls.lua
     endif
 
     " auto complete
     LoadScript ./plugs/lsp/auto_complete.lua
-    " format tool
-    LoadLua ./plugs/formatter.lua
-
   endif
 
 call plug#end()
@@ -118,7 +113,8 @@ for code_language in g:code_language_list
   endif
   if code_language == "python"
     " 通过require("python")返回
-    LoadLua ./plugs/lsp-server/pyright_config.lua
+    " LoadLua ./plugs/lsp-server/pyright_config.lua
+    LoadLua ./plugs/lsp-server/python_jedi_lsp.lua
   endif
   if code_language == "c"
     LoadLua ./plugs/lsp-server/clangd_config.lua
