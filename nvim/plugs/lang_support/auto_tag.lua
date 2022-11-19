@@ -9,10 +9,10 @@ vim.cmd([[
 ]])
 
 require("au")["User LoadPluginConfig"] = function()
-	-- User treesitter setup
-	require("nvim-treesitter.configs").setup({
-		autotag = {
-			enable = true,
-		},
-	})
+  -- User treesitter setup
+  require("nvim-treesitter.configs").setup({
+    autotag = {
+      enable = true,
+    },
+  })
 end

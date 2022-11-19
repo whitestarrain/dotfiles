@@ -3,26 +3,28 @@
 -- 参照：https://github.com/folke/dot/blob/master/config/nvim/lua/plugins.lua
 local util = require("lspconfig/util")
 
-local key_binding = require('lsp_keybing_config')
+local key_binding = require("lsp_keybing_config")
 
-local runtime_path = vim.split(package.path, ';')
+local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "?.lua")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 local luadev = require("lua-dev").setup({
   lspconfig = {
-    cmd = {vim.g.absolute_config_path  .. "../lsp_exe/lua-language-server/bin/lua-language-server.exe",
-          "-E",
-          vim.g.absolute_config_path .. "../lsp_exe/lua-language-server/bin/main.lua"},
+    cmd = {
+      vim.g.absolute_config_path .. "../lsp_exe/lua-language-server/bin/lua-language-server.exe",
+      "-E",
+      vim.g.absolute_config_path .. "../lsp_exe/lua-language-server/bin/main.lua",
+    },
     settings = {
       Lua = {
         runtime = {
-          version = 'LuaJIT',
+          version = "LuaJIT",
           path = runtime_path,
         },
         diagnostics = {
-          globals = {'vim'},
+          globals = { "vim" },
         },
         workspace = {
           library = vim.api.nvim_get_runtime_file("", true),
@@ -37,10 +39,9 @@ local luadev = require("lua-dev").setup({
       debounce_text_changes = 150,
     },
     root_dir = function(fname)
-      return util.root_pattern(".git")(fname) or
-        util.path.dirname(fname)
+      return util.root_pattern(".git")(fname) or util.path.dirname(fname)
     end,
-  }
+  },
 })
 
-require'lspconfig'.sumneko_lua.setup(luadev)
+require("lspconfig").sumneko_lua.setup(luadev)

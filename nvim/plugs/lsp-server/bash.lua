@@ -1,7 +1,7 @@
 -- npm i -g bash-language-server
 
-local key_binding = require('lsp_keybing_config')
+local key_binding = require("lsp_keybing_config")
 
-require'lspconfig'.bashls.setup{
-    on_attach = key_binding.on_attach
-}
+require("lspconfig").bashls.setup({
+  on_attach = key_binding.on_attach,
+})

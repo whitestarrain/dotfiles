@@ -2,5 +2,5 @@
 local key_binding = require("lsp_keybing_config")
 
 require("lspconfig").intelephense.setup({
-	on_attach = key_binding.on_attach,
+  on_attach = key_binding.on_attach,
 })

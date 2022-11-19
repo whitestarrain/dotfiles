@@ -1,1 +1,1 @@
-require'lspconfig'.dotls.setup{}
+require("lspconfig").dotls.setup({})
