@@ -18,6 +18,9 @@ au["User LoadPluginConfig"] = function()
     if code_lanuage == "lua" then
       table.insert(null_ls_source, null_ls.builtins.formatting.stylua)
     end
+    if code_lanuage == "python" then
+      table.insert(null_ls_source, null_ls.builtins.diagnostics.pylint)
+    end
     if code_lanuage == "bash" then
       table.insert(null_ls_source, null_ls.builtins.formatting.stylua)
       table.insert(null_ls_source, null_ls.builtins.formatting.shfmt)
