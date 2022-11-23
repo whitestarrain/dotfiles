@@ -96,7 +96,7 @@ require("au")["User LoadPluginConfig"] = function()
       theme = get_lualine_theme(),
       section_separators = { left = "", right = "" },
       component_separators = { left = "", right = "" },
-      disabled_filetypes = { "tagbar", "Outline" },
+      disabled_filetypes = { "tagbar", "Outline", "undotree", "diff"},
     },
     sections = {
       lualine_a = { "mode" },
