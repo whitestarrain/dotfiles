@@ -173,6 +173,8 @@ vista.vim
 
 - 配置修改后使用nvimPower看一下有没有报错
 
+- Undotree,Tabularize这两个插件很好用。
+
 # 参考配置
 
 - [ ] [voldikss/dotfiles](https://github.com/voldikss/dotfiles/blob/dev/nvim/init.vim)
