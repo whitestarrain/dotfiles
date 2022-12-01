@@ -38,7 +38,7 @@ require("au")["User LoadPluginConfig"] = function()
 			keyword = "wide",
 			after = "fg",
 			pattern = [[.*<(KEYWORDS)\s*:]],
-			comments_only = true,
+			comments_only = false,
 			max_line_len = 400,
 			exclude = {},
 		},
