@@ -114,7 +114,6 @@ for code_language in g:code_language_list
     LoadLua ./plugs/lsp-server/rust_analyzer_config.lua
   endif
   if code_language == "python"
-    " 通过require("python")返回
     " LoadLua ./plugs/lsp-server/pyright_config.lua
     LoadLua ./plugs/lsp-server/python_jedi_lsp.lua
   endif

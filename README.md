@@ -60,7 +60,7 @@
 - [ ] asyn_run.vim
 - [ ] asynctasks
 - [ ] vim-table-mode
-  - 格式化的话，markdown中，感觉用prettier就够用了
+  - 格式化的话，markdown中，感觉用Tabular就够用了
   - 不过这个还提供类似excel公式计算的功能
 - [ ] toggletask.nvim
 - [ ] symbols-outline.nvim
