@@ -16,14 +16,17 @@ au["User LoadPluginConfig"] = function()
   local null_ls_source = {}
   for _, code_lanuage in ipairs(vim.g.code_language_list) do
     if code_lanuage == "lua" then
+      -- DEPN: stylua
       table.insert(null_ls_source, null_ls.builtins.formatting.stylua)
     end
     if code_lanuage == "python" then
+      -- DEPN: pylint
       table.insert(null_ls_source, null_ls.builtins.diagnostics.pylint)
     end
     if code_lanuage == "bash" then
-      table.insert(null_ls_source, null_ls.builtins.formatting.stylua)
+      -- DEPN: shfmt,shellcheck
       table.insert(null_ls_source, null_ls.builtins.formatting.shfmt)
+      table.insert(null_ls_source, null_ls.builtins.diagnostics.shellcheck)
     end
     if code_lanuage == "front" then
       table.insert(

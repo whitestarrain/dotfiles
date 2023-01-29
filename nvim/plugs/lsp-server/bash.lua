@@ -1,4 +1,4 @@
--- npm i -g bash-language-server
+-- DEPN: npm i -g bash-language-server
 
 local key_binding = require("lsp_keybing_config")
 
