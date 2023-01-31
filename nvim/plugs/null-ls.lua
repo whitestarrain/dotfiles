@@ -26,7 +26,13 @@ au["User LoadPluginConfig"] = function()
     if code_lanuage == "bash" then
       -- DEPN: shfmt,shellcheck
       table.insert(null_ls_source, null_ls.builtins.formatting.shfmt)
-      table.insert(null_ls_source, null_ls.builtins.diagnostics.shellcheck)
+      table.insert(null_ls_source, null_ls.builtins.code_actions.shellcheck)
+      table.insert(
+        null_ls_source,
+        null_ls.builtins.diagnostics.shellcheck.with({
+          diagnostics_format = "#{m}\n  https://www.shellcheck.net/wiki/SC#{c}",
+        })
+      )
     end
     if code_lanuage == "front" then
       table.insert(

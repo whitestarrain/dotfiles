@@ -32,6 +32,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap <C-m> <C-w>w
 
 " 设置窗口大小调整快捷键
 nnoremap <silent><c-left> :vertical resize -1<CR>

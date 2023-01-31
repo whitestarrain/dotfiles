@@ -67,13 +67,16 @@ require("au")["User LoadPluginConfig"] = function()
     nnoremap <silent><leader>ff :Telescope find_files<CR>
     let g:which_key_map.f.f = 'find files'
 
+    nnoremap <silent><leader>fa :Telescope find_files no_ignore=true hidden=true<CR>
+    let g:which_key_map.f.a = 'Telescope find all files without assigned pattern'
+
     nnoremap <silent><leader>/ :Telescope buffers<CR>
 
     nnoremap <silent><leader>fc :Telescope commands<CR>
     let g:which_key_map.f.c = 'find command'
 
-    nnoremap <silent><leader>fa :Telescope<CR>
-    let g:which_key_map.f.a = 'all_find_command'
+    nnoremap <silent><leader>fp :Telescope<CR>
+    let g:which_key_map.f.p = 'Telescope pickers'
 
     nnoremap <silent><leader>fg :Telescope live_grep<CR>
     let g:which_key_map.f.g = 'live_grep'
