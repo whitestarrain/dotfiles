@@ -8,7 +8,7 @@ function! PlugConfigFloaterm()
 
   let g:floaterm_opener='edit'
   " git-bash中gitui会渲染混乱
-  let g:floaterm_shell='nu' " DEPN: scoop install nushell
+  let g:floaterm_shell='sh' " DEPN: 默认shell
   let g:floaterm_rootmarkers=['.project', '.git', '.hg', '.svn', '.root', '.gitignore']
 
   " float 中间
