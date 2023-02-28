@@ -1,11 +1,17 @@
-# chcp 65001
-# Env
+# git env
 $env:GIT_SSH = "C:\Windows\system32\OpenSSH\ssh.exe"
 $env:LESSCHARSET="utf-8"  # for git less
-# env reload
+
+# env:path reload
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
+
 # $env:JAVA_TOOL_OPTIONS=' -Dfile.encoding=UTF-8'
-[Console]::OutputEncoding = [System.Text.Encoding]::UTF8  # fix Unrecognizable Code for `findstr` and `grep`
+
+# fix Unrecognizable Code for `findstr` and `grep`
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+# Shut down automatically update。issue: https://github.com/PowerShell/PowerShell/issues/8663
+$env:POWERSHELL_UPDATECHECK="Off"
 
 # Alias
 Set-Alias ll ls
@@ -76,8 +82,6 @@ oh-my-posh --init --shell pwsh --config D:\MyRepo\dotfiles\powershell\white_star
 # DEPN: Install-Module -Name PSReadLine --AllowPrerelease -Scope CurrentUser -Force -SkipPublisherCheck
 # DEPN: scoop install fzf
 # DEPN: Install-Module -Name PSFzf -Scope CurrentUser -Force
-# powershell module import for pwsh
-# other installed module: z
 if ($PSVersionTable.PSVersion.Major -eq 7){
   # Import-Module posh-git
   Import-Module -Name Terminal-Icons
@@ -101,6 +105,7 @@ if ($PSVersionTable.PSVersion.Major -eq 7){
     # Type               = 'DarkGray'
     # ContinuationPrompt = 'DarkGray'
   }
+
   # clean command history for PSReadLine
   # Remove-Item (Get-PSReadlineOption).HistorySavePath
 
