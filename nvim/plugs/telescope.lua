@@ -52,6 +52,8 @@ require("au")["User LoadPluginConfig"] = function()
           ["/"] = function()
             vim.cmd("startinsert")
           end,
+          ["h"] = actions.cycle_history_prev,
+          ["l"] = actions.cycle_history_next,
         },
       },
     },
@@ -81,7 +83,7 @@ require("au")["User LoadPluginConfig"] = function()
     nnoremap <silent><leader>fg :Telescope live_grep<CR>
     let g:which_key_map.f.g = 'live_grep'
 
-    nnoremap <silent><leader>fg :Telescope live_grep<CR>
-    let g:which_key_map.f.g = 'live_grep'
+    nnoremap <silent><leader>fr :Telescope resume<CR>
+    let g:which_key_map.f.r = 'find resume'
   ]])
 end
