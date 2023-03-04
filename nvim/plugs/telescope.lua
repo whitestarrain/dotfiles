@@ -83,7 +83,7 @@ require("au")["User LoadPluginConfig"] = function()
     nnoremap <silent><leader>fg :Telescope live_grep<CR>
     let g:which_key_map.f.g = 'live_grep'
 
-    nnoremap <silent><leader>fr :Telescope resume<CR>
+    nnoremap <silent><leader>fr :Telescope resume initial_mode=normal<CR>
     let g:which_key_map.f.r = 'find resume'
   ]])
 end
