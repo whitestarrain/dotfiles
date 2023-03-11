@@ -21,7 +21,7 @@ require("au")["User LoadPluginConfig"] = function()
     -- 启用代码高亮功能
     highlight = {
       enable = true,
-      disable = { "markdown" },
+      disable = { "markdown", "help" },
       additional_vim_regex_highlighting = false,
     },
 
