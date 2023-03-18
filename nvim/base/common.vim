@@ -76,3 +76,10 @@ set foldmethod=indent
 set foldlevelstart=99       " 打开文件是默认不折叠代码
 set conceallevel=0 " 语法隐藏相关，不进行语法隐藏
 
+
+" In the quickfix window, <CR> is used to jump to the error under the
+" cursor, so undefine the mapping there.
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+
+" auto write into file
+" autocmd CursorHold,CursorHoldI * update
