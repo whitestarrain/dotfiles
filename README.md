@@ -19,6 +19,8 @@
 
 # 待做项
 
+- [ ] folke/which-key.nvim支持注册lua函数，有时间可以切到这个上
+  - vim-which-key，使用vim.keymap.set()后，会导致报错，还是启用了吧
 - [ ] **配置优化(重要)**
   - [ ] 暂不考虑纯lua配置，依旧使用LoadLua,LoadScript，便于控制加载顺序
     > windows下插件默认配置文件位置有些分散。

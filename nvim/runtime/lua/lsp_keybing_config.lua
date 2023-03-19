@@ -1,5 +1,23 @@
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
+
+local custom_format = function(bufnr)
+  -- prefer null-ls format
+  bufnr = vim.api.nvim_get_current_buf()
+  clients = vim.lsp.get_active_clients({ bufnr = bufnr, name = "null-ls" })
+  if #clients > 0 and clients[1]["server_capabilities"]["documentFormattingProvider"] then
+    vim.lsp.buf.format({
+      filter = function(client)
+        return client.name == "null-ls"
+      end,
+      timeout_ms = 5000,
+      bufnr = bufnr,
+    })
+  else
+    vim.lsp.buf.format()
+  end
+end
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -64,7 +82,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 
   -- 代码格式化
-  buf_set_keymap("n", "<space>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  buf_set_keymap("n", "<space>cf", '<cmd>lua require("lsp_keybing_config").custom_format()<CR>', opts)
 
   -- workspace相关，不太清楚干什么的
   -- buf_set_keymap('n', '<leader>cwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
@@ -83,4 +101,5 @@ end
 
 return {
   on_attach = on_attach,
+  custom_format = custom_format,
 }

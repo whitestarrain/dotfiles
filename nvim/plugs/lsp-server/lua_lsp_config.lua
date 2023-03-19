@@ -44,4 +44,4 @@ local luadev = require("lua-dev").setup({
   },
 })
 
-require("lspconfig").sumneko_lua.setup(luadev)
+require("lspconfig").lua_ls.setup(luadev)
