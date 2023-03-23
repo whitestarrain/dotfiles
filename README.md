@@ -67,8 +67,9 @@
 - [ ] toggletask.nvim
 - [ ] symbols-outline.nvim
   - 依赖lsp的大纲插件
-- [ ] mason
-  - 自动化封装了好多，不是太尝试
+- [x] mason
+  - dap debuger 安装用这个不错
+  - 一些lsp之后也可以看着用这个来替换了
 - [ ] 全局替换插件：[nvim-spectre](https://github.com/nvim-pack/nvim-spectre)
 -
 

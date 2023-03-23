@@ -5,3 +5,4 @@ nvim_lua
 debug_dap_exe
 lsp_exe
 *.code-workspace
+nvim/mason

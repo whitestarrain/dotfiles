@@ -71,10 +71,7 @@ call plug#begin(get(g:,"plug_install_path"))
         LoadScript ./plugs/lang_support/rust.vim
       endif
       if code_language == "python" | endif
-      if code_language == "c"
-        " LoadScript ./plugs/_pre/debug/nvim_dap.vim
-        LoadScript ./plugs/_pre/debug/nvim_gdb.vim
-      endif
+      if code_language == "c" | endif
       if code_language == "golang" | endif
       if code_language == "java" | endif
       if code_language == "bash" | endif
@@ -94,9 +91,11 @@ call plug#begin(get(g:,"plug_install_path"))
 
     if len(g:code_language_list)>0
       LoadLua ./plugs/lsp/lsp_conf.lua
+      LoadLua ./plugs/debug/nvim_dap.lua
       LoadLua ./plugs/lsp/diagnostics_list.lua
       LoadLua ./plugs/lsp/symbols_outline.lua
       LoadLua ./plugs/null-ls.lua
+      LoadLua ./plugs/mason.lua
     endif
 
     " auto complete
@@ -105,7 +104,7 @@ call plug#begin(get(g:,"plug_install_path"))
 
 call plug#end()
 
-" 加载lsp配置
+" 加载lsp,dap配置
 for code_language in g:code_language_list
   if exists('g:skip_project_plugs')
     break
@@ -119,7 +118,7 @@ for code_language in g:code_language_list
   endif
   if code_language == "c"
     LoadLua ./plugs/lsp-server/clangd_config.lua
-    " LoadLua ./plugs/_pre/debug/debug_dap/lldb.lua
+    LoadLua ./plugs/debug/debug_dap/codelldb.lua
   endif
   if code_language == "golang"
     LoadLua ./plugs/lsp-server/golang.lua
