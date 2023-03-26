@@ -44,14 +44,14 @@
 - [ ] ~bash自动化记录和设置插件版本~
   - `vim-plug`的`PlugSnapshot`命令暂且够用
 - [ ] ~拿c写一个启动程序？~
-- [ ] 把插件配置写到`after/plugin`，写一些`pcall`或者全局变量 什么的来判断是否加载？
-- [ ] mklink 一些配置文件到dotfiles文件夹
-- [ ] lua配置中，require替换为pcall
+- [x] 把插件配置写到`after/plugin`，或者写一些`pcall`或者全局变量 什么的来判断是否加载？
 - [ ] **java开发环境配置**
   - 参考：[JavaHello/nvim](https://github.com/JavaHello/nvim)
   - 反编译以及跳转不太好搞，暂且老老实实用ide吧
-- [ ] lf工具详细配置
-- [ ] wezterm 快捷键配置调整。[参考](https://github.com/ivaquero/oxidizer.sh/blob/master/defaults/wezterm.lua)
+- ~[ ] lf工具详细配置~
+  - windows上有问题
+- ~[ ] wezterm 快捷键配置调整~。[参考](https://github.com/ivaquero/oxidizer.sh/blob/master/defaults/wezterm.lua)
+  - 换windows terminal了
 
 # nvim准备尝试插件
 
@@ -71,11 +71,24 @@
   - dap debuger 安装用这个不错
   - 一些lsp之后也可以看着用这个来替换了
 - [ ] 全局替换插件：[nvim-spectre](https://github.com/nvim-pack/nvim-spectre)
--
 
 # nvim键位整理
 
 > TODO: 键位整理
+
+# 依赖
+
+- base
+  - fzf
+  - ripgrep
+  - ctags
+- formater,linter,lsp(optional, can be installed by mason)
+  - stylua
+  - pylint
+  - shfmt
+  - shellcheck
+  - tsserver
+  - ...
 
 # 待尝试工具
 
