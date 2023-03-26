@@ -6,7 +6,11 @@ vim.cmd([[
 ]])
 
 require("au")["User LoadPluginConfig"] = function()
-  require("nvim-treesitter.configs").setup({
+  local status,treesitterConfig = pcall(require, "nvim-treesitter.configs")
+  if not status then
+    return
+  end
+  treesitterConfig.setup({
     -- 安装 language parser。默认不自动安装
     -- :TSInstallInfo 命令查看支持的语言
     -- DEPN: :TSInstall <lang>

@@ -1,7 +1,11 @@
 vim.cmd("Plug 'windwp/nvim-autopairs'")
 
 require("au")["User LoadPluginConfig"] = function()
-  require("nvim-autopairs").setup({})
+  local status, autopaires = pcall(require, "nvim-autopairs")
+  if not status then
+    return
+  end
+  autopaires.setup({})
 
   local status, _ = pcall(require, "cmp")
   if not status then

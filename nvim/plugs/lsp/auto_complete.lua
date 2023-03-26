@@ -19,6 +19,11 @@ vim.cmd([[
 ]])
 
 require("au")["User LoadPluginConfig"] = function()
+  local status, cmp = pcall(require, "cmp")
+  if not status or cmp == nil then
+    return
+  end
+
   -- 图标设置
   local function border(hl_name)
     return {
@@ -67,7 +72,7 @@ require("au")["User LoadPluginConfig"] = function()
 
   local lspkind_format = {
     format = lspkind.cmp_format({
-      with_text = true, 
+      with_text = true,
       maxwidth = 40,
       before = function(entry, vim_item)
         -- Source 显示提示来源
@@ -81,11 +86,6 @@ require("au")["User LoadPluginConfig"] = function()
   vim.o.completeopt = "menu"
 
   -- 自动补全设置
-  local status, cmp = pcall(require, "cmp")
-  if not status or cmp == nil then
-    return
-  end
-
   local amp_sources = {
     { name = "path", priority = 5 },
     { name = "vsnip", priority = 4 },
