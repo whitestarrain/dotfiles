@@ -1,4 +1,5 @@
 -- NOTE: 最好不要使用:PlugUpdate进行更新，手动最好git pull
+-- DEPN: scoop install zig (in windows)
 
 vim.cmd([[
   Plug 'nvim-treesitter/nvim-treesitter'
