@@ -3,7 +3,11 @@ vim.cmd([[
 ]])
 
 require("au")["User LoadPluginConfig"] = function()
-  require("symbols-outline").setup({
+  local status, symbolsOutline = pcall(require, "symbols-outline")
+  if not status then
+    return
+  end
+  symbolsOutline.setup({
     keymaps = { -- These keymaps can be a string or a table for multiple keys
       close = { "<Esc>", "q" },
       goto_location = "<Cr>",

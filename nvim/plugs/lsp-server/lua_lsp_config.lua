@@ -1,6 +1,12 @@
 -- DEPN: install lsp from https://github.com/sumneko/lua-language-server
 -- scoop 安装可能会出问题
 -- 参照：https://github.com/folke/dot/blob/master/config/nvim/lua/plugins.lua
+
+local status, lspconfig = pcall(require, "lspconfig")
+if not status then
+  return
+end
+
 local util = require("lspconfig/util")
 
 local key_binding = require("lsp_keybing_config")
@@ -44,4 +50,4 @@ local luadev = require("lua-dev").setup({
   },
 })
 
-require("lspconfig").lua_ls.setup(luadev)
+lspconfig.lua_ls.setup(luadev)

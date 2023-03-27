@@ -1,7 +1,13 @@
 local key_binding = require("lsp_keybing_config")
+
+local status, lspconfig = pcall(require, "lspconfig")
+if not status then
+  return
+end
+
 local util = require("lspconfig/util")
 
-require("lspconfig").gopls.setup({
+lspconfig.gopls.setup({
   on_attach = key_binding.on_attach,
   root_dir = util.root_pattern("go.mod"),
 })

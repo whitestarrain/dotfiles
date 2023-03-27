@@ -36,5 +36,8 @@ require("au")["User LoadPluginConfig"] = function()
     max_height = 20,
   })
 
-  require("lspsaga").setup({})
+  local status, lspsaga = pcall(require, "lspsaga")
+  if status then
+    lspsaga.setup({})
+  end
 end

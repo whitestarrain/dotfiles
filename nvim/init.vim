@@ -13,8 +13,8 @@ LoadScript base/common.vim
 LoadScript base/mappings.vim
 LoadScript base/functions.vim
 
-if !exists("g:code_language_list") 
-  let g:code_language_list=[] 
+if !exists("g:code_language_list")
+  let g:code_language_list=[]
 endif
 let g:plug_install_path = g:absolute_config_path . "../vim_plug_download"
 
@@ -78,7 +78,7 @@ call plug#begin(get(g:,"plug_install_path"))
       if code_language == "vim" | endif
       if code_language == "lua" 
         LoadLua ./plugs/lang_support/lua_dev.lua
-        LoadLua ./plugs/nvim-luapad.lua 
+        LoadLua ./plugs/nvim-luapad.lua
       endif
       if code_language == "front"
         LoadLua ./plugs/lang_support/auto_tag.lua
@@ -136,13 +136,13 @@ for code_language in g:code_language_list
     LoadLua ./plugs/lsp-server/lua_lsp_config.lua
   endif
   if code_language == "front"
-    LoadLua ./plugs/lsp-server/tsserver.lua 
+    LoadLua ./plugs/lsp-server/tsserver.lua
     " vscode 配套lsp
     LoadLua ./plugs/lsp-server/vscode-lsp.lua
     " emmet支持
-    LoadLua ./plugs/lsp-server/emmet.lua 
+    LoadLua ./plugs/lsp-server/emmet.lua
     " 不扫描node_module，还没有解决
-    " LoadLua ./plugs/lsp-server/denols.lua 
+    " LoadLua ./plugs/lsp-server/denols.lua
     " tailwindcss 框架专属，暂时用不到
     " LoadLua ./plugs/lsp-server/tailwindcss.lua
   endif

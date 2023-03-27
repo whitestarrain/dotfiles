@@ -1,14 +1,17 @@
-local dap = require("dap")
+local status, dap = pcall(require, "dap")
+if not status then
+  return
+end
 
 dap.adapters.codelldb = {
-  type = 'server',
+  type = "server",
   port = "${port}",
   executable = {
     -- CHANGE THIS to your path!
-    command = 'codelldb.cmd',
-    args = {"--port", "${port}"},
+    command = "codelldb.cmd",
+    args = { "--port", "${port}" },
     detached = false,
-  }
+  },
 }
 
 dap.configurations.cpp = {
@@ -17,9 +20,9 @@ dap.configurations.cpp = {
     type = "codelldb",
     request = "launch",
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
     end,
-    cwd = '${workspaceFolder}',
+    cwd = "${workspaceFolder}",
     stopOnEntry = false,
   },
 }

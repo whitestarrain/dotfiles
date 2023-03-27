@@ -7,7 +7,12 @@
 
 local key_binding = require("lsp_keybing_config")
 
-require("lspconfig").clangd.setup({
+local status, lspconfig = pcall(require, "lspconfig")
+if not status then
+  return
+end
+
+lspconfig.clangd.setup({
   cmd = {
     "clangd",
     -- 在后台自动分析文件（基于complie_commands)

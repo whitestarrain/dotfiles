@@ -5,6 +5,10 @@ vim.g.markdown_fenced_languages = {
   "js=javascript",
 }
 local key_binding = require("lsp_keybing_config")
-require("lspconfig").denols.setup({
+local status, lspconfig = pcall(require, "lspconfig")
+if not status then
+  return
+end
+lspconfig.denols.setup({
   on_attach = key_binding.on_attach,
 })

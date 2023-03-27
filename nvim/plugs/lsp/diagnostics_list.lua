@@ -1,8 +1,11 @@
-vim.cmd[[
+vim.cmd([[
   Plug 'folke/trouble.nvim'
-]]
+]])
 
 require("au")["User LoadPluginConfig"] = function()
-  require("trouble").setup{}
+  local status, trouble = pcall(require, "trouble")
+  if not status then
+    return
+  end
+  trouble.setup({})
 end
-

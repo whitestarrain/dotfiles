@@ -3,7 +3,11 @@
 
 local key_binding = require("lsp_keybing_config")
 
-require("lspconfig").texlab.setup({
+local status, lspconfig = pcall(require, "lspconfig")
+if not status then
+  return
+end
+lspconfig.texlab.setup({
   cmd = { vim.g.absolute_config_path .. "../lsp_exe/texlab.exe" },
   on_attach = key_binding.on_attach,
 })
