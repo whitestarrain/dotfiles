@@ -7,5 +7,12 @@ require("au")["User LoadPluginConfig"] = function()
   if not status then
     return
   end
-  trouble.setup({})
+  trouble.setup({
+    mode = "document_diagnostics",
+    auto_open = false,
+    auto_close = false,
+    auto_preview = false,
+    auto_fold = false,
+    auto_jump = { "lsp_definitions" },
+  })
 end

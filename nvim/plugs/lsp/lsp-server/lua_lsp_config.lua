@@ -22,11 +22,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 luadev = luadev.setup({
   lspconfig = {
-    cmd = {
-      vim.g.absolute_config_path .. "../lsp_exe/lua-language-server/bin/lua-language-server.exe",
-      "-E",
-      vim.g.absolute_config_path .. "../lsp_exe/lua-language-server/bin/main.lua",
-    },
+    cmd = {"lua-language-server.cmd"},
     settings = {
       Lua = {
         runtime = {
