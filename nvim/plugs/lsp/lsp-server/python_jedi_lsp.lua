@@ -1,11 +1,9 @@
-local key_binding = require("lsp_keybing_config")
-
 local status, lspconfig = pcall(require, "lspconfig")
-
 if not status then
   return
 end
 
+local key_binding = require("lsp_keybing_config")
 local util = require("lspconfig/util")
 
 lspconfig.jedi_language_server.setup({

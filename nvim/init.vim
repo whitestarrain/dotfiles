@@ -110,53 +110,53 @@ for code_language in g:code_language_list
     break
   endif
   if code_language == "rust"
-    LoadLua ./plugs/lsp-server/rust_analyzer_config.lua
+    LoadLua ./plugs/lsp/lsp-server/rust_analyzer_config.lua
   endif
   if code_language == "python"
-    " LoadLua ./plugs/lsp-server/pyright_config.lua
-    LoadLua ./plugs/lsp-server/python_jedi_lsp.lua
+    " LoadLua ./plugs/lsp/lsp-server/pyright_config.lua
+    LoadLua ./plugs/lsp/lsp-server/python_jedi_lsp.lua
   endif
   if code_language == "c"
-    LoadLua ./plugs/lsp-server/clangd_config.lua
+    LoadLua ./plugs/lsp/lsp-server/clangd_config.lua
     LoadLua ./plugs/debug/debug_dap/codelldb.lua
   endif
   if code_language == "golang"
-    LoadLua ./plugs/lsp-server/golang.lua
+    LoadLua ./plugs/lsp/lsp-server/golang.lua
   endif
   if code_language == "java"
-    LoadLua ./plugs/lsp-server/java.lua
+    LoadLua ./plugs/lsp/lsp-server/java.lua
   endif
   if code_language == "bash"
-    LoadLua ./plugs/lsp-server/bash.lua
+    LoadLua ./plugs/lsp/lsp-server/bash.lua
   endif
   if code_language == "vim"
-    LoadLua ./plugs/lsp-server/vimls.lua
+    LoadLua ./plugs/lsp/lsp-server/vimls.lua
   endif
   if code_language == "lua"
-    LoadLua ./plugs/lsp-server/lua_lsp_config.lua
+    LoadLua ./plugs/lsp/lsp-server/lua_lsp_config.lua
   endif
   if code_language == "front"
-    LoadLua ./plugs/lsp-server/tsserver.lua
+    LoadLua ./plugs/lsp/lsp-server/tsserver.lua
     " vscode 配套lsp
-    LoadLua ./plugs/lsp-server/vscode-lsp.lua
+    LoadLua ./plugs/lsp/lsp-server/vscode-lsp.lua
     " emmet支持
-    LoadLua ./plugs/lsp-server/emmet.lua
+    LoadLua ./plugs/lsp/lsp-server/emmet.lua
     " 不扫描node_module，还没有解决
-    " LoadLua ./plugs/lsp-server/denols.lua
+    " LoadLua ./plugs/lsp/lsp-server/denols.lua
     " tailwindcss 框架专属，暂时用不到
-    " LoadLua ./plugs/lsp-server/tailwindcss.lua
+    " LoadLua ./plugs/lsp/lsp-server/tailwindcss.lua
   endif
   if code_language == "vue"
-    LoadLua ./plugs/lsp-server/vuels.lua
+    LoadLua ./plugs/lsp/lsp-server/vuels.lua
   endif
   if code_language == "latex"
-    LoadLua ./plugs/lsp-server/texlab.lua
+    LoadLua ./plugs/lsp/lsp-server/texlab.lua
   endif
   if code_language == "dot"
-    LoadLua ./plugs/lsp-server/dot.lua
+    LoadLua ./plugs/lsp/lsp-server/dot.lua
   endif
   if code_language == "php"
-    LoadLua ./plugs/lsp-server/php_intelephense.lua
+    LoadLua ./plugs/lsp/lsp-server/php_intelephense.lua
   endif
 endfor
 
