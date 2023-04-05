@@ -38,6 +38,7 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadScript ./plugs/term/vim_floaterm.vim
   LoadScript ./plugs/tabular.vim
   LoadScript ./plugs/undotree.vim
+  LoadLua ./plugs/term/asynctasks.lua
   LoadLua ./plugs/impatient.lua
   LoadLua ./plugs/mdSectionNumber.lua
   LoadLua ./plugs/kommentary.lua
