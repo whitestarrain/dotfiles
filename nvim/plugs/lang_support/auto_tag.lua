@@ -11,6 +11,9 @@ vim.cmd([[
 require("au")["User LoadPluginConfig"] = function()
   -- User treesitter setup
   local status, treesitterConfig = pcall(require, "nvim-treesitter.configs")
+  if not status then
+    return
+  end
   treesitterConfig.setup({
     autotag = {
       enable = true,
