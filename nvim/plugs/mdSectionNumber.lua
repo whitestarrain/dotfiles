@@ -1,5 +1,5 @@
 vim.cmd([[
-  Plug 'whitestarrain/md-section-number.nvim'
+  Plug 'whitestarrain/md-section-number.nvim', { 'branch': 'master' }
 ]])
 
 require("au")["User LoadPluginConfig"] = function()

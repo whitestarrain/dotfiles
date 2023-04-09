@@ -45,6 +45,7 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadLua ./plugs/treesitter.lua
   LoadLua ./plugs/auto_pair.lua
   LoadLua ./plugs/ui/todo-comments.lua
+  LoadLua ./plugs/spectre.lua
 
   LoadLua ./plugs/theme/neosolarized_nvim.lua
 
