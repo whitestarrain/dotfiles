@@ -28,6 +28,7 @@ require("au")["User LoadPluginConfig"] = function()
   nvimTree.setup({
     git = {
       ignore = false,
+      timeout= 1000,
     },
     filters = {
       dotfiles = false,
