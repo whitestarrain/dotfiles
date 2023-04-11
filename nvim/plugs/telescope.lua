@@ -46,6 +46,7 @@ require("au")["User LoadPluginConfig"] = function()
         preview_cutoff = 120,
       },
       initial_mode = "insert",
+      --  can use <C-l> in insert mode to cycle/complete tags, i.e. either diagnostic severity or symbols (classes, functions, methods, ...)
       mappings = {
         n = {
           ["q"] = actions.close,
