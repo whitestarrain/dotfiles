@@ -3,7 +3,11 @@ vim.cmd([[
 ]])
 
 require("au")["User LoadPluginConfig"] = function()
-  require("spectre").setup({
+  local status, spectre = pcall(require, "spectre")
+  if not status then
+    return
+  end
+  spectre.setup({
     mapping = {
       ["toggle_line"] = {
         map = "d",

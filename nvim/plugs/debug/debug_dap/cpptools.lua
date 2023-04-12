@@ -25,7 +25,7 @@ dap.configurations.cpp = {
     environment = {},
     externalConsole = false,
     MIMode = "gdb",
-    miDebuggerPath = "D:\\ProgramFiles\\mingw64\\bin\\gdb.exe",
+    miDebuggerPath = "gdb",
   },
 }
 

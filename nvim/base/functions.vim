@@ -60,7 +60,6 @@ function! FindFromAllFile()
       echo "finded str is empty!"
       return ""
     endif
-    call tagbar#CloseWindow()
     execute("vimgrep /" . l:find_str . "/ ./**/*.md ./**/*.txt ./**/*.java ./**/*.scala ./**/*.py | copen")
 endfunction
 

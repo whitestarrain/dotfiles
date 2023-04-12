@@ -30,7 +30,6 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadScript ./plugs/vim_surround.vim
   LoadScript ./plugs/rainrow.vim
   LoadScript ./plugs/ui/indentline.vim
-  LoadScript ./plugs/tag_bar.vim
   LoadScript ./plugs/ui/vim_devicons.vim " 主要为startify 提供icon支持，可选
   LoadScript ./plugs/ui/nvim_web_devicons.vim " 主要为bufferline提供icon支持，可选
   LoadScript ./plugs/abolish.vim
@@ -40,12 +39,9 @@ call plug#begin(get(g:,"plug_install_path"))
   LoadScript ./plugs/undotree.vim
   LoadLua ./plugs/term/asynctasks.lua
   LoadLua ./plugs/impatient.lua
-  LoadLua ./plugs/mdSectionNumber.lua
   LoadLua ./plugs/kommentary.lua
   LoadLua ./plugs/treesitter.lua
   LoadLua ./plugs/auto_pair.lua
-  LoadLua ./plugs/ui/todo-comments.lua
-  LoadLua ./plugs/spectre.lua
 
   LoadLua ./plugs/theme/neosolarized_nvim.lua
 
@@ -66,6 +62,9 @@ call plug#begin(get(g:,"plug_install_path"))
     LoadLua ./plugs/ui/nvim-tree.lua
     LoadLua ./plugs/telescope.lua
     LoadLua ./plugs/git.lua
+    LoadLua ./plugs/mdSectionNumber.lua
+    LoadLua ./plugs/ui/todo-comments.lua
+    LoadLua ./plugs/spectre.lua
 
     " code language support plugin
     for code_language in g:code_language_list

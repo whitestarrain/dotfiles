@@ -15,4 +15,11 @@ require("au")["User LoadPluginConfig"] = function()
       { "<!--", "-->" },
     },
   })
+  vim.cmd([[
+    if exists("g:startify_session_before_save")
+      let g:startify_session_before_save +=  ['lua require("md_section_number.toc").closeToc()']
+      nnoremap <silent><leader>t :lua require("md_section_number.toc").toggle()<CR>
+      let g:which_key_map.t = "markdownToc"
+    endif
+  ]])
 end

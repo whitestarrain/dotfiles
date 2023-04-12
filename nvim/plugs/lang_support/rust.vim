@@ -1,5 +1,4 @@
 Plug 'rust-lang/rust.vim'
-Plug 'tenfyzhong/tagbar-rust.vim'
 
 autocmd User LoadPluginConfig call PlugConfigRust()
 
