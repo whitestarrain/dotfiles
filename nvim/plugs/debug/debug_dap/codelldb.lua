@@ -3,12 +3,17 @@ if not status then
   return
 end
 
+local command = "codelldb"
+if vim.fn.has("win32") == 1 then
+  command = command .. ".cmd"
+end
+
 dap.adapters.codelldb = {
   type = "server",
   port = "${port}",
   executable = {
     -- CHANGE THIS to your path!
-    command = "codelldb.cmd",
+    command = command,
     args = { "--port", "${port}" },
     detached = false,
   },

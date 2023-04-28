@@ -3,10 +3,15 @@ if not status then
   return
 end
 
+local command = "OpenDebugAD7"
+if vim.fn.has("win32") == 1 then
+  command = command .. ".cmd"
+end
+
 dap.adapters.cppdbg = {
   id = "cppdbg",
   type = "executable",
-  command = "OpenDebugAD7.cmd",
+  command = command,
   options = {
     detached = false,
   },

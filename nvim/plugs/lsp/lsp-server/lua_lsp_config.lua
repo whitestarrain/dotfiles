@@ -20,9 +20,14 @@ table.insert(runtime_path, "?.lua")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
+local command = "lua-language-server"
+if vim.fn.has("win32") == 1 then
+  command = command .. ".cmd"
+end
+
 luadev = luadev.setup({
   lspconfig = {
-    cmd = {"lua-language-server.cmd"},
+    cmd = { command },
     settings = {
       Lua = {
         runtime = {

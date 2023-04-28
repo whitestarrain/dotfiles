@@ -8,7 +8,13 @@ function! PlugConfigFloaterm()
 
   let g:floaterm_opener='edit'
   " git-bash中gitui会渲染混乱
-  let g:floaterm_shell='sh' " DEPN: 默认shell
+
+  " DEPN: 默认shell
+  if has("win32")
+    let g:floaterm_shell='cmd'
+  else
+    let g:floaterm_shell='bash'
+  endif
   let g:floaterm_rootmarkers=['.project', '.git', '.hg', '.svn', '.root', '.gitignore']
 
   " float 中间

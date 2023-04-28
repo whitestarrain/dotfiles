@@ -3,10 +3,14 @@ if not status then
   return
 end
 
+local command = "go-debug-adapter"
+if vim.fn.has("win32") == 1 then
+  command = command .. ".cmd"
+end
+
 dap.adapters.go = {
   type = "executable",
-  command = "node",
-  args = { "go-debug-adapter.cmd" },
+  command = command,
 }
 dap.configurations.go = {
   {
