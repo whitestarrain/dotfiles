@@ -20,6 +20,8 @@ require("au")["User LoadPluginConfig"] = function()
         "--line-number",
         "--column",
         "--smart-case",
+        "--hidden",
+        "--glob=!.git/",
       },
       -- lua regex
       file_ignore_patterns = {
