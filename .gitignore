@@ -6,3 +6,4 @@ debug_dap_exe
 lsp_exe
 *.code-workspace
 nvim/mason
+.config/nvim/lazy_plugins
