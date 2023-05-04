@@ -1,6 +1,13 @@
 ---@diagnostic disable: param-type-mismatch, cast-local-type
 local M = {}
 
+function M.emptyFun() end
+
+function M.merge_tb(origin_tb, custom_tb)
+  -- use right table's value when conflict
+  return vim.tbl_deep_extend("force", origin_tb, custom_tb)
+end
+
 function M.getOs()
   if vim.fn.has("macunix") == 1 then
     return "mac"
@@ -94,7 +101,7 @@ M.colors = {
   bracket_grey = "#7C828C",
 }
 
-M.highlight = function(group, options)
+function M.highlight(group, options)
   local guifg = options.fg or "NONE"
   local guibg = options.bg or "NONE"
   local guisp = options.sp or "NONE"

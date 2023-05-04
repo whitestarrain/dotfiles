@@ -12,8 +12,6 @@ local Template = {
 
   -- global mapping with prefix <leader>
   globalMappings = nil,
-  -- mapping when attach
-  onAttachMappings = nil,
 
   --[[ 
   mapping example:
@@ -51,24 +49,6 @@ function Template:config() end
 
 -- execute after plugin installed or updated
 function Template:build() end
-
--- on attach mapping handler
-function Template:onAttach(mappingConvert, mappingRegister)
-  -- Converter is bound to Registrar
-  if self.onAttachMappings == nil or #self.onAttachMappings == 0 then
-    return
-  end
-  if mappingConvert == nil or type(mappingConvert) ~= "function" then
-    return
-  end
-  if mappingRegister == nil or type(mappingRegister) ~= "function" then
-    return
-  end
-  local mappings = mappingConvert(self.onAttachMappings)
-  for _, mapping in ipairs(mappings) do
-    mappingRegister(mapping)
-  end
-end
 
 function Template:new(attrs)
   attrs = attrs or {}
