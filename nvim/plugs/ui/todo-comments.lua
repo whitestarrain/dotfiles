@@ -62,6 +62,9 @@ require("au")["User LoadPluginConfig"] = function()
         "--with-filename",
         "--line-number",
         "--column",
+        "--smart-case",
+        "--hidden",
+        "--glob=!.git/",
       },
       pattern = [[\b(KEYWORDS):]], -- ripgrep regex
     },
