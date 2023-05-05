@@ -4,7 +4,6 @@ local plugin = Template:new()
 
 plugin.shortUrl = "akinsho/bufferline.nvim"
 plugin.dependencies = { "kyazdani42/nvim-web-devicons" }
-
 plugin.config = function()
   local status, bufferline = pcall(require, "bufferline")
   if not status then
@@ -50,9 +49,11 @@ plugin.config = function()
       end,
     },
   })
-
-  vim.keymap.set("n", "<M-h>", ":BufferLineCyclePrev<CR>")
-  vim.keymap.set("n", "<M-l>", ":BufferLineCycleNext<CR>")
 end
+
+plugin.globalMappings = {
+  { "n", "<M-h>", ":BufferLineCyclePrev<CR>" },
+  { "n", "<M-l>", ":BufferLineCycleNext<CR>" },
+}
 
 return plugin

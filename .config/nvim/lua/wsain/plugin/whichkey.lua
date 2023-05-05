@@ -13,6 +13,7 @@ if not vim.loop.fs_stat(whichkeyPath) then
 end
 vim.opt.rtp:prepend(whichkeyPath)
 
+local utils = require("wsain.utils")
 local opts = {
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
@@ -88,32 +89,28 @@ local mappingConvert = function(pluginDatas)
     local mappingConfigs = pluginConfig.globalMappings
     if mappingConfigs ~= nil and #mappingConfigs > 0 then
       for _, mappingConfig in ipairs(mappingConfigs) do
-        if string.sub(mappingConfig.key, 1, #leader) == leader then
+        if string.sub(mappingConfig[2], 1, #leader) == leader then
           if mappingConfig["name"] ~= nil then
-            result.leaderMappings[mappingConfig.key] = {
+            result.leaderMappings[mappingConfig[2]] = {
               name = mappingConfig.name,
             }
           else
-            result.leaderMappings[mappingConfig.key] = {
-              mappingConfig.cmd,
-              mappingConfig.desc,
-              mode = mappingConfig.mode,
-              silent = mappingConfig.silent,
-              noremap = mappingConfig.noremap,
-              nowait = mappingConfig.nowait,
+            local mappingOpts = mappingConfig.opts and mappingConfig.opts or {}
+            result.leaderMappings[mappingConfig[2]] = {
+              mappingConfig[3],
+              mappingConfig[4],
+              mode = mappingConfig[1],
+              silent = mappingOpts.silent or true,
+              noremap = mappingOpts.noremap or true,
+              nowait = mappingOpts.nowait or false,
             }
           end
         else
           result.noLeaderMappings[#result.noLeaderMappings + 1] = {
-            mappingConfig.mode and mappingConfig.mode or "n",
-            mappingConfig.key,
-            mappingConfig.cmd,
-            opts = {
-              desc = mappingConfig.desc,
-              silent = mappingConfig.silent,
-              noremap = mappingConfig.noremap,
-              nowait = mappingConfig.nowait,
-            },
+            mode = mappingConfig[1],
+            key = mappingConfig[2],
+            cmd = mappingConfig[3],
+            opts = utils.merge_tb(mappingConfig[5], { desc = mappingConfig[4] }),
           }
         end
       end
@@ -127,6 +124,9 @@ local registerMapping = function(pluginDatas)
   local wk = require("which-key")
   wk.setup(opts)
   wk.register(mappings.leaderMappings)
+  for _, mapping in ipairs(mappings.noLeaderMappings) do
+    vim.keymap.set(mapping.mode, mapping.key, mapping.cmd, mapping.opts)
+  end
 end
 
 return {

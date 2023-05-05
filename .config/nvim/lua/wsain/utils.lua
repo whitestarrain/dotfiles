@@ -5,6 +5,8 @@ function M.emptyFun() end
 
 function M.merge_tb(origin_tb, custom_tb)
   -- use right table's value when conflict
+  origin_tb = origin_tb or {}
+  custom_tb = custom_tb or {}
   return vim.tbl_deep_extend("force", origin_tb, custom_tb)
 end
 

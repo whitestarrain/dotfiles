@@ -15,21 +15,23 @@ local Template = {
 
   --[[ 
   mapping example:
-  -- type1
+  -- type1, group keymap
   {
-    key = "<leader>z",
-    name = "+others",
+    "n", -- mode
+    "<leader>z", -- key
+    name = "+others", -- group name
   }
-  -- type2
+  -- type2, common keymap
   {
-    key = "<leader>bd",
-    cmd = function() end,
-    desc = "delete buffer",
-    mode = "n",
-    buffer= nil,
-    silent = true,
-    noremap = true,
-    nowait = false, 
+    "n", -- mode
+    "<leader>bd", -- key
+    function() end, -- cmd
+    "delete buffer", -- desc
+    opts = {
+      nowait = false, 
+      silent = true,
+      noremap = true,
+    }
   },
   ]]
 }

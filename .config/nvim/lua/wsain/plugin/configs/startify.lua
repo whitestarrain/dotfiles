@@ -40,4 +40,8 @@ plugin.init = function()
   ]])
 end
 
+plugin.globalMappings = {
+  { "n", "<leader>s", ":Startify<cr>", "start page" },
+}
+
 return plugin

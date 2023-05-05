@@ -2,38 +2,13 @@ local Template = require("wsain.plugin.template")
 local plugin = Template:new()
 
 plugin.globalMappings = {
-  {
-    key = "<leader>d",
-    cmd = function()
-      vim.fn.execute("bp|bd #")
-    end,
-    desc = "delete buffer",
-  },
-  {
-    key = "<leader>z",
-    name = "+others",
-  },
-  {
-    key = "<leader>zp",
-    cmd = function()
-      vim.fn.execute("syntax sync fromstart")
-    end,
-    desc = "syntax sync",
-  },
-  {
-    key = "<leader>zl",
-    cmd = function()
-      vim.fn.execute("%s/\\v(\\n\\s*){2,}/\\r\\r/")
-    end,
-    desc = "compress blank line",
-  },
-  {
-    key = "<leader>zf",
-    cmd = function()
-      print(vim.fn.expand("%:p"))
-    end,
-    desc = "show file path",
-  },
+  { "n", "<leader>d", ":bp|bd #<cr>", "delete buffer" },
+
+  { "n", "<leader>z", name = "+others" },
+  { "n", "<leader>zp", ":syntax sync fromstart<cr>", "syntax sync" },
+  { "n", "<leader>zl", ":%s/\\v(\\n\\s*){2,}/\\r\\r/<cr> :/jkjk<cr>", "compress blank line" },
+
+  { "n", "<leader>zf", "%:p", "show file path" },
 }
 
 return plugin
