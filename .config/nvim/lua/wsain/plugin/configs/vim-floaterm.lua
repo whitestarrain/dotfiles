@@ -1,5 +1,4 @@
-local Template = require("wsain.plugin.template")
-local plugin = Template:new()
+local plugin = require("wsain.plugin.template"):new()
 local utils = require("wsain.utils")
 
 plugin.shortUrl = "voldikss/vim-floaterm"

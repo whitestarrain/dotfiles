@@ -1,5 +1,4 @@
-local Template = require("wsain.plugin.template")
-local plugin = Template:new()
+local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "b3nj5m1n/kommentary"
 plugin.config = function()

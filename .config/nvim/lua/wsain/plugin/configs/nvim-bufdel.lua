@@ -1,5 +1,5 @@
-local Template = require("wsain.plugin.template")
-local plugin = Template:new()
+local plugin = require("wsain.plugin.template"):new()
+
 plugin.shortUrl = "ojroques/nvim-bufdel"
 plugin.opts = {
   -- how to retrieve the next buffer

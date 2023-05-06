@@ -1,5 +1,5 @@
-local Template = require("wsain.plugin.template")
-local plugin = Template:new()
+local plugin = require("wsain.plugin.template"):new()
+
 plugin.shortUrl = "nvim-treesitter/nvim-treesitter"
 plugin.dependencies = {
   "p00f/nvim-ts-rainbow",
