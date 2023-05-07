@@ -5,7 +5,7 @@ env:
 # 字体
 font:
   normal:
-    family: MesloLGS NF
+    family: Hack NF
     style: Regular
     # family: Hack NF
     # family: 'FiraCode Nerd Font'
