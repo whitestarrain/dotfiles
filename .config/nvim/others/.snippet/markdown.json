@@ -1,0 +1,37 @@
+{
+  "fold-comment": {
+    "prefix": ["fold"],
+    "body": ["<!-- fold -->"],
+    "description": "fold comment"
+  },
+  "more-comment": {
+    "prefix": ["more"],
+    "body": ["<!-- more -->"],
+    "description": "'more' comment"
+  },
+  "two-br": {
+    "prefix": ["2br"],
+    "body": ["<br /><br />"],
+    "description": "two <br />"
+  },
+  "br": {
+    "prefix": ["br"],
+    "body": ["<br />"],
+    "description": "one <br />"
+  },
+  "details-block": {
+    "prefix": ["zd"],
+    "body": [
+      "<details>",
+      "<summary style=\"color:red;\">$1</summary>",
+      "\t$2",
+      "</details>"
+    ],
+    "description": "details block"
+  },
+  "anchor": {
+    "prefix": ["anchor"],
+    "body": ["<a name=\"$1\" id=\"$1\"></a>", "<a href=\"#$1\">$1</a>"],
+    "description": "anchor and href"
+  }
+}

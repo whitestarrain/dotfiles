@@ -2,6 +2,7 @@ local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "nvim-treesitter/nvim-treesitter"
 plugin.dependencies = {
+  "nvim-lua/plenary.nvim",
   "p00f/nvim-ts-rainbow",
 }
 plugin.opts = {
@@ -42,6 +43,7 @@ plugin.opts = {
   },
 }
 plugin.config = function()
+  require("nvim-treesitter.configs").setup(plugin.opts)
   --[[
   vim.o.foldmethod = "expr"
   vim.o.foldexpr = "nvim_treesitter#foldexpr()"

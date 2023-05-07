@@ -1,5 +1,5 @@
 -- check install
-local whichkeyPath = vim.fn.stdpath("data") .. "/whichkey/which-key.nvim"
+local whichkeyPath = vim.g.absolute_config_path .. ".managers/whichkey"
 if not vim.loop.fs_stat(whichkeyPath) then
   print("start clone whichkey to " .. whichkeyPath)
   vim.fn.system({
@@ -95,14 +95,14 @@ local mappingConvert = function(pluginDatas)
               name = mappingConfig.name,
             }
           else
-            local mappingOpts = mappingConfig.opts and mappingConfig.opts or {}
+            local mappingOpts = utils.defaultIfNil(mappingConfig.opts, {})
             result.leaderMappings[mappingConfig[2]] = {
               mappingConfig[3],
               mappingConfig[4],
               mode = mappingConfig[1],
-              silent = mappingOpts.silent or true,
-              noremap = mappingOpts.noremap or true,
-              nowait = mappingOpts.nowait or false,
+              silent = utils.defaultIfNil(mappingOpts.silent, true),
+              noremap = utils.defaultIfNil(mappingOpts.noremap, true),
+              nowait = utils.defaultIfNil(mappingOpts.nowait, false),
             }
           end
         else

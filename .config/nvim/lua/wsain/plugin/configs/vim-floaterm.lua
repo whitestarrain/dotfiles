@@ -28,11 +28,6 @@ plugin.init = function()
   vim.g.floaterm_height = 0.85
 
   vim.cmd([[
-    nmap <silent> <M-+> :FloatermNew<cr>
-    nmap <silent> <M-=> :FloatermToggle<cr>
-    tnoremap <silent> <M-+> <c-\><c-n>:FloatermNew<cr>
-    tnoremap <silent> <M-=> <c-\><c-n>:FloatermToggle<cr>
-
     augroup vime_floaterm_group
       autocmd!
       au FileType floaterm tnoremap <buffer> <silent> <M-h> <c-\><c-n>:FloatermPrev<CR>
@@ -40,5 +35,11 @@ plugin.init = function()
     augroup END
   ]])
 end
+plugin.globalMappings = {
+  { "n", "<M-+>", ":FloatermNew<cr>" },
+  { "n", "<M-=>", ":FloatermToggle<cr>" },
+  { "t", "<M-+>", "<c-\\><c-n>:FloatermNew<cr>" },
+  { "t", "<M-=>", "<c-\\><c-n>:FloatermToggle<cr>" },
+}
 
 return plugin

@@ -1,5 +1,5 @@
 -- check install
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.g.absolute_config_path .. ".managers/lazy"
 if not vim.loop.fs_stat(lazypath) then
   print("start clone lazy to " .. lazypath)
   vim.fn.system({
@@ -15,13 +15,14 @@ vim.opt.rtp:prepend(lazypath)
 
 -- lazy config
 local opt = {
-  root = vim.g.absolute_config_path .. "lazy_plugins",
+  root = vim.g.absolute_config_path .. ".plugins",
   install = {
     missing = true,
   },
   checker = {
     enabled = false,
   },
+  lockfile = vim.g.absolute_config_path .. "/lazy-lock.json", -- lockfile generated after running update.
 }
 
 -- plugin config handler

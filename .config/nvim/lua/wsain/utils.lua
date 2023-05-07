@@ -3,6 +3,13 @@ local M = {}
 
 function M.emptyFun() end
 
+function M.defaultIfNil(value, default)
+  if value == nil then
+    return default
+  end
+  return value
+end
+
 function M.merge_tb(origin_tb, custom_tb)
   -- use right table's value when conflict
   origin_tb = origin_tb or {}

@@ -3,9 +3,12 @@ return {
 
   -- theme
   require("wsain.plugin.configs.neosolarized"),
+  -- require("wsain.plugin.configs.onedark"),
 
   -- core
   require("wsain.plugin.configs.treesitter"),
+  require("wsain.plugin.configs.telescope"),
+  require("wsain.plugin.configs.cmp"),
 
   -- ui
   require("wsain.plugin.configs.startify"),
@@ -13,13 +16,19 @@ return {
   require("wsain.plugin.configs.bufferline"),
   require("wsain.plugin.configs.lualine"),
 
+  -- file manger
+  require("wsain.plugin.configs.nvim-tree"),
+
   -- function
   require("wsain.plugin.configs.nvim-bufdel"),
   require("wsain.plugin.configs.nvim-surround"),
   require("wsain.plugin.configs.vim-abolish"),
   require("wsain.plugin.configs.tabular"),
-
-  -- undo
+  require("wsain.plugin.configs.md-img-paste"),
+  require("wsain.plugin.configs.vim-scriptease"),
+  require("wsain.plugin.configs.hop"),
+  require("wsain.plugin.configs.md-section-number"),
+  require("wsain.plugin.configs.vim-vsnip"),
   require("wsain.plugin.configs.undotree"),
 
   -- terminal
@@ -29,4 +38,9 @@ return {
   -- comment
   require("wsain.plugin.configs.kommentary"),
 
+  --doc
+  require("wsain.plugin.configs.vimcdoc"),
+
+  -- git
+  require("wsain.plugin.configs.gitsigns"),
 }
