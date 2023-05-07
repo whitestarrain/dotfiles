@@ -1,6 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "tpope/vim-surround"
+plugin.event = "VeryLazy"
 plugin.init = function()
   local augroup = vim.api.nvim_create_augroup("PlugNvimSurroundAutoCmd", { clear = true })
   vim.api.nvim_create_autocmd({ "FileType" }, {

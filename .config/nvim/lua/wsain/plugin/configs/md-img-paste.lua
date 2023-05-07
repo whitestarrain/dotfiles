@@ -2,6 +2,7 @@ local Template = require("wsain.plugin.template")
 local plugin = Template:new()
 
 plugin.shortUrl = "ferrine/md-img-paste.vim"
+plugin.event = "VeryLazy"
 
 local function showImagePath()
   vim.api.nvim_echo({

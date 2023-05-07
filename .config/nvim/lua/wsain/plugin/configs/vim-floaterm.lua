@@ -2,6 +2,7 @@ local plugin = require("wsain.plugin.template"):new()
 local utils = require("wsain.utils")
 
 plugin.shortUrl = "voldikss/vim-floaterm"
+plugin.event = "VeryLazy"
 plugin.globalMappings = (function()
   if utils.getOs() ~= "win" then
     return {

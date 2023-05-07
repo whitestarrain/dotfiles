@@ -1,6 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "whitestarrain/md-section-number.nvim"
+plugin.event = "VeryLazy"
 plugin.opts = {
   max_level = 4,
   ignore_pairs = {

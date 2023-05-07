@@ -43,6 +43,7 @@ local pluginConfigConvert = function(pluginDatas)
         commit = originConfig.commit,
         pin = originConfig.pin,
         priority = originConfig.priority,
+        event = originConfig.event,
       })
     end
   end

@@ -1,6 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "folke/noice.nvim"
+plugin.event = "VeryLazy"
 plugin.dependencies = {
   "MunifTanjim/nui.nvim",
   "rcarriga/nvim-notify",

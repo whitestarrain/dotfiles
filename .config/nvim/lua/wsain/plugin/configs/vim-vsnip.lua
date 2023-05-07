@@ -1,6 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "hrsh7th/vim-vsnip"
+plugin.event = "VeryLazy"
 plugin.dependencies = {
   "rafamadriz/friendly-snippets",
 }

@@ -1,6 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "hrsh7th/nvim-cmp"
+plugin.event = "VeryLazy"
 plugin.dependencies = {
   "hrsh7th/cmp-path",
   "hrsh7th/cmp-cmdline",

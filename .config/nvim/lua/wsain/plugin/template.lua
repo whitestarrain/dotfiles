@@ -34,6 +34,9 @@ local Template = {
     }
   },
   ]]
+
+  -- not general config
+  event = nil
 }
 
 Template.__index = Template

@@ -1,6 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "b3nj5m1n/kommentary"
+plugin.event = "VeryLazy"
 plugin.config = function()
   vim.g.kommentary_create_default_mappings = false
 end

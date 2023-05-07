@@ -1,6 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "phaazon/hop.nvim"
+plugin.event = "VeryLazy"
 plugin.opts = {}
 plugin.config = function()
   require("hop").setup(plugin.opts)

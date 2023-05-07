@@ -1,6 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "tpope/vim-abolish"
+plugin.event = "VeryLazy"
 
 --[[ 
 example:
