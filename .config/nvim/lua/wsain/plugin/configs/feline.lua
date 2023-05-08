@@ -187,8 +187,8 @@ plugin.config = function()
   }
 
   feline.setup({
-    theme = theme,
-    components = components,
+    --[[ theme = theme,
+    components = components, ]]
   })
 end
 return plugin

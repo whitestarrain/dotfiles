@@ -9,21 +9,19 @@ plugin.config = function()
   local function get_hunks_data()
     -- { added = add_count, modified = modified_count, removed = removed_count }
     local diff_data = { 0, 0, 0 }
-    if vim.fn.exists("*GitGutterGetHunkSummary") == 1 then
+    if vim.fn.exists("b:gitsigns_status") == 1 then
+      local gitsigns_dict = vim.b.gitsigns_status_dict
+      diff_data[1] = gitsigns_dict.added or 0
+      diff_data[2] = gitsigns_dict.changed or 0
+      diff_data[3] = gitsigns_dict.removed or 0
+    elseif vim.fn.exists("*GitGutterGetHunkSummary") == 1 then
       for idx, v in pairs(vim.fn.GitGutterGetHunkSummary()) do
         diff_data[idx] = v
       end
-      return diff_data
     elseif vim.fn.exists("*sy#repo#get_stats") == 1 then
       diff_data[1] = vim.fn["sy#repo#get_stats"]()[1]
       diff_data[2] = vim.fn["sy#repo#get_stats"]()[2]
       diff_data[3] = vim.fn["sy#repo#get_stats"]()[3]
-      return diff_data
-    elseif vim.fn.exists("b:gitsigns_status") == 1 then
-      local gitsigns_dict = vim.api.nvim_buf_get_var(0, "gitsigns_status")
-      diff_data[1] = tonumber(gitsigns_dict:match("+(%d+)")) or 0
-      diff_data[2] = tonumber(gitsigns_dict:match("~(%d+)")) or 0
-      diff_data[3] = tonumber(gitsigns_dict:match("-(%d+)")) or 0
     end
     return {
       added = diff_data[1],
