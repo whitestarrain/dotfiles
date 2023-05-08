@@ -10,6 +10,8 @@ local Template = {
   pin = nil,
   priority = 50,
 
+  loadEvent = nil,
+
   -- global mapping with prefix <leader>
   globalMappings = nil,
 
@@ -34,9 +36,6 @@ local Template = {
     }
   },
   ]]
-
-  -- not general config
-  event = nil
 }
 
 Template.__index = Template

@@ -2,7 +2,7 @@ local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "kyazdani42/nvim-tree.lua"
 plugin.dependencies = { "kyazdani42/nvim-web-devicons" }
-plugin.event = "VeryLazy"
+plugin.loadEvent = "VeryLazy"
 local onAttach = function(bufnr)
   local api = require("nvim-tree.api")
   local function opts(desc)

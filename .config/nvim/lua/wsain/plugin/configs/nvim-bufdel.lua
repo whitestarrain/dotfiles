@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "ojroques/nvim-bufdel"
-plugin.event = "VeryLazy"
+plugin.loadEvent = "VeryLazy"
 plugin.opts = {
   -- how to retrieve the next buffer
   next = "tabs",

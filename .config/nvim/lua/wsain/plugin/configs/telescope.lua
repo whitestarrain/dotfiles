@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "nvim-telescope/telescope.nvim"
-plugin.event = "VeryLazy"
+plugin.loadEvent = "VeryLazy"
 
 plugin.config = function()
   local actions = require("telescope.actions")
