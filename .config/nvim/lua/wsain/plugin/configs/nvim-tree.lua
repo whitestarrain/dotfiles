@@ -8,6 +8,7 @@ local onAttach = function(bufnr)
   local function opts(desc)
     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
+  vim.keymap.set('n', '<C-]>', api.tree.change_root_to_node, opts('CD'))
   vim.keymap.set("n", "O", api.node.open.edit, opts("Open"))
   vim.keymap.set("n", "<CR>", api.node.open.no_window_picker, opts("Open: No Window Picker"))
   vim.keymap.set("n", "o", api.node.open.no_window_picker, opts("Open: No Window Picker"))
