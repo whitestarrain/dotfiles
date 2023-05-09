@@ -22,6 +22,8 @@ keymap.set("n", "<c-right>", ":vertical resize +1<CR>")
 keymap.set("n", "<c-up>", ":resize +1<CR>")
 keymap.set("n", "<c-down>", ":resize -1<CR>")
 
+keymap.set("n","o","A<cr>")
+
 keymap.set("n", "<M-h>", ":bp<cr>")
 keymap.set("n", "<M-l>", ":bn<cr>")
 
