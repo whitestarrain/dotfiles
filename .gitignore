@@ -8,3 +8,4 @@ lsp_exe
 nvim/mason
 .config/nvim/.plugins
 .config/nvim/.managers
+.config/nvim/.mason

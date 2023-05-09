@@ -44,4 +44,7 @@ return {
 
   -- git
   require("wsain.plugin.configs.gitsigns"),
+
+  -- lsp
+  require("wsain.plugin.configs.mason"),
 }
