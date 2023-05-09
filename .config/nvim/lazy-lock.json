@@ -15,7 +15,7 @@
   "lspkind-nvim": { "branch": "master", "commit": "57610d5ab560c073c465d6faf0c19f200cb67e6e" },
   "lualine.nvim": { "branch": "master", "commit": "05d78e9fd0cdfb4545974a5aa14b1be95a86e9c9" },
   "md-img-paste.vim": { "branch": "master", "commit": "787be15ff52ea2db5ae7b813ab8808c8d4cf749e" },
-  "md-section-number.nvim": { "branch": "master", "commit": "fa47b8745df98e321976c3117c379a945b1348c9" },
+  "md-section-number.nvim": { "branch": "master", "commit": "c11e4b42d09b331aea9f6e4a993647417d6b37d3" },
   "neosolarized.nvim": { "branch": "main", "commit": "72d274496b7a2ae511666d82deb678bc07aa62d4" },
   "nvim-bufdel": { "branch": "main", "commit": "96c4f7ab053ddab0025bebe5f7c71e4795430e47" },
   "nvim-cmp": { "branch": "main", "commit": "1cad30fcffa282c0a9199c524c821eadc24bf939" },
