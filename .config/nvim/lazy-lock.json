@@ -17,6 +17,7 @@
   "md-img-paste.vim": { "branch": "master", "commit": "787be15ff52ea2db5ae7b813ab8808c8d4cf749e" },
   "md-section-number.nvim": { "branch": "master", "commit": "c11e4b42d09b331aea9f6e4a993647417d6b37d3" },
   "neosolarized.nvim": { "branch": "main", "commit": "72d274496b7a2ae511666d82deb678bc07aa62d4" },
+  "nvim-autopairs": { "branch": "master", "commit": "7747bbae60074acf0b9e3a4c13950be7a2dff444" },
   "nvim-bufdel": { "branch": "main", "commit": "96c4f7ab053ddab0025bebe5f7c71e4795430e47" },
   "nvim-cmp": { "branch": "main", "commit": "1cad30fcffa282c0a9199c524c821eadc24bf939" },
   "nvim-tree.lua": { "branch": "master", "commit": "270c95556cad96d18ca547d86ae65927334b108b" },

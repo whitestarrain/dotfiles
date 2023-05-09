@@ -18,8 +18,11 @@ end)()
 
 plugin.init = function()
   vim.g.floaterm_opener = "edit"
-  if utils.getOs() == "win" then
+  local os = utils.getOs()
+  if os == "win" then
     vim.g.floaterm_shell = "cmd"
+  elseif os == "mac" then
+    vim.g.floaterm_shell = "zsh"
   else
     vim.g.floaterm_shell = "bash"
   end

@@ -30,6 +30,7 @@ return {
   require("wsain.plugin.configs.md-section-number"),
   require("wsain.plugin.configs.vim-vsnip"),
   require("wsain.plugin.configs.undotree"),
+  require("wsain.plugin.configs.nvim-autopairs"),
 
   -- terminal
   require("wsain.plugin.configs.vim-floaterm"),
