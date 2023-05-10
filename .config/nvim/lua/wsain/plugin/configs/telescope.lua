@@ -21,7 +21,7 @@ plugin.config = function()
       },
       -- lua regex
       file_ignore_patterns = {
-        ".git",
+        "^.git/",
         "%.png",
         "%.jpg",
         "%.jpeg",
@@ -66,6 +66,7 @@ plugin.config = function()
   })
 end
 plugin.globalMappings = {
+  { "n", "<leader>f", name = "find" },
   { "n", "<leader>ff", ":Telescope find_files<CR>", "file" },
   { "n", "<leader>fa", ":Telescope find_files no_ignore=true hidden=true<CR>", "all file" },
   { "n", "<leader>/", ":Telescope buffers sort_mru=true<CR>", "buffer" },
