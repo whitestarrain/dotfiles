@@ -6,9 +6,17 @@ plugin.dependencies = {
   "hrsh7th/cmp-path",
   "hrsh7th/cmp-cmdline",
   "hrsh7th/cmp-vsnip",
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-buffer",
 
   "onsails/lspkind-nvim",
+
+  "hrsh7th/vim-vsnip",
+  "rafamadriz/friendly-snippets",
 }
+plugin.init = function()
+  vim.g.vsnip_snippet_dir = vim.g.absolute_config_path .. "others/.snippet"
+end
 plugin.config = function()
   local cmp = require("cmp")
 
@@ -73,9 +81,9 @@ plugin.config = function()
   vim.o.completeopt = "menu"
 
   local amp_sources = {
+    { name = "nvim_lsp", priority = 10 },
     { name = "path", priority = 5 },
     { name = "vsnip", priority = 4 },
-    { name = "nvim_lsp", priority = 10 },
   }
 
   cmp.setup({

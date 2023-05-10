@@ -28,9 +28,10 @@ return {
   require("wsain.plugin.configs.vim-scriptease"),
   require("wsain.plugin.configs.hop"),
   require("wsain.plugin.configs.md-section-number"),
-  require("wsain.plugin.configs.vim-vsnip"),
   require("wsain.plugin.configs.undotree"),
   require("wsain.plugin.configs.nvim-autopairs"),
+  require("wsain.plugin.configs.nvim-spectre"),
+  require("wsain.plugin.configs.todo-comments"),
 
   -- terminal
   require("wsain.plugin.configs.vim-floaterm"),
@@ -47,4 +48,5 @@ return {
 
   -- lsp
   require("wsain.plugin.configs.mason"),
+  require("wsain.plugin.configs.nvim-lspconfig"),
 }
