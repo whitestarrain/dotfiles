@@ -216,6 +216,7 @@ local function ensureLoad()
 end
 
 local function setupLspWrap(fun)
+  -- TODO: lsp配置检查，跳过已配置的lsp
   return function()
     ensureLoad()
     fun()
