@@ -26,7 +26,6 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.laststatus = 2
 vim.opt.hidden = true
-vim.opt.display = "lastline"
 vim.opt.signcolumn = "auto:2"
 
 local bgHighLightAugroup = vim.api.nvim_create_augroup("BgHighlight", { clear = true })
