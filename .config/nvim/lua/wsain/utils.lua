@@ -132,4 +132,10 @@ function M.highlight(group, options)
   )
 end
 
+function M.addCommandBeforeSaveSession(command)
+  local tmp = vim.g.startify_session_before_save or {}
+  table.insert(tmp, command)
+  vim.g.startify_session_before_save = tmp
+end
+
 return M

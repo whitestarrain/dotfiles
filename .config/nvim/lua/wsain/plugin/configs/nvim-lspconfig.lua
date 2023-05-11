@@ -9,8 +9,7 @@ plugin.dependencies = {
   "jose-elias-alvarez/null-ls.nvim",
 }
 plugin.loadEvent = "VeryLazy"
-
-local function lspConfigSetup()
+plugin.config = function()
   -- diagnostic config
   vim.diagnostic.config({
     virtual_text = {
@@ -112,6 +111,7 @@ local function outlineSetup()
       TypeParameter = { icon = "", hl = "@Parameter" },
     },
   })
+  require("wsain.utils").addCommandBeforeSaveSession("silent! SymbolsOutlineClose")
 end
 
 local function nulllsSetup()
@@ -124,9 +124,6 @@ local function nulllsSetup()
     null_ls.builtins.diagnostics.pylint,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.code_actions.shellcheck,
-    null_ls.builtins.diagnostics.shellcheck.with({
-      diagnostics_format = "#{m}\n  https://www.shellcheck.net/wiki/SC#{c}",
-    }),
     null_ls.builtins.formatting.prettier.with({
       disabled_filetypes = { "markdown" },
     }),
@@ -207,8 +204,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>ct", ":SymbolsOutline<CR>", opts("outline"))
 end
 
-local function ensureLoad()
-  lspConfigSetup()
+local function ensureDepLoaded()
   lspsagaSetup()
   troubleSetup()
   outlineSetup()
@@ -216,9 +212,8 @@ local function ensureLoad()
 end
 
 local function setupLspWrap(fun)
-  -- TODO: lsp配置检查，跳过已配置的lsp
   return function()
-    ensureLoad()
+    ensureDepLoaded()
     fun()
     vim.fn.execute("w")
     vim.fn.execute("e")

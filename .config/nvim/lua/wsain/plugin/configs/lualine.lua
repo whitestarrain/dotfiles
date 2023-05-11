@@ -50,11 +50,11 @@ plugin.config = function()
     buffer_not_empty = function()
       return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
     end,
-    hide_in_width = function()
-      return vim.fn.winwidth(0) > 100
+    hide_by_columns_100 = function()
+      return vim.o.columns > 100
     end,
-    hide_in_width_80 = function()
-      return vim.fn.winwidth(0) > 80
+    hide_by_columns_80 = function()
+      return vim.o.columns > 80
     end,
     check_git_workspace = function()
       local filepath = vim.fn.expand("%:p:h")
@@ -76,7 +76,8 @@ plugin.config = function()
       theme = get_lualine_theme(),
       section_separators = { left = "", right = "" },
       component_separators = { left = "", right = "" },
-      disabled_filetypes = { "Outline", "undotree", "diff", "MSNumber" },
+      disabled_filetypes = { "Outline", "undotree", "diff", "msnumber", "startify" },
+      globalstatus = true,
     },
     sections = {
       lualine_a = { "mode" },
@@ -94,7 +95,7 @@ plugin.config = function()
           symbols = { added = "  ", modified = " ", removed = " " }, -- Changes the symbols used by the diff.
           source = get_hunks_data,
           separator = { left = nil, right = nil },
-          cond = conditions.hide_in_width_80,
+          cond = conditions.hide_by_columns_80,
         },
         {
           -- Insert mid section. You can make any number of sections in neovim :)
@@ -103,7 +104,7 @@ plugin.config = function()
             return "%="
           end,
           separator = { left = nil, right = nil },
-          cond = conditions.hide_in_width,
+          cond = conditions.hide_by_columns_100,
         },
         {
           get_lsp_client,
@@ -113,7 +114,7 @@ plugin.config = function()
             if tbl[vim.bo.filetype] then
               return false
             end
-            return conditions.buffer_not_empty() and conditions.hide_in_width()
+            return conditions.buffer_not_empty() and conditions.hide_by_columns_100()
           end,
           color = { fg = utils.colors.cyan, gui = "bold" },
         },
@@ -123,7 +124,7 @@ plugin.config = function()
           "diagnostics",
           sources = { "nvim_diagnostic" },
           symbols = { error = " ", warn = " ", info = " ", hint = " " },
-          cond = conditions.hide_in_width,
+          cond = conditions.hide_by_columns_100,
         },
         {
           "fileformat",
@@ -132,12 +133,12 @@ plugin.config = function()
             dos = "dos",
             mac = "mac",
           },
-          cond = conditions.hide_in_width,
+          cond = conditions.hide_by_columns_100,
         },
         "encoding",
         {
           "filetype",
-          cond = conditions.hide_in_width,
+          cond = conditions.hide_by_columns_100,
         },
       },
       lualine_y = { "progress" },
