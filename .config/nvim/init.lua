@@ -6,7 +6,7 @@ vim.g.absolute_config_path = string.sub(
   0,
   string.len(vim.fn.expand("<sfile>:p")) - string.len(vim.fn.expand("<sfile>:t"))
 )
-vim.opt.rtp:append(vim.g.absolute_config_path)
+vim.opt.rtp:append(string.sub(vim.g.absolute_config_path, 1, -2))
 
 -- basic config
 

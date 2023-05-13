@@ -19,6 +19,14 @@ local opt = {
   install = {
     missing = true,
   },
+  performance = {
+    cache = {
+      enabled = true,
+    },
+    rtp = {
+      reset = false,
+    },
+  },
   ui = {
     border = "rounded",
   },
@@ -58,9 +66,7 @@ local loadPlugins = function(pluginDatas)
   local plugins = pluginConfigConvert(pluginDatas)
 
   -- lazy will delete custom runtimepath
-  local recoverLostRTP = require("wsain.utils").recoverLostRuntimepath()
   require("lazy").setup(plugins, opt)
-  recoverLostRTP()
 end
 
 return {
