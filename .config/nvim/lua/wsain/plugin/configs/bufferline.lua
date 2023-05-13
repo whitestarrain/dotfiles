@@ -4,13 +4,8 @@ local plugin = require("wsain.plugin.template"):new()
 plugin.shortUrl = "akinsho/bufferline.nvim"
 plugin.dependencies = { "kyazdani42/nvim-web-devicons" }
 plugin.config = function()
-  local status, bufferline = pcall(require, "bufferline")
-  if not status then
-    return
-  end
   local separator_style = { "", "" }
-
-  bufferline.setup({
+  require("bufferline").setup({
     options = {
       diagnostics = "nvim_lsp",
       separator_style = separator_style,
@@ -46,6 +41,13 @@ plugin.config = function()
         end
         return s
       end,
+    },
+    highlights = {
+      buffer_selected = {
+        fg = "#ecf0f1",
+        bold = true,
+        italic = true,
+      },
     },
   })
 end
