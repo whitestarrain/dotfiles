@@ -19,6 +19,9 @@ local opt = {
   install = {
     missing = true,
   },
+  ui = {
+    border = "rounded",
+  },
   checker = {
     enabled = false,
   },

@@ -1,6 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "windwp/nvim-autopairs"
+plugin.loadEvent = "VeryLazy"
 plugin.config = function()
   require("nvim-autopairs").setup({})
 
