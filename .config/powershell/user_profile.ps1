@@ -74,8 +74,9 @@ function which ($command) {
     Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
 
-# oh-my-posh
-oh-my-posh --init --shell pwsh --config D:\MyRepo\dotfiles\powershell\white_star_rain.omp.json | Invoke-Expression
+# starship
+# DEPN: scoop install starship
+Invoke-Expression (&starship init powershell)
 
 # DEPN: Install-Module -Name z
 # DEPN: Install-Module -Name Terminal-Icons -Repository PSGallery -Force
