@@ -12,9 +12,10 @@ return {
 
   -- ui
   require("wsain.plugin.configs.startify"),
+  require("wsain.plugin.configs.nvim-colorizer"),
   require("wsain.plugin.configs.indent-blankline"),
   require("wsain.plugin.configs.bufferline"),
-  require("wsain.plugin.configs.lualine"),
+  require("wsain.plugin.configs.feline"),
 
   -- file manger
   require("wsain.plugin.configs.nvim-tree"),

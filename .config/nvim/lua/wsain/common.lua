@@ -24,7 +24,7 @@ vim.opt.incsearch = true
 vim.opt.hlsearch = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.laststatus = 2
+vim.opt.laststatus = 3
 vim.opt.hidden = true
 vim.opt.signcolumn = "auto:2"
 

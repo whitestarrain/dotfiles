@@ -2,7 +2,8 @@ local plugin = require("wsain.plugin.template"):new()
 plugin.shortUrl = "famiu/feline.nvim"
 plugin.config = function()
   local feline = require("feline")
-  local vi_mode = require("feline.providers.vi_mode")
+  local modeProvider = require("feline.providers.vi_mode")
+  local cursorProvider = require("feline.providers.cursor")
   local solarized = {
     fg = "#839496",
     bg = "#073642",
@@ -16,9 +17,12 @@ plugin.config = function()
     green = "#719e07",
     black = "#3c3836",
     skyblue = "#83a598",
-    oceanblue = "#076678",
+    oceanblue = "#008080",
     gray = "#93a1a1",
     darkblue = "#073642",
+    white = "#FFFFFF",
+
+    second_comp = "#93a1a1",
   }
 
   local theme = solarized
@@ -67,23 +71,44 @@ plugin.config = function()
     git_changed = "",
     git_removed = "",
   }
+
   local function modeHl()
-    local hl = modeColors[vi_mode.get_vim_mode()]
+    local hl = modeColors[modeProvider.get_vim_mode()]
     if hl == nil then
       hl = modeColors["NORMAL"]
     end
     return hl
   end
 
+  local function getLspClientName()
+    local msg = ""
+    local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+    local clients = vim.lsp.get_active_clients()
+    if next(clients) == nil then
+      return msg
+    end
+    for _, client in ipairs(clients) do
+      local filetypes = client.config.filetypes
+      if client.name ~= "null-ls" and filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+        return client.name
+      end
+    end
+    return msg
+  end
+
   local function getDiffStatus(type)
     -- { added = add_count, modified = modified_count, removed = removed_count }
     local diffStatus = vim.b.gitsigns_status_dict
-    local result = ""
     if diffStatus == nil then
-      return result
+      return nil
     end
-    result = diffStatus[type] or result
-    return result
+    return diffStatus[type]
+  end
+
+  local function columnsWidthCondition(width)
+    return function()
+      return vim.o.columns > width
+    end
   end
 
   local components = {
@@ -92,19 +117,19 @@ plugin.config = function()
       {
         {
           provider = function()
-            return " " .. vi_mode.get_vim_mode() .. " "
+            return " " .. modeProvider.get_vim_mode() .. " "
           end,
           hl = modeHl,
           right_sep = {
             str = icons.right_filled,
             hl = function()
-              local hl = modeColors[vi_mode.get_vim_mode()]
+              local hl = modeColors[modeProvider.get_vim_mode()]
               if hl == nil then
                 hl = modeColors["NORMAL"]
               end
               local bg = theme.bg
               if vim.b.gitsigns_head ~= nil then
-                bg = theme.gray
+                bg = theme.second_comp
               end
               return {
                 fg = hl.bg,
@@ -115,11 +140,13 @@ plugin.config = function()
         },
         {
           provider = function()
-            local branch = vim.b.gitsigns_head or ""
-            return " " .. branch .. " "
+            if vim.b.gitsigns_head then
+              return "  " .. vim.b.gitsigns_head .. " "
+            end
+            return ""
           end,
           hl = {
-            bg = theme.gray,
+            bg = theme.second_comp,
             fg = theme.bg,
           },
           right_sep = {
@@ -143,52 +170,205 @@ plugin.config = function()
         },
         {
           provider = function()
-            return icons.git_added .. " " .. getDiffStatus("added") .. " "
+            local status = getDiffStatus("added")
+            if status == nil or status == 0 then
+              return ""
+            end
+            return icons.git_added .. " " .. status .. " "
           end,
           hl = {
             fg = theme.green,
           },
+          enabled = columnsWidthCondition(90),
         },
         {
           provider = function()
-            return icons.git_changed .. " " .. getDiffStatus("changed") .. " "
+            local status = getDiffStatus("changed")
+            if status == nil or status == 0 then
+              return ""
+            end
+            return icons.git_changed .. " " .. status .. " "
           end,
           hl = {
             fg = theme.yellow,
           },
+          enabled = columnsWidthCondition(90),
         },
         {
           provider = function()
-            return icons.git_removed .. " " .. getDiffStatus("removed") .. " "
+            local status = getDiffStatus("removed")
+            if status == nil or status == 0 then
+              return ""
+            end
+            return icons.git_removed .. " " .. status .. " "
           end,
           hl = {
             fg = theme.red,
           },
+          enabled = columnsWidthCondition(90),
         },
-      }, -- left section
-      {}, -- mid section
-      {}, -- right section
-    },
-    -- components when buffer is inactive
-    inactive = {
-      {
-        {},
       }, -- left section
       {
         {
-          provider = icons.block,
+          provider = function()
+            return "%="
+          end,
+          left_sep = "",
+          right_sep = "",
+        },
+        {
+          provider = getLspClientName,
+          icon = " LSP:",
           hl = {
-            bg = theme.fg,
+            fg = theme.oceanblue,
+          },
+          enabled = columnsWidthCondition(110),
+        },
+      }, -- mid section
+      {
+        {
+          provider = "diagnostic_errors",
+          hl = { fg = theme.red },
+          enabled = columnsWidthCondition(102),
+        },
+        {
+          provider = "diagnostic_warnings",
+          hl = { fg = theme.yellow },
+          enabled = columnsWidthCondition(102),
+        },
+        {
+          provider = "diagnostic_hints",
+          hl = { fg = theme.green },
+          enabled = columnsWidthCondition(102),
+        },
+        {
+          provider = "diagnostic_info",
+          hl = { fg = theme.blue },
+          enabled = columnsWidthCondition(102),
+        },
+        {
+          provider = function()
+            return vim.bo.fileformat
+          end,
+          left_sep = {
+            str = " ",
+          },
+        },
+        {
+          provider = function()
+            return vim.bo.fenc
+          end,
+          left_sep = {
+            str = " " .. icons.left .. " ",
+            hl = {
+              bg = theme.bg,
+              fg = theme.fg,
+            },
+          },
+        },
+        {
+          provider = function()
+            return vim.bo.filetype
+          end,
+          left_sep = {
+            str = " " .. icons.left .. " ",
+            hl = {
+              bg = theme.bg,
+              fg = theme.fg,
+            },
+          },
+        },
+        {
+          provider = function()
+            return " " .. cursorProvider.line_percentage() .. " "
+          end,
+          hl = {
+            bg = theme.second_comp,
             fg = theme.bg,
+          },
+          left_sep = {
+            str = " " .. icons.left_filled,
+            hl = {
+              bg = theme.bg,
+              fg = theme.gray,
+            },
+          },
+        },
+        {
+          provider = function()
+            local position = cursorProvider.position("", {})
+            if #position < 7 then
+              return string.format("%07s  ", position)
+            end
+            return " " .. position .. "  "
+          end,
+          hl = modeHl,
+          left_sep = {
+            str = icons.left_filled,
+            hl = function()
+              local hl = modeColors[modeProvider.get_vim_mode()]
+              if hl == nil then
+                hl = modeColors["NORMAL"]
+              end
+              return {
+                fg = hl.bg,
+                bg = theme.second_comp,
+              }
+            end,
           },
         },
       }, -- right section
     },
+    -- components when buffer is inactive
+    inactive = {
+      {
+        {
+          provider = function()
+            return " " .. modeProvider.get_vim_mode() .. " "
+          end,
+          hl = modeHl,
+          right_sep = {
+            str = icons.right_filled .. " ",
+            hl = function()
+              local hl = modeColors[modeProvider.get_vim_mode()]
+              if hl == nil then
+                hl = modeColors["NORMAL"]
+              end
+              return {
+                fg = hl.bg,
+              }
+            end,
+          },
+        },
+        {
+          provider = function()
+            return vim.fn.getcwd()
+          end,
+        },
+      }, -- left section
+      {}, -- right section
+    },
   }
 
   feline.setup({
-    --[[ theme = theme,
-    components = components, ]]
+    theme = theme,
+    components = components,
+    force_inactive = {
+      filetypes = {
+        "^NvimTree$",
+        "^packer$",
+        "^startify$",
+        "^fugitive$",
+        "^fugitiveblame$",
+        "^qf$",
+        "^help$",
+        "^msnumber$",
+      },
+      buftypes = {
+        "^terminal$",
+      },
+      bufnames = {},
+    },
   })
 end
 return plugin
