@@ -33,29 +33,82 @@ end
 function M.getOpenCommand()
   local os = M.getOs()
   if os == "win" then
-    return "start"
+    return {
+      cmd = "cmd",
+      args = { "/c", "start" },
+    }
   end
   if os == "mac" then
-    return "open"
+    return {
+      cmd = "open",
+      args = {},
+    }
   end
-  if os == "linux" or os == "wsl" then
-    return "xdg-open"
+  return {
+    cmd = "xdg-open",
+    args = {},
+  }
+end
+
+function M.systemOpen(link)
+  local openCmd = M.getOpenCommand()
+  local process = {
+    cmd = openCmd.cmd,
+    args = openCmd.args,
+    errors = "\n",
+    stderr = vim.loop.new_pipe(false),
+  }
+  table.insert(process.args, link)
+  process.handle, process.pid = vim.loop.spawn(
+    process.cmd,
+    { args = process.args, stdio = { nil, nil, process.stderr }, detached = true },
+    function(code)
+      process.stderr:read_stop()
+      process.stderr:close()
+      process.handle:close()
+      if code ~= 0 then
+        print(string.format("system_open failed with return code %d: %s", code, process.errors))
+      end
+    end
+  )
+  if not process.handle then
+    print(string.format("system_open failed to spawn command '%s': %s", process.cmd, process.pid))
+    return
   end
+  vim.loop.read_start(process.stderr, function(err, data)
+    if err then
+      return
+    end
+    if data then
+      process.errors = process.errors .. data
+    end
+  end)
+  vim.loop.unref(process.handle)
 end
 
 function M.openFileUnderCursor()
   local filePath = vim.fn.expand("<cfile>")
+  if filePath == nil or string.len(filePath) < 1 then
+    return
+  end
   local relatePath = ""
-  if string.sub(filePath, 1, 4) == "http" then
+  if string.len(filePath) > 4 and string.sub(filePath, 1, 4) == "http" then
     relatePath = filePath
   else
     local currentFilePath = vim.fn.expand("%:p")
-    relatePath = string.sub(currentFilePath, 1, string.len(currentFilePath) - string.len(vim.fn.expand("%:t")) - 2)
+    relatePath = string.sub(currentFilePath, 1, string.len(currentFilePath) - string.len(vim.fn.expand("%:t")) - 1)
     relatePath = relatePath .. "/" .. filePath
     relatePath = vim.fn.substitute(relatePath, "\\", "/", "")
     relatePath = vim.fn.substitute(relatePath, "\\", "/", "")
   end
-  vim.fn.execute("!" .. M.getOpenCommand() .. " " .. relatePath)
+  M.systemOpen(relatePath)
+end
+function M.openCurrentFile()
+  local filePath = vim.fn.expand("%:p")
+  if filePath == nil or string.len(filePath) < 1 then
+    return
+  end
+  M.systemOpen(filePath)
 end
 
 function M.recoverLostRuntimepath()

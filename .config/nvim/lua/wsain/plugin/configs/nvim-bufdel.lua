@@ -12,6 +12,6 @@ plugin.config = function()
   require("bufdel").setup(plugin.opts)
 end
 plugin.globalMappings = {
-  { "n", "<leader>zo", ":BufDelOthers<cr>", "delOtherBufs", opts = { silent = false } },
+  { "n", "<leader>zd", ":BufDelOthers<cr>", "delOtherBufs", opts = { silent = false } },
 }
 return plugin

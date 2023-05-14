@@ -278,10 +278,30 @@ local function setupBashLsp()
   })
 end
 
+local function setupCLsp()
+  local lspconfig = require("lspconfig")
+
+  lspconfig.clangd.setup({
+    -- https://zhuanlan.zhihu.com/p/84876003
+    cmd = {
+      "clangd",
+      "--background-index",
+      "-j=12",
+      "--clang-tidy",
+      "--all-scopes-completion",
+      "--completion-style=detailed",
+      "--header-insertion=iwyu",
+      "--pch-storage=disk",
+    },
+    on_attach = on_attach,
+  })
+end
+
 plugin.globalMappings = {
   { "n", "<leader>S", name = "lsp server" },
   { "n", "<leader>Sl", setupLspWrap(setupLuaLsp), "lua" },
   { "n", "<leader>Sb", setupLspWrap(setupBashLsp), "bash" },
+  { "n", "<leader>Sc", setupLspWrap(setupCLsp), "c/cpp" },
 }
 
 return plugin
