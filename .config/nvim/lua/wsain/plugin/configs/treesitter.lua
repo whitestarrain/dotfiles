@@ -5,6 +5,7 @@ plugin.loadEvent = "VeryLazy"
 plugin.dependencies = {
   "nvim-lua/plenary.nvim",
   "p00f/nvim-ts-rainbow",
+  "windwp/nvim-ts-autotag",
 }
 plugin.opts = {
   auto_install = false,
@@ -41,6 +42,9 @@ plugin.opts = {
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
     -- colors = {},
     -- termcolors = {},
+  },
+  autotag = {
+    enable = true,
   },
 }
 plugin.config = function()

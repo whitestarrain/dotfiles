@@ -236,9 +236,6 @@ local function setupLuaLsp()
   table.insert(runtime_path, "lua/?/init.lua")
 
   local command = "lua-language-server"
-  if vim.fn.has("win32") == 1 then
-    command = command .. ".cmd"
-  end
 
   local luadevConfig = luadev.setup({
     lspconfig = {
@@ -284,7 +281,6 @@ end
 
 local function setupCLsp()
   local lspconfig = require("lspconfig")
-
   lspconfig.clangd.setup({
     -- https://zhuanlan.zhihu.com/p/84876003
     cmd = {
@@ -301,11 +297,133 @@ local function setupCLsp()
   })
 end
 
+local function setupGoLsp()
+  local lspconfig = require("lspconfig")
+  lspconfig.gopls.setup({
+    on_attach = on_attach,
+    root_dir = lspconfig.util.root_pattern("go.mod"),
+  })
+end
+
+local function setupVimLsp()
+  local lspconfig = require("lspconfig")
+  lspconfig.vimls.setup({
+    on_attach = on_attach,
+  })
+end
+
+local function setupFrontEndLsp()
+  local lspconfig = require("lspconfig")
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  local servers = {
+    tsserver = "typescript-language-server",
+    cssls = "vscode-css-language-server",
+    htmlls = "vscode-html-language-server",
+    emmet = "emmet-ls",
+  }
+
+  -- tsserver
+  lspconfig.tsserver.setup({
+    cmd = { servers.tsserver, "--stdio" },
+    on_attach = on_attach,
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+    init_options = {
+      hostInfo = "neovim",
+    },
+    capabilities = capabilities,
+  })
+
+  -- vue
+  lspconfig.vuels.setup({
+    on_attach = on_attach,
+  })
+
+  -- html lsp
+  lspconfig.html.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
+
+  -- eslint。eslint-lsp depends on eslint
+  lspconfig.eslint.setup({
+    capabilities = capabilities,
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+      "vue",
+    },
+    on_attach = on_attach,
+  })
+
+  -- css lsp
+  lspconfig.cssls.setup({
+    capabilities = capabilities,
+    filetypes = { "css", "scss", "less" },
+    on_attach = on_attach,
+  })
+
+  -- json lsp
+  lspconfig.jsonls.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
+
+  -- tsserver
+  lspconfig.tsserver.setup({
+    cmd = { servers.tsserver, "--stdio" },
+    on_attach = on_attach,
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+    init_options = {
+      hostInfo = "neovim",
+    },
+    capabilities = capabilities,
+  })
+
+  -- vue
+  lspconfig.vuels.setup({
+    on_attach = on_attach,
+  })
+end
+
+local function setupPythonLsp()
+  local lspconfig = require("lspconfig")
+  lspconfig.pyright.setup({
+    on_attach = on_attach,
+    root_dir = function(fname)
+      return lspconfig.util.root_pattern(
+        ".git",
+        "setup.py",
+        "setup.cfg",
+        "pyproject.toml",
+        "requirements.txt",
+        "pyrightconfig.json"
+      )(fname) or lspconfig.util.path.dirname(fname)
+    end,
+  })
+end
+
+local function setupPhpLsp()
+  local lspconfig = require("lspconfig")
+  lspconfig.intelephense.setup({
+    on_attach = on_attach,
+  })
+end
+
 plugin.globalMappings = {
   { "n", "<leader>S", name = "lsp server" },
   { "n", "<leader>Sl", setupLspWrap(setupLuaLsp), "lua" },
   { "n", "<leader>Sb", setupLspWrap(setupBashLsp), "bash" },
   { "n", "<leader>Sc", setupLspWrap(setupCLsp), "c/cpp" },
+  { "n", "<leader>Sc", setupLspWrap(setupGoLsp), "go" },
+  { "n", "<leader>Sv", setupLspWrap(setupVimLsp), "vim" },
+  { "n", "<leader>SF", setupLspWrap(setupFrontEndLsp), "frontend" },
+  { "n", "<leader>Sp", setupLspWrap(setupPythonLsp), "python" },
+  { "n", "<leader>Sh", setupLspWrap(setupPhpLsp), "php" },
 }
 
 return plugin
