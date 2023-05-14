@@ -59,7 +59,11 @@ local function lspsagaSetup()
   if package.loaded["lspsaga"] ~= nil then
     return
   end
-  require("lspsaga").setup({})
+  require("lspsaga").setup({
+    symbol_in_winbar = {
+      separator = "＞",
+    },
+  })
 end
 
 local function outlineSetup()

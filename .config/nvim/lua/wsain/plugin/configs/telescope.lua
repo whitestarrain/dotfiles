@@ -2,6 +2,9 @@ local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "nvim-telescope/telescope.nvim"
 plugin.loadEvent = "VeryLazy"
+plugin.dependencies = {
+  "GustavoKatel/telescope-asynctasks.nvim",
+}
 
 plugin.config = function()
   local actions = require("telescope.actions")
@@ -64,6 +67,8 @@ plugin.config = function()
       timeout = 500,
     },
   })
+
+  require("telescope").load_extension("asynctasks")
 end
 plugin.globalMappings = {
   { "n", "<leader>f", name = "find" },
@@ -74,6 +79,7 @@ plugin.globalMappings = {
   { "n", "<leader>fp", ":Telescope<CR>", "telescope buildin" },
   { "n", "<leader>fg", ":Telescope live_grep<CR>", "grep" },
   { "n", "<leader>fr", ":Telescope resume initial_mode=normal<CR>", "resume" },
+  { "n", "<leader>ft", ":Telescope asynctasks all<CR>", "asynctasks" },
 }
 
 return plugin
