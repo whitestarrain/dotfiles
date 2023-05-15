@@ -41,6 +41,76 @@ plugin.config = function()
   })
 end
 
+local on_attach = function(client, bufnr)
+  local custom_format = function(buf)
+    -- prefer null-ls format
+    bufnr = vim.api.nvim_get_current_buf()
+    local clients = vim.lsp.get_active_clients({ bufnr = buf, name = "null-ls" })
+    if #clients > 0 and clients[1]["server_capabilities"]["documentFormattingProvider"] then
+      vim.lsp.buf.format({
+        filter = function(lspClient)
+          return lspClient.name == "null-ls"
+        end,
+        timeout_ms = 5000,
+        bufnr = bufnr,
+      })
+    else
+      vim.lsp.buf.format()
+    end
+  end
+
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  local function buf_set_keymap(...)
+    vim.keymap.set(...)
+  end
+  local function opts(desc)
+    return { desc = desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  buf_set_keymap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts("code action"))
+  buf_set_keymap("n", "<M-enter>", "<cmd>Lspsaga code_action<CR>", opts("code action"))
+  -- buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts("code action"))
+
+  buf_set_keymap("v", "<leader>ca", ":<C-U><cmd>lua vim.lsp.buf.range_code_action()<CR>", opts("code action"))
+  buf_set_keymap("v", "<M-enter>", ":<C-U><cmd>lua vim.lsp.buf.range_code_action()<CR>", opts("code action"))
+  -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts("code action"))
+
+  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts("hover")) -- 两次K可以跳进popup 中，q键可以关闭popup
+
+  buf_set_keymap("n", "<leader>cD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts("declaration"))
+
+  -- buf_set_keymap("n", "<leader>cd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts("definition"))
+  buf_set_keymap("n", "<leader>cp", "<cmd>Lspsaga peek_definition<CR>", opts("definition"))
+  buf_set_keymap("n", "<leader>cd", "<cmd>Lspsaga goto_definition<CR>", opts("definition"))
+
+  -- buf_set_keymap("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition() <cr>", opts("definition"))
+  buf_set_keymap("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition() <cr>", opts("definition"))
+
+  buf_set_keymap("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts("implementation"))
+
+  -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts("references"))
+  buf_set_keymap("n", "<leader>cr", "<cmd>Lspsaga lsp_finder<CR>", opts("references")) -- [lspsaga] definition 和 references都会显示
+
+  buf_set_keymap("n", "<leader>cs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts("signature_help"))
+
+  buf_set_keymap("i", "<c-p>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts("signature_help")) -- <C-p><C-p> to enter hover win
+
+  buf_set_keymap("n", "<leader>cR", "<cmd>Lspsaga rename<CR>", opts("rename"))
+
+  -- buf_set_keymap('n', 'go', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  buf_set_keymap("n", "<leader>ce", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("show diagnostics"))
+
+  buf_set_keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts("next diagnostics"))
+  buf_set_keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts("next diagnostics"))
+
+  -- format
+  buf_set_keymap("n", "<space>cf", custom_format, opts("format"))
+
+  buf_set_keymap("n", "<space>ct", ":SymbolsOutline<CR>", opts("outline"))
+end
+
 local function troubleSetup()
   if package.loaded["trouble"] ~= nil then
     return
@@ -134,78 +204,8 @@ local function nulllsSetup()
   }
   null_ls.setup({
     sources = null_ls_source,
-    on_attach = function(client, bufnr) end,
+    on_attach = on_attach,
   })
-end
-
-local on_attach = function(client, bufnr)
-  local custom_format = function(buf)
-    -- prefer null-ls format
-    bufnr = vim.api.nvim_get_current_buf()
-    local clients = vim.lsp.get_active_clients({ bufnr = buf, name = "null-ls" })
-    if #clients > 0 and clients[1]["server_capabilities"]["documentFormattingProvider"] then
-      vim.lsp.buf.format({
-        filter = function(lspClient)
-          return lspClient.name == "null-ls"
-        end,
-        timeout_ms = 5000,
-        bufnr = bufnr,
-      })
-    else
-      vim.lsp.buf.format()
-    end
-  end
-
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-  local function buf_set_keymap(...)
-    vim.keymap.set(...)
-  end
-  local function opts(desc)
-    return { desc = desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-  end
-
-  buf_set_keymap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts("code action"))
-  buf_set_keymap("n", "<M-enter>", "<cmd>Lspsaga code_action<CR>", opts("code action"))
-  -- buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts("code action"))
-
-  buf_set_keymap("v", "<leader>ca", ":<C-U><cmd>lua vim.lsp.buf.range_code_action()<CR>", opts("code action"))
-  buf_set_keymap("v", "<M-enter>", ":<C-U><cmd>lua vim.lsp.buf.range_code_action()<CR>", opts("code action"))
-  -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts("code action"))
-
-  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts("hover")) -- 两次K可以跳进popup 中，q键可以关闭popup
-
-  buf_set_keymap("n", "<leader>cD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts("declaration"))
-
-  -- buf_set_keymap("n", "<leader>cd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts("definition"))
-  buf_set_keymap("n", "<leader>cp", "<cmd>Lspsaga peek_definition<CR>", opts("definition"))
-  buf_set_keymap("n", "<leader>cd", "<cmd>Lspsaga goto_definition<CR>", opts("definition"))
-
-  -- buf_set_keymap("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition() <cr>", opts("definition"))
-  buf_set_keymap("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition() <cr>", opts("definition"))
-
-  buf_set_keymap("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts("implementation"))
-
-  -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts("references"))
-  buf_set_keymap("n", "<leader>cr", "<cmd>Lspsaga lsp_finder<CR>", opts("references")) -- [lspsaga] definition 和 references都会显示
-
-  buf_set_keymap("n", "<leader>cs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts("signature_help"))
-
-  buf_set_keymap("i", "<c-p>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts("signature_help")) -- <C-p><C-p> to enter hover win
-
-  buf_set_keymap("n", "<leader>cR", "<cmd>Lspsaga rename<CR>", opts("rename"))
-
-  -- buf_set_keymap('n', 'go', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap("n", "<leader>ce", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("show diagnostics"))
-
-  buf_set_keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts("next diagnostics"))
-  buf_set_keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts("next diagnostics"))
-
-  -- format
-  buf_set_keymap("n", "<space>cf", custom_format, opts("format"))
-
-  buf_set_keymap("n", "<space>ct", ":SymbolsOutline<CR>", opts("outline"))
 end
 
 local function ensureDepLoaded()
@@ -416,6 +416,7 @@ end
 
 plugin.globalMappings = {
   { "n", "<leader>S", name = "lsp server" },
+  { "n", "<leader>Sn", nulllsSetup, "null-lsp" },
   { "n", "<leader>Sl", setupLspWrap(setupLuaLsp), "lua" },
   { "n", "<leader>Sb", setupLspWrap(setupBashLsp), "bash" },
   { "n", "<leader>Sc", setupLspWrap(setupCLsp), "c/cpp" },
