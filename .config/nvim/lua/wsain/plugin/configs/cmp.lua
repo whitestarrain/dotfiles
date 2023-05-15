@@ -66,13 +66,23 @@ plugin.config = function()
     },
   })
 
+  local menuIcon = {
+    nvim_lsp = "NLSP",
+    nvim_lua = "NLUA",
+    luasnip = "LSNP",
+    vsnip = "VSNP",
+    buffer = "BUFF",
+    path = "PATH",
+    cmdline = "CMD",
+  }
+
   local lspkind_format = {
     format = lspkind.cmp_format({
       with_text = true,
-      maxwidth = 40,
+      maxwidth = 20,
+      ellipsis_char = '…',
       before = function(entry, vim_item)
-        -- Source 显示提示来源
-        vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
+        vim_item.menu = menuIcon[entry.source.name]
         return vim_item
       end,
     }),
