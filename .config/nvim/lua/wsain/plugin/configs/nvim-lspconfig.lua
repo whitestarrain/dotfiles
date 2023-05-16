@@ -420,7 +420,7 @@ plugin.globalMappings = {
   { "n", "<leader>Sl", setupLspWrap(setupLuaLsp), "lua" },
   { "n", "<leader>Sb", setupLspWrap(setupBashLsp), "bash" },
   { "n", "<leader>Sc", setupLspWrap(setupCLsp), "c/cpp" },
-  { "n", "<leader>Sc", setupLspWrap(setupGoLsp), "go" },
+  { "n", "<leader>Sg", setupLspWrap(setupGoLsp), "go" },
   { "n", "<leader>Sv", setupLspWrap(setupVimLsp), "vim" },
   { "n", "<leader>SF", setupLspWrap(setupFrontEndLsp), "frontend" },
   { "n", "<leader>Sp", setupLspWrap(setupPythonLsp), "python" },
