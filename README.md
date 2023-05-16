@@ -5,6 +5,7 @@
 
 # Depenency
 
+- neovim>=0.9
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [fzf](https://github.com/junegunn/fzf)
 - [ranger](https://github.com/ranger/ranger)(mac or linux)

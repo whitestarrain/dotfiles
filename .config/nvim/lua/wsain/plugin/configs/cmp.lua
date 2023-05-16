@@ -138,6 +138,7 @@ plugin.config = function()
       ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
     },
     formatting = lspkind_format,
+    completion = { completeopt = "menu,menuone,noinsert" },
   })
 
   -- Use buffer source for `/`.

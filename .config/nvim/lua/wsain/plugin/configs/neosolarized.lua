@@ -68,6 +68,8 @@ plugin.config = function()
   -- autocomplete color
   Group.new("CmpItemAbbrMatch", colors.green)
   Group.new("CmpItemAbbrMatchFuzzy", colors.green)
+  Group.new("CmpItemAbbrMatchDefault", colors.green)
+  Group.new("CmpItemAbbrMatchFuzzyDefault", colors.green)
 end
 
 return plugin

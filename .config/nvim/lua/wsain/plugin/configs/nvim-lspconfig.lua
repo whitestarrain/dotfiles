@@ -7,6 +7,7 @@ plugin.dependencies = {
   "simrat39/symbols-outline.nvim",
   "whitestarrain/lua-dev.nvim",
   "jose-elias-alvarez/null-ls.nvim",
+  "ray-x/lsp_signature.nvim",
 }
 plugin.loadEvent = "VeryLazy"
 plugin.config = function()
@@ -77,7 +78,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("v", "<M-enter>", ":<C-U><cmd>lua vim.lsp.buf.range_code_action()<CR>", opts("code action"))
   -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts("code action"))
 
-  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts("hover")) -- 两次K可以跳进popup 中，q键可以关闭popup
+  buf_set_keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover")) -- 两次K可以跳进popup 中，q键可以关闭popup
 
   buf_set_keymap("n", "<leader>cD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts("declaration"))
 
@@ -109,6 +110,15 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>cf", custom_format, opts("format"))
 
   buf_set_keymap("n", "<space>ct", ":SymbolsOutline<CR>", opts("outline"))
+
+  -- lsp signature help
+  require("lsp_signature").on_attach({
+    bind = true, -- This is mandatory, otherwise border config won't get registered.
+    handler_opts = {
+      border = "rounded",
+    },
+    hint_enable = false,
+  }, bufnr)
 end
 
 local function troubleSetup()
