@@ -9,13 +9,22 @@ plugin.dependencies = {
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
 
+  "lukas-reineke/cmp-under-comparator",
+
   "onsails/lspkind-nvim",
 
   "hrsh7th/vim-vsnip",
   "rafamadriz/friendly-snippets",
 }
 plugin.init = function()
+  -- vsnip config
   vim.g.vsnip_snippet_dir = vim.g.absolute_config_path .. "others/.snippet"
+  vim.cmd([[
+    imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+    smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+    imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+    smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+  ]])
 end
 plugin.config = function()
   local cmp = require("cmp")
@@ -80,15 +89,13 @@ plugin.config = function()
     format = lspkind.cmp_format({
       with_text = true,
       maxwidth = 20,
-      ellipsis_char = '…',
+      ellipsis_char = "…",
       before = function(entry, vim_item)
         vim_item.menu = menuIcon[entry.source.name]
         return vim_item
       end,
     }),
   }
-
-  vim.o.completeopt = "menu"
 
   local amp_sources = {
     { name = "nvim_lsp", priority = 10 },
@@ -137,8 +144,21 @@ plugin.config = function()
       ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
     },
+
     formatting = lspkind_format,
-    completion = { completeopt = "menu,menuone,noinsert" },
+
+    sorting = {
+      comparators = {
+        cmp.config.compare.offset,
+        cmp.config.compare.exact,
+        cmp.config.compare.score,
+        require("cmp-under-comparator").under,
+        cmp.config.compare.kind,
+        cmp.config.compare.sort_text,
+        cmp.config.compare.length,
+        cmp.config.compare.order,
+      },
+    },
   })
 
   -- Use buffer source for `/`.

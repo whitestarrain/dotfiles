@@ -90,3 +90,6 @@ vim.opt.maxmempattern = 5000
 --[[ In the quickfix window, <CR> is used to jump to the error under the
 cursor, so undefine the mapping there. ]]
 vim.cmd("autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>")
+
+-- complete opt
+vim.opt.completeopt = "menuone,noinsert"

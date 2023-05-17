@@ -8,7 +8,7 @@ return {
   -- core
   require("wsain.plugin.configs.treesitter"),
   require("wsain.plugin.configs.telescope"),
-  require("wsain.plugin.configs.cmp"),
+  require("wsain.plugin.configs.nvim-cmp"),
 
   -- ui
   require("wsain.plugin.configs.startify"),
