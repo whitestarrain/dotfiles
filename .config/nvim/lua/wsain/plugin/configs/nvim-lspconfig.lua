@@ -42,24 +42,33 @@ plugin.config = function()
   })
 end
 
-local on_attach = function(client, bufnr)
-  local custom_format = function(buf)
-    -- prefer null-ls format
-    bufnr = vim.api.nvim_get_current_buf()
-    local clients = vim.lsp.get_active_clients({ bufnr = buf, name = "null-ls" })
-    if #clients > 0 and clients[1]["server_capabilities"]["documentFormattingProvider"] then
-      vim.lsp.buf.format({
-        filter = function(lspClient)
-          return lspClient.name == "null-ls"
-        end,
-        timeout_ms = 5000,
-        bufnr = bufnr,
-      })
-    else
-      vim.lsp.buf.format()
+local custom_get_format_client = function(bufnr)
+  -- prefer null-ls format
+  local clients = vim.lsp.get_active_clients({ bufnr = bufnr, name = "null-ls" })
+  if #clients > 0 and clients[1]["server_capabilities"]["documentFormattingProvider"] then
+    return "null-ls"
+  end
+  return nil
+end
+
+local custom_format = function(bufnr)
+  local filter = function(_)
+    return true
+  end
+  local clientName = custom_get_format_client(bufnr)
+  if clientName ~= nil then
+    filter = function(client)
+      return client.name == clientName
     end
   end
+  vim.lsp.buf.format({
+    filter = filter,
+    timeout_ms = 5000,
+    bufnr = bufnr,
+  })
+end
 
+local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -108,6 +117,7 @@ local on_attach = function(client, bufnr)
 
   -- format
   buf_set_keymap("n", "<space>cf", custom_format, opts("format"))
+  buf_set_keymap("v", "<space>cf", custom_format, opts("format"))
 
   buf_set_keymap("n", "<space>ct", ":SymbolsOutline<CR>", opts("outline"))
 
@@ -117,7 +127,8 @@ local on_attach = function(client, bufnr)
     handler_opts = {
       border = "rounded",
     },
-    hint_enable = false,
+    floating_window = false,
+    hi_parameter = "Error",
   }, bufnr)
 end
 
@@ -204,13 +215,19 @@ local function nulllsSetup()
   end
   local null_ls = require("null-ls")
   local null_ls_source = {
+    -- lua
     null_ls.builtins.formatting.stylua,
-    null_ls.builtins.diagnostics.pylint,
-    null_ls.builtins.formatting.shfmt,
+    -- bash
     null_ls.builtins.code_actions.shellcheck,
+    null_ls.builtins.formatting.shfmt,
+    -- frontend
     null_ls.builtins.formatting.prettier.with({
       disabled_filetypes = { "markdown" },
     }),
+    -- python
+    null_ls.builtins.diagnostics.pylint,
+    null_ls.builtins.formatting.isort,
+    null_ls.builtins.formatting.autopep8,
   }
   null_ls.setup({
     sources = null_ls_source,
@@ -402,7 +419,7 @@ end
 
 local function setupPythonLsp()
   local lspconfig = require("lspconfig")
-  lspconfig.pyright.setup({
+  lspconfig.pylsp.setup({
     on_attach = on_attach,
     root_dir = function(fname)
       return lspconfig.util.root_pattern(

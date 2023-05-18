@@ -191,4 +191,13 @@ function M.addCommandBeforeSaveSession(command)
   vim.g.startify_session_before_save = tmp
 end
 
+function M.visualRange()
+  local first_line = vim.fn.line("v")
+  local last_line = vim.fn.getpos(".")[2]
+  if first_line > last_line then
+    return { last_line, first_line }
+  end
+  return { first_line, last_line }
+end
+
 return M
