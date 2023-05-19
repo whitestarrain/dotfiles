@@ -92,4 +92,4 @@ cursor, so undefine the mapping there. ]]
 vim.cmd("autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>")
 
 -- complete opt
-vim.opt.completeopt = "menuone,noinsert"
+vim.opt.completeopt = "menuone"
