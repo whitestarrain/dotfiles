@@ -16,6 +16,7 @@ return {
   require("wsain.plugin.configs.indent-blankline"),
   require("wsain.plugin.configs.bufferline"),
   require("wsain.plugin.configs.feline"),
+  require("wsain.plugin.configs.statuscol"),
 
   -- file manger
   require("wsain.plugin.configs.nvim-tree"),
@@ -50,4 +51,7 @@ return {
   -- lsp
   require("wsain.plugin.configs.mason"),
   require("wsain.plugin.configs.nvim-lspconfig"),
+
+  -- dap
+  require("wsain.plugin.configs.nvim-dap"),
 }

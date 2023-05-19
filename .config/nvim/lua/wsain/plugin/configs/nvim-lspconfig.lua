@@ -130,6 +130,10 @@ local on_attach = function(client, bufnr)
     floating_window = false,
     hi_parameter = "Error",
   }, bufnr)
+
+  buf_set_keymap("i", "<A-,>", function()
+    require("lsp_signature").toggle_float_win()
+  end, opts("outline"))
 end
 
 local function troubleSetup()
