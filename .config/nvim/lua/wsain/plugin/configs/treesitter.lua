@@ -45,6 +45,7 @@ plugin.opts = {
   },
   autotag = {
     enable = true,
+    disable = { "markdown" },
   },
 }
 plugin.config = function()
