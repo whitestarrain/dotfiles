@@ -6,14 +6,15 @@ plugin.loadEvent = "VeryLazy"
 plugin.globalMappings = (function()
   if utils.getOs() ~= "win" then
     return {
-      key = "<leader>r",
-      cmd = function()
+      "n",
+      "<leader>r",
+      function()
         vim.fn.execute("FloatermNew ranger")
       end,
-      desc = "ranger",
+      "ranger",
     }
   end
-  return nil
+  return {}
 end)()
 
 plugin.init = function()
