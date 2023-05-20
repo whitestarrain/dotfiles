@@ -87,7 +87,9 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("v", "<M-enter>", ":<C-U><cmd>lua vim.lsp.buf.range_code_action()<CR>", opts("code action"))
   -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts("code action"))
 
-  buf_set_keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover")) -- 两次K可以跳进popup 中，q键可以关闭popup
+  -- Pressing the key twice will enter the hover window
+  buf_set_keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover"))
+  buf_set_keymap("v", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover"))
 
   buf_set_keymap("n", "<leader>cD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts("declaration"))
 
