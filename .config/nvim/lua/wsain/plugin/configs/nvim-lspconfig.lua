@@ -13,8 +13,11 @@ plugin.loadEvent = "VeryLazy"
 plugin.config = function()
   -- diagnostic config
   vim.diagnostic.config({
-    virtual_text = {
-      prefix = "✨",
+    virtual_text = false,
+    underline = false,
+    float = {
+      header = "",
+      border = "single",
     },
   })
   -- diagnostic sign config
@@ -114,8 +117,10 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap('n', 'go', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap("n", "<leader>ce", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("show diagnostics"))
 
-  buf_set_keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts("next diagnostics"))
-  buf_set_keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts("next diagnostics"))
+  buf_set_keymap("n", "[e", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts("prev diagnostics"))
+  -- buf_set_keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts("prev diagnostics"))
+  buf_set_keymap("n", "]e", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts("next diagnostics"))
+  -- buf_set_keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts("next diagnostics"))
 
   -- format
   buf_set_keymap("n", "<space>cf", custom_format, opts("format"))
