@@ -445,6 +445,23 @@ local function setupPythonLsp()
   })
 end
 
+local function setupPyright()
+  local lspconfig = require("lspconfig")
+  lspconfig.pyright.setup({
+    on_attach = on_attach,
+    root_dir = function(fname)
+      return lspconfig.util.root_pattern(
+        ".git",
+        "setup.py",
+        "setup.cfg",
+        "pyproject.toml",
+        "requirements.txt",
+        "pyrightconfig.json"
+      )(fname) or lspconfig.util.path.dirname(fname)
+    end,
+  })
+end
+
 local function setupPhpLsp()
   local lspconfig = require("lspconfig")
   lspconfig.intelephense.setup({
@@ -462,6 +479,8 @@ plugin.globalMappings = {
   { "n", "<leader>Sv", setupLspWrap(setupVimLsp), "vim" },
   { "n", "<leader>SF", setupLspWrap(setupFrontEndLsp), "frontend" },
   { "n", "<leader>Sp", setupLspWrap(setupPythonLsp), "python" },
+  { "n", "<leader>Spl", setupLspWrap(setupPythonLsp), "pylsp" },
+  { "n", "<leader>Spr", setupLspWrap(setupPyright), "pyright" },
   { "n", "<leader>Sh", setupLspWrap(setupPhpLsp), "php" },
 }
 
