@@ -1,0 +1,4 @@
+{
+  // pyright too slow in nvim: https://github.com/microsoft/pyright/issues/4878
+  "useLibraryCodeForTypes": false
+}
