@@ -18,11 +18,8 @@ plugin.config = function()
         click = "v:lua.ScLa",
       },
       {
-        sign = { name = { "GitSigns" }, maxwidth = 1, auto = false },
+        sign = { name = { "Dap", "GitSigns" }, maxwidth = 1, auto = false },
         click = "v:lua.ScSa",
-      },
-      {
-        sign = { name = { "Dap" }, maxwidth = 1, auto = true },
       },
     },
     clickmod = "c",
