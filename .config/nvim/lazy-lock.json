@@ -57,5 +57,6 @@
   "vim-startify": { "branch": "master", "commit": "81e36c352a8deea54df5ec1e2f4348685569bed2" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vim-vsnip": { "branch": "master", "commit": "7753ba9c10429c29d25abfd11b4c60b76718c438" },
-  "vimcdoc": { "branch": "master", "commit": "3c8fc0e806754363226c7a6e506d06dbc13cc8f3" }
+  "vimcdoc": { "branch": "master", "commit": "3c8fc0e806754363226c7a6e506d06dbc13cc8f3" },
+  "zoomwintab.vim": { "branch": "master", "commit": "7a354f3f0aa7807d822c03c8c24dc6c1cced9d3c" }
 }

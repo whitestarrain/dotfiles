@@ -35,6 +35,7 @@ return {
   require("wsain.plugin.configs.nvim-spectre"),
   require("wsain.plugin.configs.todo-comments"),
   require("wsain.plugin.configs.refactoring"),
+  require("wsain.plugin.configs.zoomwintab"),
 
   -- terminal
   require("wsain.plugin.configs.vim-floaterm"),
