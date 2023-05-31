@@ -125,17 +125,31 @@ local function setupDebugPy()
       request = "launch",
       name = "Launch file",
       program = "${file}",
-      pythonPath = function()
-        local cwd = vim.fn.getcwd()
-        if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
-          return cwd .. "/venv/bin/python"
-        elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
-          return cwd .. "/.venv/bin/python"
-        else
-          return "python3"
-        end
-      end,
+      pythonPath = "python",
       justMyCode = false,
+      console = "integratedTerminal",
+    },
+    {
+      type = "python",
+      request = "launch",
+      name = "default flask",
+      module = "flask",
+      env = {
+        FLASK_APP = "run.py",
+      },
+      args = {
+        "run",
+        "-p",
+        "8088",
+        "--with-threads",
+        "--debugger",
+        "--no-reload",
+        "--host=0.0.0.0",
+      },
+      pythonPath = "python",
+      jinja = true,
+      justMyCode = false,
+      console = "integratedTerminal",
     },
   }
 end
