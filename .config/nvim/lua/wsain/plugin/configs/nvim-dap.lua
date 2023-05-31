@@ -3,6 +3,7 @@ plugin.shortUrl = "mfussenegger/nvim-dap"
 plugin.loadEvent = "VeryLazy"
 plugin.dependencies = {
   "rcarriga/nvim-dap-ui",
+  "theHamsta/nvim-dap-virtual-text",
 }
 
 local function cmdWrap(cmd)
@@ -10,6 +11,12 @@ local function cmdWrap(cmd)
     return cmd .. ".cmd"
   end
   return cmd
+end
+
+local function ensureDepWrap()
+  if package.loaded["nvim-dap-virtual-text"] == nil then
+    require("nvim-dap-virtual-text").setup()
+  end
 end
 
 local function executableSuffix()
@@ -161,6 +168,7 @@ plugin.config = function()
   vim.fn.sign_define("DapLogPoint", { text = "󰌑", texthl = "DiagnosticHint", linehl = "", numhl = "" })
   vim.fn.sign_define("DapStopped", { text = "", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
 
+  ensureDepWrap()
   setupCodelldb()
   setupDebugPy()
 end
