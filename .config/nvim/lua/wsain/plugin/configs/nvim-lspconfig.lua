@@ -165,6 +165,9 @@ local function lspsagaSetup()
     symbol_in_winbar = {
       separator = "＞",
     },
+    lightbulb = {
+      sign = false,
+    },
   })
 end
 
@@ -478,7 +481,6 @@ local function setupJedi()
     end,
   })
 end
-
 
 local function setupPhpLsp()
   local lspconfig = require("lspconfig")
