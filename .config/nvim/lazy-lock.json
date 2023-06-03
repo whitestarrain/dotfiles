@@ -22,7 +22,7 @@
   "lua-dev.nvim": { "branch": "master", "commit": "48be96337af7aabff282e7731d8c96112c366e51" },
   "mason.nvim": { "branch": "main", "commit": "7d7efc738e08fc5bee822857db45cb6103f0b0c1" },
   "md-img-paste.vim": { "branch": "master", "commit": "787be15ff52ea2db5ae7b813ab8808c8d4cf749e" },
-  "md-section-number.nvim": { "branch": "master", "commit": "77f57f89c7680e634516b1c7be4ead1881dbb520" },
+  "md-section-number.nvim": { "branch": "master", "commit": "10f3d0980a5248f66d34e5dc3d92ea4d6f311bb0" },
   "neosolarized.nvim": { "branch": "main", "commit": "72d274496b7a2ae511666d82deb678bc07aa62d4" },
   "null-ls.nvim": { "branch": "main", "commit": "c89333e034a8daba654ebfcf9a4ec9f87765f01e" },
   "nvim-autopairs": { "branch": "master", "commit": "59df87a84c80a357ca8d8fe86e451b93ac476ccc" },
