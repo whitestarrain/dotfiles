@@ -5,29 +5,30 @@ plugin.loadEvent = "VeryLazy"
 plugin.dependencies = {
   "hrsh7th/cmp-path",
   "hrsh7th/cmp-cmdline",
-  "hrsh7th/cmp-vsnip",
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
-
+  "saadparwaiz1/cmp_luasnip",
   "lukas-reineke/cmp-under-comparator",
-
   "onsails/lspkind-nvim",
-
-  "hrsh7th/vim-vsnip",
-  "rafamadriz/friendly-snippets",
+  {
+    "L3MON4D3/LuaSnip",
+    -- make sure build env is prepared
+    build = function () print("(luasnip)please run: make install_jsregexp") end,
+    dependencies = { "rafamadriz/friendly-snippets", "honza/vim-snippets" },
+  },
 }
-plugin.init = function()
-  -- vsnip config
-  vim.g.vsnip_snippet_dir = vim.g.absolute_config_path .. "others/.snippet"
-  vim.cmd([[
-    imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-    smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-    imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-    smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-  ]])
-end
 plugin.config = function()
   local cmp = require("cmp")
+  local luasnip = require("luasnip")
+
+  --load friendly-snippets
+  require("luasnip.loaders.from_vscode").lazy_load()
+  -- load vim-snippets
+  require("luasnip.loaders.from_snipmate").lazy_load()
+  -- load custom snippets
+  require("luasnip.loaders.from_snipmate").lazy_load({ paths = vim.g.absolute_config_path .. "others/.snippet" })
+  -- can't load vscode snippets without install_jsregexp
+  -- require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.g.absolute_config_path .. "others/.snippet" })
 
   -- 图标设置
   local function border(hl_name)
@@ -78,7 +79,8 @@ plugin.config = function()
     nvim_lsp = "NLSP",
     nvim_lua = "NLUA",
     luasnip = "LSNP",
-    vsnip = "VSNP",
+    vsnip = "SNIP",
+    luasnip = "SNIP",
     buffer = "BUFF",
     path = "PATH",
     cmdline = "CMD",
@@ -101,15 +103,20 @@ plugin.config = function()
   local amp_sources = {
     { name = "nvim_lsp", priority = 10 },
     { name = "path", priority = 5 },
-    { name = "vsnip", priority = 4 },
+    { name = "luasnip", priority = 4 },
   }
+
+  local has_words_before = function()
+    unpack = unpack or table.unpack
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  end
 
   cmp.setup({
     -- snippet engine
     snippet = {
       expand = function(args)
-        -- For `vsnip` users.
-        vim.fn["vsnip#anonymous"](args.body)
+        require("luasnip").lsp_expand(args.body)
       end,
     },
 
@@ -140,6 +147,29 @@ plugin.config = function()
       -- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
       ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+      ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+        -- they way you will only jump inside the snippet region
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        elseif has_words_before() then
+          cmp.complete()
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
     },
 
     formatting = lspkind_format,
