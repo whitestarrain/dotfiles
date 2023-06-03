@@ -44,7 +44,6 @@ plugin.config = function()
   end
   local lspkind = require("lspkind")
   lspkind.init({
-    mode = "symbol",
     preset = "codicons",
     symbol_map = {
       Text = "",
@@ -86,12 +85,14 @@ plugin.config = function()
   }
 
   local lspkind_format = {
+    fields = { "kind", "abbr", "menu" },
     format = lspkind.cmp_format({
+      mode = "symbol",
       with_text = true,
       maxwidth = 20,
       ellipsis_char = "…",
       before = function(entry, vim_item)
-        vim_item.menu = menuIcon[entry.source.name]
+        vim_item.menu = "(" .. vim_item.kind .. ")"
         return vim_item
       end,
     }),
