@@ -249,7 +249,12 @@ local function nulllsSetup()
   })
 end
 
+local function setupStatusCol()
+  require("wsain.plugin.configs.statuscol").setForLspConfig()
+end
+
 local function ensureDepLoaded()
+  setupStatusCol()
   lspsagaSetup()
   troubleSetup()
   outlineSetup()
