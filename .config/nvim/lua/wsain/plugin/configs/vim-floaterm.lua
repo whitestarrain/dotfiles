@@ -3,19 +3,6 @@ local utils = require("wsain.utils")
 
 plugin.shortUrl = "voldikss/vim-floaterm"
 plugin.loadEvent = "VeryLazy"
-plugin.globalMappings = (function()
-  if utils.getOs() ~= "win" then
-    return {
-      "n",
-      "<leader>l",
-      function()
-        vim.fn.execute("FloatermNew ranger")
-      end,
-      "ranger",
-    }
-  end
-  return {}
-end)()
 
 plugin.init = function()
   vim.g.floaterm_opener = "edit"
@@ -40,11 +27,31 @@ plugin.init = function()
     augroup END
   ]])
 end
+
 plugin.globalMappings = {
   { "n", "<M-+>", ":FloatermNew<cr>" },
   { "n", "<M-=>", ":FloatermToggle<cr>" },
   { "t", "<M-+>", "<c-\\><c-n>:FloatermNew<cr>" },
   { "t", "<M-=>", "<c-\\><c-n>:FloatermToggle<cr>" },
 }
+
+if utils.getOs() ~= "win" then
+  table.insert(plugin.globalMappings, {
+    "n",
+    "<leader>l",
+    function()
+      vim.fn.execute("FloatermNew ranger")
+    end,
+    "ranger",
+  })
+  table.insert(plugin.globalMappings, {
+    "n",
+    "<leader>k",
+    function()
+      vim.fn.execute("FloatermNew ranger .")
+    end,
+    "ranger",
+  })
+end
 
 return plugin
