@@ -24,7 +24,7 @@ plugin.config = function()
   --load friendly-snippets
   require("luasnip.loaders.from_vscode").lazy_load()
   -- load vim-snippets
-  require("luasnip.loaders.from_snipmate").lazy_load()
+  require("luasnip.loaders.from_snipmate").lazy_load({ exclude = {"markdown"} })
   -- load custom snippets
   require("luasnip.loaders.from_snipmate").lazy_load({ paths = vim.g.absolute_config_path .. "others/.snippet" })
   -- can't load vscode snippets without install_jsregexp
