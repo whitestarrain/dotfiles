@@ -7,7 +7,7 @@ plugin.globalMappings = (function()
   if utils.getOs() ~= "win" then
     return {
       "n",
-      "<leader>r",
+      "<leader>l",
       function()
         vim.fn.execute("FloatermNew ranger")
       end,
