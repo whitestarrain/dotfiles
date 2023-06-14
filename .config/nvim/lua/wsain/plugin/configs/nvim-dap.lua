@@ -204,7 +204,7 @@ plugin.globalMappings = {
       if package.loaded["dapui"] == nil then
         require("dapui").setup()
       end
-      require("dapui").toggle()
+      require("dapui").toggle({ reset = true })
     end,
     "dap ui",
   },
