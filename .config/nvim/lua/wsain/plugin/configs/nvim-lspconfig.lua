@@ -59,7 +59,10 @@ local custom_format = function(bufnr)
     return true
   end
   local clientName = custom_get_format_client(bufnr)
-  if clientName ~= nil then
+  local disable_null_format_file_type = {
+    python = false,
+  }
+  if clientName ~= nil and disable_null_format_file_type[vim.o.filetype] ~= false then
     filter = function(client)
       return client.name == clientName
     end
@@ -239,7 +242,7 @@ local function nulllsSetup()
       disabled_filetypes = { "markdown" },
     }),
     -- python
-    null_ls.builtins.diagnostics.ruff,
+    -- null_ls.builtins.diagnostics.ruff,
     null_ls.builtins.formatting.isort,
     null_ls.builtins.formatting.autopep8,
   }
