@@ -203,6 +203,7 @@ plugin.globalMappings = {
     function()
       if package.loaded["dapui"] == nil then
         require("dapui").setup()
+        vim.cmd([[vnoremap <M-k> <Cmd>lua require("dapui").eval()<CR>]])
       end
       require("dapui").toggle({ reset = true })
     end,
