@@ -59,13 +59,11 @@ plugin.config = function()
           ["l"] = actions.cycle_history_next,
         },
       },
+      preview = false,
     },
     path_display = { "truncate" },
     winblend = 0,
     extensions = {},
-    preview = {
-      timeout = 500,
-    },
   })
 
   require("telescope").load_extension("asynctasks")
