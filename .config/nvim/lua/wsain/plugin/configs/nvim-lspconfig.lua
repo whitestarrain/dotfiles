@@ -470,6 +470,18 @@ local function setupPyright()
         "pyrightconfig.json"
       )(fname) or lspconfig.util.path.dirname(fname)
     end,
+    -- config document: https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+    settings = {
+      python = {
+        analysis = {
+          diagnosticMode = "openFilesOnly",
+          typeCheckingMode = "off",
+          diagnosticSeverityOverrides = {
+            reportGeneralTypeIssues = "none",
+          },
+        },
+      },
+    },
   })
 end
 
