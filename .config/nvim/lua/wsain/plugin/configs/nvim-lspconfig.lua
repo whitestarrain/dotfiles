@@ -245,6 +245,8 @@ local function nulllsSetup()
     -- null_ls.builtins.diagnostics.ruff,
     null_ls.builtins.formatting.isort,
     null_ls.builtins.formatting.autopep8,
+    -- sql
+    null_ls.builtins.formatting.sqlfmt,
   }
   null_ls.setup({
     sources = null_ls_source,
