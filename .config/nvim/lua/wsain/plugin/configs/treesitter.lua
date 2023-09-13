@@ -4,7 +4,6 @@ plugin.shortUrl = "nvim-treesitter/nvim-treesitter"
 plugin.loadEvent = "VeryLazy"
 plugin.dependencies = {
   "nvim-lua/plenary.nvim",
-  "p00f/nvim-ts-rainbow",
   "windwp/nvim-ts-autotag",
 }
 plugin.opts = {
@@ -34,15 +33,6 @@ plugin.opts = {
     disable = { "markdown", "html", "php"},
   },
 
-  rainbow = {
-    enable = true,
-    disable = { "markdown" },
-    -- disable = { "jsx", "cpp" },
-    extended_mode = true,
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    -- colors = {},
-    -- termcolors = {},
-  },
   autotag = {
     enable = true,
     disable = { "markdown" },

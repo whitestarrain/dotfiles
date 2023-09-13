@@ -66,6 +66,9 @@ vim.opt.smartindent = true
 vim.opt.shiftround = true
 vim.opt.backspace = "indent,eol,start"
 
+-- enable(default) editorconfig
+vim.g.editorconfig = true
+
 -- pair match
 vim.opt.showmatch = true
 vim.opt.matchtime = 0
