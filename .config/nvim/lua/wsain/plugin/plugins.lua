@@ -49,6 +49,7 @@ return {
 
   -- git
   require("wsain.plugin.configs.gitsigns"),
+  require("wsain.plugin.configs.diffview"),
 
   -- lsp
   require("wsain.plugin.configs.mason"),
