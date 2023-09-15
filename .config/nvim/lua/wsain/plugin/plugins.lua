@@ -37,6 +37,9 @@ return {
   require("wsain.plugin.configs.refactoring"),
   require("wsain.plugin.configs.zoomwintab"),
 
+  -- mode
+  require("wsain.plugin.configs.venn"),
+
   -- terminal
   require("wsain.plugin.configs.vim-floaterm"),
   require("wsain.plugin.configs.asynctasks"),
