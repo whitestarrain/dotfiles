@@ -36,6 +36,7 @@ return {
   require("wsain.plugin.configs.todo-comments"),
   require("wsain.plugin.configs.refactoring"),
   require("wsain.plugin.configs.zoomwintab"),
+  require("wsain.plugin.configs.bigfile"),
 
   -- mode
   require("wsain.plugin.configs.venn"),
