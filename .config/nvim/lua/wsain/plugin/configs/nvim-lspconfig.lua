@@ -7,7 +7,6 @@ plugin.dependencies = {
   "simrat39/symbols-outline.nvim",
   "whitestarrain/lua-dev.nvim",
   "jose-elias-alvarez/null-ls.nvim",
-  "ray-x/lsp_signature.nvim",
 }
 plugin.loadEvent = "VeryLazy"
 plugin.config = function()
@@ -130,20 +129,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("v", "<space>cf", custom_format, opts("format"))
 
   buf_set_keymap("n", "<space>ct", ":SymbolsOutline<CR>", opts("outline"))
-
-  -- lsp signature help
-  require("lsp_signature").on_attach({
-    bind = true, -- This is mandatory, otherwise border config won't get registered.
-    handler_opts = {
-      border = "rounded",
-    },
-    floating_window = false,
-    hi_parameter = "Error",
-  }, bufnr)
-
-  buf_set_keymap("i", "<A-,>", function()
-    require("lsp_signature").toggle_float_win()
-  end, opts("outline"))
 end
 
 local function troubleSetup()

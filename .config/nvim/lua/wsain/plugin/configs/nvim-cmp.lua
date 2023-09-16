@@ -7,13 +7,16 @@ plugin.dependencies = {
   "hrsh7th/cmp-cmdline",
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-nvim-lsp-signature-help",
   "saadparwaiz1/cmp_luasnip",
   "lukas-reineke/cmp-under-comparator",
   "onsails/lspkind-nvim",
   {
     "L3MON4D3/LuaSnip",
     -- make sure build env is prepared
-    build = function () print("(luasnip)please run: make install_jsregexp") end,
+    build = function()
+      print("(luasnip)please run: make install_jsregexp")
+    end,
     dependencies = { "rafamadriz/friendly-snippets", "honza/vim-snippets" },
   },
 }
@@ -24,7 +27,7 @@ plugin.config = function()
   --load friendly-snippets
   require("luasnip.loaders.from_vscode").lazy_load()
   -- load vim-snippets
-  require("luasnip.loaders.from_snipmate").lazy_load({ exclude = {"markdown"} })
+  require("luasnip.loaders.from_snipmate").lazy_load({ exclude = { "markdown" } })
   -- load custom snippets
   require("luasnip.loaders.from_snipmate").lazy_load({ paths = vim.g.absolute_config_path .. "others/.snippet" })
   -- can't load vscode snippets without install_jsregexp
@@ -104,6 +107,7 @@ plugin.config = function()
     { name = "nvim_lsp", priority = 10 },
     { name = "path", priority = 5 },
     { name = "luasnip", priority = 4 },
+    { name = "nvim_lsp_signature_help" },
   }
 
   local has_words_before = function()
