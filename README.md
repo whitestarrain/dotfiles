@@ -1,7 +1,15 @@
 
 ![dotfile-11](./image/dotfile-11.png)
 
-# Directory Ttructure
+# Install
+
+1. clone the repo
+2. run `nvim -u {/path/to/repo}/.config/nvim/init.lua`
+3. run `:TSInstall lua,vimscript,....` in nvim
+
+# Directory Structure
+
+TODO
 
 # Depenency
 
@@ -9,10 +17,16 @@
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [fzf](https://github.com/junegunn/fzf)
 - [ranger](https://github.com/ranger/ranger)(mac or linux)
+- [git](https://git-scm.com/)
+- [fd](https://github.com/sharkdp/fd)
 - lsp: can installed by `:Mason`
 - treesitter parser: can installed by `:TSInstall`
+  - linux/mac: gcc is required
+  - win: zig or gcc is required
 
 # Keybinding
+
+TODO
 
 # Reference
 
