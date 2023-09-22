@@ -22,7 +22,7 @@ keymap.set("n", "<c-right>", ":vertical resize +1<CR>")
 keymap.set("n", "<c-up>", ":resize +1<CR>")
 keymap.set("n", "<c-down>", ":resize -1<CR>")
 
-keymap.set("n","o","A<cr>")
+keymap.set("n", "o", "A<cr>")
 
 keymap.set("n", "<M-h>", ":bp<cr>")
 keymap.set("n", "<M-l>", ":bn<cr>")
@@ -35,6 +35,15 @@ keymap.set("n", "[t", ":tabpre<cr>")
 
 keymap.set("t", "<c-[>", "<c-\\><c-n>")
 keymap.set("t", "<Esc>", "<c-\\><c-n>")
+
+local esc_func = function()
+  local keys = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+  vim.api.nvim_feedkeys(keys, "n", false)
+  -- disable search
+  vim.fn.setreg("/", nil)
+end
+
+keymap.set("n", "<Esc>", esc_func)
 
 if require("wsain.utils").getOs() == "win" then
   keymap.set("n", "K", "<nop>")
