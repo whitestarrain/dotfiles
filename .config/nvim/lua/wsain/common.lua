@@ -46,7 +46,7 @@ vim.cmd([[
   syntax enable
   syntax sync minlines=512
 ]])
-vim.opt.synmaxcol = 500
+vim.opt.synmaxcol = 1500
 
 -- log report
 vim.opt.report = 0
