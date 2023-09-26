@@ -108,7 +108,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts("implementation"))
 
   -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts("references"))
-  buf_set_keymap("n", "<leader>cr", "<cmd>Lspsaga lsp_finder<CR>", opts("references")) -- [lspsaga] definition 和 references都会显示
+  buf_set_keymap("n", "<leader>cr", "<cmd>Lspsaga finder ref+imp+def<CR>", opts("references")) -- [lspsaga] definition 和 references都会显示
 
   buf_set_keymap("n", "<leader>cs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts("signature_help"))
 
