@@ -6,6 +6,8 @@ local keymap = vim.keymap
 
 keymap.set("n", "j", "gj")
 keymap.set("n", "k", "gk")
+keymap.set("v", "j", "gj")
+keymap.set("v", "k", "gk")
 
 keymap.set("n", "<C-l>", "<Right>")
 keymap.set("n", "<C-h>", "<Left>")
