@@ -210,6 +210,7 @@ plugin.config = function()
       { name = "cmdline" },
     }),
     formatting = lspkind_format,
+    ignore_cmds = {"!", "man", "Man"},
   })
 end
 
