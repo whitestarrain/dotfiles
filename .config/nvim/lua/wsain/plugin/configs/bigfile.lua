@@ -1,7 +1,6 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "LunarVim/bigfile.nvim"
-plugin.loadEvent = "VeryLazy"
 
 common_pattern = function(max_length, max_line_length, excluede_file_types)
   return function(bufnr)
