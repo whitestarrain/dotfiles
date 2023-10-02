@@ -6,6 +6,8 @@ plugin.dependencies = {
   "theHamsta/nvim-dap-virtual-text",
 }
 
+default_launch_json_path = "./.vscode/dap.json"
+
 local function cmdWrap(cmd)
   if require("wsain.utils").getOs() == "win" then
     return cmd .. ".cmd"
@@ -128,9 +130,9 @@ local function setupDebugPy()
   end
   dap.configurations.python = {
     {
+      name = "default launch file",
       type = "python",
       request = "launch",
-      name = "Launch file",
       program = "${file}",
       pythonPath = "python",
       justMyCode = false,
@@ -159,6 +161,12 @@ local function setupDebugPy()
       console = "integratedTerminal",
     },
   }
+end
+
+local function load_vscode_config()
+  load_launchjs = require("dap.ext.vscode").load_launchjs
+  load_launchjs(default_launch_json_path, { cppdbg = { "c", "cpp" } })
+  load_launchjs(default_launch_json_path, { python = { "py" } })
 end
 
 plugin.config = function()
@@ -205,6 +213,7 @@ plugin.globalMappings = {
         require("dapui").setup()
         vim.cmd([[vnoremap <M-k> <Cmd>lua require("dapui").eval()<CR>]])
       end
+      load_vscode_config()
       require("dapui").toggle({ reset = true })
     end,
     "dap ui",
