@@ -7,6 +7,10 @@ plugin.dependencies = {
   "simrat39/symbols-outline.nvim",
   "whitestarrain/lua-dev.nvim",
   "jose-elias-alvarez/null-ls.nvim",
+  {
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+  },
 }
 plugin.loadEvent = "VeryLazy"
 plugin.config = function()
@@ -129,6 +133,18 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>ct", ":SymbolsOutline<CR>", opts("outline"))
 end
 
+local function fidgetSetup()
+  if package.loaded["fidget"] ~= nil then
+    return
+  end
+  require("fidget").setup({
+    window = {
+      blend = 0,
+      relative = "editor",
+    },
+  })
+end
+
 local function troubleSetup()
   if package.loaded["trouble"] ~= nil then
     return
@@ -218,7 +234,6 @@ local function nulllsSetup()
     -- lua
     null_ls.builtins.formatting.stylua,
     -- bash
-    null_ls.builtins.code_actions.shellcheck,
     null_ls.builtins.formatting.shfmt,
     -- frontend
     null_ls.builtins.formatting.prettier.with({
@@ -243,6 +258,7 @@ end
 
 local function ensureDepLoaded()
   setupStatusCol()
+  fidgetSetup()
   lspsagaSetup()
   troubleSetup()
   outlineSetup()
