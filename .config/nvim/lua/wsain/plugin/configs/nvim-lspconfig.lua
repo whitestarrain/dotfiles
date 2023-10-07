@@ -323,8 +323,6 @@ end
 local function setupBashLsp()
   local lspconfig = require("lspconfig")
   lspconfig.bashls.setup({
-    -- disable shellcheck in bashls
-    cmd_env = { SHELLCHECK_PATH = "" },
     on_attach = on_attach,
   })
 end

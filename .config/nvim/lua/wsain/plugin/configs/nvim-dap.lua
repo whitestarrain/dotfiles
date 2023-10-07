@@ -166,7 +166,6 @@ end
 local function load_vscode_config()
   load_launchjs = require("dap.ext.vscode").load_launchjs
   load_launchjs(default_launch_json_path, { cppdbg = { "c", "cpp" } })
-  load_launchjs(default_launch_json_path, { python = { "py" } })
 end
 
 plugin.config = function()
