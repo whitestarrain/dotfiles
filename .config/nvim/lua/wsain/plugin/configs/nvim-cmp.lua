@@ -146,7 +146,7 @@ plugin.config = function()
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       ["<CR>"] = cmp.mapping.confirm({
-        select = true,
+        -- select = true,
       }),
       -- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
       ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
@@ -210,7 +210,7 @@ plugin.config = function()
       { name = "cmdline" },
     }),
     formatting = lspkind_format,
-    ignore_cmds = {"!", "man", "Man"},
+    ignore_cmds = { "!", "man", "Man" },
   })
 end
 
