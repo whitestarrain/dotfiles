@@ -46,6 +46,13 @@ plugin.config = function()
     max_width = 100,
     max_height = 20,
   })
+
+  lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    update_in_insert = false,
+    virtual_text = { spacing = 4, prefix = "\u{ea71}" },
+    severity_sort = true,
+  })
 end
 
 local custom_get_format_client = function(bufnr)
@@ -57,13 +64,16 @@ local custom_get_format_client = function(bufnr)
   return nil
 end
 
-local custom_format = function(bufnr)
+local custom_format = function()
+  local bufnr = vim.api.nvim_get_current_buf()
   local filter = function(_)
     return true
   end
   local clientName = custom_get_format_client(bufnr)
-  local disable_null_format_file_type = {}
-  if clientName ~= nil and disable_null_format_file_type[vim.o.filetype] ~= false then
+  local disable_null_format_file_type = {
+    -- python = true
+  }
+  if clientName ~= nil and disable_null_format_file_type[vim.o.filetype] == nil then
     filter = function(client)
       return client.name == clientName
     end
@@ -104,8 +114,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<leader>cp", "<cmd>Lspsaga peek_definition<CR>", opts("definition"))
   buf_set_keymap("n", "<leader>cd", "<cmd>Lspsaga goto_definition<CR>", opts("definition"))
 
-  -- buf_set_keymap("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition() <cr>", opts("definition"))
-  buf_set_keymap("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition() <cr>", opts("definition"))
+  buf_set_keymap("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts("definition"))
+  -- buf_set_keymap("n", "<c-]>", "<cmd>Lspsaga goto_definition<CR>", opts("definition"))
 
   buf_set_keymap("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts("implementation"))
 
