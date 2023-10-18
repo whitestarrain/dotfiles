@@ -6,13 +6,46 @@ plugin.dependencies = {
   "folke/trouble.nvim",
   "simrat39/symbols-outline.nvim",
   "whitestarrain/lua-dev.nvim",
-  "jose-elias-alvarez/null-ls.nvim",
+  "stevearc/conform.nvim",
   {
     "j-hui/fidget.nvim",
     tag = "legacy",
   },
 }
 plugin.loadEvent = "VeryLazy"
+
+local function format(opts)
+  local conform = require("conform")
+  local bufnr = vim.api.nvim_get_current_buf()
+  local formatters = conform.list_formatters(bufnr)
+  for index, formatter in ipairs(formatters) do
+    if formatter["available"] ~= true then
+      table.remove(formatters, index)
+    end
+  end
+
+  -- no formatter support, return
+  if #formatters == 0 then
+    return false
+  end
+
+  -- get format config
+  opts = opts or {}
+  local format_opts = {}
+  if opts["range"] ~= nil and opts["range"] ~= 0 then
+    local start_line = opts["line1"]
+    local end_line = opts["line2"]
+    local end_line_length = string.len(vim.api.nvim_buf_get_lines(0, end_line - 1, end_line, false)[1] or "")
+    format_opts["range"] = {
+      start = { start_line, 1 },
+      ["end"] = { end_line, end_line_length + 1 },
+    }
+  end
+  -- format
+  conform.format(format_opts)
+  return true
+end
+
 plugin.config = function()
   -- diagnostic config
   vim.diagnostic.config({
@@ -53,33 +86,33 @@ plugin.config = function()
     virtual_text = { spacing = 4, prefix = "\u{ea71}" },
     severity_sort = true,
   })
-end
 
-local custom_get_format_client = function(bufnr)
-  -- prefer null-ls format
-  local clients = vim.lsp.get_active_clients({ bufnr = bufnr, name = "null-ls" })
-  if #clients > 0 and clients[1]["server_capabilities"]["documentFormattingProvider"] then
-    return "null-ls"
-  end
-  return nil
+  -- formatter config
+  require("conform").setup({
+    formatters_by_ft = {
+      lua = { "stylua" },
+      javascript = { { "prettierd", "prettier" } },
+      html = { { "prettierd", "prettier" } },
+      typescript = { { "prettierd", "prettier" } },
+      jsx = { { "prettierd", "prettier" } },
+      tsx = { { "prettierd", "prettier" } },
+      css = { { "prettierd", "prettier" } },
+      json = { { "prettierd", "prettier" } },
+      bash = { "shfmt" },
+      python = { "isort", "black" },
+      sql = { "sql_formatter" },
+    },
+  })
+  vim.api.nvim_create_user_command("Format", format, { desc = "format", range = 2 })
 end
 
 local custom_format = function()
   local bufnr = vim.api.nvim_get_current_buf()
-  local filter = function(_)
-    return true
-  end
-  local clientName = custom_get_format_client(bufnr)
-  local disable_null_format_file_type = {
-    -- python = true
-  }
-  if clientName ~= nil and disable_null_format_file_type[vim.o.filetype] == nil then
-    filter = function(client)
-      return client.name == clientName
-    end
+  local format_result = format()
+  if format_result then
+    return
   end
   vim.lsp.buf.format({
-    filter = filter,
     timeout_ms = 5000,
     bufnr = bufnr,
   })
@@ -114,8 +147,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<leader>cp", "<cmd>Lspsaga peek_definition<CR>", opts("definition"))
   buf_set_keymap("n", "<leader>cd", "<cmd>Lspsaga goto_definition<CR>", opts("definition"))
 
-  buf_set_keymap("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts("definition"))
-  -- buf_set_keymap("n", "<c-]>", "<cmd>Lspsaga goto_definition<CR>", opts("definition"))
+  -- buf_set_keymap("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts("definition"))
+  buf_set_keymap("n", "<c-]>", "<cmd>Lspsaga goto_definition<CR>", opts("definition"))
 
   buf_set_keymap("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts("implementation"))
 
@@ -235,33 +268,6 @@ local function outlineSetup()
   require("wsain.utils").addCommandBeforeSaveSession("silent! SymbolsOutlineClose")
 end
 
-local function nulllsSetup()
-  if package.loaded["null-ls"] ~= nil then
-    return
-  end
-  local null_ls = require("null-ls")
-  local null_ls_source = {
-    -- lua
-    null_ls.builtins.formatting.stylua,
-    -- bash
-    null_ls.builtins.formatting.shfmt,
-    -- frontend
-    null_ls.builtins.formatting.prettier.with({
-      disabled_filetypes = { "markdown" },
-    }),
-    -- python
-    -- null_ls.builtins.diagnostics.ruff,
-    null_ls.builtins.formatting.isort,
-    null_ls.builtins.formatting.black,
-    -- sql
-    null_ls.builtins.formatting.sqlfmt,
-  }
-  null_ls.setup({
-    sources = null_ls_source,
-    on_attach = on_attach,
-  })
-end
-
 local function setupStatusCol()
   require("wsain.plugin.configs.statuscol").setForLspConfig()
 end
@@ -272,7 +278,6 @@ local function ensureDepLoaded()
   lspsagaSetup()
   troubleSetup()
   outlineSetup()
-  nulllsSetup()
 end
 
 local function setupLspWrap(fun)
@@ -520,7 +525,6 @@ end
 
 plugin.globalMappings = {
   { "n", "<leader>S", name = "lsp server" },
-  { "n", "<leader>Sn", nulllsSetup, "null-lsp" },
   { "n", "<leader>Sl", setupLspWrap(setupLuaLsp), "lua" },
   { "n", "<leader>Sb", setupLspWrap(setupBashLsp), "bash" },
   { "n", "<leader>Sc", setupLspWrap(setupCLsp), "c/cpp" },
