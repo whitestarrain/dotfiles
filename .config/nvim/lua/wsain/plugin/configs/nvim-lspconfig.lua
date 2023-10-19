@@ -14,7 +14,7 @@ plugin.dependencies = {
 }
 plugin.loadEvent = "VeryLazy"
 
-local function format(opts)
+local function check_conform_available()
   local conform = require("conform")
   local bufnr = vim.api.nvim_get_current_buf()
   local formatters = conform.list_formatters(bufnr)
@@ -23,27 +23,7 @@ local function format(opts)
       table.remove(formatters, index)
     end
   end
-
-  -- no formatter support, return
-  if #formatters == 0 then
-    return false
-  end
-
-  -- get format config
-  opts = opts or {}
-  local format_opts = {}
-  if opts["range"] ~= nil and opts["range"] ~= 0 then
-    local start_line = opts["line1"]
-    local end_line = opts["line2"]
-    local end_line_length = string.len(vim.api.nvim_buf_get_lines(0, end_line - 1, end_line, false)[1] or "")
-    format_opts["range"] = {
-      start = { start_line, 1 },
-      ["end"] = { end_line, end_line_length + 1 },
-    }
-  end
-  -- format
-  conform.format(format_opts)
-  return true
+  return #formatters ~= 0
 end
 
 plugin.config = function()
@@ -103,13 +83,34 @@ plugin.config = function()
       sql = { "sql_formatter" },
     },
   })
-  vim.api.nvim_create_user_command("Format", format, { desc = "format", range = 2 })
+  local function conform_format(opts)
+    if not check_conform_available() then
+      return
+    end
+
+    local conform = require("conform")
+
+    -- get format config
+    opts = opts or {}
+    local format_opts = {}
+    if opts["range"] ~= nil and opts["range"] ~= 0 then
+      local start_line = opts["line1"]
+      local end_line = opts["line2"]
+      local end_line_length = string.len(vim.api.nvim_buf_get_lines(0, end_line - 1, end_line, false)[1] or "")
+      format_opts["range"] = {
+        start = { start_line, 1 },
+        ["end"] = { end_line, end_line_length + 1 },
+      }
+    end
+    -- format
+    conform.format(format_opts)
+  end
+  vim.api.nvim_create_user_command("Format", conform_format, { desc = "format", range = 2 })
 end
 
-local custom_format = function()
-  local bufnr = vim.api.nvim_get_current_buf()
-  local format_result = format()
-  if format_result then
+local lsp_format = function()
+  if check_conform_available() then
+    vim.fn.execute("Format")
     return
   end
   vim.lsp.buf.format({
@@ -170,8 +171,8 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts("next diagnostics"))
 
   -- format
-  buf_set_keymap("n", "<space>cf", custom_format, opts("format"))
-  buf_set_keymap("v", "<space>cf", custom_format, opts("format"))
+  buf_set_keymap("n", "<space>cf", lsp_format, opts("format"))
+  buf_set_keymap("v", "<space>cf", lsp_format, opts("format"))
 
   buf_set_keymap("n", "<space>ct", ":SymbolsOutline<CR>", opts("outline"))
 end
