@@ -14,18 +14,6 @@ plugin.dependencies = {
 }
 plugin.loadEvent = "VeryLazy"
 
-local function check_conform_available()
-  local conform = require("conform")
-  local bufnr = vim.api.nvim_get_current_buf()
-  local formatters = conform.list_formatters(bufnr)
-  for index, formatter in ipairs(formatters) do
-    if formatter["available"] ~= true then
-      table.remove(formatters, index)
-    end
-  end
-  return #formatters ~= 0
-end
-
 plugin.config = function()
   -- diagnostic config
   vim.diagnostic.config({
@@ -78,21 +66,31 @@ plugin.config = function()
       tsx = { { "prettierd", "prettier" } },
       css = { { "prettierd", "prettier" } },
       json = { { "prettierd", "prettier" } },
+      markdown = { { "prettierd", "prettier" } },
       bash = { "shfmt" },
       python = { "isort", "black" },
       sql = { "sql_formatter" },
     },
   })
-  local function conform_format(opts)
-    if not check_conform_available() then
-      return
+end
+
+local function complex_format(opts)
+  local status, conform = pcall(require, "conform")
+  local bufnr = vim.api.nvim_get_current_buf()
+
+  -- get available formatters
+  local formatters = conform.list_formatters(bufnr)
+  for index, formatter in ipairs(formatters) do
+    if formatter["available"] ~= true then
+      table.remove(formatters, index)
     end
+  end
 
-    local conform = require("conform")
-
-    -- get format config
+  -- conform format
+  if status and #formatters > 0 then
     opts = opts or {}
     local format_opts = {}
+    -- get format config
     if opts["range"] ~= nil and opts["range"] ~= 0 then
       local start_line = opts["line1"]
       local end_line = opts["line2"]
@@ -102,23 +100,20 @@ plugin.config = function()
         ["end"] = { end_line, end_line_length + 1 },
       }
     end
-    -- format
     conform.format(format_opts)
-  end
-  vim.api.nvim_create_user_command("Format", conform_format, { desc = "format", range = 2 })
-end
 
-local lsp_format = function()
-  local bufnr = vim.api.nvim_get_current_buf()
-  if check_conform_available() then
-    vim.fn.execute("Format")
     return
   end
+
+  -- lsp format
   vim.lsp.buf.format({
     timeout_ms = 5000,
     bufnr = bufnr,
   })
 end
+
+-- define command
+vim.api.nvim_create_user_command("Format", complex_format, { desc = "format", range = 2 })
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
@@ -172,8 +167,8 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts("next diagnostics"))
 
   -- format
-  buf_set_keymap("n", "<space>cf", lsp_format, opts("format"))
-  buf_set_keymap("v", "<space>cf", lsp_format, opts("format"))
+  buf_set_keymap("n", "<space>cf", complex_format, opts("format"))
+  buf_set_keymap("v", "<space>cf", complex_format, opts("format"))
 
   buf_set_keymap("n", "<space>ct", ":SymbolsOutline<CR>", opts("outline"))
 end
