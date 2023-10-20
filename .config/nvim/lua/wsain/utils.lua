@@ -200,4 +200,26 @@ function M.visualRange()
   return { first_line, last_line }
 end
 
+-- https://github.com/prettier/vim-prettier/blob/master/autoload/prettier/job/runner.vim
+function M.prettier_range_format(bufnr, range_start, range_end)
+  local start_index = range_start > 0 and range_start - 1 or 0
+  local end_index = range_end > 0 and range_end - 1 or 0
+  if vim.fn.executable("prettier") ~= 1 then
+    return
+  end
+  local format_cmd = {
+    "prettier",
+    "--parser=" .. vim.o.filetype,
+    "--stdin-filepath=" .. vim.fn.expand("%"),
+  }
+  local file_path = vim.fn.expand("%")
+  if file_path == "" then
+    return
+  end
+  local cmd = table.concat(format_cmd, " ")
+  local input_lines = vim.api.nvim_buf_get_lines(bufnr, start_index, end_index + 1, false)
+  local output_lines = vim.fn.split(vim.fn.system(cmd, input_lines), "\n")
+  vim.api.nvim_buf_set_lines(bufnr, start_index, end_index + 1, false, output_lines)
+end
+
 return M
