@@ -109,6 +109,7 @@ plugin.config = function()
 end
 
 local lsp_format = function()
+  local bufnr = vim.api.nvim_get_current_buf()
   if check_conform_available() then
     vim.fn.execute("Format")
     return
