@@ -17,6 +17,7 @@ return {
   require("wsain.plugin.configs.bufferline"),
   require("wsain.plugin.configs.feline"),
   require("wsain.plugin.configs.statuscol"),
+  require("wsain.plugin.configs.dressing"),
 
   -- file manger
   require("wsain.plugin.configs.nvim-tree"),
