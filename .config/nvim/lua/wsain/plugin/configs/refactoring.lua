@@ -11,6 +11,7 @@ plugin.config = function()
 end
 plugin.globalMappings = {
   { "n", "<leader>r", name = "refactor" },
+  { "v", "<leader>r", name = "refactor" },
   { "v", "<leader>re", "<Cmd>lua require('refactoring').refactor('Extract Function')<CR>", "extract function" },
   { "v", "<leader>rf", "<Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>", "extract function to file" },
   { "v", "<leader>rv", "<Cmd>lua require('refactoring').refactor('Extract Variable')<CR>", "extract variable" },

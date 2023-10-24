@@ -87,34 +87,41 @@ local mappingConvert = function(pluginDatas)
   end
   for _, pluginConfig in ipairs(pluginDatas) do
     local mappingConfigs = pluginConfig.globalMappings
-    if mappingConfigs ~= nil and #mappingConfigs > 0 then
-      for _, mappingConfig in ipairs(mappingConfigs) do
-        if string.sub(mappingConfig[2], 1, #leader) == leader then
-          if mappingConfig["name"] ~= nil then
-            result.leaderMappings[mappingConfig[2]] = {
-              name = mappingConfig.name,
-            }
-          else
-            local mappingOpts = utils.defaultIfNil(mappingConfig.opts, {})
-            result.leaderMappings[mappingConfig[2]] = {
-              mappingConfig[3],
-              mappingConfig[4],
-              mode = mappingConfig[1],
-              silent = utils.defaultIfNil(mappingOpts.silent, true),
-              noremap = utils.defaultIfNil(mappingOpts.noremap, true),
-              nowait = utils.defaultIfNil(mappingOpts.nowait, false),
-            }
-          end
-        else
-          result.noLeaderMappings[#result.noLeaderMappings + 1] = {
+    if mappingConfigs == nil or #mappingConfigs == 0 then
+      goto continue
+    end
+    for _, mappingConfig in ipairs(mappingConfigs) do
+      if result.leaderMappings[mappingConfig[1]] == nil then
+        result.leaderMappings[mappingConfig[1]] = {}
+      end
+      local leaderMappingByMode = result.leaderMappings[mappingConfig[1]]
+      if string.sub(mappingConfig[2], 1, #leader) == leader then
+        if mappingConfig["name"] ~= nil then
+          leaderMappingByMode[mappingConfig[2]] = {
+            name = mappingConfig.name,
             mode = mappingConfig[1],
-            key = mappingConfig[2],
-            cmd = mappingConfig[3],
-            opts = utils.merge_tb(mappingConfig[5], { desc = mappingConfig[4] }),
+          }
+        else
+          local mappingOpts = utils.defaultIfNil(mappingConfig.opts, {})
+          leaderMappingByMode[mappingConfig[2]] = {
+            mappingConfig[3],
+            mappingConfig[4],
+            mode = mappingConfig[1],
+            silent = utils.defaultIfNil(mappingOpts.silent, true),
+            noremap = utils.defaultIfNil(mappingOpts.noremap, true),
+            nowait = utils.defaultIfNil(mappingOpts.nowait, false),
           }
         end
+      else
+        result.noLeaderMappings[#result.noLeaderMappings + 1] = {
+          mode = mappingConfig[1],
+          key = mappingConfig[2],
+          cmd = mappingConfig[3],
+          opts = utils.merge_tb(mappingConfig[5], { desc = mappingConfig[4] }),
+        }
       end
     end
+    ::continue::
   end
   return result
 end
@@ -123,7 +130,13 @@ local registerMapping = function(pluginDatas)
   local mappings = mappingConvert(pluginDatas)
   local wk = require("which-key")
   wk.setup(opts)
-  wk.register(mappings.leaderMappings)
+  for mode, mappingsByMode in pairs(mappings.leaderMappings) do
+    if mappingsByMode == nil or next(mappingsByMode) == nil then
+      goto continue
+    end
+    wk.register(mappingsByMode, { mode = mode })
+    ::continue::
+  end
   for _, mapping in ipairs(mappings.noLeaderMappings) do
     vim.keymap.set(mapping.mode, mapping.key, mapping.cmd, mapping.opts)
   end
