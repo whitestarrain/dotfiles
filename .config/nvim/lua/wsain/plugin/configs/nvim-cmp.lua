@@ -152,12 +152,10 @@ plugin.config = function()
       ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
       ["<Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-        -- they way you will only jump inside the snippet region
-        elseif luasnip.expand_or_jumpable() then
+        if luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
+        elseif cmp.visible() then
+          cmp.select_next_item()
         elseif has_words_before() then
           cmp.complete()
         else
