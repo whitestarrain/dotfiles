@@ -30,7 +30,7 @@ plugin.opts = {
 
   indent = {
     enable = true,
-    disable = { "markdown", "html", "php"},
+    disable = { "markdown", "html", "php", "python"},
   },
 
   autotag = {

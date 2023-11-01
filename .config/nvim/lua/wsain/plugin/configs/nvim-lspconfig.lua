@@ -57,6 +57,7 @@ plugin.config = function()
   })
 
   -- formatter config
+  local python_formater = utils.getOs() == "win" and "black" or "darker"
   require("conform").setup({
     formatters_by_ft = {
       lua = { "stylua" },
@@ -69,7 +70,7 @@ plugin.config = function()
       json = { { "prettierd", "prettier" } },
       markdown = { { "prettierd", "prettier" } },
       bash = { "shfmt" },
-      python = { "isort", "black" },
+      python = { "isort", python_formater },
       sql = { "sql_formatter" },
     },
   })
