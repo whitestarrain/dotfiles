@@ -9,11 +9,17 @@ plugin.config = function()
     options = {
       diagnostics = "nvim_lsp",
       separator_style = separator_style,
-      -- left offset
+      -- offset
       offsets = {
         {
           filetype = "NvimTree",
           text = "File Explorer",
+          highlight = "Directory",
+          text_align = "center",
+        },
+        {
+          filetype = "msnumber",
+          text = "Markdown Outline",
           highlight = "Directory",
           text_align = "center",
         },
