@@ -18,11 +18,6 @@ plugin.loadEvent = "VeryLazy"
 plugin.config = function()
   -- diagnostic config
   vim.diagnostic.config({
-    -- virtual_text = { spacing = 4, prefix = "\u{ea71}" },
-    virtual_text = false,
-    underline = false,
-    update_in_insert = false,
-    severity_sort = true,
     float = {
       header = "",
       border = "single",
@@ -52,6 +47,19 @@ plugin.config = function()
     max_height = 20,
   })
 
+  -- config this will gray out unused variable
+  lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    update_in_insert = false,
+    -- virtual_text = { spacing = 4, prefix = "\u{ea71}" },
+    virtual_text = false,
+    severity_sort = true,
+    float = {
+      header = "",
+      border = "single",
+    },
+  })
+
   -- formatter config
   local python_formater = utils.getOs() == "win" and "black" or "darker"
   require("conform").setup({
@@ -66,7 +74,7 @@ plugin.config = function()
       json = { { "prettierd", "prettier" } },
       markdown = { { "prettierd", "prettier" } },
       bash = { "shfmt" },
-      python = { "isort", python_formater },
+      python = { python_formater, "isort" },
       sql = { "sql_formatter" },
     },
   })
@@ -288,6 +296,21 @@ local function setupStatusCol()
   require("wsain.plugin.configs.statuscol").setForLspConfig()
 end
 
+-- lsp configs are lazy-loaded or can be triggered after LSP installation,
+-- so we need a way to make LSP clients attached to already existing buffers.
+local attach_lsp_to_existing_buffers = vim.schedule_wrap(function()
+  -- this can be easily achieved by firing an autocmd event for the open buffers.
+  -- See lspconfig.configs (config.autostart)
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    local valid = vim.api.nvim_buf_is_valid(bufnr) and vim.api.nvim_buf_get_option(bufnr, "buflisted")
+    if valid and vim.bo[bufnr].buftype == "" then
+      print(bufnr)
+      local augroup_lspconfig = vim.api.nvim_create_augroup("lspconfig", { clear = false })
+      vim.api.nvim_exec_autocmds("FileType", { group = augroup_lspconfig, buffer = bufnr })
+    end
+  end
+end)
+
 local function ensureDepLoaded()
   setupStatusCol()
   fidgetSetup()
@@ -300,8 +323,7 @@ local function setupLspWrap(fun)
   return function()
     ensureDepLoaded()
     fun()
-    vim.fn.execute("w")
-    vim.fn.execute("e")
+    attach_lsp_to_existing_buffers()
   end
 end
 

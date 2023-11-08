@@ -22,7 +22,7 @@ plugin.customConfig = function(lsp_mode)
         click = "v:lua.ScLa",
       },
       {
-        sign = { name = { "Dap", "GitSigns" }, maxwidth = 1, auto = false },
+        sign = { namespace = { "gitsign" }, name = { "Dap" }, maxwidth = 1, auto = false },
         click = "v:lua.ScSa",
       },
     },

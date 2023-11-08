@@ -6,7 +6,7 @@ plugin.dependencies = {
   "theHamsta/nvim-dap-virtual-text",
 }
 
-default_launch_json_path = "./.vscode/dap.json"
+local default_launch_json_path = "./.vscode/dap.json"
 
 local function cmdWrap(cmd)
   if require("wsain.utils").getOs() == "win" then
@@ -164,7 +164,7 @@ local function setupDebugPy()
 end
 
 local function load_vscode_config()
-  load_launchjs = require("dap.ext.vscode").load_launchjs
+  local load_launchjs = require("dap.ext.vscode").load_launchjs
   load_launchjs(default_launch_json_path, { cppdbg = { "c", "cpp" } })
 end
 
