@@ -51,6 +51,7 @@ return {
 
   --doc
   require("wsain.plugin.configs.vimcdoc"),
+  require("wsain.plugin.configs.neogen"),
 
   -- git
   require("wsain.plugin.configs.gitsigns"),

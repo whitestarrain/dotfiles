@@ -18,8 +18,11 @@ plugin.loadEvent = "VeryLazy"
 plugin.config = function()
   -- diagnostic config
   vim.diagnostic.config({
+    -- virtual_text = { spacing = 4, prefix = "\u{ea71}" },
     virtual_text = false,
     underline = false,
+    update_in_insert = false,
+    severity_sort = true,
     float = {
       header = "",
       border = "single",
@@ -47,13 +50,6 @@ plugin.config = function()
     border = "single",
     max_width = 100,
     max_height = 20,
-  })
-
-  lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    update_in_insert = false,
-    virtual_text = { spacing = 4, prefix = "\u{ea71}" },
-    severity_sort = true,
   })
 
   -- formatter config
@@ -545,6 +541,7 @@ end
 
 plugin.globalMappings = {
   { "n", "<leader>S", name = "lsp server" },
+  { "n", "<leader>c", name = "code" },
   { "n", "<leader>Sl", setupLspWrap(setupLuaLsp), "lua" },
   { "n", "<leader>Sb", setupLspWrap(setupBashLsp), "bash" },
   { "n", "<leader>Sc", setupLspWrap(setupCLsp), "c/cpp" },
