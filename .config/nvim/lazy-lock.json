@@ -64,6 +64,7 @@
   "vim-snippets": { "branch": "master", "commit": "b039190177d97a968d80518470910aae7faf182a" },
   "vim-startify": { "branch": "master", "commit": "4e089dffdad46f3f5593f34362d530e8fe823dcf" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
+  "vim-tmux-navigator": { "branch": "master", "commit": "7db70e08ea03b3e4d91f63713d76134512e28d7e" },
   "vimcdoc": { "branch": "master", "commit": "109d2cddd6d15297152c8ab8a4bc55a392b926cf" },
   "zoomwintab.vim": { "branch": "master", "commit": "7a354f3f0aa7807d822c03c8c24dc6c1cced9d3c" }
 }

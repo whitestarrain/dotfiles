@@ -9,16 +9,6 @@ keymap.set("n", "k", "gk")
 keymap.set("v", "j", "gj")
 keymap.set("v", "k", "gk")
 
-keymap.set("n", "<C-l>", "<Right>")
-keymap.set("n", "<C-h>", "<Left>")
-keymap.set("n", "<C-j>", "<Down>")
-keymap.set("n", "<C-k>", "<Up>")
-
-keymap.set("n", "<C-h>", "<C-w>h")
-keymap.set("n", "<C-j>", "<C-w>j")
-keymap.set("n", "<C-k>", "<C-w>k")
-keymap.set("n", "<C-l>", "<C-w>l")
-
 keymap.set("n", "<c-left>", ":vertical resize -1<CR>")
 keymap.set("n", "<c-right>", ":vertical resize +1<CR>")
 keymap.set("n", "<c-up>", ":resize +1<CR>")

@@ -45,6 +45,7 @@ return {
   -- terminal
   require("wsain.plugin.configs.vim-floaterm"),
   require("wsain.plugin.configs.asynctasks"),
+  require("wsain.plugin.configs.vim-tmux-navigator"),
 
   -- comment
   require("wsain.plugin.configs.kommentary"),

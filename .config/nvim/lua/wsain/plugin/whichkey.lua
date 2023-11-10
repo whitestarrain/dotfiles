@@ -95,6 +95,7 @@ local mappingConvert = function(pluginDatas)
         result.leaderMappings[mappingConfig[1]] = {}
       end
       local leaderMappingByMode = result.leaderMappings[mappingConfig[1]]
+      local mappingOpts = utils.defaultIfNil(mappingConfig.opts, {})
       if string.sub(mappingConfig[2], 1, #leader) == leader then
         if mappingConfig["name"] ~= nil then
           leaderMappingByMode[mappingConfig[2]] = {
@@ -102,7 +103,6 @@ local mappingConvert = function(pluginDatas)
             mode = mappingConfig[1],
           }
         else
-          local mappingOpts = utils.defaultIfNil(mappingConfig.opts, {})
           leaderMappingByMode[mappingConfig[2]] = {
             mappingConfig[3],
             mappingConfig[4],
@@ -117,7 +117,11 @@ local mappingConvert = function(pluginDatas)
           mode = mappingConfig[1],
           key = mappingConfig[2],
           cmd = mappingConfig[3],
-          opts = utils.merge_tb(mappingConfig[5], { desc = mappingConfig[4] }),
+          opts = utils.merge_tb({
+            silent = utils.defaultIfNil(mappingOpts.silent, true),
+            noremap = utils.defaultIfNil(mappingOpts.noremap, true),
+            nowait = utils.defaultIfNil(mappingOpts.nowait, false),
+          }, { desc = mappingConfig[4] }),
         }
       end
     end
