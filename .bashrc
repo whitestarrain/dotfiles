@@ -1,5 +1,8 @@
 # .bashrc
 
+# prevent timeout
+export TMOUT=0
+
 # prompt before overwrite
 alias rm='rm -i'
 alias cp='cp -i'
