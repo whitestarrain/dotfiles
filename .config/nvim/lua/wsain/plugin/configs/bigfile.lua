@@ -2,8 +2,16 @@ local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "LunarVim/bigfile.nvim"
 
-common_pattern = function(max_length, max_line_length, excluede_file_types)
+local common_pattern = function(max_length, max_line_length, excluede_file_types)
   return function(bufnr)
+    local file_path = vim.api.nvim_buf_get_name(bufnr)
+    if file_path == nil or file_path == "" then
+      return false
+    end
+    local common_file_flag = string.find(file_path, "://") == nil
+    if not common_file_flag then
+      return false
+    end
     max_length = max_length or 10000
     max_line_length = max_line_length or 1000
     excluede_file_types = excluede_file_types or {}
@@ -39,7 +47,7 @@ plugin.config = function()
   require("bigfile").setup({
     -- detect long python files
     filesize = 5, -- size of the file in MiB, the plugin round file sizes to the closest MiB
-    pattern = common_pattern(10000, 1000, { "markdown", "text", "fugitive", "NvimTree", "msnumber", "" }),
+    pattern = common_pattern(10000, 1000, { "markdown", "text", "fugitive", "NvimTree", "msnumber"}),
     features = { -- features to disable
       "indent_blankline",
       "illuminate",
