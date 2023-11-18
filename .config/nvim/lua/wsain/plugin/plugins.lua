@@ -31,7 +31,7 @@ return {
   require("wsain.plugin.configs.edit.tabular"),
   require("wsain.plugin.configs.edit.md-img-paste"),
   require("wsain.plugin.configs.edit.md-section-number"),
-  require("wsain.plugin.configs.edit.kommentary"),
+  require("wsain.plugin.configs.edit.comment"),
 
   -- mode
   require("wsain.plugin.configs.mode.venn"),
