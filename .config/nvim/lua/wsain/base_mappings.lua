@@ -3,30 +3,34 @@ vim.opt.timeoutlen = 500
 vim.g.mapleader = " "
 
 local keymap = vim.keymap
+local default_opts = { silent = true, noremap = true }
+local set_mapping = function(mode, key, action)
+  vim.keymap.set(mode, key, action, default_opts)
+end
 
-keymap.set("n", "j", "gj")
-keymap.set("n", "k", "gk")
-keymap.set("v", "j", "gj")
-keymap.set("v", "k", "gk")
+set_mapping("n", "j", "gj")
+set_mapping("n", "k", "gk")
+set_mapping("v", "j", "gj")
+set_mapping("v", "k", "gk")
 
-keymap.set("n", "<c-left>", ":vertical resize -1<CR>")
-keymap.set("n", "<c-right>", ":vertical resize +1<CR>")
-keymap.set("n", "<c-up>", ":resize +1<CR>")
-keymap.set("n", "<c-down>", ":resize -1<CR>")
+set_mapping("n", "<c-left>", ":vertical resize -1<CR>")
+set_mapping("n", "<c-right>", ":vertical resize +1<CR>")
+set_mapping("n", "<c-up>", ":resize +1<CR>")
+set_mapping("n", "<c-down>", ":resize -1<CR>")
 
-keymap.set("n", "o", "A<cr>")
+set_mapping("n", "o", "A<cr>")
 
-keymap.set("n", "<M-h>", ":bp<cr>")
-keymap.set("n", "<M-l>", ":bn<cr>")
+set_mapping("n", "<M-h>", ":bp<cr>")
+set_mapping("n", "<M-l>", ":bn<cr>")
 
-keymap.set("n", "<", "<<")
-keymap.set("n", ">", ">>")
+set_mapping("n", "<", "<<")
+set_mapping("n", ">", ">>")
 
-keymap.set("n", "]t", ":tabnext<cr>")
-keymap.set("n", "[t", ":tabpre<cr>")
+set_mapping("n", "]t", ":tabnext<cr>")
+set_mapping("n", "[t", ":tabpre<cr>")
 
-keymap.set("t", "<c-[>", "<c-\\><c-n>")
-keymap.set("t", "<Esc>", "<c-\\><c-n>")
+set_mapping("t", "<c-[>", "<c-\\><c-n>")
+set_mapping("t", "<Esc>", "<c-\\><c-n>")
 
 local esc_func = function()
   local keys = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
