@@ -3,8 +3,8 @@ return {
   require("wsain.plugin.configs.private_mapping"),
 
   -- theme
-  require("wsain.plugin.configs.theme.neosolarized"),
-  -- require("wsain.plugin.configs.theme.onedark"),
+  -- require("wsain.plugin.configs.theme.neosolarized"),
+  require("wsain.plugin.configs.theme.onedark"),
 
   -- core
   require("wsain.plugin.configs.core.treesitter"),

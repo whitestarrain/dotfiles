@@ -1,42 +1,78 @@
 local plugin = require("wsain.plugin.template"):new()
 plugin.shortUrl = "famiu/feline.nvim"
+
+local colors = {
+  neosolarized = {
+    fg = "#839496",
+    bg = "#073642",
+    blue = "#268bd2",
+    oceanblue = "#008080",
+    green = "#719e07",
+    purple = "#c678dd",
+    red1 = "#dc322f",
+    red2 = "#dc322f",
+    cyan = "#2aa198",
+    yellow = "#b58900",
+    gray1 = "#93a1a1",
+    gray2 = "#93a1a1",
+
+    magenta = "#d33682",
+    darkblue = "#073642",
+
+    second_bg = "#93a1a1",
+    second_fg = "#073642",
+  },
+  -- https://github.com/nvim-lualine/lualine.nvim/blob/master/lua/lualine/themes/onedark.lua
+  onedark = {
+    bg = "#282c34",
+    fg = "#abb2bf",
+    blue = "#61afef",
+    oceanblue = "#008080",
+    green = "#98c379",
+    purple = "#c678dd",
+    cyan = "#56b6c2",
+    red1 = "#e06c75",
+    red2 = "#be5046",
+    yellow = "#e5c07b",
+    gray1 = "#93a1a1",
+    gray2 = "#2c323c",
+    orange = "#d19a66",
+    white = "#abb2bf",
+    black = "#282c34",
+
+    second_fg = "#8EA6B7",
+    second_bg = "#3F4452",
+  },
+}
+
+local mode_colors = {
+  neosolarized = {
+    ["NORMAL"] = { fg = colors.neosolarized.bg, bg = colors.neosolarized.blue, style = "bold" },
+    ["COMMAND"] = { fg = colors.neosolarized.bg, bg = colors.neosolarized.blue, style = "bold" },
+    ["INSERT"] = { fg = colors.neosolarized.bg, bg = colors.neosolarized.green, style = "bold" },
+    ["VISUAL"] = { fg = colors.neosolarized.bg, bg = colors.neosolarized.magenta, style = "bold" },
+    ["BLOCK"] = { fg = colors.neosolarized.bg, bg = colors.neosolarized.magenta, style = "bold" },
+    ["REPLACE"] = { fg = colors.neosolarized.bg, bg = colors.neosolarized.red1, style = "bold" },
+    ["INACTIVE"] = { fg = colors.neosolarized.fg, bg = colors.neosolarized.darkblue, style = "bold" },
+  },
+  onedark = {
+    ["NORMAL"] = { fg = colors.onedark.bg, bg = colors.onedark.green, style = "bold" },
+    ["COMMAND"] = { fg = colors.onedark.bg, bg = colors.onedark.yellow, style = "bold" },
+    ["INSERT"] = { fg = colors.onedark.bg, bg = colors.onedark.blue, style = "bold" },
+    ["VISUAL"] = { fg = colors.onedark.bg, bg = colors.onedark.purple, style = "bold" },
+    ["BLOCK"] = { fg = colors.onedark.bg, bg = colors.onedark.purple, style = "bold" },
+    ["REPLACE"] = { fg = colors.onedark.bg, bg = colors.onedark.red1, style = "bold" },
+    ["INACTIVE"] = { fg = colors.onedark.fg, bg = colors.onedark.gray2, style = "bold" },
+  },
+}
+
+local theme = colors[vim.g.colors_name or "onedark"]
+local modeColors = mode_colors[vim.g.colors_name or "onedark"]
+
 plugin.config = function()
   local feline = require("feline")
   local modeProvider = require("feline.providers.vi_mode")
   local cursorProvider = require("feline.providers.cursor")
-  local solarized = {
-    fg = "#839496",
-    bg = "#073642",
-    yellow = "#b58900",
-    orange = "#cb4b16",
-    red = "#dc322f",
-    magenta = "#d33682",
-    violet = "#6c71c4",
-    blue = "#268bd2",
-    cyan = "#2aa198",
-    green = "#719e07",
-    black = "#3c3836",
-    skyblue = "#83a598",
-    oceanblue = "#008080",
-    gray = "#93a1a1",
-    darkblue = "#073642",
-    white = "#FFFFFF",
-
-    second_comp = "#93a1a1",
-  }
-
-  local theme = solarized
-
-  local modeColors = {
-    ["NORMAL"] = { fg = theme.bg, bg = theme.blue },
-    ["COMMAND"] = { fg = theme.bg, bg = theme.blue },
-    -- ["COMMAND"] = { fg = theme.bg, bg = theme.skyblue },
-    ["INSERT"] = { fg = theme.bg, bg = theme.green },
-    ["VISUAL"] = { fg = theme.bg, bg = theme.magenta },
-    ["BLOCK"] = { fg = theme.bg, bg = theme.magenta },
-    ["REPLACE"] = { fg = theme.bg, bg = theme.red },
-    ["INACTIVE"] = { fg = theme.fg, bg = theme.darkblue },
-  }
 
   local icons = {
     locker = "", -- #f023
@@ -129,7 +165,7 @@ plugin.config = function()
               end
               local bg = theme.bg
               if vim.b.gitsigns_head ~= nil then
-                bg = theme.second_comp
+                bg = theme.second_bg
               end
               return {
                 fg = hl.bg,
@@ -146,14 +182,14 @@ plugin.config = function()
             return ""
           end,
           hl = {
-            bg = theme.second_comp,
-            fg = theme.bg,
+            bg = theme.second_bg,
+            fg = theme.second_fg,
           },
           right_sep = {
             str = icons.right_filled,
             hl = {
               bg = theme.bg,
-              fg = theme.gray,
+              fg = theme.second_bg,
             },
           },
         },
@@ -203,7 +239,7 @@ plugin.config = function()
             return icons.git_removed .. " " .. status .. " "
           end,
           hl = {
-            fg = theme.red,
+            fg = theme.red1,
           },
           enabled = columnsWidthCondition(90),
         },
@@ -228,7 +264,7 @@ plugin.config = function()
       {
         {
           provider = "diagnostic_errors",
-          hl = { fg = theme.red },
+          hl = { fg = theme.red1 },
           enabled = columnsWidthCondition(102),
         },
         {
@@ -283,14 +319,14 @@ plugin.config = function()
             return " " .. cursorProvider.line_percentage() .. " "
           end,
           hl = {
-            bg = theme.second_comp,
-            fg = theme.bg,
+            bg = theme.second_bg,
+            fg = theme.second_fg,
           },
           left_sep = {
             str = " " .. icons.left_filled,
             hl = {
               bg = theme.bg,
-              fg = theme.gray,
+              fg = theme.second_bg,
             },
           },
         },
@@ -312,7 +348,7 @@ plugin.config = function()
               end
               return {
                 fg = hl.bg,
-                bg = theme.second_comp,
+                bg = theme.second_bg,
               }
             end,
           },
