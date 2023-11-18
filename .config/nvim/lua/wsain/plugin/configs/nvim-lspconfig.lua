@@ -293,7 +293,7 @@ local function outlineSetup()
 end
 
 local function setupStatusCol()
-  require("wsain.plugin.configs.statuscol").setForLspConfig()
+  require("wsain.plugin.configs.ui.statuscol").setForLspConfig()
 end
 
 -- lsp configs are lazy-loaded or can be triggered after LSP installation,
