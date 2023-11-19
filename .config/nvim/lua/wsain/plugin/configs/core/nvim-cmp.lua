@@ -11,6 +11,7 @@ plugin.dependencies = {
   "saadparwaiz1/cmp_luasnip",
   "lukas-reineke/cmp-under-comparator",
   "onsails/lspkind-nvim",
+  "rcarriga/cmp-dap",
   {
     "L3MON4D3/LuaSnip",
     -- make sure build env is prepared
@@ -118,6 +119,9 @@ plugin.config = function()
 
   ---@diagnostic disable-next-line: redundant-parameter
   cmp.setup({
+    enabled = function()
+      return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+    end,
     -- snippet engine
     snippet = {
       expand = function(args)
@@ -211,6 +215,12 @@ plugin.config = function()
     }),
     formatting = lspkind_format,
     ignore_cmds = { "!", "man", "Man" },
+  })
+
+  cmp.setup.filetype({ "dap-repl", "dapui_watches" }, {
+    sources = {
+      { name = "dap" },
+    },
   })
 end
 

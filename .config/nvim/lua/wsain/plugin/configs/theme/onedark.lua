@@ -27,6 +27,7 @@ plugin.config = function()
       TermCursor = { bg = theme.palette.white },
       StartifyFile = { fg = theme.palette.red },
       MatchParen = { bg = theme.palette.gray },
+      NvimDapVirtualText = { fg = theme.palette.gray },
     },
   })
   vim.cmd("colorscheme onedark")
