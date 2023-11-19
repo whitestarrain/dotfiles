@@ -10,24 +10,39 @@ plugin.config = function()
       transparency = true,
     },
     highlights = {
-      CursorLineNr = {
-        fg = theme.palette.white,
-      },
+      -- nvim-tree
       NvimTreeFolderIcon = { fg = theme.palette.blue },
       NvimTreeOpenedFolderIcon = { fg = theme.palette.purple },
-      PmenuThumb = {
-        bg = theme.palette.white,
-      },
+      -- telescope
       TelescopeSelection = {
         bg = config.options.cursorline and theme.generated.cursorline or theme.palette.bg,
         fg = theme.palette.white,
       },
-      markdownItalic = { fg = theme.palette.purple, italic = true },
-      htmlItalic = { fg = theme.palette.purple, italic = true },
-      TermCursor = { bg = theme.palette.white },
+      -- startify
       StartifyFile = { fg = theme.palette.red },
-      MatchParen = { bg = theme.palette.gray },
+      -- dap
       NvimDapVirtualText = { fg = theme.palette.gray },
+
+      -- cursor line nr
+      CursorLineNr = {
+        fg = theme.palette.white,
+      },
+      -- pmenu
+      PmenuThumb = {
+        bg = theme.palette.white,
+      },
+      -- filetype
+      markdownItalic = { fg = theme.palette.purple, italic = true },
+      mkdHeading = { link = "htmlH1" },
+      htmlItalic = { fg = theme.palette.purple, italic = true },
+      -- pair match
+      MatchParen = { bg = theme.palette.gray },
+      -- term
+      TermCursor = { bg = theme.palette.white },
+      -- search
+      IncSearch = { fg = theme.palette.orange, reverse = true },
+      Search = { fg = theme.palette.yellow, reverse = true },
+      CurSearch = { fg = theme.palette.orange, reverse = true },
     },
   })
   vim.cmd("colorscheme onedark")
