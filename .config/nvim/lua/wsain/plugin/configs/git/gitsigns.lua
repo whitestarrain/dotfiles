@@ -93,5 +93,9 @@ plugin.opts = {
 plugin.config = function()
   require("gitsigns").setup(plugin.opts)
 end
+plugin.globalMappings = {
+  { "n", "<leader>h", name = "git hunk" },
+  { "v", "<leader>h", name = "git hunk" },
+}
 
 return plugin
