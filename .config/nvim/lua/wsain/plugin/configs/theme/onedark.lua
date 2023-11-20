@@ -15,13 +15,15 @@ plugin.config = function()
       NvimTreeOpenedFolderIcon = { fg = theme.palette.purple },
       -- telescope
       TelescopeSelection = {
-        bg = config.options.cursorline and theme.generated.cursorline or theme.palette.bg,
+        bg = theme.palette.gray,
         fg = theme.palette.white,
       },
       -- startify
       StartifyFile = { fg = theme.palette.red },
       -- dap
       NvimDapVirtualText = { fg = theme.palette.gray },
+      -- git
+      GitSignsAddInline = { bg = "#3c6b3e" },
 
       -- cursor line nr
       CursorLineNr = {
@@ -43,6 +45,12 @@ plugin.config = function()
       IncSearch = { fg = theme.palette.orange, reverse = true },
       Search = { fg = theme.palette.yellow, reverse = true },
       CurSearch = { fg = theme.palette.orange, reverse = true },
+      -- Visual = { reverse = true }, -- Visual mode selection
+
+      -- lang
+      ["@odp.import_module.python"] = { fg = theme.palette.yellow },
+      ["@field.lua"] = { fg = theme.palette.red },
+      ["@parameter.lua"] = { fg = theme.palette.red, style = config.styles.parameters },
     },
   })
   vim.cmd("colorscheme onedark")
