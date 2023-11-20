@@ -51,6 +51,8 @@ plugin.config = function()
       ["@odp.import_module.python"] = { fg = theme.palette.yellow },
       ["@field.lua"] = { fg = theme.palette.red },
       ["@parameter.lua"] = { fg = theme.palette.red, style = config.styles.parameters },
+      ["@operator.lua"] = { link = "@operator" },
+      ["@keyword.operator.lua"] = { link = "@operator" },
     },
   })
   vim.cmd("colorscheme onedark")

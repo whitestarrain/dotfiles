@@ -28,6 +28,11 @@ plugin.init = function()
   ]])
 end
 
+local file_exploer = "lf"
+if utils.getOs() ~= "win" and vim.fn.executable(file_exploer) == 0 then
+  file_exploer = "ranger"
+end
+
 plugin.globalMappings = {
   { "n", "<M-+>", ":FloatermNew<cr>" },
   { "n", "<M-=>", ":FloatermToggle<cr>" },
@@ -35,12 +40,12 @@ plugin.globalMappings = {
   { "t", "<M-=>", "<c-\\><c-n>:FloatermToggle<cr>" },
 }
 
-if utils.getOs() ~= "win" then
+if vim.fn.executable(file_exploer) then
   table.insert(plugin.globalMappings, {
     "n",
     "<leader>l",
     function()
-      vim.fn.execute("FloatermNew ranger")
+      vim.fn.execute("FloatermNew " .. file_exploer)
     end,
     "ranger",
   })
@@ -48,7 +53,7 @@ if utils.getOs() ~= "win" then
     "n",
     "<leader>k",
     function()
-      vim.fn.execute("FloatermNew ranger .")
+      vim.fn.execute("FloatermNew " .. file_exploer .. " .")
     end,
     "ranger",
   })
