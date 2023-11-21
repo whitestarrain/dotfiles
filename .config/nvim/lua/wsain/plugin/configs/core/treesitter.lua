@@ -5,7 +5,6 @@ plugin.loadEvent = "VeryLazy"
 plugin.dependencies = {
   "nvim-lua/plenary.nvim",
   "windwp/nvim-ts-autotag",
-  "JoosepAlviste/nvim-ts-context-commentstring",
 }
 plugin.opts = {
   auto_install = false,
@@ -37,11 +36,6 @@ plugin.opts = {
   autotag = {
     enable = true,
     disable = { "markdown" },
-  },
-
-  context_commentstring = {
-    enable = true,
-    disable = { "markdown", "help" },
   },
 }
 plugin.config = function()
