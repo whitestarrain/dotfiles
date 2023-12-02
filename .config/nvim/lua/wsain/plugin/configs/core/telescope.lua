@@ -1,4 +1,5 @@
 local plugin = require("wsain.plugin.template"):new()
+local utils = require("wsain.utils")
 
 plugin.shortUrl = "nvim-telescope/telescope.nvim"
 plugin.loadEvent = "VeryLazy"
@@ -78,6 +79,40 @@ plugin.globalMappings = {
   { "n", "<leader>fg", ":Telescope live_grep<CR>", "grep" },
   { "n", "<leader>fr", ":Telescope resume initial_mode=normal<CR>", "resume" },
   { "n", "<leader>ft", ":Telescope asynctasks all<CR>", "asynctasks" },
+
+  { "v", "<leader>f", name = "find" },
+  {
+    "v",
+    "<leader>ff",
+    function()
+      require("telescope.builtin").find_files({
+        search_file = utils.get_visual_selection_text()[1],
+      })
+    end,
+    "file",
+  },
+  {
+    "v",
+    "<leader>fa",
+    function()
+      require("telescope.builtin").find_files({
+        search_file = utils.get_visual_selection_text()[1],
+        hidden = true,
+        no_ignore = true,
+      })
+    end,
+    "all file",
+  },
+  {
+    "v",
+    "<leader>fg",
+    function()
+      require("telescope.builtin").grep_string({
+        search = utils.get_visual_selection_text()[1],
+      })
+    end,
+    "grep",
+  },
 }
 
 return plugin
