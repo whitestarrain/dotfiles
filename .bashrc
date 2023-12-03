@@ -12,6 +12,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias pc='proxychains4'
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then

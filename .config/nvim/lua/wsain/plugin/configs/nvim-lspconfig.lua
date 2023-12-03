@@ -74,6 +74,7 @@ plugin.config = function()
       json = { { "prettierd", "prettier" } },
       markdown = { { "prettierd", "prettier" } },
       bash = { "shfmt" },
+      sh = { "shfmt" },
       python = { python_formater, "isort" },
       sql = { "sql_formatter" },
     },
