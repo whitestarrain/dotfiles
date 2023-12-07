@@ -305,7 +305,6 @@ local attach_lsp_to_existing_buffers = vim.schedule_wrap(function()
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
     local valid = vim.api.nvim_buf_is_valid(bufnr) and vim.api.nvim_buf_get_option(bufnr, "buflisted")
     if valid and vim.bo[bufnr].buftype == "" then
-      print(bufnr)
       local augroup_lspconfig = vim.api.nvim_create_augroup("lspconfig", { clear = false })
       vim.api.nvim_exec_autocmds("FileType", { group = augroup_lspconfig, buffer = bufnr })
     end
