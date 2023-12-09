@@ -25,6 +25,9 @@ export EDITOR='nvim -u NONE'
 # don't logout when press ctrl-d
 set -o ignoreeof
 
+# dircolors
+test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
+
 # fzf
 [ -f "~/.fzf.bash" ] && source ~/.fzf.bash
 [ -f "/usr/share/fzf/completion.bash" ] && source /usr/share/fzf/completion.bash

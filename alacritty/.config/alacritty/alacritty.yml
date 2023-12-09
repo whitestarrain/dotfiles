@@ -5,17 +5,16 @@ env:
 # 字体
 font:
   normal:
-    family: Hack NF
+    family: Hack Nerd Font
     style: Regular
-    # family: Hack NF
-    # family: 'FiraCode Nerd Font'
   size: 13.0
 
 window:
   dimensions:
-    columns: 150
-    lines: 40
+    columns: 120
+    lines: 35
   decorations: full
+  opacity: 0.95
 
 # background_opacity: 0.7
 
@@ -26,7 +25,7 @@ selection:
   save_to_clipboard: true
 
 shell:
-  program: pwsh
+  program: bash
 
 colors:
   primary:
