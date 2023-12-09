@@ -21,7 +21,6 @@ return {
   require("wsain.plugin.configs.ui.dressing"),
 
   -- edit
-  require("wsain.plugin.configs.edit.refactoring"),
   require("wsain.plugin.configs.edit.todo-comments"),
   require("wsain.plugin.configs.edit.nvim-spectre"),
   require("wsain.plugin.configs.edit.nvim-autopairs"),
@@ -49,12 +48,13 @@ return {
   require("wsain.plugin.configs.git.gitsigns"),
   require("wsain.plugin.configs.git.diffview"),
 
-  -- lsp
-  require("wsain.plugin.configs.mason"),
-  require("wsain.plugin.configs.nvim-lspconfig"),
-
-  -- dap
-  require("wsain.plugin.configs.nvim-dap"),
+  -- ide
+  require("wsain.plugin.configs.ide.refactoring"),
+  require("wsain.plugin.configs.ide.mason"),
+  require("wsain.plugin.configs.ide.fmt"),
+  require("wsain.plugin.configs.ide.linter"),
+  require("wsain.plugin.configs.ide.lsp"),
+  require("wsain.plugin.configs.ide.dap"),
 
   -- file manger
   require("wsain.plugin.configs.nvim-tree"),

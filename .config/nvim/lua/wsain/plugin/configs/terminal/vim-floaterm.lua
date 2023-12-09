@@ -43,7 +43,7 @@ plugin.globalMappings = {
 if vim.fn.executable(file_exploer) then
   table.insert(plugin.globalMappings, {
     "n",
-    "<leader>l",
+    "<leader>k",
     function()
       vim.fn.execute("FloatermNew " .. file_exploer)
     end,
@@ -51,7 +51,7 @@ if vim.fn.executable(file_exploer) then
   })
   table.insert(plugin.globalMappings, {
     "n",
-    "<leader>k",
+    "<leader>K",
     function()
       vim.fn.execute("FloatermNew " .. file_exploer .. " .")
     end,
