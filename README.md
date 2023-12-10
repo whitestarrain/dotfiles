@@ -3,7 +3,7 @@
 
 # Collect config
 
-```
+```bash
 # example
 
 mkdir bash && touch bash/.bashrc
@@ -17,6 +17,11 @@ mkdir -p pacman/etc/pacman.d
 touch pacman/etc/pacman.conf
 touch pacman/etc/pacman.d/mirrorlist
 sudo stow -t / pacman --adopt
+
+# get installed package list
+pacman -Qqet > pkglist.txt
+# install from package list file
+pacman -S --needed - < pkglist.txt
 ```
 
 # Install
@@ -28,22 +33,16 @@ sudo stow -t / pacman --adopt
   - run `:checkhealth`, install dependencies
 - stow link
 
-  ```
+  ```bash
   # add `-n -v` option to check what will do
   stow bash ....
   sudo stow -t / pacman ...
   ```
 - pacman
 
-  ```
-  # get installed package list
-  pacman -Qqet > pkglist.txt
-  # install from package list file
-  pacman -S --needed - < pkglist.txt
-
+  ```bash
   # if it contains external packages such as AUR, it needs to be filtered before execution.
   pacman -S --needed $(comm -12 <(pacman -Slq | sort) <(sort pkglist.txt))
-
   # remove packages not listed in the file
   pacman -Rsu $(comm -23 <(pacman -Qq | sort) <(sort pkglist.txt))
   ```
