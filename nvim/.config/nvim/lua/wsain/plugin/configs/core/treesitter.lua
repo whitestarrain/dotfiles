@@ -13,7 +13,16 @@ plugin.opts = {
 
   highlight = {
     enable = true,
-    disable = { "markdown", "help" },
+    -- disable = { "markdown", "help" },
+    disable = function(lang, bufnr)
+      if lang == "help" then
+        return true
+      end
+      if lang == "markdown" and vim.api.nvim_buf_line_count(bufnr) > 5000 then
+        return true
+      end
+      return false
+    end,
     additional_vim_regex_highlighting = false,
   },
 

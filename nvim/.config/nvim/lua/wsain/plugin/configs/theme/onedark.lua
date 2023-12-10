@@ -37,6 +37,7 @@ plugin.config = function()
       markdownItalic = { fg = theme.palette.purple, italic = true },
       mkdHeading = { link = "htmlH1" },
       htmlItalic = { fg = theme.palette.purple, italic = true },
+      mkdURL = { fg = theme.palette.purple },
       -- pair match
       MatchParen = { bg = theme.palette.gray },
       -- term
@@ -53,6 +54,20 @@ plugin.config = function()
       ["@parameter.lua"] = { fg = theme.palette.red, style = config.styles.parameters },
       ["@operator.lua"] = { link = "@operator" },
       ["@keyword.operator.lua"] = { link = "@operator" },
+      ["@text.title.1.markdown"] = { link = "htmlH1" },
+      ["@text.title.2.markdown"] = { link = "htmlH1" },
+      ["@text.title.3.markdown"] = { link = "htmlH1" },
+      ["@text.title.4.markdown"] = { link = "htmlH1" },
+      ["@text.title.5.markdown"] = { link = "htmlH1" },
+      ["@text.title.6.markdown"] = { link = "htmlH1" },
+      ["@text.title.1.marker.markdown"] = { link = "htmlH1" },
+      ["@text.title.2.marker.markdown"] = { link = "htmlH1" },
+      ["@text.title.3.marker.markdown"] = { link = "htmlH1" },
+      ["@text.title.4.marker.markdown"] = { link = "htmlH1" },
+      ["@text.title.5.marker.markdown"] = { link = "htmlH1" },
+      ["@text.title.6.marker.markdown"] = { link = "htmlH1" },
+      ["@text.reference.markdown_inline"] = { link = "htmlLink" },
+      ["@text.todo.unchecked.markdown"] = { link = "Normal" },
     },
   })
   vim.cmd("colorscheme onedark")
