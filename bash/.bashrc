@@ -13,6 +13,7 @@ alias mv='mv -i'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias pc='proxychains4'
+alias ssh='TERM=xterm-256color ssh'
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
