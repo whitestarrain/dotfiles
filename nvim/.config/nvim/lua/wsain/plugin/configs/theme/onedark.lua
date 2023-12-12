@@ -68,6 +68,7 @@ plugin.config = function()
       ["@text.title.6.marker.markdown"] = { link = "htmlH1" },
       ["@text.reference.markdown_inline"] = { link = "htmlLink" },
       ["@text.todo.unchecked.markdown"] = { link = "Normal" },
+      ["@text.quote.markdown"] = { link = "Comment" },
     },
   })
   vim.cmd("colorscheme onedark")
