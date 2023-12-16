@@ -26,7 +26,6 @@ return {
   require("wsain.plugin.configs.edit.nvim-autopairs"),
   require("wsain.plugin.configs.edit.undotree"),
   require("wsain.plugin.configs.edit.nvim-surround"),
-  require("wsain.plugin.configs.edit.vim-abolish"),
   require("wsain.plugin.configs.edit.tabular"),
   require("wsain.plugin.configs.edit.md-img-paste"),
   require("wsain.plugin.configs.edit.md-section-number"),
@@ -65,4 +64,5 @@ return {
   require("wsain.plugin.configs.extra.hop"),
   require("wsain.plugin.configs.extra.nvim-bufdel"),
   require("wsain.plugin.configs.extra.vim-scriptease"),
+  require("wsain.plugin.configs.extra.vim-abolish"),
 }
