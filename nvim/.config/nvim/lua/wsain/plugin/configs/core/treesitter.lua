@@ -14,7 +14,7 @@ plugin.opts = {
   highlight = {
     enable = true,
     disable = function(lang, bufnr)
-      if lang == "markdown" and vim.api.nvim_buf_line_count(bufnr) > 5000 then
+      if lang == "markdown" and vim.api.nvim_buf_line_count(bufnr) > 2000 then
         return true
       end
       return false
