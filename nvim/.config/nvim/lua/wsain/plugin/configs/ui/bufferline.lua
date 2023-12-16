@@ -7,7 +7,7 @@ plugin.config = function()
   local separator_style = { "", "" }
   require("bufferline").setup({
     options = {
-      diagnostics = "nvim_lsp",
+      diagnostics = false,
       separator_style = separator_style,
       -- offset
       offsets = {
