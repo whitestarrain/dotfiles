@@ -31,7 +31,7 @@ local lint_toggle = function()
   end
   -- disable lint, and reset lint diagnostict
   if linter_marker then
-    vim.api.nvim_clear_autocmds({ group =  augroup_name})
+    vim.api.nvim_clear_autocmds({ group = augroup_name })
     local diagnostic_namespaces = vim.diagnostic.get_namespaces()
     if diagnostic_namespaces ~= nil and next(diagnostic_namespaces) ~= nil then
       for namespace_id, namespace_conf in pairs(diagnostic_namespaces) do
