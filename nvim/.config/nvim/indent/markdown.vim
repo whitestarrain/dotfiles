@@ -56,6 +56,9 @@ function GetMarkdownIndent()
     let ind = indent(lnum)
     let line = getline(lnum)    " Last line
     let cline = getline(v:lnum) " Current line
+    if len(cline) > 0 && cline[0:1] == "#"
+      return 0
+    endif
     if s:IsLiStart(cline)
         " Current line is the first line of a list item, do not change indent
         return indent(v:lnum)
