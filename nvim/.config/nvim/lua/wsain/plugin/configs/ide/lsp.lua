@@ -46,7 +46,7 @@ plugin.config = function()
     max_height = 20,
   })
 
-  -- config this will gray out unused variable
+  -- config this, [enable under line] will gray out unused variable
   lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
     underline = false,
     update_in_insert = false,
