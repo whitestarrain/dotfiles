@@ -479,7 +479,9 @@ end
 plugin.globalMappings = {
   { "n", "<leader>S", name = "lsp server" },
   { "n", "<leader>c", name = "code" },
+  { "v", "<leader>c", name = "code" },
   { "n", "<leader>cf", ":Format<cr>", "format" },
+  { "v", "<leader>cf", ":Format<cr>", "format" },
   { "n", "<leader>Sl", setupLspWrap(setupLuaLsp), "lua" },
   { "n", "<leader>Sb", setupLspWrap(setupBashLsp), "bash" },
   { "n", "<leader>Sc", setupLspWrap(setupCLsp), "c/cpp" },
