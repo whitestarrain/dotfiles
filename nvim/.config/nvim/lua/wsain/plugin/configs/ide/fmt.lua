@@ -7,6 +7,15 @@ plugin.config = function()
   -- formatter config
   local python_formater = utils.getOs() == "win" and "black" or "darker"
   require("conform").setup({
+    formatters = {
+      sqlfmt = {
+        command = "sqlfmt",
+        args = "-", -- stdin
+        stdin = true,
+        require_cwd = false,
+        inherit = false,
+      },
+    },
     formatters_by_ft = {
       lua = { "stylua" },
       javascript = { { "prettierd", "prettier" } },
@@ -20,7 +29,7 @@ plugin.config = function()
       bash = { "shfmt" },
       sh = { "shfmt" },
       python = { python_formater, "isort" },
-      sql = { "sql_formatter" },
+      sql = { "sqlfmt" },
     },
   })
 end
