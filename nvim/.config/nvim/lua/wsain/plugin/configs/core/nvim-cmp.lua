@@ -133,7 +133,7 @@ plugin.config = function()
       completion = {
         border = border("CmpBorder"),
         winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel",
-        scrollbar = false,
+        scrollbar = true,
       },
       documentation = {
         border = border("CmpDocBorder"),
