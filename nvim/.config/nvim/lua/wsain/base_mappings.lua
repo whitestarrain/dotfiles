@@ -29,10 +29,10 @@ set_mapping("n", ">", ">>")
 set_mapping("n", "]t", ":tabnext<cr>")
 set_mapping("n", "[t", ":tabpre<cr>")
 
-set_mapping("n", "]e", function()
+set_mapping("n", "[e", function()
   vim.diagnostic.goto_prev()
 end)
-set_mapping("n", "[e", function()
+set_mapping("n", "]e", function()
   vim.diagnostic.goto_next()
 end)
 
