@@ -9,3 +9,4 @@ nvim/mason
 nvim/.config/nvim/.plugins
 nvim/.config/nvim/.managers
 nvim/.config/nvim/.mason
+**/__pycache__
