@@ -4,6 +4,7 @@ plugin.shortUrl = "whitestarrain/md-section-number.nvim"
 plugin.loadEvent = "VeryLazy"
 plugin.opts = {
   max_level = 4,
+  min_level = 1,
   ignore_pairs = {
     { "```", "```" },
     { "\\~\\~\\~", "\\~\\~\\~" },
