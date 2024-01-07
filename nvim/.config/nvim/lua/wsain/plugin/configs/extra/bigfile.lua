@@ -44,20 +44,24 @@ local common_pattern = function(max_length, max_line_length, excluede_file_types
 end
 
 plugin.config = function()
+  local features = {
+    "indent_blankline",
+    "illuminate",
+    "lsp",
+    "treesitter",
+    "syntax",
+    "vimopts",
+    "filetype",
+  }
+  -- if disable `matchparen` in win, may not be able to view files
+  if require("wsain.utils").getOs() ~= "win" then
+    table.insert(features, "matchparen")
+  end
   require("bigfile").setup({
     -- detect long python files
     filesize = 5, -- size of the file in MiB, the plugin round file sizes to the closest MiB
     pattern = common_pattern(10000, 1000, { "markdown", "text", "fugitive", "NvimTree", "msnumber" }),
-    features = { -- features to disable
-      "indent_blankline",
-      "illuminate",
-      "lsp",
-      "treesitter",
-      "syntax",
-      "matchparen",
-      "vimopts",
-      "filetype",
-    },
+    features = features,
   })
 end
 
