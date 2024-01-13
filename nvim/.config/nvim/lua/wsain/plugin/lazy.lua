@@ -41,6 +41,9 @@ local pluginConfigConvert = function(pluginDatas)
   local result = {}
   for _, originConfig in ipairs(pluginDatas) do
     if originConfig.shortUrl ~= nil then
+      if originConfig.dir ~= nil then
+        originConfig.dev = true
+      end
       table.insert(result, {
         originConfig.shortUrl,
         dir = originConfig.dir,
@@ -55,6 +58,7 @@ local pluginConfigConvert = function(pluginDatas)
         pin = originConfig.pin,
         priority = originConfig.priority,
         event = originConfig.loadEvent,
+        dev = originConfig.dev,
       })
     end
   end
