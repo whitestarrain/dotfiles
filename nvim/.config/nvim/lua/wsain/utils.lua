@@ -280,4 +280,10 @@ function M.get_visual_selection_text()
   return selection
 end
 
+function M.literalize(str)
+  return str:gsub("[%(%)%.%%%+%-%*%?%[%]%^%$]", function(c)
+    return "%" .. c
+  end)
+end
+
 return M

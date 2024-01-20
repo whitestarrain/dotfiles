@@ -54,7 +54,7 @@ plugin.config = function()
     "filetype",
   }
   -- if disable `matchparen` in win, may not be able to view files
-  if require("wsain.utils").getOs() ~= "win" then
+  if require("wsain.utils").getOs() == "linux" then
     table.insert(features, "matchparen")
   end
   require("bigfile").setup({

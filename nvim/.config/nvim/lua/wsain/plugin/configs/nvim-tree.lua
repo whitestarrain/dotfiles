@@ -1,8 +1,29 @@
 local plugin = require("wsain.plugin.template"):new()
+local utils = require("wsain.utils")
 
 plugin.shortUrl = "kyazdani42/nvim-tree.lua"
 plugin.dependencies = { "kyazdani42/nvim-web-devicons" }
 plugin.loadEvent = "VeryLazy"
+local function relative_path_under_cursor()
+  local node = require("nvim-tree.lib").get_node_at_cursor()
+  local current_path = node.absolute_path
+  if node.type == "file" then
+    return node.parent.absolute_path
+  end
+  if current_path == nil then
+    return
+  end
+  local cwd = vim.fn.getcwd()
+  local relative_path, _ = string.gsub(current_path, utils.literalize(cwd), ".")
+  return relative_path
+end
+local function get_current_node_path()
+  local node = require("nvim-tree.lib").get_node_at_cursor()
+  if node.type == "file" then
+    return node.parent.absolute_path
+  end
+  return node.absolute_path
+end
 local onAttach = function(bufnr)
   local api = require("nvim-tree.api")
   local function opts(desc)
@@ -48,6 +69,34 @@ local onAttach = function(bufnr)
   vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
   vim.keymap.set("n", "W", api.tree.collapse_all, opts("Collapse"))
   vim.keymap.set("n", "K", api.node.show_info_popup, opts("Info"))
+  vim.keymap.set("n", "ff", function()
+    local relative_path = relative_path_under_cursor()
+    local status, telescope_builtin = pcall(require, "telescope.builtin")
+    if not status then
+      return
+    end
+    telescope_builtin.find_files({
+      prompt_title = "find file under: " .. relative_path,
+      cwd = relative_path,
+      hidden = true,
+      no_ignore = true,
+      file_ignore_patterns = {},
+    })
+  end, opts("find file"))
+  vim.keymap.set("n", "fg", function()
+    local relative_path = relative_path_under_cursor()
+    local status, telescope_builtin = pcall(require, "telescope.builtin")
+    if not status then
+      return
+    end
+    telescope_builtin.live_grep({
+      prompt_title = "grep under: " .. relative_path,
+      cwd = relative_path,
+      preview = true,
+      hidden = true,
+      no_ignore = true,
+    })
+  end, opts("live grep"))
 end
 plugin.opts = {
   git = {

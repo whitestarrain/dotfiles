@@ -76,7 +76,7 @@ plugin.globalMappings = {
   { "n", "<leader>/", ":Telescope buffers sort_mru=true<CR>", "buffer" },
   { "n", "<leader>fc", ":Telescope commands<CR>", "command" },
   { "n", "<leader>fp", ":Telescope<CR>", "telescope buildin" },
-  { "n", "<leader>fg", ":Telescope live_grep<CR>", "grep" },
+  { "n", "<leader>fg", ":Telescope live_grep preview=true<CR>", "grep" },
   { "n", "<leader>fr", ":Telescope resume initial_mode=normal<CR>", "resume" },
   { "n", "<leader>ft", ":Telescope asynctasks all<CR>", "asynctasks" },
 
