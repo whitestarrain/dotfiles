@@ -48,6 +48,9 @@ plugin.config = function()
       CurSearch = { fg = theme.palette.orange, reverse = true },
       -- Visual = { reverse = true }, -- Visual mode selection
 
+      -- whick key
+      WhichKeyFloat = { link = "Normal" },
+
       -- lang
       ["@odp.import_module.python"] = { fg = theme.palette.yellow },
       ["@field.lua"] = { fg = theme.palette.red },

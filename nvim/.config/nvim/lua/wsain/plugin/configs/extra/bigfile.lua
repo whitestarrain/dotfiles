@@ -60,7 +60,7 @@ plugin.config = function()
   require("bigfile").setup({
     -- detect long python files
     filesize = 5, -- size of the file in MiB, the plugin round file sizes to the closest MiB
-    pattern = common_pattern(10000, 1000, { "markdown", "text", "fugitive", "NvimTree", "msnumber" }),
+    pattern = common_pattern(10000, 1000, { "markdown", "text", "fugitive", "NvimTree", "msnumber", "bash", "sh", "zsh" }),
     features = features,
   })
 end
