@@ -35,7 +35,7 @@ plugin.opts = {
 
   indent = {
     enable = true,
-    disable = { "markdown", "html", "php", "python", "c", "cpp" },
+    disable = { "markdown", "html", "php", "c", "cpp" },
   },
 
   autotag = {
@@ -50,5 +50,42 @@ plugin.config = function()
   vim.o.foldexpr = "nvim_treesitter#foldexpr()"
   vim.o.foldlevel = 99
  ]]
+
+  lang_module = {
+    "awk",
+    "bash",
+    "c",
+    "c_sharp",
+    "cpp",
+    "css",
+    "dot",
+    "go",
+    "html",
+    "java",
+    "javascript",
+    "json",
+    "lua",
+    "markdown",
+    "markdown_inline",
+    "php",
+    "python",
+    "query",
+    "regex",
+    "ruby",
+    "rust",
+    "scss",
+    "sql",
+    "tsx",
+    "typescript",
+    "vim",
+    "vimdoc",
+    "zig",
+  }
+  vim.api.nvim_create_user_command(
+    "TSInstallCustom",
+    "TSInstall" .. " " .. table.concat(lang_module, " "),
+    { desc = "format", range = 2 }
+  )
 end
+
 return plugin
