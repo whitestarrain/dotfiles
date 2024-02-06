@@ -43,7 +43,16 @@ local esc_func = function()
   local keys = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
   vim.api.nvim_feedkeys(keys, "n", false)
   -- disable search
-  vim.fn.setreg("/", nil)
+  local searching_str = vim.fn.getreg("/")
+  if searching_str ~= nil and searching_str ~= "v:null" then
+    vim.fn.setreg("/", nil)
+    return
+  end
+
+  local changed = vim.fn.getbufinfo(vim.api.nvim_get_current_buf())[1].changed
+  if changed == 1 then
+    vim.cmd("w")
+  end
 end
 
 keymap.set("n", "<Esc>", esc_func)
