@@ -1,4 +1,6 @@
 local plugin = require("wsain.plugin.template"):new()
+local utils = require("wsain.utils")
+
 plugin.shortUrl = "mfussenegger/nvim-dap"
 plugin.loadEvent = "VeryLazy"
 plugin.dependencies = {
@@ -9,7 +11,7 @@ plugin.dependencies = {
 local default_launch_json_path = "./.vscode/dap.json"
 
 local function cmdWrap(cmd)
-  if require("wsain.utils").getOs() == "win" then
+  if utils.getOs() == "win" then
     return cmd .. ".cmd"
   end
   return cmd
@@ -22,7 +24,7 @@ local function ensureDepWrap()
 end
 
 local function executableSuffix()
-  if require("wsain.utils").getOs() == "win" then
+  if utils.getOs() == "win" then
     return ".exe"
   end
   return ""
@@ -78,6 +80,9 @@ local function setupCodelldb()
       name = "select launch file",
       type = "codelldb",
       request = "launch",
+      args = function()
+        return utils.str_split(vim.fn.input("execute args: "))
+      end,
       program = function()
         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
       end,
