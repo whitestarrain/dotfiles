@@ -97,6 +97,13 @@ local onAttach = function(bufnr)
       no_ignore = true,
     })
   end, opts("live grep"))
+  vim.keymap.set("n", "F", function()
+    if vim.g.loaded_floaterm ~= 1 then
+      return
+    end
+    local relative_path = relative_path_under_cursor()
+    vim.cmd("FloatermNew --cwd=" .. relative_path .. " " .. "--title=" .. relative_path)
+  end, opts("floaterm"))
 end
 plugin.opts = {
   git = {
