@@ -6,6 +6,10 @@
 # prevent timeout
 export TMOUT=0
 
+# add path
+
+PATH=$PATH:~/go/bin
+
 # prompt before overwrite
 alias rm='rm -i'
 alias cp='cp -i'
