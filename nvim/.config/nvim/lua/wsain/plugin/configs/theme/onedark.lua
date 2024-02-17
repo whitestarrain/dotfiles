@@ -51,6 +51,11 @@ plugin.config = function()
       -- whick key
       WhichKeyFloat = { link = "Normal" },
 
+      -- illuminate
+      IlluminatedWordRead = { link = "Visual" },
+      IlluminatedWordText = { link = "Visual" },
+      IlluminatedWordWrite = { link = "Visual" },
+
       -- lang
       ["@odp.import_module.python"] = { fg = theme.palette.yellow },
       ["@field.lua"] = { fg = theme.palette.red },
