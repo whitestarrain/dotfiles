@@ -75,9 +75,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<M-enter>", "<cmd>Lspsaga code_action<CR>", opts("code action"))
   -- buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts("code action"))
 
-  buf_set_keymap("v", "<leader>ca", ":<C-U><cmd>lua vim.lsp.buf.range_code_action()<CR>", opts("code action"))
-  buf_set_keymap("v", "<M-enter>", ":<C-U><cmd>lua vim.lsp.buf.range_code_action()<CR>", opts("code action"))
-  -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts("code action"))
+  buf_set_keymap("v", "<leader>ca", ":<C-U><cmd>lua vim.lsp.buf.code_action()<CR>", opts("code action"))
+  buf_set_keymap("v", "<M-enter>", ":<C-U><cmd>lua vim.lsp.buf.code_action()<CR>", opts("code action"))
 
   -- Pressing the key twice will enter the hover window
   buf_set_keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover"))
