@@ -12,6 +12,7 @@ plugin.init = function()
     { "n", "<C-j>", ":TmuxNavigateDown<CR>", "j", opts },
     { "n", "<C-k>", ":TmuxNavigateUp<CR>", "k", opts },
     { "n", "<C-l>", ":TmuxNavigateRight<CR>", "l", opts },
+    -- { "n", "<C-\\>", ":TmuxNavigatePrevious<CR>", "p", opts },
   }
 end
 return plugin
