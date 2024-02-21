@@ -10,12 +10,15 @@ vim.cmd("filetype on")
 vim.cmd("filetype plugin indent on")
 vim.opt.swapfile = false
 vim.opt.updatetime = 100
+vim.opt.confirm = true
+vim.opt.virtualedit = "block"
 
 -- show config
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wrap = false
 vim.opt.scrolloff = 3
+vim.opt.sidescrolloff = 8
 vim.opt.linespace = 0
 vim.opt.showmode = true
 vim.opt.showcmd = true
@@ -28,6 +31,7 @@ vim.opt.splitkeep = "screen"
 vim.opt.laststatus = 3
 vim.opt.hidden = true
 vim.opt.signcolumn = "auto:2"
+vim.opt.list = false
 
 local bgHighLightAugroup = vim.api.nvim_create_augroup("BgHighlight", { clear = true })
 vim.api.nvim_create_autocmd("WinEnter", {
@@ -97,3 +101,16 @@ vim.cmd("autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>")
 
 -- complete opt
 vim.opt.completeopt = "menuone"
+
+-- pmenu config
+vim.opt.pumheight = 15
+
+-- wildmenu config
+vim.opt.wildmode = "longest:full,full"
+
+-- highlight
+vim.opt.cursorline = true
+vim.opt.termguicolors = true
+vim.opt.winblend = 0
+vim.opt.pumblend = 0
+vim.opt.background = "dark"
