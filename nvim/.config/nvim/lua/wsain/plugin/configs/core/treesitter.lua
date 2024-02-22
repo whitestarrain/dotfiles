@@ -14,6 +14,13 @@ plugin.opts = {
   highlight = {
     enable = true,
     disable = function(lang, bufnr)
+      if lang == "vim" then
+        local win_type = vim.fn.getcmdwintype()
+        -- use vim syntax highlight for cmdwin
+        if win_type == ":" then
+          return true
+        end
+      end
       if lang == "markdown" and vim.api.nvim_buf_line_count(bufnr) > 2000 then
         return true
       end
@@ -31,6 +38,13 @@ plugin.opts = {
       node_decremental = "<BS>",
       -- scope_incremental = '<TAB>',
     },
+    -- disable in cmdwin
+    is_supported = function()
+      local win_type = vim.fn.getcmdwintype()
+      if win_type == ":" then
+        return false
+      end
+    end,
   },
 
   indent = {

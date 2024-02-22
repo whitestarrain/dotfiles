@@ -14,5 +14,15 @@ plugin.init = function()
     { "n", "<C-l>", ":TmuxNavigateRight<CR>", "l", opts },
     -- { "n", "<C-\\>", ":TmuxNavigatePrevious<CR>", "p", opts },
   }
+  vim.api.nvim_create_augroup("_cmd_win", { clear = true })
+  vim.api.nvim_create_autocmd("CmdWinEnter", {
+    callback = function()
+      vim.keymap.set("n", "<C-h>", "<Nop>", { buffer = true })
+      vim.keymap.set("n", "<C-j>", "<Nop>", { buffer = true })
+      vim.keymap.set("n", "<C-k>", "<Nop>", { buffer = true })
+      vim.keymap.set("n", "<C-l>", "<Nop>", { buffer = true })
+    end,
+    group = "_cmd_win",
+  })
 end
 return plugin
