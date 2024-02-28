@@ -28,8 +28,12 @@ pacman -S --needed - < pkglist.txt
 
 - clone the repo to `~`
 - nvim config install
-  - run `nvim -u {/path/to/repo}/.config/nvim/init.lua`
-  - run `:TSInstall lua,vimscript,....` in nvim
+  - `cd ~ && stow nvim`
+  - run `nvim`
+    - plugin will be auto installed under `{this_repo}/nvim/.config/nvim/.plugins/` and `{this_repo}/nvim/.config/nvim/.managers/`
+  - run `:Mason` in nvim to install lsp
+    - lsp will be installed under `{this_repo}/nvim/.config/nvim/.mason/`
+  - run `:TSInstallCustom` in nvim to install treesitter pasers
   - run `:checkhealth`, install dependencies
 - stow link
 
