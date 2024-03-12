@@ -6,7 +6,8 @@ local Template = {
   dependencies = nil,
   branch = nil,
   commit = nil,
-  tags = nil,
+  tag = nil,
+  version = nil,
   pin = nil,
   priority = 50,
 
@@ -15,7 +16,7 @@ local Template = {
   -- global mapping with prefix <leader>
   globalMappings = nil,
 
-  --[[ 
+  --[[
   mapping example:
   -- type1, group keymap
   {
@@ -30,7 +31,7 @@ local Template = {
     function() end, -- cmd
     "delete buffer", -- desc
     opts = {
-      nowait = false, 
+      nowait = false,
       silent = true,
       noremap = true,
     }
