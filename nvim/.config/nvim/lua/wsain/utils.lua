@@ -298,4 +298,26 @@ function M.str_split(inputstr, sep)
   return t
 end
 
+function M.check_quickfix_open()
+  local qf_win_list = vim.fn.filter(vim.fn.range(1, vim.fn.winnr("$")), 'getwinvar(v:val, "&ft") == "qf"')
+  return next(qf_win_list) ~= nil
+end
+
+function M.get_current_mapping(key, mode)
+  local mapping_list = vim.api.nvim_get_keymap(mode)
+  local mapping_map = {}
+  for _, mapping in ipairs(mapping_list) do
+    mapping_map[mapping["lhs"]] = mapping
+  end
+  if mapping_map[key] ~= nil then
+    if mapping_map[key]["callback"] ~= nil then
+      return mapping_map[key]["callback"]
+    else
+      return function()
+        vim.fn.execute(mapping_map[key]["rhs"])
+      end
+    end
+  end
+end
+
 return M

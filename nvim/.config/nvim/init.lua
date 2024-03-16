@@ -10,11 +10,13 @@ vim.opt.rtp:append(string.sub(vim.g.absolute_config_path, 1, -2))
 
 -- basic config
 require("wsain.common")
-require("wsain.base_mappings")
 
--- plugin config data
+-- plugin config
 local pluginDatas = require("wsain.plugin.plugins")
 local pluginManager = require("wsain.plugin.lazy")
 local mappingRegister = require("wsain.plugin.whichkey")
 pluginManager.load(pluginDatas)
 mappingRegister.register(pluginDatas)
+
+-- base mapping override plugin mapping
+require("wsain.base_mappings")
