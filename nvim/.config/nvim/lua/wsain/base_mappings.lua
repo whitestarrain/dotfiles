@@ -47,6 +47,8 @@ set_mapping("t", "<c-[>", "<c-\\><c-n>")
 set_mapping("t", "<Esc>", "<c-\\><c-n>")
 
 -- quickfix
+set_mapping("n", "]q", ":cnewer<cr>")
+set_mapping("n", "[q", ":colder<cr>")
 set_mapping("n", "<leader>q", function()
   if utils.check_quickfix_open() then
     pcall(vim.fn.execute, "cclose")
