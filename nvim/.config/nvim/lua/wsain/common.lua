@@ -33,20 +33,6 @@ vim.opt.hidden = true
 vim.opt.signcolumn = "auto:2"
 vim.opt.list = false
 
-local bgHighLightAugroup = vim.api.nvim_create_augroup("BgHighlight", { clear = true })
-vim.api.nvim_create_autocmd("WinEnter", {
-  group = bgHighLightAugroup,
-  callback = function()
-    vim.opt.cul = true
-  end,
-})
-vim.api.nvim_create_autocmd("WinLeave", {
-  group = bgHighLightAugroup,
-  callback = function()
-    vim.opt.cul = false
-  end,
-})
-
 vim.cmd([[
   syntax enable
   syntax sync minlines=512
@@ -93,11 +79,6 @@ vim.opt.foldlevelstart = 99
 -- other config
 vim.opt.conceallevel = 0
 vim.opt.maxmempattern = 5000
-
--- quick fix key map
---[[ In the quickfix window, <CR> is used to jump to the error under the
-cursor, so undefine the mapping there. ]]
-vim.cmd("autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>")
 
 -- complete opt
 vim.opt.completeopt = "menuone"

@@ -10,6 +10,7 @@ vim.opt.rtp:append(string.sub(vim.g.absolute_config_path, 1, -2))
 
 -- basic config
 require("wsain.common")
+require("wsain.autocmd")
 
 -- plugin config
 local pluginDatas = require("wsain.plugin.plugins")
