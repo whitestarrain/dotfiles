@@ -87,6 +87,15 @@ local esc_func = function()
     vim.fn.setreg("/", nil)
     return
   end
+  local changed = vim.fn.getbufinfo(vim.api.nvim_get_current_buf())[1].changed
+  if changed == 1 then
+    local f = io.open(vim.fn.expand("%:p"), "r")
+    if f ~= nil then
+      io.close(f)
+      vim.cmd("w")
+    end
+    return
+  end
 end
 
 keymap.set("n", "<Esc>", esc_func)
