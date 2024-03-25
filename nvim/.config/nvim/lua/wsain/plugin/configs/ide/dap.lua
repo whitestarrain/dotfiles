@@ -6,6 +6,7 @@ plugin.loadEvent = "VeryLazy"
 plugin.dependencies = {
   "rcarriga/nvim-dap-ui",
   "theHamsta/nvim-dap-virtual-text",
+  "nvim-neotest/nvim-nio",
 }
 
 local default_launch_json_path = "./.vscode/dap.json"

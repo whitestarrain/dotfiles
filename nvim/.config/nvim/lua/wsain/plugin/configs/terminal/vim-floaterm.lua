@@ -53,7 +53,7 @@ if vim.fn.executable(file_exploer) then
     "n",
     "<leader>K",
     function()
-      vim.fn.execute("FloatermNew " .. " --title=" .. file_exploer .. " " .. file_exploer)
+      vim.fn.execute("FloatermNew " .. " --title=" .. file_exploer .. " " .. file_exploer .. " . ")
     end,
     "ranger",
   })
