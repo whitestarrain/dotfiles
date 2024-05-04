@@ -74,6 +74,7 @@ plugin.config = function()
       ["@markup.heading.4.marker.markdown"] = { link = "htmlH1" },
       ["@markup.heading.5.marker.markdown"] = { link = "htmlH1" },
       ["@markup.heading.6.marker.markdown"] = { link = "htmlH1" },
+      ["@markup.list.markdown"] = { link = "mkdListItem" },
       ["@text.reference.markdown_inline"] = { link = "htmlLink" },
       ["@text.todo.unchecked.markdown"] = { link = "Normal" },
       ["@text.quote.markdown"] = { link = "Comment" },

@@ -1,3 +1,6 @@
+-- improve startup time
+vim.loader.enable()
+
 -- encoding config
 vim.opt.encoding = "utf-8"
 vim.opt.langmenu = "zh_CN.UTF-8"
