@@ -100,10 +100,10 @@ local on_attach = function(client, bufnr)
 
   buf_set_keymap("i", "<c-p>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts("signature_help")) -- <C-p><C-p> to enter hover win
 
-  buf_set_keymap("n", "<leader>cR", "<cmd>Lspsaga rename<CR>", opts("rename"))
+  buf_set_keymap("n", "<leader>ce", "<cmd>Lspsaga rename<CR>", opts("edit signature"))
 
   -- buf_set_keymap('n', 'go', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap("n", "<leader>ce", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("show diagnostics"))
+  -- buf_set_keymap("n", "<leader>ce", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("show diagnostics"))
 
   -- buf_set_keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts("prev diagnostics"))
   -- buf_set_keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts("next diagnostics"))

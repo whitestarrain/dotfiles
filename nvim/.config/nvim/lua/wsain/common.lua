@@ -100,3 +100,6 @@ vim.opt.termguicolors = true
 vim.opt.winblend = 0
 vim.opt.pumblend = 0
 vim.opt.background = "dark"
+
+-- disable default sql autocompletion mapping
+vim.g.omni_sql_no_default_maps = 1
