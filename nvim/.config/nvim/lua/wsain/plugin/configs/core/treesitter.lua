@@ -98,7 +98,7 @@ plugin.config = function()
   vim.api.nvim_create_user_command(
     "TSInstallCustom",
     "TSInstall" .. " " .. table.concat(lang_module, " "),
-    { desc = "format", range = 2 }
+    { desc = "install default ts parser"}
   )
 end
 

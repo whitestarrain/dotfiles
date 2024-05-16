@@ -31,9 +31,11 @@ pacman -S --needed - < pkglist.txt
   - `cd ~ && stow nvim`
   - run `nvim`
     - plugin will be auto installed under `{this_repo}/nvim/.config/nvim/.plugins/` and `{this_repo}/nvim/.config/nvim/.managers/`
-  - run `:Mason` in nvim to install lsp
+  - run `:Mason` in nvim to install lsp, dap, etc.
     - lsp will be installed under `{this_repo}/nvim/.config/nvim/.mason/`
-  - run `:TSInstallCustom` in nvim to install treesitter pasers
+    - can run `MasonInstall Custom` install default tools
+  - run `:TSInstall <lang>` in nvim to install treesitter parsers
+    - run `:TSInstallCustom` to install default treesitter parsers
   - run `:checkhealth`, install dependencies
 - stow link
 
