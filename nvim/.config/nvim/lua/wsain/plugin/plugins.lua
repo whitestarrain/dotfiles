@@ -30,6 +30,8 @@ return {
   require("wsain.plugin.configs.edit.md-img-paste"),
   require("wsain.plugin.configs.edit.md-section-number"),
   require("wsain.plugin.configs.edit.comment"),
+  require("wsain.plugin.configs.edit.treesj"),
+  require("wsain.plugin.configs.edit.guess_indent"),
 
   -- mode
   require("wsain.plugin.configs.mode.venn"),
@@ -49,6 +51,7 @@ return {
 
   -- ide
   require("wsain.plugin.configs.ide.refactoring"),
+  require("wsain.plugin.configs.ide.outline"),
   require("wsain.plugin.configs.ide.mason"),
   require("wsain.plugin.configs.ide.fmt"),
   require("wsain.plugin.configs.ide.linter"),

@@ -2,7 +2,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "akinsho/bufferline.nvim"
-plugin.dependencies = { "kyazdani42/nvim-web-devicons" }
+plugin.dependencies = { "nvim-tree/nvim-web-devicons" }
 plugin.config = function()
   local separator_style = { "", "" }
   require("bufferline").setup({

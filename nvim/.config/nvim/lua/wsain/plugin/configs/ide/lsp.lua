@@ -5,7 +5,6 @@ plugin.shortUrl = "neovim/nvim-lspconfig"
 plugin.dependencies = {
   "glepnir/lspsaga.nvim",
   "folke/trouble.nvim",
-  "simrat39/symbols-outline.nvim",
   "whitestarrain/lua-dev.nvim",
   {
     "j-hui/fidget.nvim",
@@ -111,8 +110,6 @@ local on_attach = function(client, bufnr)
   -- format
   buf_set_keymap("n", "<space>cf", ":Format<CR>", opts("format"))
   buf_set_keymap("v", "<space>cf", ":Format<CR>", opts("format"))
-
-  buf_set_keymap("n", "<space>ct", ":SymbolsOutline<CR>", opts("outline"))
 end
 
 local function fidgetSetup()
@@ -155,58 +152,6 @@ local function lspsagaSetup()
   })
 end
 
-local function outlineSetup()
-  if package.loaded["symbols-outline"] ~= nil then
-    return
-  end
-  require("symbols-outline").setup({
-    keymaps = {
-      -- These keymaps can be a string or a table for multiple keys
-      close = { "<Esc>", "q" },
-      goto_location = "<Cr>",
-      focus_location = "o",
-      hover_symbol = "K",
-      toggle_preview = "P",
-      rename_symbol = "r",
-      -- code_actions = "a",
-      fold = "h",
-      unfold = "l",
-      fold_all = "W",
-      unfold_all = "E",
-      fold_reset = "R",
-    },
-    symbols = {
-      File = { icon = "", hl = "@URI" },
-      Module = { icon = "", hl = "@Namespace" },
-      Namespace = { icon = "", hl = "@Namespace" },
-      Package = { icon = "", hl = "@Namespace" },
-      Class = { icon = "ﴯ", hl = "@Type" },
-      Method = { icon = "ƒ", hl = "@Method" },
-      Property = { icon = "", hl = "@Method" },
-      Field = { icon = "ﰠ", hl = "@Field" },
-      Constructor = { icon = "", hl = "@Constructor" },
-      Enum = { icon = "ℰ", hl = "@Type" },
-      Interface = { icon = "ﰮ", hl = "@Type" },
-      Function = { icon = "", hl = "@Function" },
-      Variable = { icon = "", hl = "@Constant" },
-      Constant = { icon = "", hl = "@Constant" },
-      String = { icon = "", hl = "@String" },
-      Number = { icon = "#", hl = "@Number" },
-      Boolean = { icon = "⊨", hl = "@Boolean" },
-      Array = { icon = "", hl = "@Constant" },
-      Object = { icon = "⦿", hl = "@Type" },
-      Key = { icon = "", hl = "@Type" },
-      Null = { icon = "NULL", hl = "@Type" },
-      EnumMember = { icon = "", hl = "@Field" },
-      Struct = { icon = "פּ", hl = "@Type" },
-      Event = { icon = "", hl = "@Type" },
-      Operator = { icon = "+", hl = "@Operator" },
-      TypeParameter = { icon = "", hl = "@Parameter" },
-    },
-  })
-  utils.addCommandBeforeSaveSession("silent! SymbolsOutlineClose")
-end
-
 local function setupStatusCol()
   require("wsain.plugin.configs.ui.statuscol").setForLspConfig()
 end
@@ -230,7 +175,6 @@ local function ensureDepLoaded()
   fidgetSetup()
   lspsagaSetup()
   troubleSetup()
-  outlineSetup()
 end
 
 local function setupLspWrap(fun)

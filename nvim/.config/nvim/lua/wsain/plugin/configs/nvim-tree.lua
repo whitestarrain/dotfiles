@@ -2,7 +2,7 @@ local plugin = require("wsain.plugin.template"):new()
 local utils = require("wsain.utils")
 
 plugin.shortUrl = "kyazdani42/nvim-tree.lua"
-plugin.dependencies = { "kyazdani42/nvim-web-devicons" }
+plugin.dependencies = { "nvim-tree/nvim-web-devicons" }
 plugin.loadEvent = "VeryLazy"
 local function relative_path_under_cursor()
   local node = require("nvim-tree.lib").get_node_at_cursor()

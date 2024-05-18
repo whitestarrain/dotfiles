@@ -2,7 +2,7 @@ local plugin = require("wsain.plugin.template"):new()
 local utils = require("wsain.utils")
 
 plugin.shortUrl = "nvim-lualine/lualine.nvim"
-plugin.dependencies = { "kyazdani42/nvim-web-devicons" }
+plugin.dependencies = { "nvim-tree/nvim-web-devicons" }
 plugin.config = function()
   -- Get diff data
   -- support plugins: vim-gitgutter vim-signify coc-git
