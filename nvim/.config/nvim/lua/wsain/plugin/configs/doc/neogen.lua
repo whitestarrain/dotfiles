@@ -1,6 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "danymat/neogen"
+plugin.loadEvent = "VeryLazy"
 plugin.dependencies = {
   "nvim-treesitter/nvim-treesitter",
 }
