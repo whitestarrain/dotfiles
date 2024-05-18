@@ -44,6 +44,7 @@ plugin.opts = {
       if win_type == ":" then
         return false
       end
+      return true
     end,
   },
 
