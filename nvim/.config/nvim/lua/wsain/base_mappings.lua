@@ -67,10 +67,14 @@ set_mapping("n", "[t", ":tabpre<cr>")
 -- diagnostic
 set_mapping("n", "[e", function()
   vim.diagnostic.goto_prev()
-end)
+end, {
+  desc = "goto prev diagnostic",
+})
 set_mapping("n", "]e", function()
   vim.diagnostic.goto_next()
-end)
+end, {
+  desc = "goto next diagnostic",
+})
 
 -- term mode
 set_mapping("t", "<c-[>", "<c-\\><c-n>")

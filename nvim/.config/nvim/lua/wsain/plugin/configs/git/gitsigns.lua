@@ -30,35 +30,51 @@ plugin.opts = {
     end
 
     -- Navigation
-    map('n', ']c', function()
-      if vim.wo.diff then return ']c' end
-      vim.schedule(function() gs.next_hunk() end)
-      return '<Ignore>'
-    end, {expr=true})
+    map("n", "]c", function()
+      if vim.wo.diff then
+        return "]c"
+      end
+      vim.schedule(function()
+        gs.next_hunk()
+      end)
+      return "<Ignore>"
+    end, { expr = true, desc = "goto next change" })
 
-    map('n', '[c', function()
-      if vim.wo.diff then return '[c' end
-      vim.schedule(function() gs.prev_hunk() end)
-      return '<Ignore>'
-    end, {expr=true})
+    map("n", "[c", function()
+      if vim.wo.diff then
+        return "[c"
+      end
+      vim.schedule(function()
+        gs.prev_hunk()
+      end)
+      return "<Ignore>"
+    end, { expr = true, desc = "goto prev change" })
 
     -- Actions
-    map('n', '<leader>hs', gs.stage_hunk, {desc="stage hunk"})
-    map('n', '<leader>hr', gs.reset_hunk, {desc="reset hunk"})
-    map('v', '<leader>hs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end, {desc="stage hunk"})
-    map('v', '<leader>hr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end, {desc="reset hunk"})
-    map('n', '<leader>hS', gs.stage_buffer, {desc="stage buffer"})
-    map('n', '<leader>hu', gs.undo_stage_hunk, {desc="undo stage buffer"})
-    map('n', '<leader>hR', gs.reset_buffer, {desc="reset buffer"})
-    map('n', '<leader>hp', gs.preview_hunk, {desc="preview hunk"})
-    map('n', '<leader>hb', function() gs.blame_line{full=true} end, {desc="blame line"})
-    map('n', '<leader>htb', gs.toggle_current_line_blame, {desc="toggle show line blame"})
-    map('n', '<leader>hd', gs.diffthis, {desc="diff"})
-    map('n', '<leader>hD', function() gs.diffthis('~') end, {desc="diff staged"})
-    map('n', '<leader>htd', gs.toggle_deleted, {desc="toggle show deleted"})
+    map("n", "<leader>hs", gs.stage_hunk, { desc = "stage hunk" })
+    map("n", "<leader>hr", gs.reset_hunk, { desc = "reset hunk" })
+    map("v", "<leader>hs", function()
+      gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+    end, { desc = "stage hunk" })
+    map("v", "<leader>hr", function()
+      gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+    end, { desc = "reset hunk" })
+    map("n", "<leader>hS", gs.stage_buffer, { desc = "stage buffer" })
+    map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "undo stage buffer" })
+    map("n", "<leader>hR", gs.reset_buffer, { desc = "reset buffer" })
+    map("n", "<leader>hp", gs.preview_hunk, { desc = "preview hunk" })
+    map("n", "<leader>hb", function()
+      gs.blame_line({ full = true })
+    end, { desc = "blame line" })
+    map("n", "<leader>htb", gs.toggle_current_line_blame, { desc = "toggle show line blame" })
+    map("n", "<leader>hd", gs.diffthis, { desc = "diff" })
+    map("n", "<leader>hD", function()
+      gs.diffthis("~")
+    end, { desc = "diff staged" })
+    map("n", "<leader>htd", gs.toggle_deleted, { desc = "toggle show deleted" })
 
     -- Text object
-    map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+    map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
   end,
   watch_gitdir = {
     interval = 1000,
