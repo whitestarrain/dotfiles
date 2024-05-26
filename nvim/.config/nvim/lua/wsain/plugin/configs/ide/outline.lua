@@ -11,21 +11,10 @@ plugin.config = function()
   require("aerial").setup({
     backends = { "lsp", "treesitter" },
     on_attach = function(bufnr)
-      vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-      vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+      vim.keymap.set("n", "[s", "<cmd>AerialPrev<CR>", { buffer = bufnr, desc = "prev symbol" })
+      vim.keymap.set("n", "]s", "<cmd>AerialNext<CR>", { buffer = bufnr, desc = "next symbol" })
     end,
     filter_kind = false,
-    -- To see all available values, see :help SymbolKind
-    -- filter_kind = {
-    --   "Class",
-    --   "Constructor",
-    --   "Enum",
-    --   "Function",
-    --   "Interface",
-    --   "Module",
-    --   "Method",
-    --   "Struct",
-    -- },
   })
   utils.addCommandBeforeSaveSession("silent! AerialClose")
 end
