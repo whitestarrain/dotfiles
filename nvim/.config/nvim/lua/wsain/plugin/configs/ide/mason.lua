@@ -13,6 +13,7 @@ plugin.config = function()
     },
     registries = {
       "github:mason-org/mason-registry",
+      "github:nvim-java/mason-registry",
     },
   })
   local tools = {
@@ -37,6 +38,7 @@ plugin.config = function()
     "html-lsp",
     "isort",
     "java-debug-adapter",
+    "java-test",
     "jdtls",
     "jedi-language-server",
     "jq",

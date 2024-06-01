@@ -21,7 +21,6 @@ end
 
 plugin.globalMappings = {
   { "n", "<leader>ct", ":AerialToggle<CR>", "outline" },
-  { "n", "<leader>cT", ":AerialNavToggle<CR>", "outline nav" },
 }
 
 return plugin
