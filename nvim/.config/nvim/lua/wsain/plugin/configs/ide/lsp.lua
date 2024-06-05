@@ -210,11 +210,16 @@ local function ensureDepLoaded()
   troubleSetup()
 end
 
-local function setupLspWrap(fun)
+local function setupLspWrap(fun, auto_attach)
+  if auto_attach == nil then
+    auto_attach = true
+  end
   return function()
     ensureDepLoaded()
     fun()
-    attach_lsp_to_existing_buffers()
+    if auto_attach then
+      attach_lsp_to_existing_buffers()
+    end
   end
 end
 
@@ -740,7 +745,14 @@ local function setupJavaLsp()
 
     local on_init = function(client, _)
       client.notify("workspace/didChangeConfiguration", { settings = lsp_settings })
-      vim.cmd("JdtUpdateDebugConfig")
+      for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+        local valid = vim.api.nvim_buf_is_valid(bufnr) and vim.api.nvim_buf_get_option(bufnr, "buflisted")
+        if valid and vim.bo[bufnr].buftype == "" and vim.bo[bufnr].filetype == "java" then
+          vim.lsp.buf_attach_client(bufnr, client.id)
+        end
+      end
+
+      require("jdtls.dap").setup_dap_main_class_configs({ verbose = true })
     end
 
     local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
@@ -772,13 +784,7 @@ local function setupJavaLsp()
     callback = jdtls_setup,
   })
 
-  -- attached to already existing buffers.
-  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    local valid = vim.api.nvim_buf_is_valid(bufnr) and vim.api.nvim_buf_get_option(bufnr, "buflisted")
-    if valid and vim.bo[bufnr].buftype == "" then
-      vim.api.nvim_exec_autocmds("FileType", { group = java_cmds, buffer = bufnr })
-    end
-  end
+  vim.api.nvim_exec_autocmds("FileType", { group = java_cmds, buffer = 0 })
 end
 
 plugin.globalMappings = {
@@ -798,7 +804,7 @@ plugin.globalMappings = {
   { "n", "<leader>Spr", setupLspWrap(setupPyright), "pyright" },
   { "n", "<leader>Spj", setupLspWrap(setupJedi), "jedi" },
   { "n", "<leader>Sh", setupLspWrap(setupPhpLsp), "php" },
-  { "n", "<leader>Sj", setupLspWrap(setupJavaLsp), "java" },
+  { "n", "<leader>Sj", setupLspWrap(setupJavaLsp, false), "java" },
 }
 
 return plugin
