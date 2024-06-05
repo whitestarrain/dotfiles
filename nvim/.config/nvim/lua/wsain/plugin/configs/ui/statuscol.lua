@@ -10,7 +10,7 @@ plugin.customConfig = function(lsp_mode)
     relculright = true,
     segments = {
       {
-        sign = { name = { "Diagnostic" }, maxwidth = 1, auto = auto_diagnostic_sign },
+        sign = { namespace = { "diagnostic/signs" }, maxwidth = 1, auto = auto_diagnostic_sign },
         click = "v:lua.ScSa",
       },
       {
