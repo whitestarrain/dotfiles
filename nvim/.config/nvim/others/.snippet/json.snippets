@@ -1,4 +1,4 @@
-snippet dap_py "day launch.json for python"
+snippet dap_py "dap launch.json for python"
   {
       "version": "0.2.0",
       "configurations": [
@@ -32,4 +32,17 @@ snippet dap_py "day launch.json for python"
               "justMyCode": false
           }
       ]
+  }
+
+snippet dap_java "dap launch.json for java"
+  {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "Current File Solution",
+        "request": "launch",
+        "mainClass": "$1"
+      }
+    ]
   }
