@@ -66,40 +66,49 @@ plugin.config = function()
   vim.o.foldlevel = 99
  ]]
 
-  lang_module = {
+  local lang_module = {
     "awk",
     "bash",
     "c",
     "c_sharp",
+    "commonlisp",
     "cpp",
     "css",
     "dot",
     "go",
+    "groovy",
     "html",
+    "ini",
     "java",
     "javascript",
     "json",
+    "kotlin",
     "lua",
     "markdown",
     "markdown_inline",
+    "perl",
     "php",
     "python",
     "query",
     "regex",
     "ruby",
     "rust",
+    "scala",
+    "scheme",
     "scss",
     "sql",
     "tsx",
     "typescript",
     "vim",
     "vimdoc",
+    "vue",
+    "yaml",
     "zig",
   }
   vim.api.nvim_create_user_command(
     "TSInstallCustom",
     "TSInstall" .. " " .. table.concat(lang_module, " "),
-    { desc = "install default ts parser"}
+    { desc = "install default ts parser" }
   )
 end
 
