@@ -298,9 +298,14 @@ function M.str_split(inputstr, sep)
   return t
 end
 
-function M.check_quickfix_open()
-  local qf_win_list = vim.fn.filter(vim.fn.range(1, vim.fn.winnr("$")), 'getwinvar(v:val, "&ft") == "qf"')
+function M.check_buffer_open(buffer_filetype)
+  local qf_win_list =
+    vim.fn.filter(vim.fn.range(1, vim.fn.winnr("$")), 'getwinvar(v:val, "&ft") == "' .. buffer_filetype .. '"')
   return next(qf_win_list) ~= nil
+end
+
+function M.check_quickfix_open()
+  return M.check_buffer_open("qf")
 end
 
 function M.get_current_mapping(key, mode)

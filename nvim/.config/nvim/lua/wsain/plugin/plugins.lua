@@ -40,6 +40,7 @@ return {
   require("wsain.plugin.configs.terminal.vim-floaterm"),
   require("wsain.plugin.configs.terminal.asynctasks"),
   require("wsain.plugin.configs.terminal.vim-tmux-navigator"),
+  require("wsain.plugin.configs.terminal.compile_mode"),
 
   --doc
   require("wsain.plugin.configs.doc.vimcdoc"),

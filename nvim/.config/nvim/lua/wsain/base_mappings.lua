@@ -81,8 +81,8 @@ set_mapping("t", "<c-[>", "<c-\\><c-n>")
 set_mapping("t", "<Esc>", "<c-\\><c-n>")
 
 -- quickfix
-set_mapping("n", "]q", ":cnewer<cr>")
-set_mapping("n", "[q", ":colder<cr>")
+set_mapping("n", "]q", ":silent! cnewer<cr>")
+set_mapping("n", "[q", ":silent! colder<cr>")
 set_mapping("n", "<leader>q", function()
   if utils.check_quickfix_open() then
     pcall(vim.fn.execute, "cclose")
@@ -96,6 +96,10 @@ set_mapping("n", "<c-n>", function()
     pcall(vim.fn.execute, "cnext")
     return
   end
+  if utils.check_buffer_open("compilation") then
+    pcall(vim.fn.execute, "NextError")
+    return
+  end
   if c_n_mapping_func ~= nil then
     c_n_mapping_func()
     return
@@ -106,6 +110,10 @@ end)
 set_mapping("n", "<c-p>", function()
   if utils.check_quickfix_open() then
     pcall(vim.fn.execute, "cprevious")
+    return
+  end
+  if utils.check_buffer_open("compilation") then
+    pcall(vim.fn.execute, "PrevError")
     return
   end
   local keys = vim.api.nvim_replace_termcodes("<C-p>", true, false, true)
