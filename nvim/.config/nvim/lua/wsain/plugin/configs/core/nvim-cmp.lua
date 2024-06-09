@@ -208,7 +208,29 @@ plugin.config = function()
 
   -- Use cmdline & path source for ':'.
   cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = {
+      -- disable <tab> <s-tab> mapping for wildmenu
+      ["<C-n>"] = {
+        c = function(fallback)
+          local cmp = require("cmp")
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end,
+      },
+      ["<C-p>"] = {
+        c = function(fallback)
+          local cmp = require("cmp")
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end,
+      },
+    },
     sources = cmp.config.sources({
       { name = "path" },
     }, {
