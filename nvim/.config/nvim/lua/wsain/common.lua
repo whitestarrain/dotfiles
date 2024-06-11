@@ -39,6 +39,7 @@ vim.opt.list = false
 vim.cmd([[
   syntax enable
   syntax sync minlines=512
+  syntax sync maxlines=512
 ]])
 vim.opt.synmaxcol = 1500
 
