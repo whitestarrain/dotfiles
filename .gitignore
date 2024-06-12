@@ -10,3 +10,5 @@ nvim/.config/nvim/.plugins
 nvim/.config/nvim/.managers
 nvim/.config/nvim/.mason
 **/__pycache__
+.emacs.d/elpa
+.emacs.d/auto-save-list
