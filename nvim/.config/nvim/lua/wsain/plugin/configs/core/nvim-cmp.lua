@@ -197,8 +197,15 @@ plugin.config = function()
     },
   })
 
-  -- Use buffer source for `/`.
+  -- Use buffer source for `/` `?`.
   cmp.setup.cmdline("/", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = "buffer" },
+    },
+    formatting = lspkind_format,
+  })
+  cmp.setup.cmdline("?", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = "buffer" },
