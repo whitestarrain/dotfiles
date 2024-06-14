@@ -19,6 +19,7 @@ return {
   require("wsain.plugin.configs.ui.feline"),
   require("wsain.plugin.configs.ui.statuscol"),
   require("wsain.plugin.configs.ui.dressing"),
+  require("wsain.plugin.configs.ui.rainbow"),
 
   -- edit
   require("wsain.plugin.configs.edit.todo-comments"),

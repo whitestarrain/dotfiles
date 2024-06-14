@@ -78,6 +78,11 @@ plugin.config = function()
       ["@text.reference.markdown_inline"] = { link = "htmlLink" },
       ["@text.todo.unchecked.markdown"] = { link = "Normal" },
       ["@text.quote.markdown"] = { link = "Comment" },
+
+      -- rainbow throw regex, disable bracket highlight group
+      ["@punctuation.bracket"] = { link = "" },
+      ["@punctuation.bracket.python"] = { link = "" },
+      ["@odp.punctuation.bracket.python"] = { link = "" },
     },
   })
   vim.cmd("colorscheme onedark")
