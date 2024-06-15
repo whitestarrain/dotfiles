@@ -13,9 +13,9 @@ return {
 
   -- ui
   require("wsain.plugin.configs.ui.startify"),
+  require("wsain.plugin.configs.ui.tabline"),
   require("wsain.plugin.configs.ui.nvim-colorizer"),
   require("wsain.plugin.configs.ui.indent-blankline"),
-  require("wsain.plugin.configs.ui.bufferline"),
   require("wsain.plugin.configs.ui.feline"),
   require("wsain.plugin.configs.ui.statuscol"),
   require("wsain.plugin.configs.ui.dressing"),

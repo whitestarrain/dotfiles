@@ -75,6 +75,7 @@ plugin.globalMappings = {
   { "n", "<leader>fm", ":Telescope man_pages sections=ALL<CR>", "man_pages" },
   { "n", "<leader>fa", ":Telescope find_files no_ignore=true hidden=true<CR>", "all file" },
   { "n", "<leader>/", ":Telescope buffers sort_mru=true<CR>", "buffer" },
+  { "n", "<leader>fe", ":Telescope buffers sort_mru=true<CR>", "buffer" },
   { "n", "<leader>fc", ":Telescope command_history<CR>", "command_history" },
   { "n", "<leader>fp", ":Telescope<CR>", "telescope buildin" },
   { "n", "<leader>fg", ":Telescope live_grep preview=true<CR>", "grep" },

@@ -33,6 +33,12 @@ plugin.config = function()
       PmenuThumb = {
         bg = theme.palette.white,
       },
+      -- tabline
+      TabLineSel = {
+        bg = nil,
+        fg= theme.palette.blue,
+      },
+
       -- filetype
       markdownItalic = { fg = theme.palette.purple, italic = true },
       mkdHeading = { link = "htmlH1" },
