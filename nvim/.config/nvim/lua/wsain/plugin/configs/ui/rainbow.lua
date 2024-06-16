@@ -20,5 +20,15 @@ plugin.init = function()
     },
   }
 end
+plugin.config = function()
+  local disable_highlights = {
+    "@punctuation.bracket",
+    "@punctuation.bracket.python",
+    "@odp.punctuation.bracket.python",
+  }
+  for _, hl in ipairs(disable_highlights) do
+    vim.api.nvim_set_hl(0, hl, { link = "" })
+  end
+end
 
 return plugin
