@@ -36,6 +36,7 @@ pacman -S --needed - < pkglist.txt
     - can run `MasonInstall Custom` install default tools
   - run `:TSInstall <lang>` in nvim to install treesitter parsers
     - run `:TSInstallCustom` to install default treesitter parsers
+    - `CC=/path/to/gcc nvim` can specify the compiler version
   - run `:checkhealth`, install dependencies
 - stow link
 
