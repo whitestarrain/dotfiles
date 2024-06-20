@@ -46,7 +46,7 @@ plugin.config = function()
         vertical = {
           mirror = false,
         },
-        preview_cutoff = 120,
+        preview_cutoff = 0,
       },
       initial_mode = "insert",
       --  can use <C-l> in insert mode to cycle/complete tags, i.e. either diagnostic severity or symbols (classes, functions, methods, ...)
@@ -59,8 +59,13 @@ plugin.config = function()
           ["h"] = actions.cycle_history_prev,
           ["l"] = actions.cycle_history_next,
         },
+        i = {
+          ["<C-k>"] = require("telescope.actions.layout").toggle_preview,
+        },
       },
-      preview = false,
+      preview = {
+        hide_on_startup = true, -- hide previewer when picker starts
+      },
     },
     path_display = { "truncate" },
     winblend = 0,
@@ -78,7 +83,7 @@ plugin.globalMappings = {
   { "n", "<leader>fe", ":Telescope buffers sort_mru=true<CR>", "buffer" },
   { "n", "<leader>fc", ":Telescope command_history<CR>", "command_history" },
   { "n", "<leader>fp", ":Telescope<CR>", "telescope buildin" },
-  { "n", "<leader>fg", ":Telescope live_grep preview=true<CR>", "grep" },
+  { "n", "<leader>fg", ":Telescope live_grep", "grep" },
   { "n", "<leader>fr", ":Telescope resume initial_mode=normal<CR>", "resume" },
   { "n", "<leader>ft", ":Telescope asynctasks all<CR>", "asynctasks" },
 
