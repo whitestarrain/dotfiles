@@ -18,6 +18,9 @@ plugin.init = function()
       "lightcyan",
       "lightmagenta",
     },
+    separately = {
+      html = 0,
+    },
   }
 end
 plugin.config = function()
