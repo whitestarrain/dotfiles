@@ -81,6 +81,8 @@ TODO
 
 # Reference
 
+- [ ] [mini.nvim](https://github.com/echasnovski/mini.nvim)
+- [ ] [AstroNvim](https://github.com/AstroNvim/AstroNvim)
 - [ ] [voldikss/dotfiles](https://github.com/voldikss/dotfiles/blob/dev/nvim/init.vim)
 - [ ] [craftzdog/dotfiles-public](https://github.com/craftzdog/dotfiles-public)
 - [ ] [bluz71/dotfiles](https://github.com/bluz71/dotfiles/blob/master/vim/lua/plugin/lsp-config.lua)

@@ -25,8 +25,8 @@ vim.cmd([[
   cnoremap <C-A> <Home>
   cnoremap <C-F> <Right>
   cnoremap <C-B> <Left>
-  cnoremap <Esc>b <S-Left>
-  cnoremap <Esc>f <S-Right>
+  cnoremap <M-b> <S-Left>
+  cnoremap <M-f> <S-Right>
 ]])
 
 -- win resize
@@ -59,6 +59,9 @@ set_mapping(
 -- Search inside visually highlighted text. Use `silent = false` for it to
 -- make effect immediately.
 set_mapping("x", "g/", "<esc>/\\%V", { silent = false, desc = "Search inside visual selection" })
+
+-- support block replace.
+set_mapping("x", "gs", ":s/\\%V", { silent = false, desc = "Block replace" })
 
 if vim.fn.has("nvim-0.10") == 0 then
   set_mapping("x", "*", [[y/\V<C-R>=escape(@", '/\')<CR><CR>]], { desc = "Search forward" })
