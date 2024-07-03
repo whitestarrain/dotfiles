@@ -88,3 +88,4 @@ TODO
 - [ ] [bluz71/dotfiles](https://github.com/bluz71/dotfiles/blob/master/vim/lua/plugin/lsp-config.lua)
 - [ ] **[NvChad/NvChad](https://github.com/NvChad/NvChad)**
 - [ ] [LazyVim](https://github.com/LazyVim/LazyVim)
+- [ ] [rydesun/dotfiles](https://github.com/rydesun/dotfiles)

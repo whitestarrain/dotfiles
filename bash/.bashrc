@@ -7,7 +7,6 @@
 export TMOUT=0
 
 # add path
-
 PATH=$PATH:~/go/bin
 
 # prompt before overwrite
@@ -18,9 +17,6 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias pc='proxychains4'
 alias ssh='TERM=xterm-256color ssh'
-
-# default editor
-export EDITOR='nvim -u NONE'
 
 # don't logout when press ctrl-d
 set -o ignoreeof
