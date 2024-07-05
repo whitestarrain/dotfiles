@@ -15,9 +15,17 @@ plugin.globalMappings = {
     "n",
     "<leader>md",
     function()
+      utils.save_image_by_url(true)
+    end,
+    "download image",
+  },
+  {
+    "n",
+    "<leader>mD",
+    function()
       utils.save_image_by_url()
     end,
-    "download url image",
+    "download image[no input]",
   },
 }
 

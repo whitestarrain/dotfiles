@@ -194,7 +194,7 @@ function M.get_file_size(file_path)
   return size
 end
 
-function M.save_image_by_url()
+function M.save_image_by_url(input_image_name)
   local cfile = vim.fn.expand("<cfile>")
   if string.sub(cfile, 1, #"http") ~= "http" then
     print("can't find file url")
@@ -203,7 +203,12 @@ function M.save_image_by_url()
   local line_number = vim.api.nvim_win_get_cursor(0)[1]
   local buf_num = vim.api.nvim_get_current_buf()
   local default_name = string.lower(vim.fn.expand("%:t:r") .. "-" .. os.date("%Y%m%d%H%M%S") .. ".png")
-  local image_name = vim.fn.input("image name: ", default_name)
+  local image_name = nil
+  if input_image_name then
+    image_name = vim.fn.input("image name: ", default_name)
+  else
+    image_name = default_name
+  end
   if image_name == "" or image_name == nil then
     return
   end
@@ -211,6 +216,7 @@ function M.save_image_by_url()
   local image_dir = vim.g.mdip_imgdir or "./image"
   local image_path = relative_path .. "/" .. image_dir .. "/" .. image_name
   image_path = vim.fn.substitute(image_path, "\\", "/", "")
+  print("start download image")
   local job = vim.fn.jobstart({
     "curl",
     cfile,
