@@ -1,3 +1,4 @@
+local utils = require("wsain.utils")
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.globalMappings = {
@@ -9,6 +10,15 @@ plugin.globalMappings = {
   { "n", "<leader>zf", ':echo expand("%:p")<cr>', "show file path" },
   { "n", "<leader>zu", require("wsain.utils").openFileUnderCursor, "open file under cursor" },
   { "n", "<leader>zo", require("wsain.utils").openCurrentFile, "open current file" },
+  { "n", "<leader>m", name = "markdown" },
+  {
+    "n",
+    "<leader>md",
+    function()
+      utils.save_image_by_url()
+    end,
+    "download url image",
+  },
 }
 
 return plugin

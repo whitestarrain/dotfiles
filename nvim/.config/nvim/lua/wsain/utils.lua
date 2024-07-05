@@ -325,4 +325,71 @@ function M.get_current_mapping(key, mode)
   end
 end
 
+function M.check_file_exist(file_path)
+  local f = io.open(file_path, "r")
+  local flag = false
+  if f ~= nil then
+    flag = true
+    io.close(f)
+  end
+  return flag
+end
+
+function M.get_file_size(file_path)
+  local f = io.open(file_path, "rb")
+  local size = nil
+  if f ~= nil then
+    size = f:seek("end")
+    io.close(f)
+  end
+  return size
+end
+
+function M.save_image_by_url()
+  local cfile = vim.fn.expand("<cfile>")
+  if string.sub(cfile, 1, #"http") ~= "http" then
+    print("can't find file url")
+    return
+  end
+  local line_number = vim.api.nvim_win_get_cursor(0)[1]
+  local buf_num = vim.api.nvim_get_current_buf()
+  local default_name = string.lower(vim.fn.expand("%:t:r") .. "-" .. os.date("%Y%m%d%H%M%S") .. ".png")
+  local image_name = vim.fn.input("image name: ", default_name)
+  if image_name == "" or image_name == nil then
+    return
+  end
+  local relative_path = vim.fn.expand("%:h")
+  local image_dir = vim.g.mdip_imgdir or "./image"
+  local image_path = relative_path .. "/" .. image_dir .. "/" .. image_name
+  image_path = vim.fn.substitute(image_path, "\\", "/", "")
+  local job = vim.fn.jobstart({
+    "curl",
+    cfile,
+    "-s",
+    "-o",
+    image_path,
+  }, {
+    stdout_buffered = true,
+    on_stdout = function()
+      local image_size = M.get_file_size(image_path)
+      if image_size == nil or image_size < 5120 then
+        print("Download image failed")
+        if image_size ~= nil then
+          os.remove(image_path)
+        end
+        return
+      end
+      local line_content = vim.api.nvim_buf_get_lines(buf_num, line_number - 1, line_number, false)[1]
+      local start_pos, end_pos = string.find(line_content, cfile, nil, true)
+      local image_line_text = string.format("[%s](%s)", image_name, image_dir .. "/" .. image_name)
+      if start_pos == nil or end_pos == nil then
+        print("Image url position changed")
+        return
+      end
+      vim.api.nvim_buf_set_lines(buf_num, line_number - 1, line_number, false, { image_line_text })
+      print("Download image success")
+    end,
+  })
+end
+
 return M

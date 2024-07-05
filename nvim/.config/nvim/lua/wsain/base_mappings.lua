@@ -142,13 +142,8 @@ local esc_func = function()
     return
   end
   local changed = vim.fn.getbufinfo(vim.api.nvim_get_current_buf())[1].changed
-  if changed == 1 then
-    local f = io.open(vim.fn.expand("%:p"), "r")
-    if f ~= nil then
-      io.close(f)
-      vim.cmd("w")
-    end
-    return
+  if changed == 1 and utils.check_file_exist(vim.fn.expand("%:p")) then
+    vim.cmd("w")
   end
 end
 
