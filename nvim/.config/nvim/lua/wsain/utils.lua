@@ -194,6 +194,32 @@ function M.get_file_size(file_path)
   return size
 end
 
+function M.get_default_image_name(url)
+  if url == nil then
+    return
+  end
+  -- image extention name
+  local image_extention_name = "png"
+  for _, extention_name in ipairs({ "png", "jpg", "jpeg", "gif", "bmp", "svg", "webp" }) do
+    local e_start, _ = string.find(url, string.format("%%.%s$", extention_name))
+    if e_start ~= nil then
+      image_extention_name = extention_name
+      break
+    end
+  end
+  -- image name
+  local image_name = string.lower(
+    string.format(
+      "%s-%s-%s.%s",
+      vim.fn.expand("%:t:r"),
+      os.date("%Y%m%d%H%M%S"),
+      math.floor((os.clock() % 1) * 1000000),
+      image_extention_name
+    )
+  )
+  return image_name
+end
+
 function M.save_image_under_cursor(input_image_name)
   -- cfile name
   local cfile = vim.fn.expand("<cfile>")
@@ -202,33 +228,12 @@ function M.save_image_under_cursor(input_image_name)
     return
   end
 
+  -- get current status
   local buf_num = vim.api.nvim_get_current_buf()
-
-  -- get the cfile line_number
-  local cursor_position = vim.api.nvim_win_get_cursor(0)
-  local line_number = cursor_position[1]
-  local col_index = cursor_position[2]
-
-  -- get image extension name
-  local image_extention_name = "png"
-  for _, extention_name in ipairs({ "png", "jpg", "jpeg", "gif", "bmp", "svg", "webp" }) do
-    local e_start, _ = string.find(cfile, string.format("%%.%s$", extention_name))
-    if e_start ~= nil then
-      image_extention_name = extention_name
-      break
-    end
-  end
+  local line_number = vim.api.nvim_win_get_cursor(0)[1]
 
   -- get image name
-  local default_name = string.lower(
-    string.format(
-      "%s-%s-%s.%s",
-      vim.fn.expand("%:t:r"),
-      string.format("%s-%s", line_number, col_index),
-      os.date("%Y%m%d%H%M%S"),
-      image_extention_name
-    )
-  )
+  local default_name = M.get_default_image_name(cfile)
   local image_name
   if input_image_name then
     image_name = vim.fn.input("image name: ", default_name)
@@ -263,7 +268,7 @@ function M.save_image_under_cursor(input_image_name)
     on_stdout = function()
       local image_size = M.get_file_size(image_path)
       if image_size == nil or image_size < 1024 then
-        print("Download image failed")
+        print(string.format("Download image failed, line %s", line_number))
         if image_size ~= nil then
           os.remove(image_path)
         end
@@ -276,13 +281,73 @@ function M.save_image_under_cursor(input_image_name)
           print("Image url position changed")
           return
         end
-        local md_img_text = string.format("[%s](%s)", image_name, image_dir .. "/" .. image_name)
-        local image_line_text = string.gsub(line_content, M.literalize(cfile), md_img_text)
-        vim.api.nvim_buf_set_lines(buf_num, line_number - 1, line_number, false, { image_line_text })
+        local md_img_text = string.format("![%s](%s)", image_name, image_dir .. "/" .. image_name)
+        vim.api.nvim_buf_set_lines(buf_num, line_number - 1, line_number, false, { md_img_text })
         print("Download image success")
       end)
     end,
   })
+end
+
+function M.save_markdown_url_images()
+  local buf_num = vim.api.nvim_get_current_buf()
+  local lines = vim.api.nvim_buf_get_lines(buf_num, 0, -1, false)
+  if lines == nil or #lines == 0 then
+    return
+  end
+
+  -- get image dir path
+  local relative_path = vim.fn.expand("%:h")
+  local image_dir = vim.g.mdip_imgdir or "./image"
+  local relative_image_path = relative_path .. "/" .. image_dir
+
+  -- ensure dir exist
+  vim.fn.system(string.format("[[ ! -d %s ]] && mkdir -p %s", relative_image_path, relative_image_path))
+
+  for line_number, line_content in ipairs(lines) do
+    local line_index = line_number - 1
+    local _, _, md_img_url_text, url = string.find(line_content, "(!%[.-%]%((.-)%))")
+    if url == nil or string.sub(url, 1, #"http") ~= "http" then
+      goto continue
+    end
+
+    local image_name = M.get_default_image_name(url)
+    local image_path = relative_image_path .. "/" .. image_name
+    image_path = vim.fn.substitute(image_path, "\\", "/", "")
+
+    vim.fn.jobstart({
+      "curl",
+      url,
+      "-s",
+      "-o",
+      image_path,
+    }, {
+      stdout_buffered = true,
+      on_stdout = function()
+        local image_size = M.get_file_size(image_path)
+        if image_size == nil or image_size < 1024 then
+          print(string.format("Download image failed, line %s", line_number))
+          if image_size ~= nil then
+            os.remove(image_path)
+          end
+          return
+        end
+        vim.schedule(function()
+          local cur_line_content = vim.api.nvim_buf_get_lines(buf_num, line_index, line_index + 1, false)[1]
+          local start_pos, end_pos = string.find(cur_line_content, url, 1, true)
+          if start_pos == nil or end_pos == nil then
+            print("Image url position changed")
+            return
+          end
+          local md_img_text = string.format("![%s](%s)", image_name, image_dir .. "/" .. image_name)
+          local image_line_text = string.gsub(cur_line_content, M.literalize(md_img_url_text), md_img_text)
+          vim.api.nvim_buf_set_lines(buf_num, line_index, line_index + 1, false, { image_line_text })
+          print("Download image success")
+        end)
+      end,
+    })
+    ::continue::
+  end
 end
 
 -- vim api function --

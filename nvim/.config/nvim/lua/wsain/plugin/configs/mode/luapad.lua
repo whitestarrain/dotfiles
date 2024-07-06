@@ -22,4 +22,16 @@ plugin.config = function()
   })
 end
 
+plugin.globalMappings = {
+  { "n", "<leader>zm", name = "+mode" },
+  {
+    "n",
+    "<leader>zml",
+    function()
+      require("luapad").toggle({})
+    end,
+    "luapad toggle",
+  },
+}
+
 return plugin

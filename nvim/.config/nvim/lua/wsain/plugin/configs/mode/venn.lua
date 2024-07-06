@@ -3,7 +3,7 @@ local plugin = require("wsain.plugin.template"):new()
 plugin.shortUrl = "jbyuki/venn.nvim"
 plugin.loadEvent = "VeryLazy"
 
-function toggle_venn()
+local toggle_venn = function()
   local venn_enabled = vim.inspect(vim.b.venn_enabled)
   if venn_enabled == "nil" then
     vim.b.venn_enabled = true
@@ -23,9 +23,8 @@ function toggle_venn()
 end
 
 plugin.globalMappings = {
-  { "n", "<leader>zm", toggle_venn, "+mode" },
+  { "n", "<leader>zm", name = "+mode" },
   { "n", "<leader>zmv", toggle_venn, "vbox draw" },
 }
 
 return plugin
-
