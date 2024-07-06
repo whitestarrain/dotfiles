@@ -36,6 +36,7 @@ return {
 
   -- mode
   require("wsain.plugin.configs.mode.venn"),
+  require("wsain.plugin.configs.mode.luapad"),
 
   -- terminal
   require("wsain.plugin.configs.terminal.vim-floaterm"),

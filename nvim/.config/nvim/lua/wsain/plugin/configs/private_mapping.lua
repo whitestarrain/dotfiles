@@ -15,7 +15,7 @@ plugin.globalMappings = {
     "n",
     "<leader>md",
     function()
-      utils.save_image_by_url(true)
+      utils.save_image_under_cursor(true)
     end,
     "download image",
   },
@@ -23,7 +23,7 @@ plugin.globalMappings = {
     "n",
     "<leader>mD",
     function()
-      utils.save_image_by_url()
+      utils.save_image_under_cursor()
     end,
     "download image[no input]",
   },
