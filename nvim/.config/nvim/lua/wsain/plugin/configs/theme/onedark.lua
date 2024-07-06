@@ -13,6 +13,7 @@ plugin.config = function()
       -- nvim-tree
       NvimTreeFolderIcon = { fg = theme.palette.blue },
       NvimTreeOpenedFolderIcon = { fg = theme.palette.purple },
+
       -- telescope
       TelescopeSelection = {
         bg = theme.palette.gray,
@@ -25,6 +26,9 @@ plugin.config = function()
       -- git
       GitSignsAddInline = { bg = "#3c6b3e" },
 
+      -- quickfix
+      QuickFixLine = { fg = theme.palette.cyan },
+
       -- cursor line nr
       CursorLineNr = {
         fg = theme.palette.white,
@@ -36,7 +40,7 @@ plugin.config = function()
       -- tabline
       TabLineSel = {
         bg = nil,
-        fg= theme.palette.blue,
+        fg = theme.palette.blue,
       },
 
       -- filetype

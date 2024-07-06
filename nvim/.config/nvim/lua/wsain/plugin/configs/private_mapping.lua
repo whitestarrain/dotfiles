@@ -14,18 +14,39 @@ plugin.globalMappings = {
   {
     "n",
     "<leader>md",
-    function()
-      utils.save_image_under_cursor(true)
-    end,
-    "download image",
+    name = "download image",
   },
   {
     "n",
-    "<leader>mD",
+    "<leader>mdc",
+    function()
+      utils.save_image_under_cursor(true, true)
+    end,
+    "download image under curosr",
+  },
+  {
+    "n",
+    "<leader>mdC",
     function()
       utils.save_image_under_cursor()
     end,
-    "download image[no input]",
+    "download image under curosr[no input]",
+  },
+  {
+    "n",
+    "<leader>mda",
+    function()
+      utils.save_markdown_url_images(true)
+    end,
+    "download all images",
+  },
+  {
+    "n",
+    "<leader>mdA",
+    function()
+      utils.save_markdown_url_images()
+    end,
+    "download all images[no input]",
   },
 }
 

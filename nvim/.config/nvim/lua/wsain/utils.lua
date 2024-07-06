@@ -194,6 +194,33 @@ function M.get_file_size(file_path)
   return size
 end
 
+function M.get_download_file_command(url, file_path, timeout, proxy)
+  timeout = timeout or 30
+  local command = {
+    "curl",
+    "--connect-timeout",
+    timeout,
+    url,
+    "-s",
+    "-o",
+    file_path,
+  }
+  if proxy ~= nil and proxy ~= "" then
+    table.insert(command, 2, "--proxy")
+    table.insert(command, 3, proxy)
+  end
+  return command
+end
+
+function M.check_dir_or_create(dir_path)
+  local os = M.getOs()
+  if os == "win" then
+    vim.fn.system(string.format([[if not exist "%s" mkdir "%s"]], dir_path, dir_path))
+    return
+  end
+  vim.fn.system(string.format("[[ ! -d %s ]] && mkdir -p %s", dir_path, dir_path))
+end
+
 function M.get_default_image_name(url)
   if url == nil then
     return
@@ -220,7 +247,7 @@ function M.get_default_image_name(url)
   return image_name
 end
 
-function M.save_image_under_cursor(input_image_name)
+function M.save_image_under_cursor(input_image_name, input_proxy)
   -- cfile name
   local cfile = vim.fn.expand("<cfile>")
   if string.sub(cfile, 1, #"http") ~= "http" then
@@ -244,6 +271,12 @@ function M.save_image_under_cursor(input_image_name)
     return
   end
 
+  -- proxy
+  local proxy
+  if input_proxy then
+    proxy = vim.fn.input("proxy: ", "127.0.0.1:7890")
+  end
+
   -- get image path
   local relative_path = vim.fn.expand("%:h")
   local image_dir = vim.g.mdip_imgdir or "./image"
@@ -252,18 +285,12 @@ function M.save_image_under_cursor(input_image_name)
   image_path = vim.fn.substitute(image_path, "\\", "/", "")
 
   -- ensure dir exist
-  vim.fn.system(string.format("[[ ! -d %s ]] && mkdir -p %s", relative_image_path, relative_image_path))
+  M.check_dir_or_create(relative_image_path)
 
   print("start download image")
 
   -- download image file, replace content
-  vim.fn.jobstart({
-    "curl",
-    cfile,
-    "-s",
-    "-o",
-    image_path,
-  }, {
+  vim.fn.jobstart(M.get_download_file_command(cfile, image_path, 10, proxy), {
     stdout_buffered = true,
     on_stdout = function()
       local image_size = M.get_file_size(image_path)
@@ -283,13 +310,13 @@ function M.save_image_under_cursor(input_image_name)
         end
         local md_img_text = string.format("![%s](%s)", image_name, image_dir .. "/" .. image_name)
         vim.api.nvim_buf_set_lines(buf_num, line_number - 1, line_number, false, { md_img_text })
-        print("Download image success")
+        print(string.format("Download image success, line %s", line_number))
       end)
     end,
   })
 end
 
-function M.save_markdown_url_images()
+function M.save_markdown_url_images(input_proxy)
   local buf_num = vim.api.nvim_get_current_buf()
   local lines = vim.api.nvim_buf_get_lines(buf_num, 0, -1, false)
   if lines == nil or #lines == 0 then
@@ -302,7 +329,13 @@ function M.save_markdown_url_images()
   local relative_image_path = relative_path .. "/" .. image_dir
 
   -- ensure dir exist
-  vim.fn.system(string.format("[[ ! -d %s ]] && mkdir -p %s", relative_image_path, relative_image_path))
+  M.check_dir_or_create(relative_image_path)
+
+  -- proxy
+  local proxy
+  if input_proxy then
+    proxy = vim.fn.input("proxy: ", "127.0.0.1:7890")
+  end
 
   for line_number, line_content in ipairs(lines) do
     local line_index = line_number - 1
@@ -315,13 +348,7 @@ function M.save_markdown_url_images()
     local image_path = relative_image_path .. "/" .. image_name
     image_path = vim.fn.substitute(image_path, "\\", "/", "")
 
-    vim.fn.jobstart({
-      "curl",
-      url,
-      "-s",
-      "-o",
-      image_path,
-    }, {
+    vim.fn.jobstart(M.get_download_file_command(url, image_path, 10, proxy), {
       stdout_buffered = true,
       on_stdout = function()
         local image_size = M.get_file_size(image_path)
@@ -342,7 +369,7 @@ function M.save_markdown_url_images()
           local md_img_text = string.format("![%s](%s)", image_name, image_dir .. "/" .. image_name)
           local image_line_text = string.gsub(cur_line_content, M.literalize(md_img_url_text), md_img_text)
           vim.api.nvim_buf_set_lines(buf_num, line_index, line_index + 1, false, { image_line_text })
-          print("Download image success")
+          print(string.format("Download image success, line %s", line_number))
         end)
       end,
     })
