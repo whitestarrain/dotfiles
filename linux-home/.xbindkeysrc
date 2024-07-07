@@ -1,0 +1,7 @@
+# Next Workspace
+"i3 workspace next"
+   b:8
+
+# Previous Workspace
+"i3 workspace prev"
+   b:9
