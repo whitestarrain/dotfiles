@@ -8,6 +8,7 @@ export TMOUT=0
 
 # add path
 PATH=$PATH:~/go/bin
+PATH=$PATH:~/.bin
 
 # prompt before overwrite
 alias rm='rm -i'
