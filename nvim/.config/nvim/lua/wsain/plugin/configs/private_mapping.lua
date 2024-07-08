@@ -11,42 +11,22 @@ plugin.globalMappings = {
   { "n", "<leader>zu", require("wsain.utils").openFileUnderCursor, "open file under cursor" },
   { "n", "<leader>zo", require("wsain.utils").openCurrentFile, "open current file" },
   { "n", "<leader>m", name = "markdown" },
+  { "n", "<leader>md", name = "download" },
   {
     "n",
-    "<leader>md",
-    name = "download image",
-  },
-  {
-    "n",
-    "<leader>mdc",
-    function()
-      utils.save_image_under_cursor(true, true)
-    end,
-    "download image under curosr",
-  },
-  {
-    "n",
-    "<leader>mdC",
-    function()
-      utils.save_image_under_cursor()
-    end,
-    "download image under curosr[no input]",
-  },
-  {
-    "n",
-    "<leader>mda",
-    function()
-      utils.save_markdown_url_images(true)
-    end,
-    "download all images",
-  },
-  {
-    "n",
-    "<leader>mdA",
+    "<leader>mdi",
     function()
       utils.save_markdown_url_images()
     end,
-    "download all images[no input]",
+    "download images",
+  },
+  {
+    "n",
+    "<leader>mdI",
+    function()
+      utils.save_markdown_url_images(true)
+    end,
+    "download images using proxy",
   },
 }
 

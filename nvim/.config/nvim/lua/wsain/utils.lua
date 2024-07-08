@@ -221,9 +221,13 @@ function M.check_dir_or_create(dir_path)
   vim.fn.system(string.format("[[ ! -d %s ]] && mkdir -p %s", dir_path, dir_path))
 end
 
-function M.get_default_image_name(url)
+function M.get_default_url_image_name(url)
   if url == nil then
     return
+  end
+  local param_position = string.find(url, "?", nil, true)
+  if param_position ~= nil and param_position > 0 then
+    url = string.sub(url, 0, param_position - 1)
   end
   -- image extention name
   local image_extention_name = "png"
@@ -247,78 +251,14 @@ function M.get_default_image_name(url)
   return image_name
 end
 
-function M.save_image_under_cursor(input_image_name, input_proxy)
-  -- cfile name
-  local cfile = vim.fn.expand("<cfile>")
-  if string.sub(cfile, 1, #"http") ~= "http" then
-    print("can't find file url")
-    return
-  end
-
-  -- get current status
+function M.save_markdown_url_images(input_proxy, start_line, end_line)
   local buf_num = vim.api.nvim_get_current_buf()
-  local line_number = vim.api.nvim_win_get_cursor(0)[1]
-
-  -- get image name
-  local default_name = M.get_default_image_name(cfile)
-  local image_name
-  if input_image_name then
-    image_name = vim.fn.input("image name: ", default_name)
+  local lines
+  if start_line ~= nil and end_line ~= nil then
+    lines = vim.api.nvim_buf_get_lines(buf_num, start_line - 1, end_line, false)
   else
-    image_name = default_name
+    lines = vim.api.nvim_buf_get_lines(buf_num, 0, -1, false)
   end
-  if image_name == "" or image_name == nil then
-    return
-  end
-
-  -- proxy
-  local proxy
-  if input_proxy then
-    proxy = vim.fn.input("proxy: ", "127.0.0.1:7890")
-  end
-
-  -- get image path
-  local relative_path = vim.fn.expand("%:h")
-  local image_dir = vim.g.mdip_imgdir or "./image"
-  local relative_image_path = relative_path .. "/" .. image_dir
-  local image_path = relative_image_path .. "/" .. image_name
-  image_path = vim.fn.substitute(image_path, "\\", "/", "")
-
-  -- ensure dir exist
-  M.check_dir_or_create(relative_image_path)
-
-  print("start download image")
-
-  -- download image file, replace content
-  vim.fn.jobstart(M.get_download_file_command(cfile, image_path, 10, proxy), {
-    stdout_buffered = true,
-    on_stdout = function()
-      local image_size = M.get_file_size(image_path)
-      if image_size == nil or image_size < 1024 then
-        print(string.format("Download image failed, line %s", line_number))
-        if image_size ~= nil then
-          os.remove(image_path)
-        end
-        return
-      end
-      vim.schedule(function()
-        local line_content = vim.api.nvim_buf_get_lines(buf_num, line_number - 1, line_number, false)[1]
-        local start_pos, end_pos = string.find(line_content, cfile, nil, true)
-        if start_pos == nil or end_pos == nil then
-          print("Image url position changed")
-          return
-        end
-        local md_img_text = string.format("![%s](%s)", image_name, image_dir .. "/" .. image_name)
-        vim.api.nvim_buf_set_lines(buf_num, line_number - 1, line_number, false, { md_img_text })
-        print(string.format("Download image success, line %s", line_number))
-      end)
-    end,
-  })
-end
-
-function M.save_markdown_url_images(input_proxy)
-  local buf_num = vim.api.nvim_get_current_buf()
-  local lines = vim.api.nvim_buf_get_lines(buf_num, 0, -1, false)
   if lines == nil or #lines == 0 then
     return
   end
@@ -338,13 +278,17 @@ function M.save_markdown_url_images(input_proxy)
   end
 
   for line_number, line_content in ipairs(lines) do
+    line_number = ((start_line or 1) - 1) + line_number
     local line_index = line_number - 1
+    if line_content == nil or line_content == "" or string.sub(line_content, 1, #"<!--") == "<!--" then
+      goto continue
+    end
     local _, _, md_img_url_text, url = string.find(line_content, "(!%[.-%]%((.-)%))")
     if url == nil or string.sub(url, 1, #"http") ~= "http" then
       goto continue
     end
 
-    local image_name = M.get_default_image_name(url)
+    local image_name = M.get_default_url_image_name(url)
     local image_path = relative_image_path .. "/" .. image_name
     image_path = vim.fn.substitute(image_path, "\\", "/", "")
 
