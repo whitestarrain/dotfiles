@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker run --rm -it -v $PWD:/docs -p 3000:3000 dannyben/madness $*
+docker run --rm -it -v $PWD:/docs -p 8002:3000 dannyben/madness $*
 
