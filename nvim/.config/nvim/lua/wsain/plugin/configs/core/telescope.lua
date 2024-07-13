@@ -5,6 +5,7 @@ plugin.shortUrl = "nvim-telescope/telescope.nvim"
 plugin.loadEvent = "VeryLazy"
 plugin.dependencies = {
   "GustavoKatel/telescope-asynctasks.nvim",
+  "nvim-telescope/telescope-live-grep-args.nvim",
 }
 
 plugin.config = function()
@@ -73,6 +74,7 @@ plugin.config = function()
   })
 
   require("telescope").load_extension("asynctasks")
+  require("telescope").load_extension("live_grep_args")
 end
 plugin.globalMappings = {
   { "n", "<leader>f", name = "find" },
@@ -84,6 +86,14 @@ plugin.globalMappings = {
   { "n", "<leader>fc", ":Telescope command_history<CR>", "command_history" },
   { "n", "<leader>fp", ":Telescope<CR>", "telescope buildin" },
   { "n", "<leader>fg", ":Telescope live_grep<CR>", "grep" },
+  {
+    "n",
+    "<leader>fG",
+    function()
+      require("telescope").extensions.live_grep_args.live_grep_args()
+    end,
+    "grep with args",
+  },
   { "n", "<leader>fr", ":Telescope resume initial_mode=normal<CR>", "resume" },
   { "n", "<leader>ft", ":Telescope asynctasks all<CR>", "asynctasks" },
 
