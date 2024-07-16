@@ -118,7 +118,7 @@ plugin.opts = {
     highlight_git = true,
   },
   sort_by = "case_sensitive",
-  sync_root_with_cwd = true,
+  sync_root_with_cwd = false,
   view = {
     adaptive_size = false,
   },
