@@ -3,9 +3,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# prevent timeout
-export TMOUT=0
-
 # add path
 PATH=$PATH:~/go/bin
 PATH=$PATH:~/.bin

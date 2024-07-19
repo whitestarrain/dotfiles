@@ -14,6 +14,13 @@ if which nvim &> /dev/null; then
   export MANPAGER="nvim +Man!"
 fi
 
+# prevent timeout
+export TMOUT=0
+
+# command history limit
+export HISTFILESIZE=2000
+export HISTSIZE=2000
+
 # GnuPG
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 
