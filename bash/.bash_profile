@@ -17,9 +17,16 @@ fi
 # prevent timeout
 export TMOUT=0
 
+# history format
+export HISTTIMEFORMAT="[%Y-%m-%d %H:%M:%S] "
+
 # command history limit
-export HISTFILESIZE=2000
-export HISTSIZE=2000
+export HISTFILESIZE=5000 # HISTFILE limit
+export HISTSIZE=500 # shell session history limit
+export HISTIGNORE="&:[ ]*:exit" # ignore command pattern, separated by :
+
+# history append
+shopt -s histappend
 
 # GnuPG
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
@@ -37,7 +44,6 @@ export IPYTHONDIR="$XDG_DATA_HOME"/ipython
 # Rust
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-
 
 # .bashrc
 [[ -f ~/.bashrc ]] && . ~/.bashrc

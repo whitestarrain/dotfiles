@@ -32,9 +32,6 @@ test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 [ -f "/opt/z/z.sh" ] && source /opt/z/z.sh
 [ -f "/usr/share/z/z.sh" ] && source /usr/share/z/z.sh
 
-# starship
-[ -n $(which starship 2>/dev/null) ] && eval "$(starship init bash)"
-
 # ranger
 alias ra='ranger'
 function ranger {
@@ -66,3 +63,7 @@ else
   [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
   [ ! -s "$NVM_DIR/bash_completion" ] && [ -f "/usr/share/nvm/bash_completion" ] && source /usr/share/nvm/bash_completion
 fi
+
+# starship
+[ -n $(which starship 2>/dev/null) ] && eval "$(starship init bash)"
+
