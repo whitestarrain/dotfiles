@@ -24,9 +24,9 @@ export TMOUT=0
 export HISTTIMEFORMAT="[%Y-%m-%d %H:%M:%S] "
 
 # command history limit
-export HISTFILESIZE=5000 # HISTFILE limit
-export HISTSIZE=500 # shell session history limit
-export HISTIGNORE="&:[ ]*:exit" # ignore command pattern, separated by :
+export HISTFILESIZE=10000 # HISTFILE limit
+export HISTSIZE=1000 # shell session history limit
+export HISTIGNORE="&:[ ]*:exit:clear:ls:pwd" # ignore command pattern, separated by :
 
 # history append
 shopt -s histappend
@@ -62,6 +62,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias pc='proxychains4'
 alias ssh='TERM=xterm-256color ssh'
+alias hisupdate='history -a; history -c; history -r;'
 
 # don't logout when press ctrl-d
 set -o ignoreeof
@@ -114,3 +115,5 @@ fi
 # starship
 [ -n $(which starship 2>/dev/null) ] && eval "$(starship init bash)"
 
+# realtime update history file
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
