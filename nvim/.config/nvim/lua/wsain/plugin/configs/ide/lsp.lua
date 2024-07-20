@@ -406,7 +406,7 @@ end
 
 local function setupPyright()
   local lspconfig = require("lspconfig")
-  lspconfig.pyright.setup({
+  lspconfig.basedpyright.setup({
     on_attach = on_attach,
     root_dir = function(fname)
       return lspconfig.util.root_pattern(
@@ -420,16 +420,18 @@ local function setupPyright()
     end,
     -- config document: https://github.com/microsoft/pyright/blob/main/docs/configuration.md
     settings = {
-      python = {
+      basedpyright = {
         analysis = {
           diagnosticMode = "openFilesOnly",
           typeCheckingMode = "off",
           diagnosticSeverityOverrides = {
             reportGeneralTypeIssues = "none",
           },
+          useLibraryCodeForTypes = true,
         },
       },
     },
+    single_file_support = true,
   })
 end
 
@@ -801,7 +803,7 @@ plugin.globalMappings = {
   { "n", "<leader>SF", setupLspWrap(setupFrontEndLsp), "frontend" },
   { "n", "<leader>Sp", name = "python" },
   { "n", "<leader>Spl", setupLspWrap(setupPythonLsp), "pylsp" },
-  { "n", "<leader>Spr", setupLspWrap(setupPyright), "pyright" },
+  { "n", "<leader>Spr", setupLspWrap(setupPyright), "basedpyright" },
   { "n", "<leader>Spj", setupLspWrap(setupJedi), "jedi" },
   { "n", "<leader>Sh", setupLspWrap(setupPhpLsp), "php" },
   { "n", "<leader>Sj", setupLspWrap(setupJavaLsp, false), "java" },
