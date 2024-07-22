@@ -111,6 +111,8 @@ plugin.config = function()
 end
 plugin.globalMappings = {
   { "n", "<leader>h", name = "git hunk" },
+  { "n", "<leader>hf", ":GitSigns<cr>", "functions" },
+  { "n", "<leader>ht", name = "toggle"},
   { "v", "<leader>h", name = "git hunk" },
 }
 

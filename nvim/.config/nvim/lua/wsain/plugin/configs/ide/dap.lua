@@ -188,6 +188,11 @@ end
 plugin.globalMappings = {
   {
     "n",
+    "<leader>D",
+    name = "dap",
+  },
+  {
+    "n",
     "<leader>DD",
     function()
       require("dap").toggle_breakpoint()

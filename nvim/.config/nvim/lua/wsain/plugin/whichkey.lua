@@ -10,6 +10,13 @@ if not vim.loop.fs_stat(whichkeyPath) then
     "--branch=main",
     whichkeyPath,
   })
+  vim.fn.system({
+    "git",
+    "-C",
+    whichkeyPath,
+    "checkout",
+    "4433e5e",
+  })
 end
 vim.opt.rtp:prepend(whichkeyPath)
 
