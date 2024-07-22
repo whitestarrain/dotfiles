@@ -7,17 +7,51 @@ plugin.dependencies = {
 }
 plugin.loadEvent = "VeryLazy"
 plugin.config = function()
-  require("refactoring").setup({})
+  require("wsain.plugin.whichkey").register({
+    { "<leader>r", group = "refactor", mode = "n" },
+    { "<leader>r", group = "refactor", mode = "v" },
+    {
+      "<leader>re",
+      "<Cmd>lua require('refactoring').refactor('Extract Function')<CR>",
+      desc = "extract function",
+      mode = "v",
+    },
+    {
+      "<leader>rf",
+      "<Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>",
+      desc = "extract function to file",
+      mode = "v",
+    },
+    {
+      "<leader>rv",
+      "<Cmd>lua require('refactoring').refactor('Extract Variable')<CR>",
+      desc = "extract variable",
+      mode = "v",
+    },
+    {
+      "<leader>ri",
+      "<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
+      desc = "inline variable",
+      mode = "n",
+    },
+    {
+      "<leader>ri",
+      "<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
+      desc = "inline variable",
+      mode = "v",
+    },
+    {
+      "<leader>rb",
+      "<Cmd>lua require('refactoring').refactor('Extract Block')<CR>",
+      desc = "extract block",
+      mode = "n",
+    },
+    {
+      "<leader>rbf",
+      "<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
+      desc = "extract block to file",
+      mode = "n",
+    },
+  })
 end
-plugin.globalMappings = {
-  { "n", "<leader>r", name = "refactor" },
-  { "v", "<leader>r", name = "refactor" },
-  { "v", "<leader>re", "<Cmd>lua require('refactoring').refactor('Extract Function')<CR>", "extract function" },
-  { "v", "<leader>rf", "<Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>", "extract function to file" },
-  { "v", "<leader>rv", "<Cmd>lua require('refactoring').refactor('Extract Variable')<CR>", "extract variable" },
-  { "n", "<leader>ri", "<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", "inline variable" },
-  { "v", "<leader>ri", "<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", "inline variable" },
-  { "n", "<leader>rb", "<Cmd>lua require('refactoring').refactor('Extract Block')<CR>", "extract block" },
-  { "n", "<leader>rbf", "<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", "extract block to file" },
-}
 return plugin

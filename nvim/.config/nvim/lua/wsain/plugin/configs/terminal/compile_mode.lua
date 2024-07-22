@@ -19,12 +19,11 @@ plugin.config = function()
     pattern = "compilation",
     command = "wincmd w",
   })
+  require("wsain.plugin.whichkey").register({
+    { "<leader>c", group = "code" },
+    { "<leader>cc", ":Compile<cr>", desc = "compile" },
+    { "<leader>cC", ":Recompile<cr>", desc = "recompile" },
+  })
 end
-
-plugin.globalMappings = {
-  { "n", "<leader>c", name = "code" },
-  { "n", "<leader>cc", ":Compile<cr>", "compile" },
-  { "n", "<leader>cC", ":Recompile<cr>", "recompile" },
-}
 
 return plugin

@@ -38,9 +38,10 @@ plugin.init = function()
     endfunction
   ]])
 end
-
-plugin.globalMappings = {
-  { "n", "<leader>s", ":Startify<cr>", "start page" },
-}
+plugin.config = function()
+  require("wsain.plugin.whichkey").register({
+  { "<leader>s", ":Startify<cr>", desc = "start page" },
+  })
+end
 
 return plugin

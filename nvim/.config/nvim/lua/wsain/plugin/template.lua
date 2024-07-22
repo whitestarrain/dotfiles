@@ -12,31 +12,6 @@ local Template = {
   priority = 50,
 
   loadEvent = nil,
-
-  -- global mapping with prefix <leader>
-  globalMappings = nil,
-
-  --[[
-  mapping example:
-  -- type1, group keymap
-  {
-    "n", -- mode
-    "<leader>z", -- key
-    name = "+others", -- group name
-  }
-  -- type2, common keymap
-  {
-    "n", -- mode
-    "<leader>bd", -- key
-    function() end, -- cmd
-    "delete buffer", -- desc
-    opts = {
-      nowait = false,
-      silent = true,
-      noremap = true,
-    }
-  },
-  ]]
 }
 
 Template.__index = Template

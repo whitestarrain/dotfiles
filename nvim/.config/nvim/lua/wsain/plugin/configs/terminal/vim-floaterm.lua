@@ -33,29 +33,32 @@ if utils.getOs() ~= "win" and vim.fn.executable(file_exploer) == 0 then
   file_exploer = "ranger"
 end
 
-plugin.globalMappings = {
-  { "n", "<M-+>", ":FloatermNew<cr>" },
-  { "n", "<M-=>", ":FloatermToggle<cr>" },
-  { "t", "<M-+>", "<c-\\><c-n>:FloatermNew<cr>" },
-  { "t", "<M-=>", "<c-\\><c-n>:FloatermToggle<cr>" },
-}
+plugin.config = function()
+  local mappings = {
+    { "<M-+>", ":FloatermNew<cr>" },
+    { "<M-=>", ":FloatermToggle<cr>" },
+    { "<M-+>", "<c-\\><c-n>:FloatermNew<cr>", mode = "t" },
+    { "<M-=>", "<c-\\><c-n>:FloatermToggle<cr>", mode = "t" },
+  }
 
-if vim.fn.executable(file_exploer) then
-  table.insert(plugin.globalMappings, {
-    "n",
-    "<leader>k",
-    function()
-      vim.fn.execute("FloatermNew " .. " --title=" .. file_exploer .. " " .. file_exploer)
-    end,
-    "ranger",
-  })
-  table.insert(plugin.globalMappings, {
-    "n",
-    "<leader>K",
-    function()
-      vim.fn.execute("FloatermNew " .. " --title=" .. file_exploer .. " " .. file_exploer .. " . ")
-    end,
-    "ranger",
+  if vim.fn.executable(file_exploer) then
+    table.insert(mappings, {
+      "<leader>k",
+      function()
+        vim.fn.execute("FloatermNew " .. " --title=" .. file_exploer .. " " .. file_exploer)
+      end,
+      desc = "ranger",
+    })
+    table.insert(mappings, {
+      "<leader>K",
+      function()
+        vim.fn.execute("FloatermNew " .. " --title=" .. file_exploer .. " " .. file_exploer .. " . ")
+      end,
+      desc = "ranger",
+    })
+  end
+  require("wsain.plugin.whichkey").register({
+    mappings,
   })
 end
 

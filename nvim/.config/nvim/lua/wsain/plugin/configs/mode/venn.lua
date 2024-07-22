@@ -22,9 +22,11 @@ local toggle_venn = function()
   end
 end
 
-plugin.globalMappings = {
-  { "n", "<leader>zm", name = "+mode" },
-  { "n", "<leader>zmv", toggle_venn, "vbox draw" },
-}
+plugin.config = function()
+  require("wsain.plugin.whichkey").register({
+    { "<leader>zm", group = "+mode" },
+    { "<leader>zmv", toggle_venn, desc = "vbox draw" },
+  })
+end
 
 return plugin

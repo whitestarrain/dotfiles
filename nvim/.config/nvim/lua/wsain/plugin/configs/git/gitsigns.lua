@@ -108,12 +108,12 @@ plugin.opts = {
 }
 plugin.config = function()
   require("gitsigns").setup(plugin.opts)
+  require("wsain.plugin.whichkey").register({
+    { "<leader>h", group = "git hunk" },
+    { "<leader>hf", ":GitSigns<cr>", desc = "functions" },
+    { "<leader>ht", group = "toggle" },
+    { "<leader>h", group = "git hunk", mode = "v" },
+  })
 end
-plugin.globalMappings = {
-  { "n", "<leader>h", name = "git hunk" },
-  { "n", "<leader>hf", ":GitSigns<cr>", "functions" },
-  { "n", "<leader>ht", name = "toggle"},
-  { "v", "<leader>h", name = "git hunk" },
-}
 
 return plugin

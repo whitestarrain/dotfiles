@@ -16,52 +16,6 @@ plugin.dependencies = {
 }
 plugin.loadEvent = "VeryLazy"
 
-plugin.config = function()
-  -- diagnostic config
-  vim.diagnostic.config({
-    float = {
-      header = "",
-      border = "single",
-    },
-  })
-  -- diagnostic sign config
-  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-  for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-  end
-
-  -- lsp handler
-  -- help vim.lsp.util.open_floating_preview() and according to the lua source code
-  local lsp = vim.lsp
-  -- Global handlers.
-  lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, {
-    border = "single",
-    offset_x = 1,
-    max_width = 100,
-    max_height = 20,
-  })
-
-  lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, {
-    border = "single",
-    max_width = 100,
-    max_height = 20,
-  })
-
-  -- config this, [enable under line] will gray out unused variable
-  lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
-    underline = false,
-    update_in_insert = false,
-    -- virtual_text = { spacing = 4, prefix = "\u{ea71}" },
-    virtual_text = false,
-    severity_sort = true,
-    float = {
-      header = "",
-      border = "single",
-    },
-  })
-end
-
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -789,24 +743,70 @@ local function setupJavaLsp()
   vim.api.nvim_exec_autocmds("FileType", { group = java_cmds, buffer = 0 })
 end
 
-plugin.globalMappings = {
-  { "n", "<leader>S", name = "lsp server" },
-  { "n", "<leader>c", name = "code" },
-  { "v", "<leader>c", name = "code" },
-  { "n", "<leader>cf", ":Format<cr>", "format" },
-  { "v", "<leader>cf", ":Format<cr>", "format" },
-  { "n", "<leader>Sl", setupLspWrap(setupLuaLsp), "lua" },
-  { "n", "<leader>Sb", setupLspWrap(setupBashLsp), "bash" },
-  { "n", "<leader>Sc", setupLspWrap(setupCLsp), "c/cpp" },
-  { "n", "<leader>Sg", setupLspWrap(setupGoLsp), "go" },
-  { "n", "<leader>Sv", setupLspWrap(setupVimLsp), "vim" },
-  { "n", "<leader>SF", setupLspWrap(setupFrontEndLsp), "frontend" },
-  { "n", "<leader>Sp", name = "python" },
-  { "n", "<leader>Spl", setupLspWrap(setupPythonLsp), "pylsp" },
-  { "n", "<leader>Spr", setupLspWrap(setupPyright), "basedpyright" },
-  { "n", "<leader>Spj", setupLspWrap(setupJedi), "jedi" },
-  { "n", "<leader>Sh", setupLspWrap(setupPhpLsp), "php" },
-  { "n", "<leader>Sj", setupLspWrap(setupJavaLsp, false), "java" },
-}
+plugin.config = function()
+  -- diagnostic config
+  vim.diagnostic.config({
+    float = {
+      header = "",
+      border = "single",
+    },
+  })
+  -- diagnostic sign config
+  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
+
+  -- lsp handler
+  -- help vim.lsp.util.open_floating_preview() and according to the lua source code
+  local lsp = vim.lsp
+  -- Global handlers.
+  lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, {
+    border = "single",
+    offset_x = 1,
+    max_width = 100,
+    max_height = 20,
+  })
+
+  lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, {
+    border = "single",
+    max_width = 100,
+    max_height = 20,
+  })
+
+  -- config this, [enable under line] will gray out unused variable
+  lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
+    underline = false,
+    update_in_insert = false,
+    -- virtual_text = { spacing = 4, prefix = "\u{ea71}" },
+    virtual_text = false,
+    severity_sort = true,
+    float = {
+      header = "",
+      border = "single",
+    },
+  })
+
+  require("wsain.plugin.whichkey").register({
+    { "<leader>S", group = "lsp server" },
+    { "<leader>c", group = "code" },
+    { "<leader>c", group = "code", mode = "v" },
+    { "<leader>cf", ":Format<cr>", desc = "format" },
+    { "<leader>cf", ":Format<cr>", desc = "format", mode = "v" },
+    { "<leader>Sl", setupLspWrap(setupLuaLsp), desc = "lua" },
+    { "<leader>Sb", setupLspWrap(setupBashLsp), desc = "bash" },
+    { "<leader>Sc", setupLspWrap(setupCLsp), desc = "c/cpp" },
+    { "<leader>Sg", setupLspWrap(setupGoLsp), desc = "go" },
+    { "<leader>Sv", setupLspWrap(setupVimLsp), desc = "vim" },
+    { "<leader>SF", setupLspWrap(setupFrontEndLsp), desc = "frontend" },
+    { "<leader>Sp", group = "python" },
+    { "<leader>Spl", setupLspWrap(setupPythonLsp), desc = "pylsp" },
+    { "<leader>Spr", setupLspWrap(setupPyright), desc = "basedpyright" },
+    { "<leader>Spj", setupLspWrap(setupJedi), desc = "jedi" },
+    { "<leader>Sh", setupLspWrap(setupPhpLsp), desc = "php" },
+    { "<leader>Sj", setupLspWrap(setupJavaLsp, false), desc = "java" },
+  })
+end
 
 return plugin

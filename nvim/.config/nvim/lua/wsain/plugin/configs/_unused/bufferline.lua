@@ -56,11 +56,11 @@ plugin.config = function()
       },
     },
   })
-end
 
-plugin.globalMappings = {
-  { "n", "<M-h>", ":BufferLineCyclePrev<CR>" },
-  { "n", "<M-l>", ":BufferLineCycleNext<CR>" },
-}
+  require("wsain.plugin.whichkey").register({
+    { "<M-h>", ":BufferLineCyclePrev<CR>" },
+    { "<M-l>", ":BufferLineCycleNext<CR>" },
+  })
+end
 
 return plugin

@@ -13,38 +13,33 @@ if not vim.loop.fs_stat(whichkeyPath) then
 end
 vim.opt.rtp:prepend(whichkeyPath)
 
-local utils = require("wsain.utils")
+---@class wk.Opts
 local opts = {
+  ---@type false | "classic" | "modern" | "helix"
+  preset = "classic",
+  -- Delay before showing the popup. Can be a number or a function that returns a number.
+  ---@type number | fun(ctx: { keys: string, mode: string, plugin?: string }):number
+  delay = function(ctx)
+    return ctx.plugin and 0 or 500
+  end,
+  --- You can add any mappings here, or use `require('which-key').add()` later
+  ---@type wk.Spec
+  spec = {},
+  -- show a warning when issues were detected with your mappings
   notify = true,
-  icons = {
-    breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-    separator = " → ", -- symbol used between a key and it's label
-    group = "+", -- symbol prepended to a group
-    mappings = false,
+  -- Which-key automatically sets up triggers for your mappings.
+  -- But you can disable this and setup the triggers manually.
+  -- Check the docs for more info.
+  ---@type wk.Spec
+  triggers = {
+    { "<auto>", mode = "nxsot" },
   },
-  key_labels = {
-    ["<space>"] = "SPC",
-    ["<cr>"] = "CR",
-    ["<tab>"] = "TAB",
-  },
-  popup_mappings = {
-    scroll_down = "<c-d>", -- binding to scroll down inside the popup
-    scroll_up = "<c-u>", -- binding to scroll up inside the popup
-  },
-  window = {
-    border = "double", -- none, single, double, shadow
-    position = "bottom", -- bottom, top
-    margin = { 0, 1, 0, 1 }, -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
-    padding = { 0, 0, 0, 0 }, -- extra window padding [top, right, bottom, left]
-    winblend = 0, -- value between 0-100 0 for fully opaque and 100 for fully transparent
-    zindex = 1000, -- positive value to position WhichKey above other floating windows.
-  },
-  layout = {
-    height = { min = 4, max = 25 }, -- min and max height of the columns
-    width = { min = 20, max = 50 }, -- min and max width of the columns
-    spacing = 3, -- spacing between columns
-    align = "left", -- align columns left, center or right
-  },
+  -- Start hidden and wait for a key to be pressed before showing the popup
+  -- Only used by enabled xo mapping modes.
+  ---@param ctx { mode: string, operator: string }
+  defer = function(ctx)
+    return ctx.mode == "V" or ctx.mode == "<C-V>"
+  end,
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
     registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -64,91 +59,135 @@ local opts = {
       g = true, -- bindings for prefixed with g
     },
   },
-  triggers_nowait = {
-    -- marks
-    "`",
-    "'",
-    "g`",
-    "g'",
-    -- registers
-    -- '"',
-    "<c-r>",
-    -- spelling
-    "z=",
+  ---@type wk.Win.opts
+  win = {
+    -- don't allow the popup to overlap with the cursor
+    no_overlap = true,
+    -- width = 1,
+    -- height = { min = 4, max = 25 },
+    -- col = 0,
+    -- row = math.huge,
+    height = { min = 4, max = 25 }, -- min and max height of the columns
+    border = "double",
+    padding = { 0, 0 }, -- extra window padding [top/bottom, right/left]
+    title = true,
+    title_pos = "center",
+    zindex = 1000,
+    -- Additional vim.wo and vim.bo options
+    bo = {},
+    wo = {
+      -- winblend = 10, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+    },
   },
+  layout = {
+    spacing = 3, -- spacing between columns
+  },
+  keys = {
+    scroll_down = "<c-d>", -- binding to scroll down inside the popup
+    scroll_up = "<c-u>", -- binding to scroll up inside the popup
+  },
+  ---@type (string|wk.Sorter)[]
+  --- Mappings are sorted using configured sorters and natural sort of the keys
+  --- Available sorters:
+  --- * local: buffer-local mappings first
+  --- * order: order of the items (Used by plugins like marks / registers)
+  --- * group: groups last
+  --- * alphanum: alpha-numerical first
+  --- * mod: special modifier keys last
+  --- * manual: the order the mappings were added
+  --- * case: lower-case first
+  sort = { "local", "order", "group", "alphanum", "mod" },
+  ---@type number|fun(node: wk.Node):boolean?
+  expand = 0, -- expand groups when <= n mappings
+  -- expand = function(node)
+  --   return not node.desc -- expand all nodes without a description
+  -- end,
+  -- Functions/Lua Patterns for formatting the labels
+  ---@type table<string, ({[1]:string, [2]:string}|fun(str:string):string)[]>
+  replace = {
+    key = {
+      function(key)
+        return require("which-key.view").format(key)
+      end,
+      -- { "<Space>", "SPC" },
+    },
+    desc = {
+      { "<Plug>%(?(.*)%)?", "%1" },
+      { "^%+", "" },
+      { "<[cC]md>", "" },
+      { "<[cC][rR]>", "" },
+      { "<[sS]ilent>", "" },
+      { "^lua%s+", "" },
+      { "^call%s+", "" },
+      { "^:%s*", "" },
+    },
+  },
+  icons = {
+    breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+    separator = "➜", -- symbol used between a key and it's label
+    group = "+", -- symbol prepended to a group
+    ellipsis = "…",
+    -- set to false to disable all mapping icons,
+    -- both those explicitely added in a mapping
+    -- and those from rules
+    mappings = false,
+    --- See `lua/which-key/icons.lua` for more details
+    --- Set to `false` to disable keymap icons from rules
+    ---@type wk.IconRule[]|false
+    rules = {},
+    -- use the highlights from mini.icons
+    -- When `false`, it will use `WhichKeyIcon` instead
+    colors = true,
+    -- used by key format
+    keys = {
+      Up = "Up",
+      Down = "Down",
+      Left = "Left",
+      Right = "Right",
+      C = "C",
+      M = "M",
+      D = "D",
+      S = "S",
+      CR = "CR",
+      Esc = "Esc",
+      ScrollWheelDown = "ScrollWheelDown",
+      ScrollWheelUp = "ScrollWheelUp",
+      NL = "NL",
+      BS = "BS",
+      Space = "Space",
+      Tab = "Tab",
+      F1 = "F1",
+      F2 = "F2",
+      F3 = "F3",
+      F4 = "F4",
+      F5 = "F5",
+      F6 = "F6",
+      F7 = "F7",
+      F8 = "F8",
+      F9 = "F9",
+      F10 = "F10",
+      F11 = "F11",
+      F12 = "F12",
+    },
+  },
+  show_help = true, -- show a help message in the command line for using WhichKey
+  show_keys = true, -- show the currently pressed key and its label as a message in the command line
+  -- disable WhichKey for certain buf types and file types.
+  disable = {
+    ft = {},
+    bt = {},
+  },
+  debug = false, -- enable wk.log in the current directory
 }
 
-local mappingConvert = function(pluginDatas)
-  local leader = "<leader>"
-  local result = {
-    leaderMappings = {},
-    noLeaderMappings = {},
-  }
-  if pluginDatas == nil or #pluginDatas == 0 then
-    return {}
-  end
-  for _, pluginConfig in ipairs(pluginDatas) do
-    local mappingConfigs = pluginConfig.globalMappings
-    if mappingConfigs == nil or #mappingConfigs == 0 then
-      goto continue
-    end
-    for _, mappingConfig in ipairs(mappingConfigs) do
-      if result.leaderMappings[mappingConfig[1]] == nil then
-        result.leaderMappings[mappingConfig[1]] = {}
-      end
-      local leaderMappingByMode = result.leaderMappings[mappingConfig[1]]
-      local mappingOpts = utils.defaultIfNil(mappingConfig.opts, {})
-      if string.sub(mappingConfig[2], 1, #leader) == leader then
-        if mappingConfig["name"] ~= nil then
-          leaderMappingByMode[mappingConfig[2]] = {
-            name = mappingConfig.name,
-            mode = mappingConfig[1],
-          }
-        else
-          leaderMappingByMode[mappingConfig[2]] = {
-            mappingConfig[3],
-            mappingConfig[4],
-            mode = mappingConfig[1],
-            silent = utils.defaultIfNil(mappingOpts.silent, true),
-            noremap = utils.defaultIfNil(mappingOpts.noremap, true),
-            nowait = utils.defaultIfNil(mappingOpts.nowait, false),
-          }
-        end
-      else
-        result.noLeaderMappings[#result.noLeaderMappings + 1] = {
-          mode = mappingConfig[1],
-          key = mappingConfig[2],
-          cmd = mappingConfig[3],
-          opts = utils.merge_tb({
-            silent = utils.defaultIfNil(mappingOpts.silent, true),
-            noremap = utils.defaultIfNil(mappingOpts.noremap, true),
-            nowait = utils.defaultIfNil(mappingOpts.nowait, false),
-          }, { desc = mappingConfig[4] }),
-        }
-      end
-    end
-    ::continue::
-  end
-  return result
-end
+local wk = require("which-key")
+wk.setup(opts)
 
-local registerMapping = function(pluginDatas)
-  local mappings = mappingConvert(pluginDatas)
-  local wk = require("which-key")
-  wk.setup(opts)
-  for mode, mappingsByMode in pairs(mappings.leaderMappings) do
-    if mappingsByMode == nil or next(mappingsByMode) == nil then
-      goto continue
-    end
-    wk.register(mappingsByMode, { mode = mode })
-    ::continue::
-  end
-  for _, mapping in ipairs(mappings.noLeaderMappings) do
-    vim.keymap.set(mapping.mode, mapping.key, mapping.cmd, mapping.opts)
-  end
+local register = function(mappings)
+  wk.add(mappings)
 end
 
 return {
-  register = registerMapping,
+  register = register,
   plugin = require("wsain.plugin.template"):new({ shortUrl = "folke/which-key.nvim" }),
 }

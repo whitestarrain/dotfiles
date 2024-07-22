@@ -45,7 +45,7 @@ local function setupCppdbg()
   -- issue: https://github.com/rcarriga/nvim-dap-ui/issues/162
   dap.configurations.cpp = {
     {
-      name = "Launch",
+      group = "Launch",
       type = "cppdbg",
       request = "launch",
       program = function()
@@ -78,7 +78,7 @@ local function setupCodelldb()
 
   dap.configurations.cpp = {
     {
-      name = "select launch file",
+      group = "select launch file",
       type = "codelldb",
       request = "launch",
       args = function()
@@ -91,7 +91,7 @@ local function setupCodelldb()
       stopOnEntry = false,
     },
     {
-      name = "launch output",
+      group = "launch output",
       type = "codelldb",
       request = "launch",
       program = function()
@@ -136,7 +136,7 @@ local function setupDebugPy()
   end
   dap.configurations.python = {
     {
-      name = "default launch file",
+      group = "default launch file",
       type = "python",
       request = "launch",
       program = "${file}",
@@ -147,7 +147,7 @@ local function setupDebugPy()
     {
       type = "python",
       request = "launch",
-      name = "default flask",
+      group = "default flask",
       module = "flask",
       env = {
         FLASK_APP = "run.py",
@@ -184,49 +184,46 @@ plugin.config = function()
   ensureDepWrap()
   setupCodelldb()
   setupDebugPy()
+
+  require("wsain.plugin.whichkey").register({
+    {
+      "<leader>D",
+      group = "dap",
+    },
+    {
+      "<leader>DD",
+      function()
+        require("dap").toggle_breakpoint()
+      end,
+      desc = "toggle_breakpoint",
+    },
+    {
+      "<leader>DC",
+      function()
+        require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+      end,
+      desc = "condition breakpoint",
+    },
+    {
+      "<leader>DL",
+      function()
+        require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+      end,
+      desc = "log breakpoint",
+    },
+    {
+      "<leader>Du",
+      function()
+        if package.loaded["dapui"] == nil then
+          require("dapui").setup()
+          vim.cmd([[vnoremap <M-k> <Cmd>lua require("dapui").eval()<CR>]])
+        end
+        load_vscode_config()
+        require("dapui").toggle({ reset = true })
+      end,
+      desc = "dap ui",
+    },
+  })
+
 end
-plugin.globalMappings = {
-  {
-    "n",
-    "<leader>D",
-    name = "dap",
-  },
-  {
-    "n",
-    "<leader>DD",
-    function()
-      require("dap").toggle_breakpoint()
-    end,
-    "toggle_breakpoint",
-  },
-  {
-    "n",
-    "<leader>DC",
-    function()
-      require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-    end,
-    "condition breakpoint",
-  },
-  {
-    "n",
-    "<leader>DL",
-    function()
-      require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-    end,
-    "log breakpoint",
-  },
-  {
-    "n",
-    "<leader>Du",
-    function()
-      if package.loaded["dapui"] == nil then
-        require("dapui").setup()
-        vim.cmd([[vnoremap <M-k> <Cmd>lua require("dapui").eval()<CR>]])
-      end
-      load_vscode_config()
-      require("dapui").toggle({ reset = true })
-    end,
-    "dap ui",
-  },
-}
 return plugin

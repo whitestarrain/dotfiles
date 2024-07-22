@@ -14,17 +14,16 @@ plugin.opts = {
 plugin.config = function()
   require("md_section_number").setup(plugin.opts)
   require("wsain.utils").addCommandBeforeSaveSession('lua require("md_section_number.toc").closeToc()')
+  require("wsain.plugin.whichkey").register({
+    { "<leader>m", group = "markdown" },
+    {
+      "<leader>mt",
+      function()
+        require("md_section_number.toc").toggle()
+      end,
+      desc = "markdownToc",
+    },
+  })
 end
-plugin.globalMappings = {
-  { "n", "<leader>m", name = "markdown" },
-  {
-    "n",
-    "<leader>mt",
-    function()
-      require("md_section_number.toc").toggle()
-    end,
-    "markdownToc",
-  },
-}
 
 return plugin

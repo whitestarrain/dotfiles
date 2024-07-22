@@ -127,10 +127,10 @@ plugin.opts = {
 plugin.config = function()
   require("nvim-tree").setup(plugin.opts)
   require("wsain.utils").addCommandBeforeSaveSession("silent! NvimTreeClose")
+  require("wsain.plugin.whichkey").register({
+    { "<C-n>", ":NvimTreeToggle<CR>", mode = "n" },
+    { "<leader>v", ":NvimTreeFindFile<cr>", desc = "NvimTreeFindFile", mode = "n" },
+  })
 end
-plugin.globalMappings = {
-  { "n", "<C-n>", ":NvimTreeToggle<CR>" },
-  { "n", "<leader>v", ":NvimTreeFindFile<cr>", "NvimTreeFindFile" },
-}
 
 return plugin

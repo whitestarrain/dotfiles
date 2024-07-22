@@ -2,17 +2,6 @@ local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "mfussenegger/nvim-lint"
 plugin.loadEvent = "VeryLazy"
-plugin.config = function()
-  local lint = require("lint")
-  lint.linters_by_ft = {
-    json = { "jsonlint" },
-    python = { "ruff" },
-    bash = { "shellcheck" },
-    sh = { "shellcheck" },
-    sql = { "sqlfluff" },
-    lua = { "luacheck" },
-  }
-end
 
 -- support toggle. l
 local linter_marker = false
@@ -50,8 +39,19 @@ local lint_toggle = function()
   linter_marker = not linter_marker
 end
 
-plugin.globalMappings = {
-  { "n", "<leader>l", lint_toggle, "toggle lint" },
-}
+plugin.config = function()
+  local lint = require("lint")
+  lint.linters_by_ft = {
+    json = { "jsonlint" },
+    python = { "ruff" },
+    bash = { "shellcheck" },
+    sh = { "shellcheck" },
+    sql = { "sqlfluff" },
+    lua = { "luacheck" },
+  }
+  require("wsain.plugin.whichkey").register({
+    { "<leader>l", lint_toggle, desc = "toggle lint" },
+  })
+end
 
 return plugin

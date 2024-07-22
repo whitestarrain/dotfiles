@@ -17,10 +17,9 @@ plugin.config = function()
     filter_kind = false,
   })
   utils.addCommandBeforeSaveSession("silent! AerialClose")
+  require("wsain.plugin.whichkey").register({
+    { "<leader>ct", ":AerialToggle<CR>", desc = "outline" },
+  })
 end
-
-plugin.globalMappings = {
-  { "n", "<leader>ct", ":AerialToggle<CR>", "outline" },
-}
 
 return plugin

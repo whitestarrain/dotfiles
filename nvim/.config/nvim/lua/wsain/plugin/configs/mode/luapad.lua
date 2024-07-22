@@ -20,18 +20,17 @@ plugin.config = function()
       end,
     },
   })
-end
 
-plugin.globalMappings = {
-  { "n", "<leader>zm", name = "+mode" },
-  {
-    "n",
-    "<leader>zml",
-    function()
-      require("luapad").toggle({})
-    end,
-    "luapad toggle",
-  },
-}
+  require("wsain.plugin.whichkey").register({
+    { "<leader>zm", group = "+mode" },
+    {
+      "<leader>zml",
+      function()
+        require("luapad").toggle({})
+      end,
+      desc = "luapad toggle",
+    },
+  })
+end
 
 return plugin

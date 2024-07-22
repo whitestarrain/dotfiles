@@ -75,61 +75,76 @@ plugin.config = function()
 
   require("telescope").load_extension("asynctasks")
   require("telescope").load_extension("live_grep_args")
-end
-plugin.globalMappings = {
-  { "n", "<leader>f", name = "find" },
-  { "n", "<leader>ff", ":Telescope find_files hidden=true<CR>", "file" },
-  { "n", "<leader>fm", ":Telescope man_pages sections=ALL<CR>", "man_pages" },
-  { "n", "<leader>fa", ":Telescope find_files no_ignore=true hidden=true<CR>", "all file" },
-  { "n", "<leader>/", ":Telescope buffers sort_mru=true<CR>", "buffer" },
-  { "n", "<leader>fe", ":Telescope buffers sort_mru=true<CR>", "buffer" },
-  { "n", "<leader>fc", ":Telescope command_history<CR>", "command_history" },
-  { "n", "<leader>fp", ":Telescope<CR>", "telescope buildin" },
-  { "n", "<leader>fg", ":Telescope live_grep<CR>", "grep" },
-  {
-    "n",
-    "<leader>fG",
-    function()
-      require("telescope").extensions.live_grep_args.live_grep_args()
-    end,
-    "grep with args",
-  },
-  { "n", "<leader>fr", ":Telescope resume initial_mode=normal<CR>", "resume" },
-  { "n", "<leader>ft", ":Telescope asynctasks all<CR>", "asynctasks" },
 
-  { "v", "<leader>f", name = "find" },
-  {
-    "v",
-    "<leader>ff",
-    function()
-      require("telescope.builtin").find_files({
-        search_file = utils.get_visual_selection_text()[1],
-      })
-    end,
-    "file",
-  },
-  {
-    "v",
-    "<leader>fa",
-    function()
-      require("telescope.builtin").find_files({
-        search_file = utils.get_visual_selection_text()[1],
-        hidden = true,
-        no_ignore = true,
-      })
-    end,
-    "all file",
-  },
-  {
-    "v",
-    "<leader>fg",
-    function()
-      require("telescope.builtin").grep_string({
-        search = utils.get_visual_selection_text()[1],
-      })
-    end,
-    "grep",
-  },
-}
+  require("wsain.plugin.whichkey").register({
+    { "<leader>f", group = "find", mode = "v" },
+    { "<leader>f", group = "find", mode = "n" },
+    { "<leader>ff", ":Telescope find_files hidden=true<CR>", desc = "file" },
+    {
+      "<leader>fm",
+      ":Telescope man_pages sections=ALL<CR>",
+      desc = "man_pages",
+    },
+    {
+      "<leader>fa",
+      ":Telescope find_files no_ignore=true hidden=true<CR>",
+      desc = "all file",
+    },
+    { "<leader>/", ":Telescope buffers sort_mru=true<CR>", desc = "buffer" },
+    { "<leader>fe", ":Telescope buffers sort_mru=true<CR>", desc = "buffer" },
+    {
+      "<leader>fc",
+      ":Telescope command_history<CR>",
+      desc = "command_history",
+    },
+    {
+      "<leader>fp",
+      ":Telescope<CR>",
+      desc = "telescope buildin",
+    },
+    { "<leader>fg", ":Telescope live_grep<CR>", desc = "grep" },
+    {
+      "<leader>fG",
+      function()
+        require("telescope").extensions.live_grep_args.live_grep_args()
+      end,
+      desc = "grep with args",
+    },
+    { "<leader>fr", ":Telescope resume initial_mode=normal<CR>", desc = "resume" },
+    {
+      "<leader>ft",
+      ":Telescope asynctasks all<CR>",
+      desc = "asynctasks",
+    },
+    {
+      "<leader>ff",
+      function()
+        require("telescope.builtin").find_files({ search_file = utils.get_visual_selection_text()[1] })
+      end,
+      desc = "file",
+      mode = "v",
+    },
+    {
+      "<leader>fa",
+      function()
+        require("telescope.builtin").find_files({
+          search_file = utils.get_visual_selection_text()[1],
+          hidden = true,
+          no_ignore = true,
+        })
+      end,
+      desc = "all file",
+      mode = "v",
+    },
+    {
+      "<leader>fg",
+      function()
+        require("telescope.builtin").grep_string({ search = utils.get_visual_selection_text()[1] })
+      end,
+      desc = "grep",
+      mode = "v",
+    },
+  })
+end
 
 return plugin

@@ -16,9 +16,7 @@ require("wsain.commands")
 -- plugin config
 local pluginDatas = require("wsain.plugin.plugins")
 local pluginManager = require("wsain.plugin.lazy")
-local mappingRegister = require("wsain.plugin.whichkey")
 pluginManager.load(pluginDatas)
-mappingRegister.register(pluginDatas)
 
 -- base mapping override plugin mapping
 require("wsain.base_mappings")

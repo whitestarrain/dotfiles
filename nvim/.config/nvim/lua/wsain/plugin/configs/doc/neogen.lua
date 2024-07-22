@@ -41,18 +41,17 @@ plugin.config = function()
       },
     },
   })
-end
 
-plugin.globalMappings = {
-  { "n", "<leader>c", name = "code" },
-  {
-    "n",
-    "<leader>cg",
-    function()
-      require("neogen").generate()
-    end,
-    "generate doc",
-  },
-}
+  require("wsain.plugin.whichkey").register({
+    { "<leader>c", group = "code" },
+    {
+      "<leader>cg",
+      function()
+        require("neogen").generate()
+      end,
+      desc = "generate doc",
+    },
+  })
+end
 
 return plugin

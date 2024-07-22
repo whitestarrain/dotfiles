@@ -10,8 +10,8 @@ plugin.opts = {
 }
 plugin.config = function()
   require("bufdel").setup(plugin.opts)
+  require("wsain.plugin.whichkey").register({
+    { "<leader>zd", ":BufDelOthers<cr>", desc = "delOtherBufs", silent = false },
+  })
 end
-plugin.globalMappings = {
-  { "n", "<leader>zd", ":BufDelOthers<cr>", "delOtherBufs", opts = { silent = false } },
-}
 return plugin

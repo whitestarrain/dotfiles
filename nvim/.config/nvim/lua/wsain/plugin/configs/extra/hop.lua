@@ -5,13 +5,13 @@ plugin.loadEvent = "VeryLazy"
 plugin.opts = {}
 plugin.config = function()
   require("hop").setup(plugin.opts)
+  require("wsain.plugin.whichkey").register({
+    { "<leader>j", group = "jump easy" },
+    { "<leader>ja", ":HopAnywhere<cr>", desc = "any where" },
+    { "<leader>jc", ":HopChar2<cr>", desc = "by char" },
+    { "<leader>jj", ":HopLine<cr>", desc = "line" },
+    { "<leader>jk", ":HopWord<cr>", desc = "word" },
+  })
 end
-plugin.globalMappings = {
-  { "n", "<leader>j", name = "jump easy" },
-  { "n", "<leader>ja", ":HopAnywhere<cr>", "any where" },
-  { "n", "<leader>jc", ":HopChar2<cr>", "by char" },
-  { "n", "<leader>jj", ":HopLine<cr>", "line" },
-  { "n", "<leader>jk", ":HopWord<cr>", "word" },
-}
 
 return plugin

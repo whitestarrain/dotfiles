@@ -25,11 +25,13 @@ plugin.init = function()
   vim.g.mdip_imgdir_intext = vim.g.mdip_imgdir
 end
 
-plugin.globalMappings = {
-  { "n", "<leader>m", name = "markdown" },
-  { "n", "<leader>mm", ":call mdip#MarkdownClipboardImage()<CR>", "imagePaste" },
-  { "n", "<leader>ms", setImagePath, "set image path" },
-  { "n", "<leader>mp", showImagePath, "print image path" },
-}
+plugin.config = function()
+  require("wsain.plugin.whichkey").register({
+    { "<leader>m", group = "markdown" },
+    { "<leader>mm", ":call mdip#MarkdownClipboardImage()<CR>", desc = "imagePaste" },
+    { "<leader>ms", setImagePath, desc = "set image path" },
+    { "<leader>mp", showImagePath, desc = "print image path" },
+  })
+end
 
 return plugin

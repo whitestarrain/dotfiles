@@ -13,10 +13,10 @@ plugin.config = function()
     dot_repeat = true,
     on_error = nil,
   })
-end
 
-plugin.globalMappings = {
-  { "n", "<leader>cm", ":TSJToggle<cr>", "multiline toggle" },
-}
+  require("wsain.plugin.whichkey").register({
+    { "<leader>cm", ":TSJToggle<cr>", desc = "multiline toggle" },
+  })
+end
 
 return plugin
