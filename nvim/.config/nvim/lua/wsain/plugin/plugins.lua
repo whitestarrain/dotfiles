@@ -1,4 +1,7 @@
 return {
+  -- key mapping manager
+  require("wsain.plugin.whichkey").plugin,
+
   -- private leader mapping
   require("wsain.plugin.configs.private_mapping"),
 

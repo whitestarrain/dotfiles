@@ -1,5 +1,5 @@
 -- check install
-local lazypath = vim.g.absolute_config_path .. ".managers/lazy"
+local lazypath = vim.g.absolute_config_path .. ".plugins/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   print("start clone lazy to " .. lazypath)
   vim.fn.system({
@@ -39,8 +39,8 @@ local opt = {
 -- plugin config handler
 local pluginConfigConvert = function(pluginDatas)
   local result = {}
-  for _, originConfig in ipairs(pluginDatas) do
-    if originConfig.shortUrl ~= nil then
+  for _, originConfig in pairs(pluginDatas) do
+    if originConfig ~= nil and originConfig.shortUrl ~= nil then
       if originConfig.dir ~= nil then
         originConfig.dev = true
       end

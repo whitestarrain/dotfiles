@@ -1,5 +1,5 @@
 -- check install
-local whichkeyPath = vim.g.absolute_config_path .. ".managers/whichkey"
+local whichkeyPath = vim.g.absolute_config_path .. ".plugins/which-key.nvim"
 if not vim.loop.fs_stat(whichkeyPath) then
   print("start clone whichkey to " .. whichkeyPath)
   vim.fn.system({
@@ -10,22 +10,17 @@ if not vim.loop.fs_stat(whichkeyPath) then
     "--branch=main",
     whichkeyPath,
   })
-  vim.fn.system({
-    "git",
-    "-C",
-    whichkeyPath,
-    "checkout",
-    "4433e5e",
-  })
 end
 vim.opt.rtp:prepend(whichkeyPath)
 
 local utils = require("wsain.utils")
 local opts = {
+  notify = true,
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
     separator = " → ", -- symbol used between a key and it's label
     group = "+", -- symbol prepended to a group
+    mappings = false,
   },
   key_labels = {
     ["<space>"] = "SPC",
@@ -155,4 +150,5 @@ end
 
 return {
   register = registerMapping,
+  plugin = require("wsain.plugin.template"):new({ shortUrl = "folke/which-key.nvim" }),
 }
