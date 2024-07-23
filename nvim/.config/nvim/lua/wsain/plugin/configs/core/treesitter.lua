@@ -1,7 +1,6 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "nvim-treesitter/nvim-treesitter"
-plugin.loadEvent = "VeryLazy"
 plugin.dependencies = {
   "nvim-lua/plenary.nvim",
   "windwp/nvim-ts-autotag",
