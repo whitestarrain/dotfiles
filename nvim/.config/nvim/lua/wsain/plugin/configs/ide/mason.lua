@@ -17,6 +17,7 @@ plugin.config = function()
     },
   })
   local tools = {
+    "basedpyright",
     "bash-language-server",
     "black",
     "clang-format",
@@ -48,7 +49,6 @@ plugin.config = function()
     "luacheck",
     "prettier",
     "prettierd",
-    "pyright",
     "python-lsp-server",
     "ruff",
     "selene",

@@ -10,6 +10,21 @@ if not vim.loop.fs_stat(whichkeyPath) then
     "--branch=main",
     whichkeyPath,
   })
+  local lazy_lock_file = vim.g.absolute_config_path .. "/lazy-lock.json"
+  if vim.loop.fs_stat(lazy_lock_file) then
+    local f = io.open(lazy_lock_file)
+    local json_str = f:read("*all")
+    f:close()
+    local plugin_version_table = vim.fn.json_decode(json_str)
+    local commit = plugin_version_table["which-key.nvim"]["commit"]
+    vim.fn.system({
+      "git",
+      "-C",
+      whichkeyPath,
+      "checkout",
+      commit,
+    })
+  end
 end
 vim.opt.rtp:prepend(whichkeyPath)
 
@@ -189,5 +204,7 @@ end
 
 return {
   register = register,
-  plugin = require("wsain.plugin.template"):new({ shortUrl = "folke/which-key.nvim" }),
+  plugin = require("wsain.plugin.template"):new({
+    shortUrl = "folke/which-key.nvim",
+  }),
 }
