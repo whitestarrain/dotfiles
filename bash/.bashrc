@@ -71,13 +71,10 @@ set -o ignoreeof
 test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 
 # fzf
-[ -f "~/.fzf.bash" ] && source ~/.fzf.bash
 [ -f "/usr/share/fzf/completion.bash" ] && source /usr/share/fzf/completion.bash
 [ -f "/usr/share/fzf/key-bindings.bash" ] && source /usr/share/fzf/key-bindings.bash
 
 # z
-[ -f "~/.z.bash" ] && source ~/.z.bash
-[ -f "/opt/z/z.sh" ] && source /opt/z/z.sh
 [ -f "/usr/share/z/z.sh" ] && source /usr/share/z/z.sh
 
 # ranger
