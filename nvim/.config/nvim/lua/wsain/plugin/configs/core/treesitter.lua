@@ -1,10 +1,14 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "nvim-treesitter/nvim-treesitter"
+plugin.loadEvent = "VeryLazy"
 plugin.dependencies = {
   "nvim-lua/plenary.nvim",
   "windwp/nvim-ts-autotag",
 }
+plugin.init = function()
+  vim.opt.rtp:append(vim.g.absolute_config_path .. ".plugins/nvim-treesitter")
+end
 plugin.opts = {
   auto_install = false,
 

@@ -10,6 +10,21 @@ if not vim.loop.fs_stat(lazypath) then
     "--branch=stable", -- latest stable release
     lazypath,
   })
+  local lazy_lock_file = vim.g.absolute_config_path .. "/lazy-lock.json"
+  if vim.loop.fs_stat(lazy_lock_file) then
+    local f = io.open(lazy_lock_file)
+    local json_str = f:read("*all")
+    f:close()
+    local plugin_version_table = vim.fn.json_decode(json_str)
+    local commit = plugin_version_table["lazy.nvim"]["commit"]
+    vim.fn.system({
+      "git",
+      "-C",
+      lazypath,
+      "checkout",
+      commit,
+    })
+  end
 end
 vim.opt.rtp:prepend(lazypath)
 
