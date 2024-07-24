@@ -1,7 +1,10 @@
 local plugin = require("wsain.plugin.template"):new()
 plugin.shortUrl = "luukvbaal/statuscol.nvim"
 plugin.customConfig = function(lsp_mode)
-  local builtin = require("statuscol.builtin")
+  local status, builtin = pcall(require, "statuscol.builtin")
+  if not status then
+    return
+  end
   local auto_diagnostic_sign = true
   if lsp_mode then
     auto_diagnostic_sign = false
