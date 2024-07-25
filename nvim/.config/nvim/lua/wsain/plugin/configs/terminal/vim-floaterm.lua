@@ -19,13 +19,24 @@ plugin.init = function()
   vim.g.floaterm_width = 0.85
   vim.g.floaterm_height = 0.85
 
-  vim.cmd([[
-    augroup vime_floaterm_group
-      autocmd!
-      au FileType floaterm tnoremap <buffer> <silent> <M-h> <c-\><c-n>:FloatermPrev<CR>
-      au FIleType floaterm tnoremap <buffer> <silent> <M-l> <c-\><c-n>:FloatermNext<CR>
-    augroup END
-  ]])
+  local vim_floaterm_group = vim.api.nvim_create_augroup("vim_floaterm_group", { clear = true })
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = {"floaterm"},
+    group = vim_floaterm_group,
+    callback = function()
+      vim.keymap.set("t", "<M-h>", "<c-\\><c-n>:FloatermPrev<CR>", { silent = true, noremap = true, buffer = 0 })
+      vim.keymap.set("t", "<M-l>", "<c-\\><c-n>:FloatermNext<CR>", { silent = true, noremap = true, buffer = 0 })
+    end,
+  })
+  vim.api.nvim_create_autocmd("VimResized", {
+    group = vim_floaterm_group,
+    callback = function()
+      if not utils.check_buffer_open("floaterm") then
+        return
+      end
+      vim.cmd([[FloatermUpdate]])
+    end,
+  })
 end
 
 local file_exploer = "lf"
