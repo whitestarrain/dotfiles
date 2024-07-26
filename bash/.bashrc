@@ -12,7 +12,7 @@ export XDG_DATA_HOME=~/.local/share
 export XDG_STATE_HOME=~/.local/state
 
 # default editor, manpager
-if which nvim &> /dev/null; then
+if which nvim &>/dev/null; then
   export EDITOR='nvim -u NONE'
   export MANPAGER="nvim +Man!"
 fi
@@ -24,9 +24,9 @@ export TMOUT=0
 export HISTTIMEFORMAT="[%Y-%m-%d %H:%M:%S] "
 
 # command history limit
-export HISTFILESIZE=10000 # HISTFILE limit
-export HISTSIZE=1000 # shell session history limit
-export HISTIGNORE="&:[ ]*:exit:clear:ls:pwd:nvim" # ignore command pattern, separated by :
+export HISTFILESIZE=10000                            # HISTFILE limit
+export HISTSIZE=1000                                 # shell session history limit
+export HISTIGNORE="&:[ ]*:exit:clear:ls:pwd:nvim:sp" # ignore command pattern, separated by :
 
 # history append
 shopt -s histappend
@@ -68,7 +68,22 @@ alias hisupdate='history -a; history -c; history -r;'
 set -o ignoreeof
 
 # dircolors
-test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
+test -r ~/.dir_colors && eval "$(dircolors ~/.dir_colors)"
+
+# swich proxy
+alias sp="switchproxy"
+function switchproxy {
+  if [ -n "$http_proxy" ] || [ -n "$https_proxy" ] || [ -n "$all_proxy" ]; then
+    echo "unset terminal proxy"
+    unset http_proxy https_proxy all_proxy
+    return
+  fi
+  default_proxy="http://127.0.0.1:7890"
+  export http_proxy="$default_proxy"
+  export https_proxy="$default_proxy"
+  export all_proxy="$default_proxy"
+  echo "set terminal proxy"
+}
 
 # fzf
 [ -f "/usr/share/fzf/completion.bash" ] && source /usr/share/fzf/completion.bash
@@ -88,7 +103,7 @@ function ranger {
     --cmd="map Q chain shell echo %d > \"$tempfile\"; quitall"
   )
 
-  ${ranger_cmd[@]} "$@"
+  "${ranger_cmd[@]}" "$@"
   if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$PWD" ]]; then
     cd -- "$(cat -- "$tempfile")" || return
   fi
@@ -96,21 +111,21 @@ function ranger {
 }
 
 # fnm
-if which fnm &> /dev/null; then
+if which fnm &>/dev/null; then
   export FNM_NODE_DIST_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/
-  fnm completions --shell bash &> /dev/null
+  fnm completions --shell bash &>/dev/null
   eval "$(fnm env)"
 else
   # nvm
   export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
-  [ ! -s "$NVM_DIR/nvm.sh" ] &&  [ -f "/usr/share/nvm/nvm.sh" ] && source /usr/share/nvm/nvm.sh
-  [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" # This loads nvm
+  [ ! -s "$NVM_DIR/nvm.sh" ] && [ -f "/usr/share/nvm/nvm.sh" ] && source /usr/share/nvm/nvm.sh
+  [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion" # This loads nvm bash_completion
   [ ! -s "$NVM_DIR/bash_completion" ] && [ -f "/usr/share/nvm/bash_completion" ] && source /usr/share/nvm/bash_completion
 fi
 
 # starship
-[ -n $(which starship 2>/dev/null) ] && eval "$(starship init bash)"
+[ -n "$(which starship 2>/dev/null)" ] && eval "$(starship init bash)"
 
 # realtime update history file
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
