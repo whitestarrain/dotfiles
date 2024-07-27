@@ -87,6 +87,26 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("v", "<space>cf", ":Format<CR>", opts("format"))
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+capabilities.textDocument.completion.completionItem = {
+  documentationFormat = { "markdown", "plaintext" },
+  snippetSupport = true,
+  preselectSupport = true,
+  insertReplaceSupport = true,
+  labelDetailsSupport = true,
+  deprecatedSupport = true,
+  commitCharactersSupport = true,
+  tagSupport = { valueSet = { 1 } },
+  resolveSupport = {
+    properties = {
+      "documentation",
+      "detail",
+      "additionalTextEdits",
+    },
+  },
+}
+
 local function lsp_signature_setup()
   if package.loaded["lsp_signature"] ~= nil then
     return
@@ -265,8 +285,6 @@ end
 
 local function setupFrontEndLsp()
   local lspconfig = require("lspconfig")
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
   local servers = {
     tsserver = "typescript-language-server",
     cssls = "vscode-css-language-server",
@@ -372,6 +390,7 @@ local function setupPyright()
         "pyrightconfig.json"
       )(fname) or lspconfig.util.path.dirname(fname)
     end,
+    capabilities = capabilities,
     -- config document: https://github.com/microsoft/pyright/blob/main/docs/configuration.md
     settings = {
       basedpyright = {
@@ -549,7 +568,7 @@ local function setupJavaLsp()
         mode = "v",
         silent = true,
         noremap = true,
-        buffer=bufnr,
+        buffer = bufnr,
       },
       {
         "<leader>cJc",
@@ -558,7 +577,7 @@ local function setupJavaLsp()
         mode = "v",
         silent = true,
         noremap = true,
-        buffer=bufnr,
+        buffer = bufnr,
       },
       {
         "<leader>cJm",
@@ -567,7 +586,7 @@ local function setupJavaLsp()
         mode = "v",
         silent = true,
         noremap = true,
-        buffer=bufnr,
+        buffer = bufnr,
       },
     })
   end
