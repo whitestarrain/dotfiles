@@ -79,17 +79,6 @@ plugin.config = function()
     },
   })
 
-  local menuIcon = {
-    nvim_lsp = "NLSP",
-    nvim_lua = "NLUA",
-    luasnip = "LSNP",
-    vsnip = "SNIP",
-    luasnip = "SNIP",
-    buffer = "BUFF",
-    path = "PATH",
-    cmdline = "CMD",
-  }
-
   local lspkind_format = {
     fields = { "kind", "abbr", "menu" },
     format = lspkind.cmp_format({
@@ -112,7 +101,7 @@ plugin.config = function()
   }
 
   local has_words_before = function()
-    unpack = unpack or table.unpack
+    local unpack = unpack or table.unpack
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
@@ -152,7 +141,7 @@ plugin.config = function()
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       ["<CR>"] = cmp.mapping.confirm({
-        -- select = true,
+        select = true,
       }),
       -- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
       ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
