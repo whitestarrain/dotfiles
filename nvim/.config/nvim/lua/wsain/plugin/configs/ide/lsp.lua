@@ -539,37 +539,43 @@ local function setupJavaLsp()
     require("jdtls.dap").setup_dap_main_class_configs()
   end
 
-  local function add_jdtls_keymaps()
-    local status_ok, which_key = pcall(require, "which-key")
-    if not status_ok then
-      return
-    end
-
-    local vopts = {
-      mode = "v", -- VISUAL mode
-      prefix = "<leader>",
-      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true, -- use `silent` when creating keymaps
-      noremap = true, -- use `noremap` when creating keymaps
-      nowait = true, -- use `nowait` when creating keymaps
-    }
-
-    local vmappings = {
-      J = {
-        name = "Java",
-        v = { "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", "Extract Variable" },
-        c = { "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", "Extract Constant" },
-        m = { "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", "Extract Method" },
+  local function add_jdtls_keymaps(bufnr)
+    require("wsain.plugin.whichkey").register({
+      { "<leader>cJ", group = "java", mode = "v" },
+      {
+        "<leader>cJv",
+        "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>",
+        desc = "Extract Variable",
+        mode = "v",
+        silent = true,
+        noremap = true,
+        buffer=bufnr,
       },
-    }
-
-    which_key.register(vmappings, vopts)
+      {
+        "<leader>cJc",
+        "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>",
+        desc = "Extract Constant",
+        mode = "v",
+        silent = true,
+        noremap = true,
+        buffer=bufnr,
+      },
+      {
+        "<leader>cJm",
+        "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>",
+        desc = "Extract Method",
+        mode = "v",
+        silent = true,
+        noremap = true,
+        buffer=bufnr,
+      },
+    })
   end
 
   local function jdtls_on_attach(client, bufnr)
     local jdtls = require("jdtls")
     jdtls.setup.add_commands()
-    add_jdtls_keymaps()
+    add_jdtls_keymaps(bufnr)
 
     if features.codelens then
       enable_codelens(bufnr)
