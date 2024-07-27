@@ -87,6 +87,12 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("v", "<space>cf", ":Format<CR>", opts("format"))
 end
 
+local on_init = function(client, _)
+  if client.supports_method("textDocument/semanticTokens") then
+    client.server_capabilities.semanticTokensProvider = nil
+  end
+end
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 capabilities.textDocument.completion.completionItem = {
@@ -231,6 +237,8 @@ local function setupLuaLsp()
         },
       },
       on_attach = on_attach,
+      on_init = on_init,
+      capabilities = capabilities,
       flags = {
         debounce_text_changes = 150,
       },
@@ -247,6 +255,8 @@ local function setupBashLsp()
   local lspconfig = require("lspconfig")
   lspconfig.bashls.setup({
     on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
   })
 end
 
@@ -265,6 +275,8 @@ local function setupCLsp()
       "--pch-storage=disk",
     },
     on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
   })
 end
 
@@ -272,6 +284,8 @@ local function setupGoLsp()
   local lspconfig = require("lspconfig")
   lspconfig.gopls.setup({
     on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
     root_dir = lspconfig.util.root_pattern("go.mod"),
   })
 end
@@ -280,6 +294,8 @@ local function setupVimLsp()
   local lspconfig = require("lspconfig")
   lspconfig.vimls.setup({
     on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
   })
 end
 
@@ -292,31 +308,15 @@ local function setupFrontEndLsp()
     emmet = "emmet-ls",
   }
 
-  -- tsserver
-  lspconfig.tsserver.setup({
-    cmd = { servers.tsserver, "--stdio" },
-    on_attach = on_attach,
-    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-    init_options = {
-      hostInfo = "neovim",
-    },
-    capabilities = capabilities,
-  })
-
-  -- vue
-  lspconfig.vuels.setup({
-    on_attach = on_attach,
-  })
-
   -- html lsp
   lspconfig.html.setup({
-    capabilities = capabilities,
     on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
   })
 
-  -- eslint。eslint-lsp depends on eslint
+  -- eslint. eslint-lsp depends on eslint
   lspconfig.eslint.setup({
-    capabilities = capabilities,
     filetypes = {
       "javascript",
       "javascriptreact",
@@ -327,35 +327,42 @@ local function setupFrontEndLsp()
       "vue",
     },
     on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
   })
 
   -- css lsp
   lspconfig.cssls.setup({
-    capabilities = capabilities,
     filetypes = { "css", "scss", "less" },
     on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
   })
 
   -- json lsp
   lspconfig.jsonls.setup({
-    capabilities = capabilities,
     on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
   })
 
   -- tsserver
   lspconfig.tsserver.setup({
     cmd = { servers.tsserver, "--stdio" },
     on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
     init_options = {
       hostInfo = "neovim",
     },
-    capabilities = capabilities,
   })
 
   -- vue
   lspconfig.vuels.setup({
     on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
   })
 end
 
@@ -380,6 +387,8 @@ local function setupPyright()
   local lspconfig = require("lspconfig")
   lspconfig.basedpyright.setup({
     on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
     root_dir = function(fname)
       return lspconfig.util.root_pattern(
         ".git",
@@ -390,7 +399,6 @@ local function setupPyright()
         "pyrightconfig.json"
       )(fname) or lspconfig.util.path.dirname(fname)
     end,
-    capabilities = capabilities,
     -- config document: https://github.com/microsoft/pyright/blob/main/docs/configuration.md
     settings = {
       basedpyright = {
@@ -429,6 +437,8 @@ local function setupPhpLsp()
   local lspconfig = require("lspconfig")
   lspconfig.intelephense.setup({
     on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
   })
 end
 
