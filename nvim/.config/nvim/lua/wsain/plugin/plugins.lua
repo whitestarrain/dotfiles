@@ -33,6 +33,7 @@ return {
   require("wsain.plugin.configs.edit.comment"),
   require("wsain.plugin.configs.edit.treesj"),
   require("wsain.plugin.configs.edit.guess_indent"),
+  require("wsain.plugin.configs.edit.suda"),
 
   -- mode
   require("wsain.plugin.configs.mode.venn"),
