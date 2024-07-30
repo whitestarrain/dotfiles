@@ -87,7 +87,7 @@ plugin.config = function()
       maxwidth = 50,
       ellipsis_char = "…",
       before = function(entry, vim_item)
-        vim_item.menu = "(" .. vim_item.kind .. ")"
+        vim_item.menu = "(" .. (vim_item.kind or "Other") .. ")"
         return vim_item
       end,
     }),
