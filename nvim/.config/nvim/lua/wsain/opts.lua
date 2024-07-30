@@ -89,7 +89,7 @@ vim.opt.maxmempattern = 5000
 -- complete opt
 vim.opt.completeopt = "menuone"
 
--- pmenu config
+-- pmenu(popup-menu) config
 vim.opt.pumheight = 15
 
 -- wildmenu config

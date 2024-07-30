@@ -45,7 +45,7 @@ local function setupCppdbg()
   -- issue: https://github.com/rcarriga/nvim-dap-ui/issues/162
   dap.configurations.cpp = {
     {
-      group = "Launch",
+      name = "Launch",
       type = "cppdbg",
       request = "launch",
       program = function()
@@ -78,7 +78,7 @@ local function setupCodelldb()
 
   dap.configurations.cpp = {
     {
-      group = "select launch file",
+      name = "select launch file",
       type = "codelldb",
       request = "launch",
       args = function()
@@ -91,7 +91,7 @@ local function setupCodelldb()
       stopOnEntry = false,
     },
     {
-      group = "launch output",
+      name = "launch output",
       type = "codelldb",
       request = "launch",
       program = function()
@@ -136,7 +136,7 @@ local function setupDebugPy()
   end
   dap.configurations.python = {
     {
-      group = "default launch file",
+      name = "default launch file",
       type = "python",
       request = "launch",
       program = "${file}",
@@ -147,7 +147,7 @@ local function setupDebugPy()
     {
       type = "python",
       request = "launch",
-      group = "default flask",
+      name = "default flask",
       module = "flask",
       env = {
         FLASK_APP = "run.py",
