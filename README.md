@@ -20,8 +20,6 @@ sudo stow -t / pacman --adopt
 
 # get installed package list
 pacman -Qqet > pkglist.txt
-# install from package list file
-pacman -S --needed - < pkglist.txt
 ```
 
 # Install
@@ -52,6 +50,8 @@ pacman -S --needed - < pkglist.txt
 - pacman
 
   ```bash
+  # install from package list file
+  pacman -S --needed - < pkglist.txt
   # if it contains external packages such as AUR, it needs to be filtered before execution.
   pacman -S --needed $(comm -12 <(pacman -Slq | sort) <(sort pkglist.txt))
   # remove packages not listed in the file
