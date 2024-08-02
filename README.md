@@ -89,3 +89,4 @@ TODO
 - [ ] **[NvChad/NvChad](https://github.com/NvChad/NvChad)**
 - [ ] [LazyVim](https://github.com/LazyVim/LazyVim)
 - [ ] [rydesun/dotfiles](https://github.com/rydesun/dotfiles)
+- [ ] [jessfraz/dotfiles](https://github.com/jessfraz/dotfiles)
