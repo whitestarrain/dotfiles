@@ -110,7 +110,7 @@ plugin.config = function()
   require("gitsigns").setup(plugin.opts)
   require("wsain.plugin.whichkey").register({
     { "<leader>h", group = "git hunk" },
-    { "<leader>hf", ":GitSigns<cr>", desc = "functions" },
+    { "<leader>hf", ":Gitsigns<cr>", desc = "functions" },
     { "<leader>ht", group = "toggle" },
     { "<leader>h", group = "git hunk", mode = "v" },
   })

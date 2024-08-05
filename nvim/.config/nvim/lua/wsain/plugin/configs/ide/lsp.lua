@@ -409,6 +409,7 @@ local function setupPyright()
             reportGeneralTypeIssues = "none",
           },
           useLibraryCodeForTypes = true,
+          autoImportCompletions = true,
         },
       },
     },
