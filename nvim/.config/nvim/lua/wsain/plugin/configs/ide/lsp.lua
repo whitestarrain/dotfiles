@@ -88,6 +88,7 @@ local on_attach = function(client, bufnr)
 end
 
 local on_init = function(client, _)
+  -- disable semantic highlight
   if client.supports_method("textDocument/semanticTokens") then
     client.server_capabilities.semanticTokensProvider = nil
   end
