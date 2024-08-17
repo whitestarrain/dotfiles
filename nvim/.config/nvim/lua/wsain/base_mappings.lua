@@ -45,8 +45,10 @@ set_mapping("n", "go", put_empty_line(false), { desc = "Put empty line below" })
 -- copy/paste
 set_mapping({ "n", "x" }, "gy", '"+y', { desc = "Copy to system clipboard" })
 set_mapping("n", "gp", '"+p', { desc = "Paste from system clipboard" })
+set_mapping("v", "gp", '"+p', { desc = "Paste from system clipboard" })
 -- - Paste in Visual with `P` to not copy selected text (`:h v_P`)
 set_mapping("n", "gP", '"+P', { desc = "Paste from system clipboard" })
+set_mapping("v", "gP", '"+P', { desc = "Paste from system clipboard" })
 
 -- Reselect latest changed, put, or yanked text
 set_mapping(

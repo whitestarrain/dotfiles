@@ -69,6 +69,30 @@ local onAttach = function(bufnr)
   vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
   vim.keymap.set("n", "W", api.tree.collapse_all, opts("Collapse"))
   vim.keymap.set("n", "K", api.node.show_info_popup, opts("Info"))
+
+  vim.keymap.set("n", "T", function()
+    -- get current window buffers' paths
+    local buf_ids = vim.fn.tabpagebuflist()
+    local dir_paths = {}
+    for _, buf_id in ipairs(buf_ids) do
+      local ft = vim.api.nvim_buf_get_option(buf_id, "ft")
+      if ft ~= "NvimTree" then
+        local path = vim.fn.expand(string.format("#%d:p:h", buf_id))
+        if path ~= nil and path ~= "" then
+          table.insert(dir_paths, path)
+        end
+      end
+    end
+    dir_paths = utils.list_unique(dir_paths)
+    if #dir_paths > 1 then
+      vim.ui.select(dir_paths, { prompt = "Select path to change root" }, function(choice)
+        require("nvim-tree.api").tree.change_root(choice)
+      end)
+    else
+      require("nvim-tree.api").tree.change_root(dir_paths[1])
+    end
+  end, opts("Toggle root"))
+
   vim.keymap.set("n", "ff", function()
     local relative_path = relative_path_under_cursor()
     local status, telescope_builtin = pcall(require, "telescope.builtin")
@@ -82,7 +106,8 @@ local onAttach = function(bufnr)
       no_ignore = true,
       file_ignore_patterns = {},
     })
-  end, opts("find file"))
+  end, opts("Find file"))
+
   vim.keymap.set("n", "fg", function()
     local relative_path = relative_path_under_cursor()
     local status, telescope_builtin = pcall(require, "telescope.builtin")
@@ -96,14 +121,15 @@ local onAttach = function(bufnr)
       hidden = true,
       no_ignore = true,
     })
-  end, opts("live grep"))
+  end, opts("Live grep"))
+
   vim.keymap.set("n", "F", function()
     if vim.g.loaded_floaterm ~= 1 then
       return
     end
     local relative_path = relative_path_under_cursor()
     vim.cmd("FloatermNew --cwd=" .. relative_path .. " " .. "--title=" .. relative_path)
-  end, opts("floaterm"))
+  end, opts("Floaterm"))
 end
 plugin.opts = {
   git = {
@@ -127,9 +153,30 @@ plugin.opts = {
 plugin.config = function()
   require("nvim-tree").setup(plugin.opts)
   require("wsain.utils").addCommandBeforeSaveSession("silent! NvimTreeClose")
+
+  local api = require("nvim-tree.api")
+
   require("wsain.plugin.whichkey").register({
-    { "<C-n>", ":NvimTreeToggle<CR>", mode = "n" },
-    { "<leader>v", ":NvimTreeFindFile<cr>", desc = "NvimTreeFindFile", mode = "n" },
+    {
+      "<C-n>",
+      function()
+        api.tree.toggle({
+          -- path = vim.fn.getcwd(),
+          find_file = false,
+          update_root = false,
+          focus = true,
+        })
+      end,
+      mode = "n",
+    },
+    {
+      "<leader>v",
+      function()
+        api.tree.find_file({ open = true, focus = true })
+      end,
+      desc = "NvimTreeFindFile",
+      mode = "n",
+    },
   })
 end
 

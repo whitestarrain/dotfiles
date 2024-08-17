@@ -55,6 +55,18 @@ function M.merge_tb(origin_tb, custom_tb)
   return vim.tbl_deep_extend("force", origin_tb, custom_tb)
 end
 
+function M.list_unique(t)
+  local check = {}
+  local result = {}
+  for _, value in ipairs(t) do
+    if not check[value] then
+      table.insert(result, value)
+      check[value] = true
+    end
+  end
+  return result
+end
+
 -- string function --
 
 function M.literalize(str)
