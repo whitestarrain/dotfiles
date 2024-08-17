@@ -141,9 +141,11 @@ plugin.config = function()
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       ["<CR>"] = cmp.mapping.confirm({
-        select = true,
+        select = false,
+        behavior = cmp.ConfirmBehavior.Replace,
       }),
-      -- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      -- ['<C-y>'] = cmp.config.disable,
       ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
       ["<Tab>"] = cmp.mapping(function(fallback)
