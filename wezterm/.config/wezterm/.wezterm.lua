@@ -1,13 +1,9 @@
--- 加载该文件配置，~/.config/wezterm/wezterm.lua中加上以下代码
--- package.path = package.path..";D:/MyRepo/dotfiles/?.lua"
--- local wezterm_config = require 'wezterm_config'
--- return wezterm_config
-
 local wezterm = require("wezterm")
 
 return {
 	font = wezterm.font("Hack NF"),
 	font_size = 14,
+  audible_bell = "Disabled",
 
 	default_prog = { "pwsh" },
 
