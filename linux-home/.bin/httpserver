@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+
+import argparse
+from http.server import (BaseHTTPRequestHandler, SimpleHTTPRequestHandler,
+                         ThreadingHTTPServer, _get_best_family)
+
+parser = argparse.ArgumentParser(description="args parser")
+parser.add_argument("--port", required=True)
+args = parser.parse_args()
+
+def simple_server(
+    HandlerClass=BaseHTTPRequestHandler,
+    ServerClass=ThreadingHTTPServer,
+    protocol="HTTP/1.0",
+    port=8000,
+    bind=None,
+):
+    ServerClass.address_family, addr = _get_best_family(bind, port)
+    HandlerClass.protocol_version = protocol
+    with ServerClass(addr, HandlerClass) as httpd:
+        host, port = httpd.socket.getsockname()[:2]
+        url_host = f"[{host}]" if ":" in host else host
+        print(f"Serving HTTP on {host} port {port} " f"(http://{url_host}:{port}/) ...")
+        try:
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            print("\nKeyboard interrupt received, exiting.")
+            sys.exit(0)
+
+
+SimpleHTTPRequestHandler.index_pages = []
+utf8_file_types = [".txt", ".md", ".markdown", ".html"]
+for file_type in utf8_file_types:
+    SimpleHTTPRequestHandler.extensions_map[file_type] = "text/plain; charset=utf-8"
+
+simple_server(HandlerClass=SimpleHTTPRequestHandler, port=args.port)
+

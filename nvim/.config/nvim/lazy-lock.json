@@ -33,7 +33,7 @@
   "mason-registry": { "branch": "main", "commit": "1fa28172c769be110050f29c4e7457bfe2ea08bc" },
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
   "md-img-paste.vim": { "branch": "master", "commit": "787be15ff52ea2db5ae7b813ab8808c8d4cf749e" },
-  "md-section-number.nvim": { "branch": "master", "commit": "b758d00830aec59b9c90120ff493e422d15e39f0" },
+  "md-section-number.nvim": { "branch": "master", "commit": "570dd9275657734d810f25c0ee222863b2395adc" },
   "neogen": { "branch": "main", "commit": "6de0add4805165317ab7d3d36b5cef48b1b865f3" },
   "nvim-autopairs": { "branch": "master", "commit": "b0b79e42a28f09719a7da9534c3731fa37319d9b" },
   "nvim-bufdel": { "branch": "main", "commit": "523d58e94e7212fff3e05c247b962dc8f93bcfde" },
