@@ -198,14 +198,14 @@ plugin.config = function()
       desc = "toggle_breakpoint",
     },
     {
-      "<leader>DC",
+      "<leader>Dc",
       function()
         require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
       end,
       desc = "condition breakpoint",
     },
     {
-      "<leader>DL",
+      "<leader>Dl",
       function()
         require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
       end,
@@ -223,7 +223,13 @@ plugin.config = function()
       end,
       desc = "dap ui",
     },
+    {
+      "<leader>DL",
+      function()
+        load_vscode_config()
+      end,
+      desc = "load config json",
+    },
   })
-
 end
 return plugin
