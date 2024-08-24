@@ -1,5 +1,4 @@
 local plugin = require("wsain.plugin.template"):new()
-local utils = require("wsain.utils")
 
 plugin.shortUrl = "neovim/nvim-lspconfig"
 plugin.dependencies = {
@@ -65,11 +64,13 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts("implementation"))
 
   -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts("references"))
-  buf_set_keymap("n", "<leader>cr", "<cmd>Lspsaga finder ref+imp+def<CR>", opts("references")) -- [lspsaga] definition 和 references都会显示
+  -- [lspsaga] definition 和 references都会显示
+  buf_set_keymap("n", "<leader>cr", "<cmd>Lspsaga finder ref+imp+def<CR>", opts("references"))
 
   buf_set_keymap("n", "<leader>cs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts("signature_help"))
 
-  -- buf_set_keymap("i", "<c-p>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts("signature_help")) -- <C-p><C-p> to enter hover win
+  -- <C-p><C-p> to enter hover win
+  -- buf_set_keymap("i", "<c-p>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts("signature_help"))
   buf_set_keymap("i", "<c-p>", function()
     require("lsp_signature").toggle_float_win()
   end, opts("signature_help")) -- <C-p><C-p> to enter hover win
@@ -89,7 +90,10 @@ end
 
 local on_init = function(client, _)
   -- disable semantic highlight
-  if client.supports_method("textDocument/semanticTokens") then
+  local enable_semantic_tokens_lsps = {
+    clangd = true,
+  }
+  if client.supports_method("textDocument/semanticTokens") and enable_semantic_tokens_lsps[client["name"]] == nil then
     client.server_capabilities.semanticTokensProvider = nil
   end
 end
@@ -353,7 +357,14 @@ local function setupFrontEndLsp()
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
-    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+    },
     init_options = {
       hostInfo = "neovim",
     },
@@ -565,7 +576,7 @@ local function setupJavaLsp()
     })
   end
 
-  local function enable_debugger(bufnr)
+  local function enable_debugger(_bufnr)
     require("jdtls").setup_dap({ hotcodereplace = "auto" })
     require("jdtls.dap").setup_dap_main_class_configs()
   end
@@ -629,7 +640,7 @@ local function setupJavaLsp()
     },
   }
 
-  local function jdtls_setup(event)
+  local function jdtls_setup(_event)
     local jdtls = require("jdtls")
 
     local path = get_jdtls_paths()
@@ -736,7 +747,7 @@ local function setupJavaLsp()
       },
     }
 
-    local on_init = function(client, _)
+    local jdtls_on_init = function(client, _)
       client.notify("workspace/didChangeConfiguration", { settings = lsp_settings })
       for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
         local valid = vim.api.nvim_buf_is_valid(bufnr) and vim.api.nvim_buf_get_option(bufnr, "buflisted")
@@ -756,7 +767,7 @@ local function setupJavaLsp()
     jdtls.start_or_attach({
       cmd = cmd,
       settings = lsp_settings,
-      on_init = on_init,
+      on_init = jdtls_on_init,
       on_attach = jdtls_on_attach,
       capabilities = basic_capabilities,
       root_dir = project_root_dir,
