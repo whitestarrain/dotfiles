@@ -89,6 +89,14 @@ plugin.config = function()
       ["@text.todo.unchecked.markdown"] = { link = "Normal" },
       ["@text.quote.markdown"] = { link = "Comment" },
     },
+
+    -- rainbow
+    RainbowDelimiterYellow = { fg = "#d19a66" },
+    RainbowDelimiterBlue = { fg = "dodgerblue2" },
+    RainbowDelimiterOrange = { fg = "darkorange3" },
+    RainbowDelimiterGreen = { fg = "seagreen3" },
+    RainbowDelimiterViolet = { fg = "mediumpurple3" },
+    RainbowDelimiterCyan = { fg = "orchid2" },
   })
   vim.cmd("colorscheme onedark")
 end

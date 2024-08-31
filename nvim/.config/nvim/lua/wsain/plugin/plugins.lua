@@ -19,7 +19,7 @@ return {
   require("wsain.plugin.configs.ui.feline"),
   require("wsain.plugin.configs.ui.statuscol"),
   require("wsain.plugin.configs.ui.dressing"),
-  require("wsain.plugin.configs.ui.rainbow"),
+  require("wsain.plugin.configs.ui.rainbow-delimiters"),
 
   -- edit
   require("wsain.plugin.configs.edit.todo-comments"),
@@ -34,6 +34,7 @@ return {
   require("wsain.plugin.configs.edit.treesj"),
   require("wsain.plugin.configs.edit.guess_indent"),
   require("wsain.plugin.configs.edit.suda"),
+  require("wsain.plugin.configs.edit.vim-matchup"),
 
   -- mode
   require("wsain.plugin.configs.mode.venn"),
