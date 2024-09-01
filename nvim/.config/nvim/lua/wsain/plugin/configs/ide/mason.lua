@@ -20,6 +20,7 @@ plugin.config = function()
     "basedpyright",
     "bash-language-server",
     "black",
+    "checkmake",
     "clang-format",
     "clangd",
     "codelldb",

@@ -83,6 +83,7 @@ plugin.config = function()
     "json",
     "kotlin",
     "lua",
+    "make",
     "markdown",
     "markdown_inline",
     "perl",

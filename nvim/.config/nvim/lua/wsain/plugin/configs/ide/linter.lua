@@ -48,6 +48,7 @@ plugin.config = function()
     sh = { "shellcheck" },
     sql = { "sqlfluff" },
     lua = { "luacheck" },
+    make = { "checkmake" },
   }
   require("wsain.plugin.whichkey").register({
     { "<leader>l", lint_toggle, desc = "toggle lint" },
