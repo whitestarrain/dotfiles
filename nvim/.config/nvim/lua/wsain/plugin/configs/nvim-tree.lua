@@ -158,18 +158,6 @@ plugin.config = function()
 
   require("wsain.plugin.whichkey").register({
     {
-      "<C-n>",
-      function()
-        api.tree.toggle({
-          -- path = vim.fn.getcwd(),
-          find_file = false,
-          update_root = false,
-          focus = true,
-        })
-      end,
-      mode = "n",
-    },
-    {
       "<leader>v",
       function()
         api.tree.find_file({ open = true, focus = true })
@@ -179,5 +167,14 @@ plugin.config = function()
     },
   })
 end
+
+vim.keymap.set("n", "<C-n>", function()
+  require("nvim-tree.api").tree.toggle({
+    -- path = vim.fn.getcwd(),
+    find_file = false,
+    update_root = false,
+    focus = true,
+  })
+end, { silent = true, noremap = true })
 
 return plugin
