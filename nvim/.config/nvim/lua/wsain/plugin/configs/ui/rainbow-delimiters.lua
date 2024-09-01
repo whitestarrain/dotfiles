@@ -26,6 +26,9 @@ plugin.config = function()
       "RainbowDelimiterBlue",
       "RainbowDelimiterCyan",
     },
+    blacklist = {
+      "markdown",
+    },
   }
 end
 
