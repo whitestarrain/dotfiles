@@ -3,7 +3,6 @@ local plugin = require("wsain.plugin.template"):new()
 plugin.shortUrl = "Wansmer/treesj"
 plugin.loadEvent = "VeryLazy"
 plugin.config = function()
-  local lang_utils = require("treesj.langs.utils")
   require("treesj").setup({
     use_default_keymaps = false,
     check_syntax_error = true,

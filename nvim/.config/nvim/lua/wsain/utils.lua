@@ -416,9 +416,9 @@ function M.get_visual_selection_text()
 end
 
 function M.check_buffer_open(buffer_filetype)
-  local qf_win_list =
+  local win_list =
     vim.fn.filter(vim.fn.range(1, vim.fn.winnr("$")), 'getwinvar(v:val, "&ft") == "' .. buffer_filetype .. '"')
-  return next(qf_win_list) ~= nil
+  return next(win_list) ~= nil
 end
 
 function M.check_quickfix_open()

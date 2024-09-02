@@ -14,11 +14,6 @@ plugin.config = function()
   })
 
   local compile_mode_group = vim.api.nvim_create_augroup("compile_mode_group", { clear = true })
-  vim.api.nvim_create_autocmd("FileType", {
-    group = compile_mode_group,
-    pattern = "compilation",
-    command = "wincmd w",
-  })
   require("wsain.plugin.whichkey").register({
     { "<leader>c", group = "code" },
     { "<leader>cc", ":Compile<cr>", desc = "compile" },
