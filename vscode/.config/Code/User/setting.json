@@ -1,181 +1,137 @@
 {
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<C-o>"
-            ],
-            "commands": [
-                "workbench.action.navigateBack"
-            ]
-        },
-        {
-            "before": [
-                "<C-i>"
-            ],
-            "commands": [
-                "workbench.action.navigateForward"
-            ]
-        },
-        {
-            "before": [
-                "<space>"
-            ],
-            "commands": [
-                "whichkey.show"
-            ]
-        },
-        {
-            "before": [
-                "K"
-            ],
-            "commands": [
-                "editor.action.showHover"
-            ]
-        },
-        {
-            "before": [
-                "u"
-            ],
-            "commands": [
-                "undo"
-            ]
-        },
-        {
-            "before": [
-                "<C-r>"
-            ],
-            "commands": [
-                "redo"
-            ]
-        },
-        {
-            "before": [
-                "<C-]>"
-            ],
-            "commands": [
-                "editor.action.revealDefinition"
-            ]
-        },
-        {
-            "before": [
-                "ctrl+h"
-            ],
-            "commands": [
-                "workbench.action.focusLeftGroup"
-            ]
-        },
-        {
-            "before": [
-                "ctrl+l"
-            ],
-            "commands": [
-                "workbench.action.focusRightGroup"
-            ]
-        },
-        {
-            "before": [
-                "ctrl+k"
-            ],
-            "commands": [
-                "workbench.action.focusAboveGroup"
-            ]
-        },
-        {
-            "before": [
-                "ctrl+j"
-            ],
-            "commands": [
-                "workbench.action.focusBelowGroup"
-            ]
-        },
-        {
-            "before": [
-                "[",
-                "c"
-            ],
-            "commands": [
-                "workbench.action.editor.previousChange"
-            ]
-        },
-        {
-            "before": [
-                "]",
-                "c"
-            ],
-            "commands": [
-                "workbench.action.editor.nextChange"
-            ]
-        },
-        {
-            "before": [
-                "<C-d>"
-            ],
-            "after": [
-                "1",
-                "5",
-                "g",
-                "j",
-                "z",
-                "z"
-            ]
-        },
-        {
-            "before": [
-                "<C-u>"
-            ],
-            "after": [
-                "1",
-                "5",
-                "g",
-                "k",
-                "z",
-                "z"
-            ]
-        }
-    ],
-    "vim.visualModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<space>"
-            ],
-            "commands": [
-                "whichkey.show"
-            ]
-        }
-    ],
-    "vim.easymotion": true,
-    "vim.foldfix": true,
-    "vim.leader": " ",
-    "vim.surround": true,
-    "vim.easymotionMarkerBackgroundColor": "#FF4826",
-    "vim.easymotionMarkerForegroundColorOneChar": "#FFFFFF",
-    "vim.hlsearch": true,
-    "vim.incsearch": true,
-    "vim.autoindent": true,
-    "vim.handleKeys": {
-        "<C-d>": true,
-        "<C-f>": false,
-        "<C-a>": false
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-o>"],
+      "commands": ["workbench.action.navigateBack"]
     },
-    "[python]": {
-        "editor.formatOnSave": true
+    {
+      "before": ["<C-i>"],
+      "commands": ["workbench.action.navigateForward"]
     },
-    "update.mode": "start",
-    "whichkey.bindingOverrides": [
-        {
-            "keys": "d.j",
-            "name": "run to cursor",
-            "type": "command",
-            "command": "editor.debug.action.runToCursor"
-        },
-        {
-            "keys": "s.i",
-            "name": "jump to implementation",
-            "type": "command",
-            "command": "editor.action.goToImplementation"
-        }
-    ],
-    "files.autoSave": "afterDelay",
-    "editor.insertSpaces": true,
-    "debug.inlineValues": "off"
+    {
+      "before": ["<space>"],
+      "commands": ["whichkey.show"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["u"],
+      "commands": ["undo"]
+    },
+    {
+      "before": ["<C-r>"],
+      "commands": ["redo"]
+    },
+    {
+      "before": ["<C-]>"],
+      "commands": ["editor.action.revealDefinition"]
+    },
+    {
+      "before": ["ctrl+h"],
+      "commands": ["workbench.action.focusLeftGroup"]
+    },
+    {
+      "before": ["ctrl+l"],
+      "commands": ["workbench.action.focusRightGroup"]
+    },
+    {
+      "before": ["ctrl+k"],
+      "commands": ["workbench.action.focusAboveGroup"]
+    },
+    {
+      "before": ["ctrl+j"],
+      "commands": ["workbench.action.focusBelowGroup"]
+    },
+    {
+      "before": ["[", "c"],
+      "commands": ["workbench.action.editor.previousChange"]
+    },
+    {
+      "before": ["]", "c"],
+      "commands": ["workbench.action.editor.nextChange"]
+    },
+    {
+      "before": ["<C-d>"],
+      "after": ["1", "5", "g", "j", "z", "z"]
+    },
+    {
+      "before": ["<C-u>"],
+      "after": ["1", "5", "g", "k", "z", "z"]
+    },
+    {
+      "before": ["g", "y"],
+      "after": ["\"", "+", "y"]
+    },
+    {
+      "before": ["g", "p"],
+      "after": ["\"", "+", "p"]
+    },
+    {
+      "before": ["g", "P"],
+      "after": ["\"", "+", "P"]
+    },
+    {
+      "before": ["<"],
+      "after": ["<", "<"]
+    },
+    {
+      "before": [">"],
+      "after": [">", ">"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<space>"],
+      "commands": ["whichkey.show"]
+    },
+    {
+      "before": ["g", "y"],
+      "after": ["\"", "+", "y"]
+    },
+    {
+      "before": ["g", "p"],
+      "after": ["\"", "+", "p"]
+    },
+    {
+      "before": ["g", "P"],
+      "after": ["\"", "+", "P"]
+    }
+  ],
+  "vim.easymotion": true,
+  "vim.foldfix": true,
+  "vim.leader": " ",
+  "vim.surround": true,
+  "vim.easymotionMarkerBackgroundColor": "#FF4826",
+  "vim.easymotionMarkerForegroundColorOneChar": "#FFFFFF",
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.autoindent": true,
+  "vim.handleKeys": {
+    "<C-d>": true,
+    "<C-f>": false,
+    "<C-a>": false
+  },
+  "[python]": {
+    "editor.formatOnSave": true
+  },
+  "update.mode": "start",
+  "whichkey.bindingOverrides": [
+    {
+      "keys": "d.j",
+      "name": "run to cursor",
+      "type": "command",
+      "command": "editor.debug.action.runToCursor"
+    },
+    {
+      "keys": "s.i",
+      "name": "jump to implementation",
+      "type": "command",
+      "command": "editor.action.goToImplementation"
+    }
+  ],
+  "files.autoSave": "afterDelay",
+  "editor.insertSpaces": true,
+  "debug.inlineValues": "off"
 }
