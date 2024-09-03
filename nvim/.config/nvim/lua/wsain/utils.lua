@@ -333,6 +333,65 @@ function M.save_markdown_url_images(input_proxy, start_line, end_line)
   end
 end
 
+-- get a function check whether a buffer open a big file
+function M.get_check_bigfile_function(max_length, max_line_length, excluede_file_types)
+  return function(bufnr)
+    local file_path = vim.api.nvim_buf_get_name(bufnr)
+    if file_path == nil or file_path == "" then
+      return false
+    end
+    local common_file_flag = (string.find(file_path, "://") == nil) and (string.find(file_path, ":\\\\") == nil)
+    if not common_file_flag then
+      return false
+    end
+    max_length = max_length or 10000
+    max_line_length = max_line_length or 1000
+    excluede_file_types = excluede_file_types or {}
+    local default_excluede_file_types = {
+      "NvimTree",
+      "fugitive",
+      "msnumber",
+    }
+    for _, file_type in ipairs(default_excluede_file_types) do
+      excluede_file_types[#excluede_file_types + 1] = file_type
+    end
+
+    local current_file_type = vim.filetype.match({ buf = bufnr })
+    local expand_name = vim.fn.expand("%:e")
+    for _, file_type in ipairs(excluede_file_types) do
+      if current_file_type == file_type then
+        return false
+      end
+      if expand_name == file_type then
+        return false
+      end
+    end
+    local getfsize_status, file_size = pcall(vim.fn.getfsize, file_path)
+    if not getfsize_status then
+      return false
+    end
+    if file_size < 0 or file_size > 1024 * 1024 then
+      return true
+    end
+    -- you can't use `nvim_buf_line_count` because this runs on BufReadPre
+    local readfile_status, file_contents = pcall(vim.fn.readfile, file_path)
+    if not readfile_status then
+      return false
+    end
+    local file_length = #file_contents
+
+    if file_length > max_length then
+      return true
+    end
+
+    for _, line_content in ipairs(file_contents) do
+      if #line_content > max_line_length then
+        return true
+      end
+    end
+  end
+end
+
 -- vim api function --
 
 function M.highlight(group, options)

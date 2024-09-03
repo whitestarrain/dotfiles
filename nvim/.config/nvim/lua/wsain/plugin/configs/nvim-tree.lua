@@ -73,7 +73,7 @@ local onAttach = function(bufnr)
   vim.keymap.set("n", "T", function()
     -- get current window buffers' paths
     local buf_ids = vim.fn.tabpagebuflist()
-    local dir_paths = {}
+    local dir_paths = {vim.fn.getcwd()}
     for _, buf_id in ipairs(buf_ids) do
       local ft = vim.api.nvim_buf_get_option(buf_id, "ft")
       if ft ~= "NvimTree" then
