@@ -68,7 +68,6 @@ return {
   require("wsain.plugin.configs.nvim-tree"),
 
   -- extra
-  require("wsain.plugin.configs.extra.bigfile"),
   require("wsain.plugin.configs.extra.zoomwintab"),
   require("wsain.plugin.configs.extra.hop"),
   require("wsain.plugin.configs.extra.nvim-bufdel"),

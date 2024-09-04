@@ -1,7 +1,6 @@
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "RRethy/vim-illuminate"
-plugin.loadEvent = "VeryLazy"
 plugin.config = function()
   -- default configuration
   require("illuminate").configure({

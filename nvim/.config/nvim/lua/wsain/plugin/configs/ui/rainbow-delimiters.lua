@@ -1,5 +1,4 @@
 local plugin = require("wsain.plugin.template"):new()
-local utils = require("wsain.utils")
 
 plugin.shortUrl = "HiPhish/rainbow-delimiters.nvim"
 plugin.dependencies = {
@@ -30,11 +29,8 @@ plugin.config = function()
     blacklist = {
       "markdown",
     },
-    condition = function(bufnr)
-      if vim.filetype.match({ buf = bufnr }) == nil then
-        return false
-      end
-      return not utils.get_check_bigfile_function(10000, 1000, {})(bufnr)
+    condition = function(_bufnr)
+      return false
     end,
   }
 end

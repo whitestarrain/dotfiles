@@ -11,20 +11,7 @@ plugin.opts = {
   additional_vim_regex_highlighting = false,
 
   highlight = {
-    enable = true,
-    disable = function(lang, bufnr)
-      if lang == "vim" then
-        local win_type = vim.fn.getcmdwintype()
-        -- use vim syntax highlight for cmdwin
-        if win_type == ":" then
-          return true
-        end
-      end
-      if lang == "markdown" and vim.api.nvim_buf_line_count(bufnr) > 2000 then
-        return true
-      end
-      return false
-    end,
+    enable = false,
     additional_vim_regex_highlighting = false,
   },
 

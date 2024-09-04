@@ -5,7 +5,7 @@ plugin.config = function()
   local utils = require("wsain.utils")
   utils.highlight("IndentBlanklineChar", { fg = utils.colors.grey, gui = "nocombine" })
   require("ibl").setup({
-    enabled = true,
+    enabled = false,
     indent = {
       char = "¦",
       smart_indent_cap = true,

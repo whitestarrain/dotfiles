@@ -18,7 +18,7 @@ plugin.config = function()
     "indent_blankline",
     "illuminate",
     "lsp",
-    "treesitter",
+    -- "treesitter",
     -- "syntax",
     -- "filetype",
     my_vimopts_feature,
@@ -30,7 +30,7 @@ plugin.config = function()
   require("bigfile").setup({
     -- detect long python files
     filesize = 5, -- size of the file in MiB, the plugin round file sizes to the closest MiB
-    pattern = utils.get_check_bigfile_function(10000, 1000, { "markdown", "text", "bash", "sh", "zsh" }),
+    pattern = utils.get_check_bigfile_function(1024*1024, 10000, 1000, { "markdown", "text", "bash", "sh", "zsh" }),
     features = features,
   })
 end
