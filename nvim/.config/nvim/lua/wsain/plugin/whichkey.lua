@@ -1,7 +1,7 @@
 -- check install
 local whichkeyPath = vim.g.absolute_config_path .. ".plugins/which-key.nvim"
 if not vim.loop.fs_stat(whichkeyPath) then
-  print("start clone whichkey to " .. whichkeyPath)
+  vim.notify("start clone whichkey to " .. whichkeyPath)
   vim.fn.system({
     "git",
     "clone",

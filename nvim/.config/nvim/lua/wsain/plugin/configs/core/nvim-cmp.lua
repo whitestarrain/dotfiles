@@ -16,7 +16,7 @@ plugin.dependencies = {
     "L3MON4D3/LuaSnip",
     -- make sure build env is prepared
     build = function()
-      print("(luasnip)please run: make install_jsregexp")
+      vim.notify("(luasnip)please run: make install_jsregexp")
     end,
     dependencies = { "rafamadriz/friendly-snippets", "honza/vim-snippets" },
   },

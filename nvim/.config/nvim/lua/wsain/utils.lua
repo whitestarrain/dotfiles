@@ -139,12 +139,12 @@ function M.systemOpen(link)
       process.stderr:close()
       process.handle:close()
       if code ~= 0 then
-        print(string.format("system_open failed with return code %d: %s", code, process.errors))
+        vim.notify(string.format("system_open failed with return code %d: %s", code, process.errors))
       end
     end
   )
   if not process.handle then
-    print(string.format("system_open failed to spawn command '%s': %s", process.cmd, process.pid))
+    vim.notify(string.format("system_open failed to spawn command '%s': %s", process.cmd, process.pid))
     return
   end
   vim.loop.read_start(process.stderr, function(err, data)
@@ -309,7 +309,7 @@ function M.save_markdown_url_images(input_proxy, start_line, end_line)
       on_stdout = function()
         local image_size = M.get_file_size(image_path)
         if image_size == nil or image_size < 1024 then
-          print(string.format("Download image failed, line %s", line_number))
+          vim.notify(string.format("Download image failed, line %s", line_number))
           if image_size ~= nil then
             os.remove(image_path)
           end
@@ -319,13 +319,13 @@ function M.save_markdown_url_images(input_proxy, start_line, end_line)
           local cur_line_content = vim.api.nvim_buf_get_lines(buf_num, line_index, line_index + 1, false)[1]
           local start_pos, end_pos = string.find(cur_line_content, url, 1, true)
           if start_pos == nil or end_pos == nil then
-            print("Image url position changed")
+            vim.notify("Image url position changed")
             return
           end
           local md_img_text = string.format("![%s](%s)", image_name, image_dir .. "/" .. image_name)
           local image_line_text = string.gsub(cur_line_content, M.literalize(md_img_url_text), md_img_text)
           vim.api.nvim_buf_set_lines(buf_num, line_index, line_index + 1, false, { image_line_text })
-          print(string.format("Download image success, line %s", line_number))
+          vim.notify(string.format("Download image success, line %s", line_number))
         end)
       end,
     })

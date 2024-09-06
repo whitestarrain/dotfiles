@@ -1,7 +1,7 @@
 -- check install
 local lazypath = vim.g.absolute_config_path .. ".plugins/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  print("start clone lazy to " .. lazypath)
+  vim.notify("start clone lazy to " .. lazypath)
   vim.fn.system({
     "git",
     "clone",

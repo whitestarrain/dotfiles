@@ -11,7 +11,6 @@ plugin.config = function()
     error_highlight = "WarningMsg",
     split_orientation = "horizontal",
     on_init = function()
-      print("Hello from Luapad!")
     end,
     context = {
       the_answer = 42,
