@@ -44,6 +44,7 @@ plugin.opts = {
     disable = { "markdown" },
   },
 }
+
 plugin.config = function()
   require("nvim-treesitter.configs").setup(plugin.opts)
   --[[

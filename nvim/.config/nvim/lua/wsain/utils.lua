@@ -334,7 +334,7 @@ function M.save_markdown_url_images(input_proxy, start_line, end_line)
 end
 
 -- get a function check whether a buffer open a big file
-function M.get_check_bigfile_function(max_file_size, max_length, max_line_length)
+function M.get_check_bigfile_function(max_file_size, max_lines, max_line_length)
   return function(bufnr)
     local file_path = vim.api.nvim_buf_get_name(bufnr)
     if file_path == nil or file_path == "" then
@@ -342,13 +342,13 @@ function M.get_check_bigfile_function(max_file_size, max_length, max_line_length
     end
     local common_file_flag = (string.find(file_path, "://") == nil) and (string.find(file_path, ":\\\\") == nil)
     if not common_file_flag then
-      return nil
+      return false
     end
-    max_length = max_length or 10000
+    max_lines = max_lines or 10000
     max_line_length = max_line_length or 1000
     local getfsize_status, file_size = pcall(vim.fn.getfsize, file_path)
     if not getfsize_status then
-      return nil
+      return false
     end
     max_file_size = max_file_size or 1024 * 1024
     if file_size < 0 or file_size > max_file_size then
@@ -361,7 +361,7 @@ function M.get_check_bigfile_function(max_file_size, max_length, max_line_length
     end
     local file_length = #file_contents
 
-    if file_length > max_length then
+    if file_length > max_lines then
       return true
     end
 
@@ -370,6 +370,7 @@ function M.get_check_bigfile_function(max_file_size, max_length, max_line_length
         return true
       end
     end
+    return false
   end
 end
 
