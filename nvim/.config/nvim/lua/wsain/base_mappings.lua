@@ -63,7 +63,13 @@ set_mapping(
 set_mapping("x", "g/", "<esc>/\\%V", { silent = false, desc = "Search inside visual selection" })
 
 -- support block replace.
-set_mapping("x", "gs", ":s/\\%V", { silent = false, desc = "Block replace" })
+set_mapping("x", "gs", function()
+  local search_str = vim.fn.getreg("/")
+  if search_str == nil or search_str == "v:null" then
+    search_str = ""
+  end
+  vim.api.nvim_feedkeys(":s/\\%V" .. search_str, "n", "false")
+end, { silent = false, desc = "Block replace search" })
 
 if vim.fn.has("nvim-0.10") == 0 then
   set_mapping("x", "*", [[y/\V<C-R>=escape(@", '/\')<CR><CR>]], { desc = "Search forward" })
