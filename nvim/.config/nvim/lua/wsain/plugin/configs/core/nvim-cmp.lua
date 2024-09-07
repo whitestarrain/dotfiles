@@ -106,6 +106,14 @@ plugin.config = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
 
+  local toggle_complete = function(callback)
+    if cmp.visible() then
+      cmp.abort()
+    else
+      cmp.complete()
+    end
+  end
+
   ---@diagnostic disable-next-line: redundant-parameter
   cmp.setup({
     enabled = function()
@@ -139,7 +147,7 @@ plugin.config = function()
       ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-      ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+      ["<A-.>"] = cmp.mapping(toggle_complete, { "i", "c" }),
       ["<CR>"] = cmp.mapping.confirm({
         select = false,
         behavior = cmp.ConfirmBehavior.Replace,
@@ -188,16 +196,19 @@ plugin.config = function()
     },
   })
 
+  local cmdline_mapping = cmp.mapping.preset.cmdline()
+  cmdline_mapping["<A-.>"] = cmp.mapping(toggle_complete, { "c" })
+
   -- Use buffer source for `/` `?`.
   cmp.setup.cmdline("/", {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmdline_mapping,
     sources = {
       { name = "buffer" },
     },
     formatting = lspkind_format,
   })
   cmp.setup.cmdline("?", {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmdline_mapping,
     sources = {
       { name = "buffer" },
     },
@@ -206,7 +217,7 @@ plugin.config = function()
 
   -- Use cmdline & path source for ':'.
   cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmdline_mapping,
     sources = cmp.config.sources({
       { name = "path" },
     }, {
@@ -219,6 +230,19 @@ plugin.config = function()
   cmp.setup.filetype({ "dap-repl", "dapui_watches" }, {
     sources = {
       { name = "dap" },
+    },
+  })
+
+  cmp.setup.filetype({ "markdown", "text", "gitcommit", "" }, {
+    completion = {
+      autocomplete = false,
+      completeopt = "menu,menuone,noinsert",
+    },
+    mapping = {
+      ["<CR>"] = cmp.mapping.confirm({
+        select = true,
+        behavior = cmp.ConfirmBehavior.Replace,
+      }),
     },
   })
 end
