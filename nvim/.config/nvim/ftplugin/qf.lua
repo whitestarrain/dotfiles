@@ -16,4 +16,10 @@ local function remove_qf_item()
   vim.api.nvim_win_set_cursor(0, { current_row, 0 })
 end
 
+-- delete item
 vim.keymap.set("n", "dd", remove_qf_item, { silent = true, noremap = true, buffer = 0 })
+-- open item
+vim.keymap.set("n", "o", "<CR><C-w>p", { silent = true, noremap = true, buffer = 0 })
+vim.keymap.set("n", "K", "<Up><CR><C-w>p", { silent = true, noremap = true, buffer = 0 })
+vim.keymap.set("n", "J", "<Down><CR><C-w>p", { silent = true, noremap = true, buffer = 0 })
+

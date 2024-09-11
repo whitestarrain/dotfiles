@@ -10,11 +10,11 @@ plugin.dependencies = {
 plugin.config = function()
   require("aerial").setup({
     backends = { "lsp", "treesitter" },
-    on_attach = function(bufnr)
-      vim.keymap.set("n", "[s", "<cmd>AerialPrev<CR>", { buffer = bufnr, desc = "prev symbol" })
-      vim.keymap.set("n", "]s", "<cmd>AerialNext<CR>", { buffer = bufnr, desc = "next symbol" })
-    end,
     filter_kind = false,
+    keymaps = {
+      ["K"] = "actions.prev",
+      ["J"] = "actions.next",
+    },
   })
   utils.addCommandBeforeSaveSession("silent! AerialClose")
   require("wsain.plugin.whichkey").register({
