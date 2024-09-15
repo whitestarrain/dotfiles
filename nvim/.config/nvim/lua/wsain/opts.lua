@@ -87,7 +87,7 @@ vim.opt.conceallevel = 0
 vim.opt.maxmempattern = 5000
 
 -- complete opt
-vim.opt.completeopt = "menu,menuone,noinsert"
+vim.opt.completeopt = "menu,menuone"
 
 -- pmenu(popup-menu) config
 vim.opt.pumheight = 15

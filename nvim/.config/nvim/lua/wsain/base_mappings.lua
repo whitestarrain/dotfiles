@@ -110,35 +110,6 @@ set_mapping("n", "<leader>q", function()
   end
   pcall(vim.fn.execute, "copen")
 end, { desc = "quickfix" })
-local c_n_mapping_func = utils.get_current_mapping("<C-N>", "n")
-set_mapping("n", "<c-n>", function()
-  if utils.check_quickfix_open() then
-    pcall(vim.fn.execute, "cnext")
-    return
-  end
-  if utils.check_buffer_open("compilation") then
-    pcall(vim.fn.execute, "NextError")
-    return
-  end
-  if c_n_mapping_func ~= nil then
-    c_n_mapping_func()
-    return
-  end
-  local keys = vim.api.nvim_replace_termcodes("<C-n>", true, false, true)
-  vim.api.nvim_feedkeys(keys, "n", false)
-end)
-set_mapping("n", "<c-p>", function()
-  if utils.check_quickfix_open() then
-    pcall(vim.fn.execute, "cprevious")
-    return
-  end
-  if utils.check_buffer_open("compilation") then
-    pcall(vim.fn.execute, "PrevError")
-    return
-  end
-  local keys = vim.api.nvim_replace_termcodes("<C-p>", true, false, true)
-  vim.api.nvim_feedkeys(keys, "n", false)
-end)
 
 local esc_func = function()
   local keys = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
