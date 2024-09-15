@@ -4,14 +4,16 @@ set -e
 
 HISTORY_FILE_PATH="$HOME/.bash_history"
 SEPARATE_BY_TIMESTAMP="true"
+USELESS_COMMAND_PREFIX=""
 
 while [ $# -gt 0 ]; do
   case $1 in
   -h | --help)
-    echo "usage: $0 [-o | -f]"
+    echo "usage: $(basename "$0") [-o | -f]"
     echo '  -o, --output                    Default stdin, file to output'
     echo '  -f, --history_file              Default ~/.bash_history, history file path'
     echo '  -s, --separate_by_timestamp     Default true, separate each command from an other based on its timestamp'
+    echo '  -d, --useless_command_prefix    Default empty, split by ","'
     exit
     ;;
   # For options with required arguments, an additional shift is needed.
@@ -27,6 +29,10 @@ while [ $# -gt 0 ]; do
     SEPARATE_BY_TIMESTAMP="$2"
     shift
     ;;
+  -d | --useless_command_prefix)
+    USELESS_COMMAND_PREFIX="$2"
+    shift
+    ;;
   *)
     echo "$0: invalid option $1" 1>&2
     exit 1
@@ -39,6 +45,8 @@ if [ ! -f "$HISTORY_FILE_PATH" ]; then
   echo "can't find bash history file"
   return
 fi
+
+IFS=',' read -r -a useless_prefixs <<<"$USELESS_COMMAND_PREFIX"
 
 echo "start drop duplicate commands of ${HISTORY_FILE_PATH}, output to ${OUTPUT_FILE:-stdin}"
 
@@ -56,9 +64,9 @@ if [[ -n "$OUTPUT_FILE" && $(realpath "$HISTORY_FILE_PATH") == $(realpath "$OUTP
   # -d '' will cause read return 1
   IFS=$'\n' read -d '' -r -a logfiles < <(find ~/.bash_history.bak -type f -name ".bash_history.*" | sort -r) || echo ''
   if [[ ${#logfiles[@]} -gt ${max_backup_num} ]]; then
-    for i in $(seq $((${max_backup_num})) $((${#logfiles[@]} - 1))); do
+    for i in $(seq $((max_backup_num)) $((${#logfiles[@]} - 1))); do
       if [[ -f "${logfiles[$i]}" ]]; then
-        rm -f ${logfiles[$i]}
+        rm -f "${logfiles[$i]}"
       fi
     done
 
@@ -130,7 +138,22 @@ ${command}"
   if [ -z "$command" ]; then
     continue
   fi
-  if [ -n "$timestamp" ]; then
+
+  # skip useless commands
+  skip_flag=0
+  if [[ ${#useless_prefixs[@]} -gt 0 ]]; then
+    for prefix in "${useless_prefixs[@]}"; do
+      if [[ "$command" == "${prefix}"* ]]; then
+        skip_flag=1
+        break
+      fi
+    done
+  fi
+  if [[ ${skip_flag} -eq 1 ]]; then
+    continue
+  fi
+
+  if [[ -z "${timestamp_dict["${command}"]}" && -n "$timestamp" ]]; then
     timestamp_dict["${command}"]="$timestamp"
   fi
   if ! contains_element "${command}" "${commands[@]}"; then
