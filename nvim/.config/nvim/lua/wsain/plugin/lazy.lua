@@ -40,6 +40,9 @@ local opt = {
     },
     rtp = {
       reset = false,
+      disabled_plugins = {
+        "matchit",
+      },
     },
   },
   ui = {

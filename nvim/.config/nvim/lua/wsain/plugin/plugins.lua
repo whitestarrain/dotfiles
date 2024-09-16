@@ -34,7 +34,6 @@ return {
   require("wsain.plugin.configs.edit.treesj"),
   require("wsain.plugin.configs.edit.guess_indent"),
   require("wsain.plugin.configs.edit.suda"),
-  require("wsain.plugin.configs.edit.vim-matchup"),
 
   -- mode
   require("wsain.plugin.configs.mode.venn"),

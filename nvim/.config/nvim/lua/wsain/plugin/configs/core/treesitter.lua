@@ -8,8 +8,6 @@ plugin.dependencies = {
 plugin.opts = {
   auto_install = false,
 
-  additional_vim_regex_highlighting = false,
-
   highlight = {
     enable = false,
     additional_vim_regex_highlighting = false,
