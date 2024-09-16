@@ -54,13 +54,6 @@ plugin.config = function()
 
   if vim.fn.executable(file_exploer) then
     table.insert(mappings, {
-      "<leader>k",
-      function()
-        vim.fn.execute("FloatermNew " .. " --title=" .. file_exploer .. " " .. file_exploer)
-      end,
-      desc = "ranger",
-    })
-    table.insert(mappings, {
       "<leader>K",
       function()
         vim.fn.execute("FloatermNew " .. " --title=" .. file_exploer .. " " .. file_exploer .. " . ")

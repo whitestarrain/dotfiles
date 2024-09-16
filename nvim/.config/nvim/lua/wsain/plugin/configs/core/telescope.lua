@@ -90,7 +90,7 @@ plugin.config = function()
       ":Telescope find_files no_ignore=true hidden=true<CR>",
       desc = "all file",
     },
-    { "<leader>/", ":Telescope buffers sort_mru=true<CR>", desc = "buffer" },
+    { "<leader>k", ":Telescope buffers sort_mru=true<CR>", desc = "buffer" },
     { "<leader>fe", ":Telescope buffers sort_mru=true<CR>", desc = "buffer" },
     {
       "<leader>fc",
