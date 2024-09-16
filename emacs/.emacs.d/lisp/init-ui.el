@@ -3,47 +3,12 @@
 
 ;;; Code:
 
-(use-package ef-themes
+(use-package zenburn-theme
   :ensure t
-  :bind ("C-c t" . ef-themes-toggle)
   :init
-  ;; set two specific themes and switch between them
-  (setq ef-themes-to-toggle '(ef-summer ef-winter))
-  ;; set org headings and function syntax
-  (setq ef-themes-headings
-        '((0 . (bold 1))
-          (1 . (bold 1))
-          (2 . (rainbow bold 1))
-          (3 . (rainbow bold 1))
-          (4 . (rainbow bold 1))
-          (t . (rainbow bold 1))))
-  (setq ef-themes-region '(intense no-extend neutral))
-  ;; Disable all other themes to avoid awkward blending:
-  (mapc #'disable-theme custom-enabled-themes)
-
-  ;; Load the theme of choice:
-  ;; The themes we provide are recorded in the `ef-themes-dark-themes',
-  ;; `ef-themes-light-themes'.
-  ;; (ef-themes-select 'ef-summer)
-  ;; (if (display-graphic-p)
-  ;;     (ef-themes-load-random)
-  ;;   (ef-themes-load-random 'dark))
-  (ef-themes-select-dark 'ef-dark)
-
   :config
   ;; auto change theme, aligning with system themes.
-  (defun my/apply-theme (appearance)
-    "Load theme, taking current system APPEARANCE into consideration."
-    (mapc #'disable-theme custom-enabled-themes)
-    (pcase appearance
-      ('light (if (display-graphic-p) (ef-themes-load-random 'light) (ef-themes-load-random 'dark)))
-      ('dark (ef-themes-load-random 'dark))))
-
-  ;; (if (eq system-type 'darwin)
-  ;;     ;; only for emacs-plus
-  ;;     (add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
-  ;;   (ef-themes-select 'ef-summer)
-  ;;   )
+  (load-theme 'zenburn t)
   )
 
 (use-package fontaine
@@ -137,12 +102,14 @@
 
 ;; 设置窗口大小，仅仅在图形界面需要设置
 (when (display-graphic-p)
-  (let ((top    0)                                     ; 顶不留空
-        (left   (/ (x-display-pixel-width) 10))        ; 左边空10%
-        (height (round (* 0.8                          ; 窗体高度为0.8倍的显示高度
+  (let ((top    (round (* (x-display-pixel-height) 0.125)))
+        (left   (round (* (x-display-pixel-width) 0.125)))
+        (height (round (* 0.75
                           (/ (x-display-pixel-height)
                              (frame-char-height))))))
-    (let ((width  (round (* 2.5 height))))             ; 窗体宽度为2.5倍高度
+    (let ((width  (round (* 0.75
+                          (/ (x-display-pixel-width)
+                             (frame-char-width))))))
       (setq default-frame-alist nil)
       (add-to-list 'default-frame-alist (cons 'top top))
       (add-to-list 'default-frame-alist (cons 'left left))

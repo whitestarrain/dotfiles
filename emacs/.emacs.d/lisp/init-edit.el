@@ -25,5 +25,4 @@
 ;;          (float-time (time-subtract (current-time) my/init-base-start-time)))
 
 (provide 'init-edit)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; init-edit.el ends here
+
