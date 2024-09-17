@@ -1,6 +1,6 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "ej-shafran/compile-mode.nvim"
+plugin.shortUrl = "whitestarrain/compile-mode.nvim"
 plugin.loadEvent = "VeryLazy"
 plugin.dependencies = {
   "nvim-lua/plenary.nvim",

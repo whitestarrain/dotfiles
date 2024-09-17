@@ -3,7 +3,11 @@ local plugin = require("wsain.plugin.template"):new()
 plugin.shortUrl = "windwp/nvim-autopairs"
 plugin.loadEvent = "VeryLazy"
 plugin.config = function()
-  require("nvim-autopairs").setup({})
+  require("nvim-autopairs").setup({
+    enable_check_bracket_line = false
+  })
+
+  require("nvim-autopairs").get_rule("'")[1].not_filetypes = { "scheme", "lisp" }
 
   local status, cmp = pcall(require, "cmp")
   if status then
