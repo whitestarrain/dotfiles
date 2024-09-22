@@ -111,6 +111,7 @@ set_mapping("n", "<leader>q", function()
   pcall(vim.fn.execute, "copen")
 end, { desc = "quickfix" })
 
+-- esc mapping
 local esc_func = function()
   local keys = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
   vim.api.nvim_feedkeys(keys, "n", false)
@@ -125,9 +126,17 @@ local esc_func = function()
     vim.cmd("w")
   end
 end
-
 keymap.set("n", "<Esc>", esc_func)
 
+-- disable `K` query mandoc in windows
 if require("wsain.utils").getOs() == "win" then
   keymap.set("n", "K", "<nop>")
 end
+
+-- emacs like mapping on insert mode
+vim.cmd([[
+  inoremap        <C-A> <C-O>^
+  inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
+  cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+]])
+
