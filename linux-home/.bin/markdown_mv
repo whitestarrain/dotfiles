@@ -67,7 +67,7 @@ declare -a move_commands
 
 # move images
 move_to_img_dir="$(dirname "$move_to")/$IMAGE_DIR_NAME"
-if [[ ! -d move_to_img_dir ]]; then
+if [[ ! -d "$move_to_img_dir" ]]; then
   mkdir -p "$move_to_img_dir"
 fi
 for image_relation_path in "${image_relation_paths[@]}"; do
