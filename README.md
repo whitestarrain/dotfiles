@@ -92,3 +92,4 @@ TODO
 - [ ] [jessfraz/dotfiles](https://github.com/jessfraz/dotfiles)
 - [ ] [samoshkin/tmux-config](https://github.com/samoshkin/tmux-config)
 - [ ] [mhartington/dotfiles](https://github.com/mhartington/dotfiles)
+- [ ] [Installing tmux-256color for macOS](https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95)
