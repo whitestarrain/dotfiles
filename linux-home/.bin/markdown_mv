@@ -2,11 +2,15 @@
 
 set -e
 
-IMAGE_DIR_NAME="image"
+IMAGE_DEST_DIR_RELATIVE_PATH="image"
+SKIP_CONFIRM=false
+SKIP_ERROR=false
 
 echo_help() {
   echo "usage: $(basename "$0") [-d] markdown_file destination"
   echo '  -d, --image_dir_path       Default "image", A image folder relative to the destination path'
+  echo '  -n, --no-confirm           Skip confirmation'
+  echo '  -e, --skip-error           Continue moving files when errors occur'
 }
 
 if [[ $# -lt 2 ]]; then
@@ -21,8 +25,14 @@ while [ $# -gt 0 ]; do
     exit
     ;;
   -d | --image_dir_name)
-    IMAGE_DIR_NAME="$2"
+    IMAGE_DEST_DIR_RELATIVE_PATH="$2"
     shift
+    ;;
+  -n | --no-confirm)
+    SKIP_CONFIRM=true
+    ;;
+  -e | --skip_erroe)
+    SKIP_ERROR=true
     ;;
   *)
     break
@@ -54,9 +64,9 @@ if [[ -d "${move_to}" ]]; then
 fi
 
 echo -e move "$markdown_file to $move_to,"
-echo "image dir path is: $IMAGE_DIR_NAME"
+echo "image dir path is: $IMAGE_DEST_DIR_RELATIVE_PATH"
 
-IFS=$'\n' read -r -d '' -a image_relation_paths < <(awk '{
+IFS=$'\n' read -r -d '' -a image_relative_paths < <(awk '{
       a = match($0,/!\[.*\]\((.*)\)/,capture_group);
       if(a!=0){
         print(capture_group[1])
@@ -64,33 +74,55 @@ IFS=$'\n' read -r -d '' -a image_relation_paths < <(awk '{
     }' "$markdown_file") || echo ""
 
 declare -a move_commands
+declare -a sed_image_path_commands
 
 # move images
-move_to_img_dir="$(dirname "$move_to")/$IMAGE_DIR_NAME"
+move_to_img_dir="$(dirname "$move_to")/$IMAGE_DEST_DIR_RELATIVE_PATH"
 if [[ ! -d "$move_to_img_dir" ]]; then
   mkdir -p "$move_to_img_dir"
 fi
-for image_relation_path in "${image_relation_paths[@]}"; do
-  image_path="$(realpath "$(dirname "$markdown_file")/$image_relation_path")"
+for image_relative_path in "${image_relative_paths[@]}"; do
+  image_path="$(dirname "$markdown_file")/$image_relative_path"
+  if [[ ! -f "${image_path}" ]]; then
+    continue
+  fi
+  image_path="$(realpath "$image_path")"
   image_name="$(basename "$image_path")"
   dest_image_path=$(realpath "$move_to_img_dir/$image_name")
-  command="mv $image_path $dest_image_path"
-  move_commands=("${move_commands[@]}" "$command")
+
+  # move image file
+  if [[ "$image_path" != "$dest_image_path" ]]; then
+    mv_image_command="mv $image_path $dest_image_path"
+    move_commands=("${move_commands[@]}" "$mv_image_command")
+  fi
+  # change image path in markdown file
+  if [[ "$move_to_img_dir/$image_name" != "$image_relative_path" ]]; then
+    sed_command="sed -i 's#$image_relative_path#$IMAGE_DEST_DIR_RELATIVE_PATH/$image_name#g' $markdown_file"
+    sed_image_path_commands=("${sed_image_path_commands[@]}" "$sed_command")
+  fi
 done
 
 # move markdown file
 move_commands=("${move_commands[@]}" "mv $markdown_file $move_to")
 
-printf "%s\n" "${move_commands[@]}"
-echo -e "\n \e[0;31mThe above commands will be executed, do you want to continue?\e[m (yes/no):\n "
-read -r -p " :" continue_flag
+continue_flag=no
+if [[ $SKIP_CONFIRM == true ]]; then
+  continue_flag=yes
+else
+  printf "%s\n" "${sed_image_path_commands[@]}"
+  printf "%s\n" "${move_commands[@]}"
+  echo -e "\n \e[0;31mThe above commands will be executed, do you want to continue?\e[m (yes/no):\n "
+  read -r -p " :" continue_flag
+fi
 
 if [[ "${continue_flag}" != 'yes' ]]; then
   exit 0
 fi
 
-for cmd in "${move_commands[@]}"
-do
-  $cmd
+for cmd in "${sed_image_path_commands[@]}" "${move_commands[@]}"; do
+  if [[ $SKIP_ERROR == true ]]; then
+    eval "$cmd || test true"
+  else
+    eval "$cmd"
+  fi
 done
-
