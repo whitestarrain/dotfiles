@@ -9,6 +9,7 @@ plugin.dependencies = {
 plugin.config = function()
   vim.g.compile_mode = {
     default_command = "make -k",
+    baleia_setup = true,
   }
 
   require("wsain.plugin.whichkey").register({
