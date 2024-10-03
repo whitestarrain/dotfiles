@@ -82,7 +82,7 @@ local function setupCodelldb()
       type = "codelldb",
       request = "launch",
       args = function()
-        return utils.str_split(vim.fn.input("execute args: "))
+        return utils.str_split(vim.fn.input("execute args: "), "file")
       end,
       program = function()
         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
