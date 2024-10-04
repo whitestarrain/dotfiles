@@ -85,12 +85,12 @@ set_mapping("n", "]t", ":tabnext<cr>")
 set_mapping("n", "[t", ":tabpre<cr>")
 
 -- diagnostic
-set_mapping("n", "[e", function()
+set_mapping("n", "[d", function()
   vim.diagnostic.goto_prev()
 end, {
   desc = "goto prev diagnostic",
 })
-set_mapping("n", "]e", function()
+set_mapping("n", "]d", function()
   vim.diagnostic.goto_next()
 end, {
   desc = "goto next diagnostic",
@@ -110,6 +110,28 @@ set_mapping("n", "<leader>q", function()
   end
   pcall(vim.fn.execute, "copen")
 end, { desc = "quickfix" })
+
+-- quickfix or other error
+set_mapping("n", "]e", function()
+  if utils.check_quickfix_open() then
+    pcall(vim.fn.execute, "cnext")
+    return
+  end
+  if utils.check_buffer_open("compilation") then
+    pcall(vim.fn.execute, "NextError")
+    return
+  end
+end)
+set_mapping("n", "[e", function()
+  if utils.check_quickfix_open() then
+    pcall(vim.fn.execute, "cprevious")
+    return
+  end
+  if utils.check_buffer_open("compilation") then
+    pcall(vim.fn.execute, "PrevError")
+    return
+  end
+end)
 
 -- esc mapping
 local esc_func = function()
@@ -139,4 +161,3 @@ vim.cmd([[
   inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
   cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
 ]])
-

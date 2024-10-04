@@ -13,6 +13,7 @@ plugin.config = function()
       -- nvim-tree
       NvimTreeFolderIcon = { fg = theme.palette.blue },
       NvimTreeOpenedFolderIcon = { fg = theme.palette.purple },
+      NvimTreeCursorLine = { link = "CursorLine" },
 
       -- telescope
       TelescopeSelection = {

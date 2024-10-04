@@ -180,7 +180,7 @@ plugin.config = function()
   vim.fn.sign_define("DapLogPoint", { text = "󰌑", texthl = "DiagnosticHint", linehl = "", numhl = "" })
   vim.fn.sign_define("DapStopped", { text = "", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
 
-  ensureDepWrap()
+  -- ensureDepWrap()
   setupCodelldb()
   setupDebugPy()
 

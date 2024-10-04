@@ -94,7 +94,10 @@ vim.opt.pumheight = 15
 
 -- wildmenu config
 vim.opt.wildmode = "longest:full,full"
-vim.cmd([[set wildchar=<Tab>]])
+vim.cmd([[
+set wildchar=<Tab>
+set wildcharm=<C-x>
+]])
 
 -- highlight
 vim.opt.cursorline = true

@@ -86,7 +86,7 @@ plugin.config = function()
       with_text = true,
       maxwidth = 50,
       ellipsis_char = "…",
-      before = function(entry, vim_item)
+      before = function(_entry, vim_item)
         vim_item.menu = "(" .. (vim_item.kind or "Other") .. ")"
         return vim_item
       end,
@@ -106,7 +106,7 @@ plugin.config = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
 
-  local toggle_complete = function(callback)
+  local toggle_complete = function(_callback)
     if cmp.visible() then
       cmp.abort()
     else
@@ -196,7 +196,36 @@ plugin.config = function()
     },
   })
 
-  local cmdline_mapping = cmp.mapping.preset.cmdline()
+  local cmdline_mapping = {
+    -- disable <tab> <s-tab> mapping for wildmenu
+    ["<C-n>"] = {
+      c = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          fallback()
+        end
+      end,
+    },
+    ["<C-p>"] = {
+      c = function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          fallback()
+        end
+      end,
+    },
+    ["<Tab>"] = {
+      c = function(_fallback)
+        if cmp.visible() then
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+        else
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "tn", false)
+        end
+      end,
+    },
+  }
   cmdline_mapping["<A-.>"] = cmp.mapping(toggle_complete, { "c" })
 
   -- Use buffer source for `/` `?`.
@@ -225,6 +254,12 @@ plugin.config = function()
     }),
     formatting = lspkind_format,
     ignore_cmds = { "!", "man", "Man" },
+  })
+
+  -- Use cmdline & path source for ':'.
+  cmp.setup.cmdline("@", {
+    mapping = cmdline_mapping,
+    sources = {},
   })
 
   cmp.setup.filetype({ "dap-repl", "dapui_watches" }, {
