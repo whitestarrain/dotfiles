@@ -1,5 +1,6 @@
 local plugin = require("wsain.plugin.template"):new()
 
+local gui_running = vim.fn.has("gui_running")
 plugin.shortUrl = "olimorris/onedarkpro.nvim"
 plugin.priority = 1000
 plugin.config = function()
@@ -7,7 +8,7 @@ plugin.config = function()
   local theme = require("onedarkpro.themes.onedark")
   require("onedarkpro").setup({
     options = {
-      transparency = true,
+      transparency = gui_running == 0,
     },
     highlights = {
       -- nvim-tree
