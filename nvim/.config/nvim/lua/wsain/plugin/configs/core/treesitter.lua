@@ -3,7 +3,6 @@ local plugin = require("wsain.plugin.template"):new()
 plugin.shortUrl = "nvim-treesitter/nvim-treesitter"
 plugin.dependencies = {
   "nvim-lua/plenary.nvim",
-  "windwp/nvim-ts-autotag",
 }
 plugin.opts = {
   auto_install = false,
@@ -35,11 +34,6 @@ plugin.opts = {
   indent = {
     enable = true,
     disable = { "markdown", "html", "php", "c", "cpp", "lua" },
-  },
-
-  autotag = {
-    enable = true,
-    disable = { "markdown" },
   },
 }
 

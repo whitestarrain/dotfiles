@@ -28,6 +28,7 @@ plugin.config = function()
     },
     blacklist = {
       "markdown",
+      "html",
     },
     condition = function(_bufnr)
       return false

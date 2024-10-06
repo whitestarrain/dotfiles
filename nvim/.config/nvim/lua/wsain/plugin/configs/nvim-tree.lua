@@ -149,6 +149,8 @@ plugin.opts = {
   },
   sort_by = "case_sensitive",
   sync_root_with_cwd = false,
+  disable_netrw = false,
+  hijack_netrw = false,
   view = {
     adaptive_size = false,
   },
