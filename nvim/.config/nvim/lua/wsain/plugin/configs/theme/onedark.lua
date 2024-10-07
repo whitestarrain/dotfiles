@@ -90,6 +90,7 @@ plugin.config = function()
       ["@text.reference.markdown_inline"] = { link = "htmlLink" },
       ["@text.todo.unchecked.markdown"] = { link = "Normal" },
       ["@text.quote.markdown"] = { link = "Comment" },
+      ["@keyword.directive.define.cpp"] = { link = "Macro" },
     },
 
     -- rainbow
