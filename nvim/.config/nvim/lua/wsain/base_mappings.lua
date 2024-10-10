@@ -41,13 +41,6 @@ set_mapping("n", "<", "<<")
 set_mapping("n", ">", ">>")
 set_mapping("n", "gO", put_empty_line(true), { desc = "Put empty line above" })
 set_mapping("n", "go", put_empty_line(false), { desc = "Put empty line below" })
-set_mapping("n", "<leader>e", function()
-  local path_separator = "/"
-  if utils.getOs() == "win" then
-    path_separator = "\\"
-  end
-  vim.api.nvim_feedkeys(":e " .. vim.fn.getcwd() .. path_separator, "n", "false")
-end, { desc = "edit file" })
 
 -- copy/paste
 set_mapping({ "n", "x" }, "gy", '"+y', { desc = "Copy to system clipboard" })
