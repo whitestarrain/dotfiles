@@ -10,6 +10,19 @@ plugin.dependencies = {
 
 plugin.config = function()
   local actions = require("telescope.actions")
+  local mappings = {
+    n = {
+      ["q"] = actions.close,
+      ["/"] = function()
+        vim.cmd("startinsert")
+      end,
+      ["h"] = actions.cycle_history_prev,
+      ["l"] = actions.cycle_history_next,
+    },
+    i = {
+      ["<C-k>"] = require("telescope.actions.layout").toggle_preview,
+    },
+  }
 
   require("telescope").setup({
     defaults = {
@@ -51,19 +64,7 @@ plugin.config = function()
       },
       initial_mode = "insert",
       --  can use <C-l> in insert mode to cycle/complete tags, i.e. either diagnostic severity or symbols (classes, functions, methods, ...)
-      mappings = {
-        n = {
-          ["q"] = actions.close,
-          ["/"] = function()
-            vim.cmd("startinsert")
-          end,
-          ["h"] = actions.cycle_history_prev,
-          ["l"] = actions.cycle_history_next,
-        },
-        i = {
-          ["<C-k>"] = require("telescope.actions.layout").toggle_preview,
-        },
-      },
+      mappings = mappings,
       preview = {
         hide_on_startup = true, -- hide previewer when picker starts
       },
@@ -106,7 +107,7 @@ plugin.config = function()
     {
       "<leader>fG",
       function()
-        require("telescope").extensions.live_grep_args.live_grep_args()
+        require("telescope").extensions.live_grep_args.live_grep_args({mappings=mappings})
       end,
       desc = "grep with args",
     },

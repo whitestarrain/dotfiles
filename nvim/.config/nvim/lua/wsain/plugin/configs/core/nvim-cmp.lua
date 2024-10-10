@@ -150,7 +150,7 @@ plugin.config = function()
       ["<A-.>"] = cmp.mapping(toggle_complete, { "i", "c" }),
       ["<CR>"] = cmp.mapping.confirm({
         select = false,
-        behavior = cmp.ConfirmBehavior.Replace,
+        behavior = cmp.ConfirmBehavior.Insert,
       }),
       -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
       -- ['<C-y>'] = cmp.config.disable,
@@ -276,7 +276,7 @@ plugin.config = function()
     mapping = {
       ["<CR>"] = cmp.mapping.confirm({
         select = true,
-        behavior = cmp.ConfirmBehavior.Replace,
+        behavior = cmp.ConfirmBehavior.Insert,
       }),
     },
   })
