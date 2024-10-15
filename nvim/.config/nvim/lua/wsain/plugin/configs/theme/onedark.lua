@@ -10,6 +10,7 @@ plugin.config = function()
     options = {
       transparency = gui_running == 0,
     },
+    -- use vim.highlight.priorities to change priorities
     highlights = {
       -- nvim-tree
       NvimTreeFolderIcon = { fg = theme.palette.blue },
@@ -68,7 +69,7 @@ plugin.config = function()
       IlluminatedWordText = { link = "Visual" },
       IlluminatedWordWrite = { link = "Visual" },
 
-      -- lang
+      -- treesitter, semantic tokens
       ["@odp.import_module.python"] = { fg = theme.palette.yellow },
       ["@field.lua"] = { fg = theme.palette.red },
       ["@parameter.lua"] = { fg = theme.palette.red, style = config.styles.parameters },
