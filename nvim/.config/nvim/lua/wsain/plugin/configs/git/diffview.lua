@@ -96,7 +96,13 @@ plugin.config = function()
       DiffviewOpen = {},
       DiffviewFileHistory = {},
     },
-    hooks = {}, -- See ':h diffview-config-hooks'
+    hooks = {
+      diff_buf_win_enter = function(_bufnr, winid, _ctx)
+        -- Turn off cursor line for diffview windows because of bg conflict
+        -- https://github.com/neovim/neovim/issues/9800
+        vim.wo[winid].culopt = "number"
+      end,
+    }, -- See ':h diffview-config-hooks'
     keymaps = {
       disable_defaults = false, -- Disable the default keymaps
       view = {
