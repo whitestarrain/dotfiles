@@ -25,7 +25,6 @@ return {
   require("wsain.plugin.configs.edit.todo-comments"),
   require("wsain.plugin.configs.edit.nvim-spectre"),
   require("wsain.plugin.configs.edit.nvim-autopairs"),
-  require("wsain.plugin.configs.edit.nvim-ts-autotag"),
   require("wsain.plugin.configs.edit.undotree"),
   require("wsain.plugin.configs.edit.nvim-surround"),
   require("wsain.plugin.configs.edit.tabular"),
