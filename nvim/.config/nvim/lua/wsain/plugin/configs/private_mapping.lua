@@ -42,6 +42,24 @@ require("wsain.plugin.whichkey").register({
     desc = "wrap english word with space",
     mode = "v",
   },
+  {
+    "<leader>zr",
+    function()
+      local reg_0 = vim.fn.getreg("0")
+      local reg_local = vim.fn.getreg("+")
+      if reg_0 == nil or reg_0 == "" then
+        vim.notify("register 0 is empty")
+        return
+      end
+      if reg_local == nil or reg_local == "" then
+        vim.notify("register + is empty")
+        return
+      end
+      vim.api.nvim_feedkeys(":sno/" .. reg_0 .. "/" .. reg_local .. "/g", "n", "false")
+    end,
+    desc = "replace {reg_0} by {reg_local}",
+    mode = "v",
+  },
 })
 
 return plugin

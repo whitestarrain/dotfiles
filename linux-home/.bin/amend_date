@@ -1,12 +1,9 @@
 #!/bin/bash
 
-commit_date="$(date +"%a %b %-m 08:%M:%S %Y +0800")"
-
 timestamp_8="$(date --date="$(date +"%F 08:00:00")" +"%s")"
 timestamp_22="$(date --date="$(date +"%F 22:00:00")" +"%s")"
 timestamp_now="$(date +"%s")"
 
-commit_date="$(date --date="@$((timestamp_8 + (60 * 60) * (timestamp_now - timestamp_8) / (timestamp_22 - timestamp_8)))" +"%a %b %-m %H:%M:%S %Y +0800")"
-echo "$commit_date"
+commit_date="$(date --date="@$((timestamp_8 + (60 * 60) * (timestamp_now - timestamp_8) / (timestamp_22 - timestamp_8)))" +"%a %b %-d %H:%M:%S %Y +0800")"
 
 GIT_COMMITTER_DATE="$commit_date" git commit --amend --no-edit --date "${commit_date}"
