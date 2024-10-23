@@ -10,7 +10,10 @@ plugin.dependencies = {
 plugin.config = function()
   require("aerial").setup({
     backends = { "lsp", "treesitter" },
-    filter_kind = false,
+    layout = {
+      max_width = { 40, 0.3 },
+      min_width = 0.2,
+    },
     keymaps = {
       ["K"] = "actions.prev",
       ["J"] = "actions.next",

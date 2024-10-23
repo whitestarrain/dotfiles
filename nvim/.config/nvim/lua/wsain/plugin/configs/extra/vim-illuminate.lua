@@ -5,7 +5,7 @@ plugin.config = function()
   -- default configuration
   require("illuminate").configure({
     providers = {
-      -- "lsp",
+      "lsp",
       -- "treesitter",
       "regex",
     },
