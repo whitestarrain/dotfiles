@@ -134,7 +134,7 @@ function M.bigfile_handler(bufnr)
     local expand_name = vim.fn.expand("%:e")
     if expand_name == "markdown" or expand_name == "md" then
       table.insert(defer_flist, defer_features.enable_indent_blankline)
-      if not check_bigfile(bufnr, nil, 2000, nil) then
+      if not check_bigfile(bufnr, nil, utils.big_file_markdown_max_line_length, nil) then
         table.insert(defer_flist, defer_features.enable_treesitter_highlight)
       end
       return

@@ -1,3 +1,4 @@
+local utils = require("wsain.utils")
 local plugin = require("wsain.plugin.template"):new()
 
 plugin.shortUrl = "RRethy/vim-illuminate"
@@ -33,10 +34,10 @@ plugin.config = function()
     providers_regex_syntax_denylist = {},
     providers_regex_syntax_allowlist = {},
     under_cursor = true,
-    large_file_cutoff = 3000,
+    large_file_cutoff = utils.big_file_max_line,
     large_file_overrides = nil,
     min_count_to_highlight = 1,
-    should_enable = function(bufnr)
+    should_enable = function(_)
       if not vim.bo.buflisted then
         return false
       end

@@ -1,6 +1,10 @@
 ---@diagnostic disable: param-type-mismatch, cast-local-type
 local M = {}
 
+M.big_file_max_line = 10000
+M.big_file_max_line_length = 1000
+M.big_file_markdown_max_line_length = 1000
+
 M.colors = {
   dark_blue = "#081633",
   green = "#98be65",
@@ -344,8 +348,8 @@ function M.get_check_bigfile_function(max_file_size, max_lines, max_line_length)
     if not common_file_flag then
       return false
     end
-    max_lines = max_lines or 10000
-    max_line_length = max_line_length or 1000
+    max_lines = max_lines or M.big_file_max_line
+    max_line_length = max_line_length or M.big_file_max_line_length
     local getfsize_status, file_size = pcall(vim.fn.getfsize, file_path)
     if not getfsize_status then
       return false

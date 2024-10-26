@@ -12,6 +12,13 @@ plugin.config = function()
     },
     -- use vim.highlight.priorities to change priorities
     highlights = {
+      -- diff
+      DiffAdd = {
+        bg = "#3E554C",
+      },
+      DiffDelete = {
+        bg = "#54252B",
+      },
       -- nvim-tree
       NvimTreeFolderIcon = { fg = theme.palette.blue },
       NvimTreeOpenedFolderIcon = { fg = theme.palette.purple },
