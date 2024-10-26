@@ -32,7 +32,20 @@ require("wsain.plugin.whichkey").register({
       if utils.getOs() == "win" then
         path_separator = "\\"
       end
-      vim.api.nvim_feedkeys(":e " .. vim.fn.getcwd() .. path_separator, "n", "false")
+      local file_path = vim.fn.expand("%")
+      local file_stat = vim.uv.fs_lstat(file_path)
+      local pwd = vim.fn.getcwd() .. path_separator
+      local path
+      if file_stat == nil then
+        path = pwd
+      else
+        if file_stat.type == "directory" then
+          path = file_path
+        else
+          path = vim.fn.expand("%:h")
+        end
+      end
+      vim.cmd(":e " .. path)
     end,
     desc = "edit file",
   },

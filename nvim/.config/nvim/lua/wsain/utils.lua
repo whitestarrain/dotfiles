@@ -191,13 +191,11 @@ function M.openCurrentFile()
 end
 
 function M.check_file_exist(file_path)
-  local f = io.open(file_path, "r")
-  local flag = false
-  if f ~= nil then
-    flag = true
-    io.close(f)
+  local fs_stat = vim.uv.fs_lstat(file_path)
+  if fs_stat == nil then
+    return false
   end
-  return flag
+  return true
 end
 
 function M.get_file_size(file_path)

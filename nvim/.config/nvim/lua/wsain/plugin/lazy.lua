@@ -58,7 +58,7 @@ local opt = {
 local pluginConfigConvert = function(pluginDatas)
   local result = {}
   for _, originConfig in pairs(pluginDatas) do
-    if originConfig ~= nil and originConfig.shortUrl ~= nil then
+    if type(originConfig) == "table" and originConfig.shortUrl ~= nil then
       if originConfig.dir ~= nil then
         originConfig.dev = true
       end
