@@ -58,6 +58,8 @@ plugin.config = function()
     sql = { "sqlfluff" },
     lua = { "luacheck" },
     make = { "checkmake" },
+    cpp = { "cpplint" },
+    c = { "cpplint" },
   }
   require("wsain.plugin.whichkey").register({
     { "<leader>l", lint_toggle, desc = "toggle lint" },

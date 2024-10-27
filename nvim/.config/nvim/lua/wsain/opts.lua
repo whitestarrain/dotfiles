@@ -67,7 +67,7 @@ vim.g.editorconfig = true
 require("editorconfig").properties.max_line_length = function() end
 
 -- pair match
-vim.opt.showmatch = true
+vim.opt.showmatch = false
 vim.opt.matchtime = 0
 vim.opt.matchpairs:append({
   "<:>",

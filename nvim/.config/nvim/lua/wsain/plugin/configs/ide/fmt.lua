@@ -30,6 +30,11 @@ plugin.config = function()
       sh = { "shfmt" },
       python = { python_formater, "isort" },
       sql = { "sqlfmt" },
+      c = { "clang-format" },
+      cpp = { "clang-format" },
+      ["C#"] = { "clang-format" },
+      asm = { "asmfmt" },
+      ruby = { "rubyfmt" },
     },
   })
 end
