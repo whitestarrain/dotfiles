@@ -458,9 +458,21 @@ function M.get_visual_selection_text()
   return selection
 end
 
+function M.get_winlist_by_filetype(buffer_filetype)
+  if buffer_filetype == nil or buffer_filetype == "" then
+    return {}
+  end
+  local winlist = vim.api.nvim_tabpage_list_wins(0)
+  if winlist == nil or next(winlist) == nil then
+    return {}
+  end
+  return vim.tbl_filter(function()
+    return vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(0), "filetype") == buffer_filetype
+  end, winlist)
+end
+
 function M.check_buffer_open(buffer_filetype)
-  local win_list =
-    vim.fn.filter(vim.fn.range(1, vim.fn.winnr("$")), 'getwinvar(v:val, "&ft") == "' .. buffer_filetype .. '"')
+  local win_list = M.get_winlist_by_filetype(buffer_filetype)
   return next(win_list) ~= nil
 end
 
