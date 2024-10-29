@@ -17,8 +17,9 @@ plugin.config = function()
     show_hidden = true,
     show_dot_dirs = true,
     show_colors = true,
+    quit_when_no_buffer = true,
     keybinds = {
-      dired_enter = "<cr>",
+      dired_enter = { "<cr>", "o" },
       dired_back = "-",
       dired_up = "_",
       dired_rename = "R",
@@ -44,4 +45,30 @@ plugin.config = function()
     },
   })
 end
+
+require("wsain.plugin.whichkey").register({
+  {
+    "<leader>e",
+    function()
+      local filename = vim.fn.expand("%:t")
+      local path_separator = "/"
+      local file_path = vim.fn.expand("%")
+      local file_stat = vim.uv.fs_lstat(file_path)
+      local pwd = vim.fn.getcwd() .. path_separator
+      local path
+      if file_stat == nil then
+        path = pwd
+      else
+        if file_stat.type == "directory" then
+          path = file_path
+        else
+          path = vim.fn.expand("%:h")
+        end
+      end
+      require("dired.display").goto_filename = filename
+      require("dired").open(path)
+    end,
+    desc = "edit file",
+  },
+})
 return plugin

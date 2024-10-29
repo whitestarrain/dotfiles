@@ -18,6 +18,7 @@ plugin.config = function()
       end,
       ["h"] = actions.cycle_history_prev,
       ["l"] = actions.cycle_history_next,
+      ["<C-k>"] = require("telescope.actions.layout").toggle_preview,
     },
     i = {
       ["<C-k>"] = require("telescope.actions.layout").toggle_preview,
@@ -107,11 +108,17 @@ plugin.config = function()
     {
       "<leader>fG",
       function()
-        require("telescope").extensions.live_grep_args.live_grep_args({mappings=mappings})
+        require("telescope").extensions.live_grep_args.live_grep_args({ mappings = mappings })
       end,
       desc = "grep with args",
     },
-    { "<leader>fr", ":Telescope resume initial_mode=normal<CR>", desc = "resume" },
+    {
+      "<leader>fr",
+      function()
+        require("telescope.builtin").resume({ initial_mode = "normal" })
+      end,
+      desc = "resume",
+    },
     {
       "<leader>ft",
       ":Telescope asynctasks all<CR>",
