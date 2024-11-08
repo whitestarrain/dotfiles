@@ -28,6 +28,7 @@ plugin.config = function()
       "startify",
       "floaterm",
       "dired",
+      "",
     },
     filetypes_allowlist = {},
     modes_denylist = {},

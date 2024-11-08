@@ -161,3 +161,6 @@ vim.cmd([[
   inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
   cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
 ]])
+
+-- duplidate line in insert mode
+keymap.set("i", "<C-l>", "<C-o>:execute('.copy.')<cr>")

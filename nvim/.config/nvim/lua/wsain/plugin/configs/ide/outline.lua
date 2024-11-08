@@ -15,8 +15,8 @@ plugin.config = function()
       min_width = 20,
     },
     keymaps = {
-      ["K"] = "actions.prev",
-      ["J"] = "actions.next",
+      ["K"] = "actions.up_and_scroll",
+      ["J"] = "actions.down_and_scroll",
     },
   })
   utils.addCommandBeforeSaveSession("silent! AerialClose")
