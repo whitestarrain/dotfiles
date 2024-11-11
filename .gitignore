@@ -12,3 +12,4 @@ nvim/.config/nvim/.mason
 **/__pycache__
 emacs/.emacs.d/elpa
 emacs/.emacs.d/auto-save-list
+todo.md
