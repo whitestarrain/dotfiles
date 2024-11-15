@@ -9,7 +9,9 @@ plugin.dependencies = {
 }
 plugin.config = function()
   require("aerial").setup({
-    backends = { "lsp", "treesitter" },
+    backends = {
+      ["_"] = { "lsp", "treesitter" },
+    },
     layout = {
       width = 30,
       min_width = 20,

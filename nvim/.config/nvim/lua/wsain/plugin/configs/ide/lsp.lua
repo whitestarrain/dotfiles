@@ -160,6 +160,7 @@ local function lspsagaSetup()
   end
   require("lspsaga").setup({
     symbol_in_winbar = {
+      enable = false,
       separator = "＞",
     },
     lightbulb = {
