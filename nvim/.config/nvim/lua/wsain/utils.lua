@@ -466,8 +466,8 @@ function M.get_winlist_by_filetype(buffer_filetype)
   if winlist == nil or next(winlist) == nil then
     return {}
   end
-  return vim.tbl_filter(function()
-    return vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(0), "filetype") == buffer_filetype
+  return vim.tbl_filter(function(win_id)
+    return vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win_id), "filetype") == buffer_filetype
   end, winlist)
 end
 
