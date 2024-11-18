@@ -152,6 +152,23 @@ plugin.config = function()
       desc = "grep",
       mode = "v",
     },
+    { "<leader>c", group = "code", mode = "n" },
+    {
+      "<leader>cj",
+      function()
+        require("telescope.builtin").lsp_document_symbols()
+      end,
+      desc = "symbol jump(document)",
+      mode = "n",
+    },
+    {
+      "<leader>cJ",
+      function()
+        require("telescope.builtin").lsp_dynamic_workspace_symbols()
+      end,
+      desc = "symbol jump(workspace)",
+      mode = "n",
+    },
   })
 end
 

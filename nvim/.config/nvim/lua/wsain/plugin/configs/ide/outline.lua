@@ -17,6 +17,7 @@ plugin.config = function()
       min_width = 20,
     },
     keymaps = {
+      ["o"] = "actions.scroll",
       ["K"] = "actions.up_and_scroll",
       ["J"] = "actions.down_and_scroll",
     },
