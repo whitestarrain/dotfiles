@@ -81,7 +81,21 @@ plugin.config = function()
   require("wsain.plugin.whichkey").register({
     { "<leader>f", group = "find", mode = "v" },
     { "<leader>f", group = "find", mode = "n" },
-    { "<leader>ff", ":Telescope find_files hidden=true<CR>", desc = "file" },
+    {
+      "<leader>ff",
+      function()
+        if vim.bo.filetype == "dired" and vim.g.current_dired_path ~= nil then
+          require("telescope.builtin").find_files({
+            cwd = vim.g.current_dired_path,
+            hidden = true,
+            no_ignore = true,
+          })
+        else
+          require("telescope.builtin").find_files({ hidden = true })
+        end
+      end,
+      desc = "file",
+    },
     {
       "<leader>fm",
       ":Telescope man_pages sections=ALL<CR>",
@@ -104,7 +118,22 @@ plugin.config = function()
       ":Telescope<CR>",
       desc = "telescope buildin",
     },
-    { "<leader>fg", ":Telescope live_grep<CR>", desc = "grep" },
+    {
+      "<leader>fg",
+      function()
+        if vim.bo.filetype == "dired" and vim.g.current_dired_path ~= nil then
+          require("telescope.builtin").live_grep({
+            cwd = vim.g.current_dired_path,
+            preview = true,
+            hidden = true,
+            no_ignore = true,
+          })
+        else
+          require("telescope.builtin").live_grep()
+        end
+      end,
+      desc = "grep",
+    },
     {
       "<leader>fG",
       function()
