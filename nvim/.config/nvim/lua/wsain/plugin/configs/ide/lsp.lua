@@ -174,6 +174,10 @@ local function setupStatusCol()
   require("wsain.plugin.configs.ui.statuscol").setForLspConfig()
 end
 
+local function enableAutoCmp()
+  require("wsain.utils").toggle_auto_cmp(true)
+end
+
 -- lsp configs are lazy-loaded or can be triggered after LSP installation,
 -- so we need a way to make LSP clients attached to already existing buffers.
 local attach_lsp_to_existing_buffers = vim.schedule_wrap(function()
@@ -194,6 +198,7 @@ local function ensureDepLoaded()
   fidgetSetup()
   lspsagaSetup()
   troubleSetup()
+  enableAutoCmp()
 end
 
 local function setupLspWrap(fun, auto_attach)

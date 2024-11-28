@@ -4,6 +4,7 @@ require("wsain.plugin.whichkey").register({
   { "<leader>d", ":bp|bd #<cr>", desc = "delete buffer" },
   { "<leader>z", group = "+others", mode = "n" },
   { "<leader>z", group = "+others", mode = "v" },
+  { "<leader>zm", group = "+mode", mode = "n" },
   { "<leader>zp", ":syntax sync fromstart<cr>", desc = "syntax sync" },
   { "<leader>zl", ":%s/\\v(\\n\\s*){2,}/\\r\\r/<cr> :/jkjk<cr>", desc = "compress blank line" },
   { "<leader>zf", ':echo expand("%:p")<cr>', desc = "show file path" },
@@ -72,6 +73,13 @@ require("wsain.plugin.whichkey").register({
     end,
     desc = "replace {reg_0} by {reg_local}",
     mode = "v",
+  },
+  {
+    "<leader>zma",
+    function()
+      require("wsain.utils").toggle_auto_cmp()
+    end,
+    desc = "toggle auto complete",
   },
 })
 

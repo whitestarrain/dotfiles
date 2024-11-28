@@ -23,6 +23,7 @@ plugin.dependencies = {
 }
 plugin.config = function()
   local cmp = require("cmp")
+  local cmp_types = require("cmp.types")
   local luasnip = require("luasnip")
 
   --load friendly-snippets
@@ -119,6 +120,9 @@ plugin.config = function()
     enabled = function()
       return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
     end,
+    completion = {
+      autocomplete = false,
+    },
     -- snippet engine
     snippet = {
       expand = function(args)
@@ -230,6 +234,9 @@ plugin.config = function()
 
   -- Use buffer source for `/` `?`.
   cmp.setup.cmdline("/", {
+    completion = {
+      autocomplete = { cmp_types.cmp.TriggerEvent.TextChanged },
+    },
     mapping = cmdline_mapping,
     sources = {
       { name = "buffer" },
@@ -237,6 +244,9 @@ plugin.config = function()
     formatting = lspkind_format,
   })
   cmp.setup.cmdline("?", {
+    completion = {
+      autocomplete = { cmp_types.cmp.TriggerEvent.TextChanged },
+    },
     mapping = cmdline_mapping,
     sources = {
       { name = "buffer" },
@@ -246,6 +256,9 @@ plugin.config = function()
 
   -- Use cmdline & path source for ':'.
   cmp.setup.cmdline(":", {
+    completion = {
+      autocomplete = { cmp_types.cmp.TriggerEvent.TextChanged },
+    },
     mapping = cmdline_mapping,
     sources = cmp.config.sources({
       { name = "path" },
@@ -258,11 +271,17 @@ plugin.config = function()
 
   -- Use cmdline & path source for ':'.
   cmp.setup.cmdline("@", {
+    completion = {
+      autocomplete = { cmp_types.cmp.TriggerEvent.TextChanged },
+    },
     mapping = cmdline_mapping,
     sources = {},
   })
 
   cmp.setup.filetype({ "dap-repl", "dapui_watches" }, {
+    completion = {
+      autocomplete = { cmp_types.cmp.TriggerEvent.TextChanged },
+    },
     sources = {
       { name = "dap" },
     },

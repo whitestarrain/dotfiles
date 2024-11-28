@@ -527,6 +527,29 @@ function M.get_current_mapping(key, mode)
   end
 end
 
+local cmp_mode = false
+function M.toggle_auto_cmp(mode)
+  mode = mode or not cmp_mode
+  cmp_mode = mode
+  local status, cmp = pcall(require, "cmp")
+  if not status then
+    return
+  end
+  if mode then
+    cmp.setup({
+      completion = {
+        autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
+      },
+    })
+  else
+    cmp.setup({
+      completion = {
+        autocomplete = false,
+      },
+    })
+  end
+end
+
 -- history function --
 
 function M.recoverLostRuntimepath()
