@@ -5,6 +5,7 @@ plugin.shortUrl = "nvim-telescope/telescope.nvim"
 plugin.loadEvent = "VeryLazy"
 plugin.dependencies = {
   "GustavoKatel/telescope-asynctasks.nvim",
+  "benfowler/telescope-luasnip.nvim",
   "nvim-telescope/telescope-live-grep-args.nvim",
 }
 
@@ -77,6 +78,7 @@ plugin.config = function()
 
   require("telescope").load_extension("asynctasks")
   require("telescope").load_extension("live_grep_args")
+  require("telescope").load_extension("luasnip")
 
   require("wsain.plugin.whichkey").register({
     { "<leader>f", group = "find", mode = "v" },
@@ -180,6 +182,14 @@ plugin.config = function()
       end,
       desc = "grep",
       mode = "v",
+    },
+    {
+      "<leader>fs",
+      function()
+        require("telescope").extensions.luasnip.luasnip({})
+      end,
+      desc = "snippet",
+      mode = "n",
     },
     { "<leader>c", group = "code", mode = "n" },
     {

@@ -61,6 +61,7 @@
   "tabular": { "branch": "master", "commit": "12437cd1b53488e24936ec4b091c9324cafee311" },
   "telescope-asynctasks.nvim": { "branch": "main", "commit": "065300fb0a8ba6a1c81991da1873c73e136dcdc0" },
   "telescope-live-grep-args.nvim": { "branch": "master", "commit": "649b662a8f476fd2c0289570764459e95ebaa3f3" },
+  "telescope-luasnip.nvim": { "branch": "master", "commit": "11668478677de360dea45cf2b090d34f21b8ae07" },
   "telescope.nvim": { "branch": "master", "commit": "eae0d8fbde590b0eaa2f9481948cd6fd7dd21656" },
   "todo-comments.nvim": { "branch": "main", "commit": "ae0a2afb47cf7395dc400e5dc4e05274bf4fb9e0" },
   "treesj": { "branch": "main", "commit": "0d81326b5afd36babe7dd480aabbb0b05f33e688" },
