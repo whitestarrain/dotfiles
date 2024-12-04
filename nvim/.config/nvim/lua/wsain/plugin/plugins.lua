@@ -74,4 +74,5 @@ return {
   require("wsain.plugin.configs.extra.vim-scriptease"),
   require("wsain.plugin.configs.extra.vim-abolish"),
   require("wsain.plugin.configs.extra.vim-illuminate"),
+  require("wsain.plugin.configs.extra.vim-searchindex"),
 }
