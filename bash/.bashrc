@@ -3,7 +3,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-dot_bashd_path="$(dirname -- $(realpath ${BASH_SOURCE[0]}))/.bashrc.d"
+dot_bashd_path="$(dirname -- "$(realpath "${BASH_SOURCE[0]}")")/.bashrc.d"
 
 function check_source_file {
   if [ ! $# -gt 0 ]; then

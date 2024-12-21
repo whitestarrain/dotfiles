@@ -3,7 +3,7 @@ local plugin = require("wsain.plugin.template"):new()
 plugin.shortUrl = "tpope/vim-abolish"
 plugin.loadEvent = "VeryLazy"
 
---[[ 
+--[[
 example:
 
 :Subvert/child{,ren}/adult{,s}/g
@@ -15,6 +15,6 @@ cru	coerce to UPPER_CASE
 cr.	coerce to dot.case
 cr-	coerce to dash-case
 cr	coerce to space case
-crt	coerce to Title Case 
+crt	coerce to Title Case
 ]]
 return plugin
