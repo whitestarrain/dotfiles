@@ -25,8 +25,8 @@ pacman -Qqet > pkglist.txt
 # Install
 
 - clone the repo to `~`
+- run `./deploy.sh MANIFEST.linux`
 - nvim config install
-  - `cd ~ && stow nvim`
   - run `nvim`
     - plugin will be auto installed under `{this_repo}/nvim/.config/nvim/.plugins/` and `{this_repo}/nvim/.config/nvim/.managers/`
   - run `:Mason` in nvim to install lsp, dap, etc.
@@ -36,17 +36,6 @@ pacman -Qqet > pkglist.txt
     - run `:TSInstallCustom` to install default treesitter parsers
     - `CC=/path/to/gcc nvim` can specify the compiler version
   - run `:checkhealth`, install dependencies
-- stow link
-
-  ```bash
-  # add `-n -v` option to check what will do
-  stow bash ....
-  sudo stow -t / ...
-
-  # Setting configuration file to a link file may cause some services to fail, like archlinux-keyring-wkd-sync.service
-  cp ./pacman/etc/pacman.conf /etc/pacman.conf
-  # ...
-  ```
 - pacman
 
   ```bash
@@ -92,4 +81,5 @@ TODO
 - [ ] [jessfraz/dotfiles](https://github.com/jessfraz/dotfiles)
 - [ ] [samoshkin/tmux-config](https://github.com/samoshkin/tmux-config)
 - [ ] [mhartington/dotfiles](https://github.com/mhartington/dotfiles)
+- [ ] [tsoding dotfiles](https://github.com/rexim/dotfiles.git)
 - [ ] [Installing tmux-256color for macOS](https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95)
