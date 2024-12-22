@@ -19,6 +19,7 @@ function check_source_file {
 # base config
 check_source_file xdg.sh
 check_source_file base.sh
+check_source_file base_extra.sh
 check_source_file alias.sh
 check_source_file path.sh
 
