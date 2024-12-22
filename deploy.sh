@@ -20,7 +20,7 @@ symlink_file() {
 
   if [ -e "$destination" ]; then
     echo "[ERROR] $destination exists but it's not a symlink. Please fix that manually"
-    exit 1
+    return
   fi
 
   ln -s "$filename" "$destination"
