@@ -21,7 +21,7 @@ plugin.init = function()
 
   local vim_floaterm_group = vim.api.nvim_create_augroup("vim_floaterm_group", { clear = true })
   vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"floaterm"},
+    pattern = { "floaterm" },
     group = vim_floaterm_group,
     callback = function()
       vim.keymap.set("t", "<M-h>", "<c-\\><c-n>:FloatermPrev<CR>", { silent = true, noremap = true, buffer = 0 })
@@ -44,10 +44,30 @@ if utils.getOs() ~= "win" and vim.fn.executable(file_exploer) == 0 then
   file_exploer = "ranger"
 end
 
+local function dired_toggle_term()
+  if vim.bo.filetype == "dired" and vim.g.current_dired_path ~= nil then
+    vim.cmd("FloatermToggle")
+    vim.api.nvim_feedkeys(
+      vim.api.nvim_replace_termcodes("<C-u>", true, false, true)
+        .. "cd "
+        .. vim.g.current_dired_path
+        .. vim.api.nvim_replace_termcodes("<cr>", true, false, true)
+        .. vim.api.nvim_replace_termcodes("<C-l>", true, false, true),
+      "tn",
+      false
+    )
+  else
+    vim.cmd("FloatermToggle")
+  end
+end
+
 plugin.config = function()
   local mappings = {
     { "<M-+>", ":FloatermNew<cr>" },
-    { "<M-=>", ":FloatermToggle<cr>" },
+    {
+      "<M-=>",
+      dired_toggle_term,
+    },
     { "<M-+>", "<c-\\><c-n>:FloatermNew<cr>", mode = "t" },
     { "<M-=>", "<c-\\><c-n>:FloatermToggle<cr>", mode = "t" },
   }
