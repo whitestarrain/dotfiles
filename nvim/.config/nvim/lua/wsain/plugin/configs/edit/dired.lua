@@ -68,7 +68,14 @@ require("wsain.plugin.whichkey").register({
       require("dired.display").goto_filename = filename
       require("dired").open(path)
     end,
-    desc = "edit file",
+    desc = "open file dir",
   },
+  {
+    "<leader>E",
+    function()
+      require("dired").open(vim.fn.getcwd())
+    end,
+    desc = "open pwd",
+  }
 })
 return plugin
