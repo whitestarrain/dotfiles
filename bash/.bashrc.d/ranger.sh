@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # ranger
-alias ra='ranger'
+alias ra='EDITOR=nvim ranger'
 function ranger {
   local IFS=$'\t\n'
   local tempfile="$(mktemp -t tmp.XXXXXX)"
