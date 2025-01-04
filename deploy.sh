@@ -46,7 +46,7 @@ copy_file() {
 
   sudo_prefix=""
 
-  if [[ "$row" =~ ^/etc.* ]] && which feh &> /dev/null; then
+  if [[ "$row" =~ ^/etc.* ]]; then
     sudo_prefix="sudo "
   fi
 
