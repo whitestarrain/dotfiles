@@ -1,0 +1,22 @@
+#!/bin/bash
+
+current_path="$(realpath .)"
+
+for dir_name in *
+do
+  cd "$current_path" || exit
+  if [ ! -d "$dir_name" ]; then
+    continue
+  fi
+  cd "$dir_name" || continue
+  if [ ! -d ".git" ]; then
+    continue
+  fi
+  remote_repos=($(git remote))
+  if [ -z "${remote_repos[*]}" ]; then
+    continue
+  fi
+  remote_repo="${remote_repos[0]}"
+  echo "$dir_name:$(git remote get-url "$remote_repo")"
+done
+
