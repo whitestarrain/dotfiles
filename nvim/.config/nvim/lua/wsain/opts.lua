@@ -57,6 +57,7 @@ vim.opt.softtabstop = 1
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.autoindent = true
+-- smartindent will cause vim can't shift a line start with '#'
 vim.opt.smartindent = true
 vim.opt.shiftround = true
 vim.opt.backspace = "indent,eol,start"
