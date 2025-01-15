@@ -3,5 +3,5 @@
 # commit_date=$(git --no-pager log -1 --pretty='format:%cd' --date='format:%Y-%m-%d %H:%M:%S')
 autor_date=$(git --no-pager log -1 --pretty='format:%ad' --date='format:%Y-%m-%d %H:%M:%S')
 
-GIT_COMMITTER_DATE="$autor_date" git commit --amend --no-edit --date "${autor_date}"
+GIT_COMMITTER_DATE="$autor_date" git commit --amend --date "${autor_date}"
 
