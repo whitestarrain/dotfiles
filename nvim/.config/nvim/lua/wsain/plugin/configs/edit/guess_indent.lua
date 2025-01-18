@@ -5,7 +5,7 @@ plugin.loadEvent = "VeryLazy"
 plugin.config = function()
   require("guess-indent").setup({
     auto_cmd = true,
-    override_editorconfig = false,
+    override_editorconfig = true,
     filetype_exclude = {
       "netrw",
       "tutor",
