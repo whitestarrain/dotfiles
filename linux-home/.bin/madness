@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 docker run --rm -it -v $PWD:/docs -p 8002:3000 dannyben/madness $*
 

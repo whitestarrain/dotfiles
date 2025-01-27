@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 timestamp_8="$(date --date="$(date +"%F 08:00:00")" +"%s")"
 timestamp_22="$(date --date="$(date +"%F 22:00:00")" +"%s")"
