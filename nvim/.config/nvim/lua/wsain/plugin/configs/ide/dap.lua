@@ -95,7 +95,11 @@ local function setupCodelldb()
       type = "codelldb",
       request = "launch",
       program = function()
-        return vim.fn.getcwd() .. "/" .. "output/" .. vim.fn.expand("%:r") .. executableSuffix()
+        return vim.fn.getcwd()
+          .. "/"
+          .. "output/"
+          .. utils.get_file_relative_path(vim.fn.fnamemodify(vim.fn.expand("%:"), ":r"))
+          .. executableSuffix()
       end,
       cwd = "${workspaceFolder}",
       stopOnEntry = false,

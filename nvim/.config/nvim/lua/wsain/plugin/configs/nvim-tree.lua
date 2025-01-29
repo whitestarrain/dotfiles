@@ -13,8 +13,7 @@ local function relative_path_under_cursor()
   if current_path == nil then
     return
   end
-  local cwd = vim.fn.getcwd()
-  local relative_path, _ = string.gsub(current_path, utils.literalize(cwd), ".")
+  local relative_path = utils.get_file_relative_path(current_path)
   return relative_path
 end
 local function get_current_node_path()

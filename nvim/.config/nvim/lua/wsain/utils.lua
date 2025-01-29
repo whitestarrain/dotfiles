@@ -376,6 +376,12 @@ function M.get_check_bigfile_function(max_file_size, max_lines, max_line_length)
   end
 end
 
+function M.get_file_relative_path(file_path)
+  local cwd = vim.fn.getcwd()
+  local relative_path, _ = string.gsub(file_path, M.literalize(cwd), ".")
+  return relative_path
+end
+
 -- vim api function --
 
 function M.highlight(group, options)
