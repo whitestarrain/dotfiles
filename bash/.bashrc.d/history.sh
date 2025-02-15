@@ -2,7 +2,7 @@
 
 # command history limit
 export HISTFILESIZE=10000                            # HISTFILE limit
-export HISTSIZE=2000                                 # shell session history limit
+export HISTSIZE=5000                                 # shell session history limit
 export HISTIGNORE="&:[ ]*:exit:clear:ls:pwd:nvim:sp" # ignore command pattern, separated by :
 
 # history append

@@ -1,178 +1,106 @@
-#!/usr/bin/env bash
+#! /usr/bin/env python3
 
-set -e
+import argparse
+import os
+import shutil
+import time
+from collections import OrderedDict
 
-HISTORY_FILE_PATH="$HOME/.bash_history"
-SEPARATE_BY_TIMESTAMP="true"
-USELESS_COMMAND_PREFIX=""
+HOME = os.environ.get("HOME")
+HISTORY_FILE_PATH = f"{HOME}/.bash_history"
+MAX_BAK_FILES = 10
+HISTORY_FILE_BAK_DIR_PATH = f"{HOME}/.bash_history.bak"
 
-while [ $# -gt 0 ]; do
-  case $1 in
-  -h | --help)
-    echo "usage: $(basename "$0") [-o | -f]"
-    echo '  -o, --output                    Default stdin, file to output'
-    echo '  -f, --history_file              Default ~/.bash_history, history file path'
-    echo '  -s, --separate_by_timestamp     Default true, separate each command from an other based on its timestamp'
-    echo '  -d, --useless_command_prefix    Default empty, split by ","'
-    exit
-    ;;
-  # For options with required arguments, an additional shift is needed.
-  -o | --output)
-    OUTPUT_FILE="$2"
-    shift
-    ;;
-  -f | --history_file)
-    HISTORY_FILE_PATH="$2"
-    shift
-    ;;
-  -s | --separate_by_timestamp)
-    SEPARATE_BY_TIMESTAMP="$2"
-    shift
-    ;;
-  -d | --useless_command_prefix)
-    USELESS_COMMAND_PREFIX="$2"
-    shift
-    ;;
-  *)
-    echo "$0: invalid option $1" 1>&2
-    exit 1
-    ;;
-  esac
-  shift
-done
+if not HOME:
+    print("can't read HOME env")
+    exit(0)
 
-if [ ! -f "$HISTORY_FILE_PATH" ]; then
-  echo "can't find bash history file"
-  return
-fi
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--output",
+    "-o",
+    type=str,
+    required=False,
+    help="Output file path, default is stdin",
+)
+parser.add_argument(
+    "--history_file",
+    "-f",
+    type=str,
+    default=f"{HOME}/.bash_history",
+    help="History file path, default is ~/.bash_history, ",
+)
+parser.add_argument(
+    "--useless_command_prefix",
+    "-d",
+    type=str,
+    default="",
+    required=False,
+    help="Split by comma, default is empty",
+)
 
-IFS=',' read -r -a useless_prefixs <<<"$USELESS_COMMAND_PREFIX"
+args = parser.parse_args()
 
-echo "start drop duplicate commands of ${HISTORY_FILE_PATH}, output to ${OUTPUT_FILE:-stdin}"
+if not os.path.exists(args.history_file):
+    print(f"{args.history_file} doesn't exist")
+    exit(0)
 
-if [[ -n "$OUTPUT_FILE" && $(realpath "$HISTORY_FILE_PATH") == $(realpath "$OUTPUT_FILE") ]]; then
-  bak_file_dir="$HOME/.bash_history.bak"
-  if [[ ! -d "$bak_file_dir" ]]; then
-    mkdir -p "$bak_file_dir"
-  fi
-  bak_file="$bak_file_dir/.bash_history.$(date +%s)"
-  cp "$HISTORY_FILE_PATH" "${bak_file}"
-  echo "create backup file: ${bak_file}"
+f = open(args.history_file)
+lines = f.readlines()
+history_lien_len = len(lines)
 
-  # delete old file, remain 10 files
-  max_backup_num=10
-  # -d '' will cause read return 1
-  IFS=$'\n' read -d '' -r -a logfiles < <(find ~/.bash_history.bak -type f -name ".bash_history.*" | sort -r) || echo ''
-  if [[ ${#logfiles[@]} -gt ${max_backup_num} ]]; then
-    for i in $(seq $((max_backup_num)) $((${#logfiles[@]} - 1))); do
-      if [[ -f "${logfiles[$i]}" ]]; then
-        rm -f "${logfiles[$i]}"
-      fi
-    done
+useless_command_prefix_list = [
+    prefix for prefix in args.useless_command_prefix.split(",") if prefix
+]
 
-  fi
-fi
+command2timestamp = OrderedDict()
+index = history_lien_len - 1
+while index >= 0:
+    # skip emapty line
+    while lines[index].startswith("#") or not lines[index]:
+        index -= 1
 
-# read the lines to list
-IFS=$'\n' read -r -d '' -a lines <"${HISTORY_FILE_PATH}" || echo ''
-declare -A timestamp_dict
-declare -a commands
+    # get command and timestamp index
+    command_end_index = index
+    while not lines[index].startswith("#"):
+        index -= 1
+    command_start_index = index + 1
+    timestamp_index = index
 
-contains_element() {
-  local e match="$1"
-  shift
-  # `for` default get value from $@
-  for e; do [[ "$e" == "$match" ]] && return 0; done
-  return 1
-}
+    # command
+    command = "".join(lines[command_start_index : command_end_index + 1])
+    # filter useless command
+    if useless_command_prefix_list and any(
+        command.startswith(prefix) for prefix in useless_command_prefix_list
+    ):
+        continue
+    # save new command
+    if command not in command2timestamp:
+        command2timestamp[command] = lines[timestamp_index]
 
-# get command timestamp and all commands
-for ((i = ${#lines[@]} - 1; i >= 0; i--)); do
-  timestamp=''
-  command=''
-  if [[ "${lines[$i]}" == \#* ]]; then
-    continue
-  fi
+    # shift index
+    index -= 1
 
-  if [[ "$SEPARATE_BY_TIMESTAMP" == "true" ]]; then
-    command="${lines[$i]}" # drop trailling newline
-    ((i--))
-    while [[ $i -ge 0 && "${lines[$i]}" != \#* ]]; do
-      command="${lines[$i]}
-${command}"
-      ((i--))
-    done
-    timestamp="${lines[$i]}"
-  else
-    # single line command
-    if [[ "${lines[$i]}" != [[:space:]]* ]]; then
-      command="${lines[$i]}"
-      if [[ $i-1 -ge 0 && "${lines[$i - 1]}" == \#* ]]; then
-        timestamp="${lines[$i - 1]}"
-        ((i--))
-      fi
-    fi
+result_lines = []
+for command in reversed(command2timestamp):
+    result_lines.append(command2timestamp.get(command))
+    result_lines.append(command)
 
-    # multi line command
-    if [[ "${lines[$i]}" == [[:space:]]* ]]; then
-      command="${lines[$i]}"
-      ((i--))
-      while [[ $i -ge 0 && "${lines[$i]}" == [[:space:]]* ]]; do
-        command="${lines[$i]}
-${command}"
-        ((i--))
-      done
-      if [[ "${lines[$i]}" == \#* ]]; then
-        timestamp="${lines[$i]}"
-      else
-        command="${lines[$i]}
-${command}"
-        if [[ "${lines[$i - 1]}" == \#* ]]; then
-          ((i--))
-          timestamp="${lines[$i]}"
-        fi
-      fi
-    fi
-  fi
+if not args.output:
+    print("".join(result_lines))
+else:
+    if os.path.abspath(args.output) == os.path.abspath(HISTORY_FILE_PATH):
+        bak_files = os.listdir(HISTORY_FILE_BAK_DIR_PATH)
+        bak_files = sorted(bak_files, reverse=True)
+        for expired_bak_file in bak_files[MAX_BAK_FILES:]:
+            os.remove(os.path.join(HISTORY_FILE_BAK_DIR_PATH, expired_bak_file))
+        bak_file_path = os.path.join(
+            HISTORY_FILE_BAK_DIR_PATH, f".bash_history.{int(time.time())}"
+        )
+        print(f"copy file {HISTORY_FILE_PATH} to {bak_file_path}")
+        shutil.copy(HISTORY_FILE_PATH, bak_file_path)
+    with open(args.output, "w") as f:
+        print(f"save duplicated history file: {args.output}")
+        f.writelines(result_lines)
 
-  if [ -z "$command" ]; then
-    continue
-  fi
-
-  # skip useless commands
-  skip_flag=0
-  if [[ ${#useless_prefixs[@]} -gt 0 ]]; then
-    for prefix in "${useless_prefixs[@]}"; do
-      if [[ "$command" == "${prefix}"* ]]; then
-        skip_flag=1
-        break
-      fi
-    done
-  fi
-  if [[ ${skip_flag} -eq 1 ]]; then
-    continue
-  fi
-
-  if [[ -z "${timestamp_dict["${command}"]}" && -n "$timestamp" ]]; then
-    timestamp_dict["${command}"]="$timestamp"
-  fi
-  if ! contains_element "${command}" "${commands[@]}"; then
-    commands=("${command}" "${commands[@]}")
-  fi
-done
-
-# update history file
-get_dup_commands() {
-  for ((i = 0; i < ${#commands[@]}; i++)); do
-    if [ -n "${timestamp_dict["${commands[i]}"]}" ]; then
-      echo "${timestamp_dict["${commands[i]}"]}"
-    fi
-    echo "${commands[i]}"
-  done
-}
-
-if [[ -n "$OUTPUT_FILE" ]]; then
-  get_dup_commands >"$OUTPUT_FILE"
-else
-  get_dup_commands
-fi
+f.close()
