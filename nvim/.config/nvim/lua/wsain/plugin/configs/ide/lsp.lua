@@ -797,6 +797,37 @@ local function setupJavaLsp()
   vim.api.nvim_exec_autocmds("FileType", { group = java_cmds, buffer = 0 })
 end
 
+local function selectLSP()
+  local lspconfig_map = {
+    lua = setupLspWrap(setupLuaLsp),
+    bash = setupLspWrap(setupBashLsp),
+    ["c/cpp"] = setupLspWrap(setupCLsp),
+    go = setupLspWrap(setupGoLsp),
+    vim = setupLspWrap(setupVimLsp),
+    frontend = setupLspWrap(setupFrontEndLsp),
+    pylsp = setupLspWrap(setupPythonLsp),
+    basedpyright = setupLspWrap(setupPyright),
+    jedi = setupLspWrap(setupJedi),
+    php = setupLspWrap(setupPhpLsp),
+    java = setupLspWrap(setupJavaLsp, false),
+  }
+
+  local n = 1
+  local langs = {}
+  for k, _ in pairs(lspconfig_map) do
+    langs[n] = k
+    n = n + 1
+  end
+
+  vim.ui.select(langs, { prompt = "select lsp" }, function(choice)
+    if lspconfig_map[choice] == nil then
+      vim.notify("unknown lang")
+      return
+    end
+    lspconfig_map[choice]()
+  end)
+end
+
 plugin.config = function()
   -- diagnostic config
   vim.diagnostic.config({
@@ -843,23 +874,11 @@ plugin.config = function()
   })
 
   require("wsain.plugin.whichkey").register({
-    { "<leader>S", group = "lsp server" },
     { "<leader>c", group = "code" },
     { "<leader>c", group = "code", mode = "v" },
     { "<leader>cf", ":Format<cr>", desc = "format" },
     { "<leader>cf", ":Format<cr>", desc = "format", mode = "v" },
-    { "<leader>Sl", setupLspWrap(setupLuaLsp), desc = "lua" },
-    { "<leader>Sb", setupLspWrap(setupBashLsp), desc = "bash" },
-    { "<leader>Sc", setupLspWrap(setupCLsp), desc = "c/cpp" },
-    { "<leader>Sg", setupLspWrap(setupGoLsp), desc = "go" },
-    { "<leader>Sv", setupLspWrap(setupVimLsp), desc = "vim" },
-    { "<leader>SF", setupLspWrap(setupFrontEndLsp), desc = "frontend" },
-    { "<leader>Sp", group = "python" },
-    { "<leader>Spl", setupLspWrap(setupPythonLsp), desc = "pylsp" },
-    { "<leader>Spr", setupLspWrap(setupPyright), desc = "basedpyright" },
-    { "<leader>Spj", setupLspWrap(setupJedi), desc = "jedi" },
-    { "<leader>Sh", setupLspWrap(setupPhpLsp), desc = "php" },
-    { "<leader>Sj", setupLspWrap(setupJavaLsp, false), desc = "java" },
+    { "<leader>cS", selectLSP, desc = "lsp server" },
   })
 end
 
