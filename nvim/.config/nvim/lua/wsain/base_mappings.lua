@@ -163,4 +163,5 @@ vim.cmd([[
 ]])
 
 -- duplidate line in insert mode
-keymap.set("i", "<C-l>", "<C-o>:execute('.copy.')<cr>")
+-- keymap.set("i", "<C-l>", "<C-o>:execute('.copy.')<cr>")
+
