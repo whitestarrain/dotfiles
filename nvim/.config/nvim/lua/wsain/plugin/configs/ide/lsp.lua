@@ -806,6 +806,26 @@ local function setupNixLsp()
   })
 end
 
+local function setupRustLsp()
+  local lspconfig = require("lspconfig")
+  -- https://github.com/rust-lang/rust-analyzer/blob/master/docs/book/src/configuration_generated.md
+  lspconfig.rust_analyzer.setup({
+    settings = {
+      ["rust-analyzer"] = {
+        -- diagnostics = {
+        --   enable = false,
+        -- },
+        -- inlay_hints = {
+        --   enabled = true,
+        -- },
+      },
+    },
+    on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
+  })
+end
+
 local function selectLSP()
   local lspconfig_map = {
     lua = setupLspWrap(setupLuaLsp),
@@ -820,6 +840,7 @@ local function selectLSP()
     php = setupLspWrap(setupPhpLsp),
     java = setupLspWrap(setupJavaLsp, false),
     nix = setupLspWrap(setupNixLsp),
+    rust = setupLspWrap(setupRustLsp),
   }
 
   local n = 1
