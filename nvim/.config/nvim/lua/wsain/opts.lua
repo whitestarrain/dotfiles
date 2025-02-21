@@ -22,6 +22,7 @@ vim.opt.relativenumber = true
 vim.opt.wrap = false
 vim.opt.scrolloff = 3
 vim.opt.sidescrolloff = 8
+vim.opt.smoothscroll = true
 vim.opt.linespace = 0
 vim.opt.showmode = true
 vim.opt.showcmd = true
