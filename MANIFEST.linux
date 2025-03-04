@@ -9,7 +9,6 @@ linux-home/.xbindkeysrc|symlink|${HOME}/.xbindkeysrc
 nvim/.config/nvim|symlink|${HOME}/.config/nvim
 proxychains/.proxychains/proxychains.conf|symlink|${HOME}/.proxychains/proxychains.conf
 ranger/.config/ranger|symlink|${HOME}/.config/ranger
-# suckless/.dmw/autostart.sh|symlink|${HOME}/.dwm/autostart.sh
 tmux/.tmux.conf|symlink|${HOME}/.tmux.conf
 vscode/.config/Code/User/setting.json|symlink|${HOME}/.config/Code/User/setting.json
 wezterm/.config/wezterm|symlink|${HOME}/.config/wezterm
