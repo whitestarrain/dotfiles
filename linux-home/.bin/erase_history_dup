@@ -39,6 +39,15 @@ parser.add_argument(
     help="Split by comma, default is empty",
 )
 
+parser.add_argument(
+    "--wrap_command_prefix",
+    "-w",
+    type=str,
+    default="",
+    required=False,
+    help="Split by comma, default is empty.",
+)
+
 args = parser.parse_args()
 
 if not os.path.exists(args.history_file):
@@ -51,6 +60,9 @@ history_lien_len = len(lines)
 
 useless_command_prefix_list = [
     prefix for prefix in args.useless_command_prefix.split(",") if prefix
+]
+wrap_command_prefix_list = [
+    prefix for prefix in args.wrap_command_prefix.split(",") if prefix
 ]
 
 command2timestamp = OrderedDict()
@@ -69,6 +81,12 @@ while index >= 0:
 
     # command
     command = "".join(lines[command_start_index : command_end_index + 1])
+    if wrap_command_prefix_list:
+        for prefix in wrap_command_prefix_list:
+            if command.startswith(prefix):
+                command = command[len(prefix) :]
+                break
+    command = command.strip() + "\n"
     # filter useless command
     if useless_command_prefix_list and any(
         command.startswith(prefix) for prefix in useless_command_prefix_list
