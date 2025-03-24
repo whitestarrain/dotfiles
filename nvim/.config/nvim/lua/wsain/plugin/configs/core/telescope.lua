@@ -90,7 +90,6 @@ plugin.config = function()
           require("telescope.builtin").find_files({
             cwd = vim.g.current_dired_path,
             hidden = true,
-            no_ignore = true,
           })
         else
           require("telescope.builtin").find_files({ hidden = true })
@@ -105,7 +104,17 @@ plugin.config = function()
     },
     {
       "<leader>fa",
-      ":Telescope find_files no_ignore=true hidden=true<CR>",
+      function()
+        if vim.bo.filetype == "dired" and vim.g.current_dired_path ~= nil then
+          require("telescope.builtin").find_files({
+            cwd = vim.g.current_dired_path,
+            hidden = true,
+            no_ignore = true,
+          })
+        else
+          require("telescope.builtin").find_files({ hidden = true, no_ignore=true})
+        end
+      end,
       desc = "all file",
     },
     { "<leader>k", ":Telescope buffers sort_mru=true<CR>", desc = "buffer" },
