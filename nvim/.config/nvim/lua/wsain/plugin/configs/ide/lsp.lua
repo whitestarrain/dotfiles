@@ -358,7 +358,7 @@ local function setupFrontEndLsp()
   })
 
   -- tsserver
-  lspconfig.tsserver.setup({
+  lspconfig.ts_ls.setup({
     cmd = { servers.tsserver, "--stdio" },
     on_attach = on_attach,
     on_init = on_init,
