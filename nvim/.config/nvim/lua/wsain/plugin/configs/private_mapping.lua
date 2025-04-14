@@ -8,6 +8,7 @@ require("wsain.plugin.whichkey").register({
   { "<leader>zp", ":syntax sync fromstart<cr>", desc = "syntax sync" },
   { "<leader>zl", ":%s/\\v(\\n\\s*){2,}/\\r\\r/<cr> :/jkjk<cr>", desc = "compress blank line" },
   { "<leader>zf", ':echo expand("%:p")<cr>', desc = "show file path" },
+  -- can use gx replaced
   { "<leader>zu", require("wsain.utils").openFileUnderCursor, desc = "open file under cursor" },
   { "<leader>zo", require("wsain.utils").openCurrentFile, desc = "open current file" },
   { "<leader>m", group = "markdown" },

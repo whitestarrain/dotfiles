@@ -4,8 +4,8 @@ plugin.shortUrl = "jbyuki/venn.nvim"
 plugin.loadEvent = "VeryLazy"
 
 local toggle_venn = function()
-  local venn_enabled = vim.inspect(vim.b.venn_enabled)
-  if venn_enabled == "nil" then
+  local venn_enabled = vim.b.venn_enabled
+  if venn_enabled == nil then
     vim.b.venn_enabled = true
     vim.cmd([[setlocal ve=all]])
     -- draw a line on HJKL keystokes
@@ -17,7 +17,11 @@ local toggle_venn = function()
     vim.api.nvim_buf_set_keymap(0, "v", "f", ":VBox<CR>", { noremap = true })
   else
     vim.cmd([[setlocal ve=]])
-    vim.cmd([[mapclear <buffer>]])
+    vim.api.nvim_buf_del_keymap(0, "n", "J")
+    vim.api.nvim_buf_del_keymap(0, "n", "K")
+    vim.api.nvim_buf_del_keymap(0, "n", "L")
+    vim.api.nvim_buf_del_keymap(0, "n", "H")
+    vim.api.nvim_buf_del_keymap(0, "v", "f")
     vim.b.venn_enabled = nil
   end
 end
