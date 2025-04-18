@@ -107,6 +107,9 @@ plugin.config = function()
       RainbowDelimiterGreen = { fg = "seagreen3" },
       RainbowDelimiterViolet = { fg = "mediumpurple3" },
       RainbowDelimiterCyan = { fg = "orchid2" },
+
+      -- outline
+      AerialLine = { link = "Visual" },
     },
   })
   vim.cmd("colorscheme onedark")
