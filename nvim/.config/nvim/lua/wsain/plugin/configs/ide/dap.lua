@@ -9,6 +9,9 @@ plugin.dependencies = {
   "nvim-neotest/nvim-nio",
 }
 
+-- use `t` to toggle subtle frames
+-- subtle frames are not automatically displayed when using debugpy, even if set justMyCode to false
+
 local default_launch_json_path = "./.vscode/dap.json"
 
 local function cmdWrap(cmd)
