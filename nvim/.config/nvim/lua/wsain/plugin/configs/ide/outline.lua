@@ -15,6 +15,7 @@ plugin.config = function()
     layout = {
       width = 30,
       min_width = 20,
+      default_direction = "right",
     },
     filter_kind = {
       "Class",
@@ -36,6 +37,7 @@ plugin.config = function()
       ["K"] = "actions.up_and_scroll",
       ["J"] = "actions.down_and_scroll",
     },
+    attach_mode = "global",
   })
   utils.addCommandBeforeSaveSession("silent! AerialClose")
   require("wsain.plugin.whichkey").register({
