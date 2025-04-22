@@ -236,6 +236,13 @@ plugin.config = function()
       end,
       desc = "load config json",
     },
+    {
+      "<leader>DV",
+      function()
+        vim.cmd("DapVirtualTextToggle")
+      end,
+      desc = "toggle visual text",
+    },
   })
 end
 return plugin
