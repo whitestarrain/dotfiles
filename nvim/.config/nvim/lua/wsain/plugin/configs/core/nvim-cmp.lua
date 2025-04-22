@@ -161,8 +161,10 @@ plugin.config = function()
       ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
       ["<Tab>"] = cmp.mapping(function(fallback)
-        if luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
+        if luasnip.jumpable(1) then
+          luasnip.jump(1)
+        elseif luasnip.expandable() then
+          luasnip.expand()
         elseif cmp.visible() then
           cmp.select_next_item()
         elseif has_words_before() then
