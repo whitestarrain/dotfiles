@@ -30,7 +30,7 @@ plugin.opts = {
   linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
   word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
   auto_attach = true,
-  current_line_blame_formatter = "<author>, <author_time:%R> - <summary>",
+  current_line_blame_formatter = "     <author>, <author_time:%R> - <summary>",
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
 
