@@ -23,7 +23,7 @@ end
 
 local function ensureDepWrap()
   if package.loaded["nvim-dap-virtual-text"] == nil then
-    require("nvim-dap-virtual-text").setup()
+    require("nvim-dap-virtual-text").setup({enabled=false})
   end
 end
 
@@ -187,7 +187,7 @@ plugin.config = function()
   vim.fn.sign_define("DapLogPoint", { text = "󰌑", texthl = "DiagnosticHint", linehl = "", numhl = "" })
   vim.fn.sign_define("DapStopped", { text = "", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
 
-  -- ensureDepWrap()
+  ensureDepWrap()
   setupCodelldb()
   setupDebugPy()
 
