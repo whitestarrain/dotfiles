@@ -4,12 +4,12 @@ plugin.shortUrl = "mfussenegger/nvim-lint"
 plugin.loadEvent = "VeryLazy"
 
 -- support toggle. l
-local linter_marker = false
+vim.g.enable_linter = false
 local augroup_name = "nvim_lint_augroup"
 local lint_toggle = function()
   local linter = require("lint")
   -- enable lint
-  if not linter_marker then
+  if not vim.g.enable_linter then
     local avaliable_linters = linter._resolve_linter_by_ft(vim.bo.filetype)
     if next(avaliable_linters) == nil then
       vim.notify("nvim-lint: no avaliable linter for current file")
@@ -24,10 +24,9 @@ local lint_toggle = function()
       end,
     })
     linter.try_lint()
-    vim.notify("nvim-lint: lint code")
   end
   -- disable lint, and reset lint diagnostict
-  if linter_marker then
+  if vim.g.enable_linter then
     vim.api.nvim_clear_autocmds({ group = augroup_name })
     local diagnostic_namespaces = vim.diagnostic.get_namespaces()
     if diagnostic_namespaces ~= nil and next(diagnostic_namespaces) ~= nil then
@@ -42,10 +41,11 @@ local lint_toggle = function()
         ::continue::
       end
     end
-    vim.notify("nvim-lint: disable lint")
   end
   -- set marker value
-  linter_marker = not linter_marker
+  vim.g.enable_linter = not vim.g.enable_linter
+  -- re-calculate statusline
+  vim.cmd([[let &stl=&stl]])
 end
 
 plugin.config = function()

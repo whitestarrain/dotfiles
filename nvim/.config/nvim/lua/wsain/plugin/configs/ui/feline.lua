@@ -198,6 +198,18 @@ plugin.config = function()
           },
         },
         {
+          provider = function()
+            if vim.g.enable_linter then
+              return " 󱉶"
+            end
+            return ""
+          end,
+          hl = {
+            bg = theme.bg,
+            fg = theme.fg,
+          },
+        },
+        {
           provider = {
             name = "file_info",
             opts = {
