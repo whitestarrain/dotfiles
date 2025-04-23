@@ -5,7 +5,7 @@ plugin.shortUrl = "kyazdani42/nvim-tree.lua"
 plugin.dependencies = { "nvim-tree/nvim-web-devicons" }
 plugin.loadEvent = "VeryLazy"
 local function relative_path_under_cursor()
-  local node = require("nvim-tree.lib").get_node_at_cursor()
+  local node = require("nvim-tree.api").tree.get_node_under_cursor()
   local current_path = node.absolute_path
   if node.type == "file" then
     return node.parent.absolute_path
@@ -17,7 +17,7 @@ local function relative_path_under_cursor()
   return relative_path
 end
 local function get_current_node_path()
-  local node = require("nvim-tree.lib").get_node_at_cursor()
+  local node = require("nvim-tree.api").tree.get_node_under_cursor()
   if node.type == "file" then
     return node.parent.absolute_path
   end
