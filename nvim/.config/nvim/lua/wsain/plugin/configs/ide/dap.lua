@@ -23,7 +23,7 @@ end
 
 local function ensureDepWrap()
   if package.loaded["nvim-dap-virtual-text"] == nil then
-    require("nvim-dap-virtual-text").setup({enabled=false})
+    require("nvim-dap-virtual-text").setup({ enabled = false })
   end
 end
 
@@ -181,6 +181,11 @@ local function load_vscode_config()
 end
 
 plugin.config = function()
+  local dap = require("dap")
+
+  -- delete provider: dap.launch.json
+  dap.providers.configs["dap.launch.json"] = nil
+
   vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticError", linehl = "", numhl = "" })
   vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DiagnosticError", linehl = "", numhl = "" })
   vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DiagnosticError", linehl = "", numhl = "" })
