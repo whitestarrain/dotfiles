@@ -235,6 +235,18 @@ plugin.config = function()
       desc = "dap ui",
     },
     {
+      "<leader>DU",
+      function()
+        if package.loaded["dapui"] == nil then
+          require("dapui").setup()
+          vim.cmd([[vnoremap <M-k> <Cmd>lua require("dapui").eval()<CR>]])
+        end
+        load_vscode_config()
+        require("dapui").open({ reset = true })
+      end,
+      desc = "dap ui reset",
+    },
+    {
       "<leader>DL",
       function()
         load_vscode_config()
