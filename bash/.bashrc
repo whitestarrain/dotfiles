@@ -29,6 +29,7 @@ check_source_file z.sh
 check_source_file ranger.sh
 check_source_file node.sh
 check_source_file starship.sh
+check_source_file nnn.sh
 
 # history config, must be placed last
 check_source_file history.sh
