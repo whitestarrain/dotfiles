@@ -198,32 +198,32 @@ plugin.config = function()
 
   require("wsain.plugin.whichkey").register({
     {
-      "<leader>D",
-      group = "dap",
+      "<leader>g",
+      group = "dap-debug",
     },
     {
-      "<leader>DD",
+      "<leader>gg",
       function()
         require("dap").toggle_breakpoint()
       end,
       desc = "toggle_breakpoint",
     },
     {
-      "<leader>Dc",
+      "<leader>gc",
       function()
         require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
       end,
       desc = "condition breakpoint",
     },
     {
-      "<leader>Dl",
+      "<leader>gl",
       function()
         require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
       end,
       desc = "log breakpoint",
     },
     {
-      "<leader>Du",
+      "<leader>gu",
       function()
         if package.loaded["dapui"] == nil then
           require("dapui").setup()
@@ -235,7 +235,7 @@ plugin.config = function()
       desc = "dap ui",
     },
     {
-      "<leader>DU",
+      "<leader>gr",
       function()
         if package.loaded["dapui"] == nil then
           require("dapui").setup()
@@ -247,14 +247,14 @@ plugin.config = function()
       desc = "dap ui reset",
     },
     {
-      "<leader>DL",
+      "<leader>gL",
       function()
         load_vscode_config()
       end,
       desc = "load config json",
     },
     {
-      "<leader>DV",
+      "<leader>gv",
       function()
         vim.cmd("DapVirtualTextToggle")
       end,
