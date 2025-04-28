@@ -17,7 +17,7 @@ local lint_toggle = function()
     end
 
     local augroup = vim.api.nvim_create_augroup(augroup_name, { clear = true })
-    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+    vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
       group = augroup,
       callback = function()
         linter.try_lint()
