@@ -35,9 +35,15 @@ plugin.config = function()
     keymaps = {
       ["o"] = "actions.scroll",
       ["K"] = "actions.up_and_scroll",
+      ["<C-j>"] = false,
+      ["<C-k>"] = false,
       ["J"] = "actions.down_and_scroll",
+      ["L"] = "actions.tree_open_all",
+      ["H"] = "actions.tree_close_all",
     },
     attach_mode = "global",
+    link_folds_to_tree = false,
+    link_tree_to_folds = false,
   })
   utils.addCommandBeforeSaveSession("silent! AerialClose")
   require("wsain.plugin.whichkey").register({
