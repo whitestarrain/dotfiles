@@ -11,16 +11,21 @@ plugin.customConfig = function(lsp_mode)
   end
   local cfg = {
     relculright = true,
+    -- get all signs:
+      -- sign: vim.fn.sign_getplaced(0)
+      -- extmark: vim.api.nvim_buf_get_extmarks(0, -1, 0, -1, {type = "sign", details = true})
+
+    -- check plugins's "sign_assign_segment" function to figure out the matching mechanism
     segments = {
       {
-        sign = { namespace = { "diagnostic/signs" }, maxwidth = 1, auto = auto_diagnostic_sign },
+        sign = { namespace = { "diagnostic" }, maxwidth = 1, auto = auto_diagnostic_sign },
         click = "v:lua.ScSa",
       },
       {
         sign = { name = { ".*" }, maxwidth = 1, auto = true },
       },
       {
-        text = { builtin.lnumfunc, "" },
+        text = { builtin.lnumfunc },
         condition = { true, builtin.not_empty },
         click = "v:lua.ScLa",
       },
