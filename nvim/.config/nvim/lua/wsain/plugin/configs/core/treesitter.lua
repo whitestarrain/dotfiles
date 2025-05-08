@@ -53,6 +53,7 @@ plugin.config = function()
     "cpp",
     "c_sharp",
     "css",
+    "diff",
     "dot",
     "go",
     "groovy",
