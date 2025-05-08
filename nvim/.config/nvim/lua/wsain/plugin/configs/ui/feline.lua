@@ -290,7 +290,7 @@ plugin.config = function()
         },
         {
           provider = "diagnostic_hints",
-          hl = { fg = theme.green },
+          hl = { fg = theme.cyan },
           enabled = columnsWidthCondition(102),
         },
         {

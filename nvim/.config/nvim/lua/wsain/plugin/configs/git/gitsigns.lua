@@ -5,6 +5,7 @@ plugin.loadEvent = "VeryLazy"
 plugin.branch = "main"
 plugin.dependencies = {
   "junegunn/gv.vim",
+  -- :GV :Gclog to get history commit change, support range
   "tpope/vim-fugitive",
 }
 plugin.opts = {
