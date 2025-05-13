@@ -40,6 +40,10 @@ plugin.config = function()
       ["J"] = "actions.down_and_scroll",
       ["L"] = "actions.tree_open_all",
       ["H"] = "actions.tree_close_all",
+      ["l"] = "actions.tree_toggle",
+    },
+    icons = {
+      Collapsed     = "",
     },
     attach_mode = "global",
     link_folds_to_tree = false,
