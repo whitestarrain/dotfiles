@@ -95,7 +95,7 @@ local opts = {
     },
   },
   layout = {
-    spacing = 3, -- spacing between columns
+    spacing = 1, -- spacing between columns
   },
   keys = {
     scroll_down = "<c-d>", -- binding to scroll down inside the popup
