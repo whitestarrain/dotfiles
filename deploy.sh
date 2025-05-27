@@ -36,21 +36,21 @@ copy_file() {
     return
   fi
 
-  if which diff &> /dev/null; then
-    file_diff=$(diff "${filename}" "${destination}")
-    if [ -z "${file_diff}" ]; then
-      echo "[SKIP] ${filename} and ${destination} has no diff"
-      return
-    fi
-  fi
-
   sudo_prefix=""
 
-  if [[ "$row" =~ ^/etc.* ]]; then
+  if [[ "$destination" =~ ^/etc.* ]]; then
     sudo_prefix="sudo "
   fi
 
   if [ -e "$destination" ]; then
+    if which diff &> /dev/null; then
+      file_diff=$(diff "${filename}" "${destination}") || echo -n ""
+      if [ -z "${file_diff}" ]; then
+        echo "[SKIP] ${filename} and ${destination} has no diff"
+        return
+      fi
+    fi
+  else
     echo "[ERROR] $destination exists. Please fix that manually"
     return
   fi

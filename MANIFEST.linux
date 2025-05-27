@@ -14,3 +14,4 @@ vscode/.config/Code/User/setting.json|symlink|${HOME}/.config/Code/User/setting.
 wezterm/.config/wezterm|symlink|${HOME}/.config/wezterm
 pacman/etc/pacman.conf|copy|/etc/pacman.conf
 pacman/etc/pacman.d/mirrorlist|copy|/etc/pacman.d/mirrorlist
+w3m/.w3m/keymap|symlink|${HOME}/.w3m/keymap
