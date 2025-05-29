@@ -47,7 +47,8 @@ local opts = {
   -- Check the docs for more info.
   ---@type wk.Spec
   triggers = {
-    { "<auto>", mode = "nxsot" },
+    { "<auto>", mode = "nsot" },
+    { "<leader>", mode = "x" },
   },
   -- Start hidden and wait for a key to be pressed before showing the popup
   -- Only used by enabled xo mapping modes.
