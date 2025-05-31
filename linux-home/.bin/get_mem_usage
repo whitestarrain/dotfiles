@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+
+if [[ $# -ne 1 ||-z $1 ]]; then
+  echo "usage: $(basename "$0") pid"
+  exit
+fi
+
+get_mem_usage() {
+  # get the memory usage of processes and all child processes
+  pstree -p "$1" |
+    grep -o -E "\([0-9]+\)" |
+    grep -o -E "[0-9]+" |
+    xargs ps -h -o pid,%mem,rss,cmd |
+    sort -nrk 3 |
+    awk '{printf("%s %s %.0fMB %s\n", $1, $2, $3 / 1024, $4)}'
+}
+
+get_mem_usage "$1"
