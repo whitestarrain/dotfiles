@@ -35,6 +35,7 @@ plugin.config = function()
       ["C#"] = { "clang-format" },
       asm = { "asmfmt" },
       ruby = { "rubyfmt" },
+      nix = { "nixfmt" },
     },
   })
 end
