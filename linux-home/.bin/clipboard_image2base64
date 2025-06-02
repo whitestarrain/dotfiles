@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+detect_clipboard_tools() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS
+    COPY_CMD="pbcopy"
+    PASTE_CMD="pbpaste"
+  elif command -v wl-paste &>/dev/null && [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    # Wayland
+    COPY_CMD="wl-copy"
+    PASTE_CMD="wl-paste"
+  elif command -v xclip &>/dev/null && [ -n "$DISPLAY" ]; then
+    # X11
+    COPY_CMD="xclip -selection clipboard -t text/plain -i"
+    PASTE_CMD="xclip -selection clipboard -t image/png -o"
+  else
+    echo "Error: No supported clipboard tools found"
+    echo "macOS requires pbcopy/pbpaste"
+    echo "X11 requires xclip"
+    echo "Wayland requires wl-clipboard"
+    exit 1
+  fi
+}
+
+check_clipboard_image() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    if ! pbpaste | file - | grep -q "PNG image data"; then
+      echo "Error: No image detected in clipboard"
+      exit 1
+    fi
+  else
+    if ! $PASTE_CMD &>/dev/null; then
+      echo "Error: No image data found in clipboard"
+      exit 1
+    fi
+  fi
+}
+
+convert_to_base64() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    pbpaste | base64 -w 0
+  else
+    $PASTE_CMD | base64 -w 0
+  fi
+}
+
+main() {
+  detect_clipboard_tools
+  check_clipboard_image
+
+  echo "Converting clipboard image to Base64..."
+  base64_data=$(convert_to_base64)
+
+  if [ -z "$base64_data" ]; then
+    echo "Error: Failed to convert image to Base64"
+    exit 1
+  fi
+
+  echo -n "$base64_data" | $COPY_CMD
+  echo "Success: Image converted to Base64 and placed back in clipboard"
+  echo "You can verify with:"
+
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "  pbpaste | head -c 100"
+  elif command -v wl-paste &>/dev/null; then
+    echo "  wl-paste | head -c 100"
+  else
+    echo "  xclip -o | head -c 100"
+  fi
+}
+
+main "$@"
