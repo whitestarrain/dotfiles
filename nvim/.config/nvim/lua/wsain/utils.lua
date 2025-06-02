@@ -162,6 +162,10 @@ function M.systemOpen(link)
   vim.loop.unref(process.handle)
 end
 
+function M.get_unique_id()
+  return string.format("%s-%s", os.date("%Y%m%d%H%M%S"), math.floor((os.clock() % 1) * 1000000))
+end
+
 -- file function --
 
 function M.openFileUnderCursor()
@@ -253,15 +257,8 @@ function M.get_default_url_image_name(url)
     end
   end
   -- image name
-  local image_name = string.lower(
-    string.format(
-      "%s-%s-%s.%s",
-      vim.fn.expand("%:t:r"),
-      os.date("%Y%m%d%H%M%S"),
-      math.floor((os.clock() % 1) * 1000000),
-      image_extention_name
-    )
-  )
+  local image_name =
+    string.lower(string.format("%s-%s.%s", vim.fn.expand("%:t:r"), M.get_unique_id(), image_extention_name))
   return image_name
 end
 

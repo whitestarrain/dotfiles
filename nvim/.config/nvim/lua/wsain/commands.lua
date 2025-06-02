@@ -38,3 +38,18 @@ end, {
     return md_save_image_options
   end,
 })
+
+vim.api.nvim_create_user_command("MdSaveBase64Image", function(_)
+  local base64_line_content = vim.fn.substitute(vim.api.nvim_get_current_line(), "\\s\\+", "", "g")
+  local relative_path = vim.fn.expand("%:h")
+  local image_dir = vim.g.mdip_imgdir or "./image"
+  local relative_image_path = relative_path .. "/" .. image_dir
+  utils.check_dir_or_create(relative_image_path)
+  local image_name = string.format("%s-%s.%s", vim.fn.expand("%:t:r"), utils.get_unique_id(), "png")
+  local image_path = relative_image_path .. "/" .. image_name
+  vim.fn.system("base64 -d > " .. image_path, base64_line_content)
+  local md_img_text = string.format("![%s](%s)", image_name, image_dir .. "/" .. image_name)
+  vim.api.nvim_set_current_line(md_img_text)
+end, {
+  desc = "convert base64 string to image",
+})
