@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 
+COPY_CMD=""
+PASTE_CMD=""
+
 detect_clipboard_tools() {
   if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS
-    COPY_CMD="pbcopy"
-    PASTE_CMD="pbpaste"
+    if which pngpaste &>/dev/null; then
+      COPY_CMD="pbcopy"
+      PASTE_CMD="pngpaste -"
+    else
+      echo "Error: macOS requires pbcopy/pngpaste"
+      exit 1
+    fi
   elif command -v wl-paste &>/dev/null && [ "$XDG_SESSION_TYPE" = "wayland" ]; then
     # Wayland
     COPY_CMD="wl-copy"
@@ -15,7 +23,7 @@ detect_clipboard_tools() {
     PASTE_CMD="xclip -selection clipboard -t image/png -o"
   else
     echo "Error: No supported clipboard tools found"
-    echo "macOS requires pbcopy/pbpaste"
+    echo "macOS requires pbcopy/pngpaste"
     echo "X11 requires xclip"
     echo "Wayland requires wl-clipboard"
     exit 1
@@ -24,7 +32,7 @@ detect_clipboard_tools() {
 
 check_clipboard_image() {
   if [[ "$OSTYPE" == "darwin"* ]]; then
-    if ! pbpaste | file - | grep -q "PNG image data"; then
+    if ! $PASTE_CMD | file - | grep -q "PNG image data"; then
       echo "Error: No image detected in clipboard"
       exit 1
     fi
@@ -37,11 +45,7 @@ check_clipboard_image() {
 }
 
 convert_to_base64() {
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    pbpaste | base64 -w 0
-  else
-    $PASTE_CMD | base64 -w 0
-  fi
+  $PASTE_CMD | base64 -w 0
 }
 
 main() {
