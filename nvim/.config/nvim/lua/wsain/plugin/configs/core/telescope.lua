@@ -55,7 +55,8 @@ plugin.config = function()
         "%.mm",
       },
       sorting_strategy = "ascending",
-      layout_strategy = "horizontal",
+      border = false,
+      layout_strategy = "bottom_pane",
       prompt_prefix = "❯ ",
       layout_config = {
         prompt_position = "top",
@@ -63,6 +64,7 @@ plugin.config = function()
           mirror = false,
         },
         preview_cutoff = 0,
+        height=0.5,
       },
       initial_mode = "insert",
       --  can use <C-l> in insert mode to cycle/complete tags, i.e. either diagnostic severity or symbols (classes, functions, methods, ...)
