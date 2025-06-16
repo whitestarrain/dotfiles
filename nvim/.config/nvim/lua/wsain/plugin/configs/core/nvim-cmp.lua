@@ -94,11 +94,12 @@ plugin.config = function()
     }),
   }
 
-  local amp_sources = {
+  local cmp_sources = {
     { name = "nvim_lsp", priority = 10 },
     { name = "path", priority = 5 },
     { name = "luasnip", priority = 4 },
-    { name = "nvim_lsp_signature_help" },
+    { name = "nvim_lsp_signature_help", priority = 2 },
+    -- { name = "buffer", priority = 1 },
   }
 
   local has_words_before = function()
@@ -143,7 +144,7 @@ plugin.config = function()
     },
 
     -- 来源
-    sources = cmp.config.sources(amp_sources),
+    sources = cmp.config.sources(cmp_sources),
 
     mapping = {
       ["<C-p>"] = cmp.mapping.select_prev_item(),
