@@ -394,7 +394,7 @@ plugin.config = function()
         },
         {
           provider = function()
-            return vim.fn.getcwd()
+            return vim.api.nvim_buf_get_name(0) or vim.fn.getcwd()
           end,
         },
       }, -- left section
@@ -415,6 +415,7 @@ plugin.config = function()
         "^qf$",
         "^help$",
         "^msnumber$",
+        "^oil$",
       },
       buftypes = {
         "^terminal$",

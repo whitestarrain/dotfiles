@@ -64,7 +64,7 @@ plugin.config = function()
           mirror = false,
         },
         preview_cutoff = 0,
-        height=0.5,
+        height = 0.5,
       },
       initial_mode = "insert",
       --  can use <C-l> in insert mode to cycle/complete tags, i.e. either diagnostic severity or symbols (classes, functions, methods, ...)
@@ -88,9 +88,9 @@ plugin.config = function()
     {
       "<leader>ff",
       function()
-        if vim.bo.filetype == "dired" and vim.g.current_dired_path ~= nil then
+        if vim.bo.filetype == "oil" and require("oil").get_current_dir(0) ~= nil then
           require("telescope.builtin").find_files({
-            cwd = vim.g.current_dired_path,
+            cwd = require("oil").get_current_dir(0),
             hidden = true,
           })
         else
@@ -107,14 +107,14 @@ plugin.config = function()
     {
       "<leader>fa",
       function()
-        if vim.bo.filetype == "dired" and vim.g.current_dired_path ~= nil then
+        if vim.bo.filetype == "oil" and require("oil").get_current_dir(0) ~= nil then
           require("telescope.builtin").find_files({
-            cwd = vim.g.current_dired_path,
+            cwd = require("oil").get_current_dir(0),
             hidden = true,
             no_ignore = true,
           })
         else
-          require("telescope.builtin").find_files({ hidden = true, no_ignore=true})
+          require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
         end
       end,
       desc = "all file",
@@ -134,9 +134,9 @@ plugin.config = function()
     {
       "<leader>fg",
       function()
-        if vim.bo.filetype == "dired" and vim.g.current_dired_path ~= nil then
+        if vim.bo.filetype == "oil" and require("oil").get_current_dir(0) ~= nil then
           require("telescope.builtin").live_grep({
-            cwd = vim.g.current_dired_path,
+            cwd = require("oil").get_current_dir(0),
             preview = true,
             hidden = true,
             no_ignore = true,
