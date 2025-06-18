@@ -7,6 +7,9 @@ plugin.dependencies = {
   "GustavoKatel/telescope-asynctasks.nvim",
   "benfowler/telescope-luasnip.nvim",
   "nvim-telescope/telescope-live-grep-args.nvim",
+  "jvgrootveld/telescope-zoxide",
+  "nvim-lua/plenary.nvim",
+  "nvim-lua/popup.nvim",
 }
 
 plugin.config = function()
@@ -67,7 +70,8 @@ plugin.config = function()
         height = 0.5,
       },
       initial_mode = "insert",
-      --  can use <C-l> in insert mode to cycle/complete tags, i.e. either diagnostic severity or symbols (classes, functions, methods, ...)
+      --  can use <C-l> in insert mode to cycle/complete tags,
+      --    i.e. either diagnostic severity or symbols (classes, functions, methods, ...)
       mappings = mappings,
       preview = {
         hide_on_startup = true, -- hide previewer when picker starts
@@ -75,12 +79,26 @@ plugin.config = function()
     },
     path_display = { "truncate" },
     winblend = 0,
-    extensions = {},
+    extensions = {
+      zoxide = {
+        mappings = {
+          ["<CR>"] = {
+            action = function(selection)
+              if selection == nil then
+                return
+              end
+              vim.cmd.edit(selection.path)
+            end,
+          },
+        },
+      },
+    },
   })
 
   require("telescope").load_extension("asynctasks")
   require("telescope").load_extension("live_grep_args")
   require("telescope").load_extension("luasnip")
+  require("telescope").load_extension("zoxide")
 
   require("wsain.plugin.whichkey").register({
     { "<leader>f", group = "find", mode = "v" },
@@ -198,6 +216,14 @@ plugin.config = function()
       "<leader>fs",
       function()
         require("telescope").extensions.luasnip.luasnip({})
+      end,
+      desc = "snippet",
+      mode = "n",
+    },
+    {
+      "<leader>fz",
+      function()
+        require("telescope").extensions.zoxide.list()
       end,
       desc = "snippet",
       mode = "n",
