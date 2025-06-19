@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
 # z
-[ -f "/usr/share/z/z.sh" ] && source /usr/share/z/z.sh
 
+if type zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init bash)"
+else
+  [ -f "/usr/share/z/z.sh" ] && source /usr/share/z/z.sh
+fi
