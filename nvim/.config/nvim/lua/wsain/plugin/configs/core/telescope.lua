@@ -225,7 +225,7 @@ plugin.config = function()
       function()
         require("telescope").extensions.zoxide.list()
       end,
-      desc = "snippet",
+      desc = "zoxide",
       mode = "n",
     },
     { "<leader>c", group = "code", mode = "n" },
