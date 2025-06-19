@@ -24,6 +24,7 @@ plugin.config = function()
       ["gx"] = "actions.open_external",
       ["g."] = { "actions.toggle_hidden", mode = "n" },
       ["g\\"] = { "actions.toggle_trash", mode = "n" },
+      ["gr"] = "actions.refresh",
       ["<CR>"] = "actions.select",
       -- ["<C-s>"] = { "actions.select", opts = { vertical = true } },
       -- ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
@@ -35,7 +36,6 @@ plugin.config = function()
         end,
         mode = "n",
       },
-      ["<C-l>"] = "actions.refresh",
       ["-"] = { "actions.parent", mode = "n" },
       ["_"] = { "actions.open_cwd", mode = "n" },
       ["`"] = {
@@ -77,27 +77,19 @@ require("wsain.plugin.whichkey").register({
   {
     "<leader>e",
     function()
-      local path_separator = "/"
-      local file_path = vim.fn.expand("%")
-      local file_stat = vim.uv.fs_lstat(file_path)
-      local pwd = vim.fn.getcwd() .. path_separator
-      local path
-      if file_stat == nil then
-        path = pwd
-      else
-        if file_stat.type == "directory" then
-          path = file_path
-        else
-          path = vim.fn.expand("%:h")
-        end
+      if vim.bo.filetype == "oil" then
+        return
       end
-      require("oil").open(path)
+      require("oil").open()
     end,
     desc = "open file dir",
   },
   {
     "<leader>E",
     function()
+      if vim.bo.filetype == "oil" then
+        return
+      end
       require("oil").open(vim.fn.getcwd())
     end,
     desc = "open pwd",
