@@ -274,7 +274,7 @@ end
 local function setupCLsp()
   local lspconfig = require("lspconfig")
   lspconfig.clangd.setup({
-    -- https://zhuanlan.zhihu.com/p/84876003
+    -- https://clangd.llvm.org/design/compile-commands#compilation-databases
     cmd = {
       "clangd",
       "--background-index",
