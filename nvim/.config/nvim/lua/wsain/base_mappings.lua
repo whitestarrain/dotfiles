@@ -108,7 +108,7 @@ set_mapping("n", "<leader>q", function()
     pcall(vim.fn.execute, "cclose")
     return
   end
-  pcall(vim.fn.execute, "copen")
+  pcall(vim.fn.execute, "belowright copen")
 end, { desc = "quickfix" })
 
 -- quickfix or other error
