@@ -99,7 +99,7 @@ plugin.config = function()
     { name = "path", priority = 5 },
     { name = "luasnip", priority = 4 },
     { name = "nvim_lsp_signature_help", priority = 2 },
-    -- { name = "buffer", priority = 1 },
+    -- { name = "buffer", priority = 1 }, -- cmp-buffer doesn't index git ignore file?
   }
 
   local has_words_before = function()

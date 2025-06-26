@@ -826,6 +826,15 @@ local function setupRustLsp()
   })
 end
 
+local function setupCmakeLsp()
+  local lspconfig = require("lspconfig")
+  lspconfig.cmake.setup({
+    on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
+  })
+end
+
 local function selectLSP()
   local lspconfig_map = {
     lua = setupLspWrap(setupLuaLsp),
@@ -841,6 +850,7 @@ local function selectLSP()
     java = setupLspWrap(setupJavaLsp, false),
     nix = setupLspWrap(setupNixLsp),
     rust = setupLspWrap(setupRustLsp),
+    cmake = setupLspWrap(setupCmakeLsp),
   }
 
   local n = 1
