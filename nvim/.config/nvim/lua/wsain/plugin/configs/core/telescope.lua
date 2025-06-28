@@ -22,10 +22,12 @@ plugin.config = function()
       end,
       ["h"] = actions.cycle_history_prev,
       ["l"] = actions.cycle_history_next,
+      ["<C-s>"] = actions.select_vertical,
       ["<C-k>"] = require("telescope.actions.layout").toggle_preview,
     },
     i = {
       ["<C-k>"] = require("telescope.actions.layout").toggle_preview,
+      ["<C-s>"] = actions.select_vertical,
     },
   }
 
