@@ -3,4 +3,3 @@ emacs/.emacs.d|symlink|${HOME}/.emacs.d
 nvim/.config/nvim|symlink|${HOME}/.config/nvim
 tmux/.tmux.conf|symlink|${HOME}/.tmux.conf
 linux-home/.bin|symlink|${HOME}/.bin
-w3m/.w3m/keymap|symlink|${HOME}/.w3m/keymap
