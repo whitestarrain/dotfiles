@@ -36,6 +36,7 @@ plugin.config = function()
       asm = { "asmfmt" },
       ruby = { "rubyfmt" },
       nix = { "nixfmt" },
+      rust = { "rustfmt" },
     },
   })
 end
