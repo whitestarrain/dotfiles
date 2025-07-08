@@ -18,7 +18,7 @@ syn sync linebreaks=1
 let s:conceal = ''
 let s:concealends = ''
 let s:concealcode = ''
-let s:oneline = ''
+let s:oneline = ' oneline'
 
 syn region mkdItalic matchgroup=mkdItalic start="\%(\*\|_\)"    end="\%(\*\|_\)"
 syn region mkdBold matchgroup=mkdBold start="\%(\*\*\|__\)"    end="\%(\*\*\|__\)"
@@ -85,11 +85,6 @@ syn match  mkdRule         /^\s*\*\s\{0,1}\*\s\{0,1}\*\(\*\|\s\)*$/
 syn match  mkdRule         /^\s*-\s\{0,1}-\s\{0,1}-\(-\|\s\)*$/
 syn match  mkdRule         /^\s*_\s\{0,1}_\s\{0,1}_\(_\|\s\)*$/
 
-" markdown math
-syn include @tex syntax/tex.vim
-syn region mkdMath start="\\\@<!\$" end="\$" skip="\\\$" contains=@tex keepend
-syn region mkdMath start="\\\@<!\$\$" end="\$\$" skip="\\\$" contains=@tex keepend
-
 " Strike through
 if get(g:, 'vim_markdown_strikethrough', 0)
     execute 'syn region mkdStrike matchgroup=htmlStrike start="\%(\~\~\)" end="\%(\~\~\)"' . s:concealends
@@ -118,6 +113,9 @@ HtmlHiLink mkdLinkDef       mkdID
 HtmlHiLink mkdLinkDefTarget mkdURL
 HtmlHiLink mkdLinkTitle     htmlString
 HtmlHiLink mkdDelimiter     Delimiter
+
+syntax sync minlines=256
+syntax sync maxlines=512
 
 let b:current_syntax = 'mkd'
 
