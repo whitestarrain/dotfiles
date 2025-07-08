@@ -22,22 +22,25 @@ plugin.config = function()
       ["g?"] = { "actions.show_help", mode = "n" },
       ["gs"] = { "actions.change_sort", mode = "n" },
       ["gx"] = "actions.open_external",
-      ["gy"] = function()
-        local oil = require("oil")
-        local entry = oil.get_cursor_entry()
-        local dir = oil.get_current_dir()
-        if not entry or not dir then
-          return
-        end
-        local name = entry.name
-        if entry.type == "directory" then
-          name = name .. "/"
-        end
-        local path = dir .. name
-        vim.fn.setreg("0", path)
-        vim.fn.setreg("+", path)
-        vim.notify("[oil] Copied " .. path .. " to system clipboard!")
-      end,
+      ["gy"] = {
+        function()
+          local oil = require("oil")
+          local entry = oil.get_cursor_entry()
+          local dir = oil.get_current_dir()
+          if not entry or not dir then
+            return
+          end
+          local name = entry.name
+          if entry.type == "directory" then
+            name = name .. "/"
+          end
+          local path = dir .. name
+          vim.fn.setreg("0", path)
+          vim.fn.setreg("+", path)
+          vim.notify("[oil] Copied " .. path .. " to system clipboard!")
+        end,
+        mode = "n",
+      },
       ["g."] = { "actions.toggle_hidden", mode = "n" },
       ["g\\"] = { "actions.toggle_trash", mode = "n" },
       ["gr"] = "actions.refresh",
