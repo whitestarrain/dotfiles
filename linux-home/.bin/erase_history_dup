@@ -108,6 +108,8 @@ if not args.output:
     print("".join(result_lines))
 else:
     if os.path.abspath(args.output) == os.path.abspath(HISTORY_FILE_PATH):
+        if not os.path.exists(HISTORY_FILE_BAK_DIR_PATH):
+            os.mkdir(HISTORY_FILE_BAK_DIR_PATH)
         bak_files = os.listdir(HISTORY_FILE_BAK_DIR_PATH)
         bak_files = sorted(bak_files, reverse=True)
         for expired_bak_file in bak_files[MAX_BAK_FILES:]:

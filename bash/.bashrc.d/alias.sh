@@ -24,4 +24,3 @@ function switchproxy {
   export all_proxy="$default_proxy"
   echo "set terminal proxy"
 }
-
