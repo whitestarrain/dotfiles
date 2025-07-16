@@ -106,9 +106,6 @@ require("wsain.plugin.whichkey").register({
   {
     "<leader>E",
     function()
-      if vim.bo.filetype == "oil" then
-        return
-      end
       require("oil").open(vim.fn.getcwd())
     end,
     desc = "open pwd",
