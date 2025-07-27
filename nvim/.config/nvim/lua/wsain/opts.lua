@@ -110,3 +110,6 @@ vim.opt.background = "dark"
 
 -- disable default sql autocompletion mapping
 vim.g.omni_sql_no_default_maps = 1
+
+-- add extra pack
+vim.cmd([[packadd cfilter]])

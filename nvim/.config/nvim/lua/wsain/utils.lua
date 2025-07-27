@@ -555,10 +555,10 @@ end
 
 function M.flash_highlight(bufnr, lnum, durationMs, hl_group)
   hl_group = hl_group or "Visual"
-  if durationMs == true or durationMs == 1 then
+  if durationMs == true or durationMs == 1 or durationMs == nil then
     durationMs = 300
   end
-  local ns = vim.api.nvim_create_namespace("AerialFlashHighlight")
+  local ns = vim.api.nvim_create_namespace("FlashHighlight")
   local line = vim.api.nvim_buf_get_lines(bufnr, lnum - 1, lnum, true)[1]
   local ext_id = vim.api.nvim_buf_set_extmark(bufnr, ns, lnum - 1, 0, {
     end_col = #line,
