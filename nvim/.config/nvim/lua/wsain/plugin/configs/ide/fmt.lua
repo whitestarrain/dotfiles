@@ -37,6 +37,7 @@ plugin.config = function()
       ruby = { "rubyfmt" },
       nix = { "nixfmt" },
       rust = { "rustfmt" },
+      go = { "goimports", "gofmt" },
     },
   })
 end
