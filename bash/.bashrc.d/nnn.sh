@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-export NNN_PLUG='p:preview-tui;s:preview-tabbed;z:autojump;b:cdpath;f:finder;n:fixname;o:nuke;c:chksum;m:nmount;'
+# TODO: copy absolute path (https://github.com/jarun/nnn/issues/1368)
+export NNN_PLUG='p:preview-tui;s:preview-tabbed;z:autojump;b:cdpath;f:finder;n:fixname;o:nuke;m:nmount;c:-!_nnn_copypath*;'
 
 # n -c to allow window swallow
 n ()

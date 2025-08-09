@@ -1,0 +1,52 @@
+#!/usr/bin/env sh
+
+# Description: Copy current file path to system clipboard
+# Dependencies:
+# - xclip/xsel (Linux)
+# - pbcopy (macOS)
+# - termux-clipboard-set (Termux)
+# - clip.exe (WSL)
+# - clip (Cygwin)
+# - wl-copy (Wayland)
+# - clipboard (Haiku)
+
+current_file_path="$f1"
+
+if [ -z "$f1" ]; then
+  return
+fi
+
+# if path contains space, wrap it with quotes
+case $f1 in
+*" "*)
+  current_file_path="\"${current_file_path}\""
+  ;;
+esac
+
+if [ -n "$TMUX" ]; then
+  tmux set-buffer -aw "$current_file_path"
+elif [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+  # Wayland
+  echo "$current_file_path" | wl-copy
+elif type xsel >/dev/null 2>&1; then
+  # Linux
+  echo "$current_file_path" | xsel -bi
+elif type xclip >/dev/null 2>&1; then
+  # Linux
+  echo "$current_file_path" | xclip -sel clip
+elif type pbcopy >/dev/null 2>&1; then
+  # macOS
+  echo "$current_file_path" | pbcopy
+elif type termux-clipboard-set >/dev/null 2>&1; then
+  # Termux
+  echo "$current_file_path" | termux-clipboard-set
+elif type clip.exe >/dev/null 2>&1; then
+  # WSL
+  echo "$current_file_path" | clip.exe
+elif type clip >/dev/null 2>&1; then
+  # Cygwin
+  echo "$current_file_path" | clip
+elif type clipboard >/dev/null 2>&1; then
+  # Haiku
+  echo "$current_file_path" | clipboard --stdin
+fi
