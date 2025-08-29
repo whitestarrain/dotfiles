@@ -10,14 +10,14 @@
 # - wl-copy (Wayland)
 # - clipboard (Haiku)
 
-current_file_path="$f1"
-
-if [ -z "$f1" ]; then
+if [ -z "$PWD" ] || [ -z "$nnn" ]; then
   return
 fi
 
+current_file_path="$PWD/$nnn"
+
 # if path contains space, wrap it with quotes
-case $f1 in
+case "$current_file_path" in
 *" "*)
   current_file_path="\"${current_file_path}\""
   ;;
