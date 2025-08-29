@@ -102,6 +102,14 @@ plugin.config = function()
   require("telescope").load_extension("luasnip")
   require("telescope").load_extension("zoxide")
 
+  -- https://github.com/nvim-telescope/telescope.nvim/issues/1118
+  local function buffers()
+    require("telescope.builtin").buffers({
+      sorter = require("telescope.sorters").get_substr_matcher(),
+      sort_mru = true,
+    })
+  end
+
   require("wsain.plugin.whichkey").register({
     { "<leader>f", group = "find", mode = "v" },
     { "<leader>f", group = "find", mode = "n" },
@@ -139,8 +147,16 @@ plugin.config = function()
       end,
       desc = "all file",
     },
-    { "<leader>k", ":Telescope buffers sort_mru=true<CR>", desc = "buffer" },
-    { "<leader>fe", ":Telescope buffers sort_mru=true<CR>", desc = "buffer" },
+    {
+      "<leader>k",
+      buffers,
+      desc = "buffer",
+    },
+    {
+      "<leader>fe",
+      buffers,
+      desc = "buffer",
+    },
     {
       "<leader>fc",
       ":Telescope command_history<CR>",
