@@ -1,5 +1,5 @@
 # vim:set ft=conf
-emacs/.emacs.d|symlink|${HOME}/.emacs.d
+emacs/.config/emacs|symlink|${HOME}/.config/emacs
 nvim/.config/nvim|symlink|${HOME}/.config/nvim
 tmux/.tmux.conf|symlink|${HOME}/.tmux.conf
 linux-home/.bin|symlink|${HOME}/.bin

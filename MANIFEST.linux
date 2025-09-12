@@ -1,7 +1,7 @@
 # vim:set ft=conf
 bash/.bashrc|symlink|${HOME}/.bashrc
 bash/.dir_colors|symlink|${HOME}/.dir_colors
-emacs/.emacs.d|symlink|${HOME}/.emacs.d
+emacs/.config/emacs|symlink|${HOME}/.config/emacs
 ./gnupg/.local/share/gnupg/gpg.conf|symlink|${HOME}/.local/share/gnupg/gpg.conf
 i3/.config/i3/config|symlink|${HOME}/.config/i3/config
 linux-home/.bin|symlink|${HOME}/.bin
