@@ -1,3 +1,14 @@
+;; make emacs fill the window
+(setq frame-resize-pixelwise t)
+
+;; mouse cursor
+(set-mouse-color "White")
+
+;; theme
+;; (add-to-list 'custom-theme-load-path
+;;              "~/dotfiles/emacs/.config/emacs/lisp/custom-theme")
+
+
 (setq use-dialog-box nil)
 (setq inhibit-default-init t)
 (setq inhibit-startup-screen t)
