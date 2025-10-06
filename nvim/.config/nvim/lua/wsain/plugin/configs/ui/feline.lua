@@ -151,6 +151,14 @@ plugin.config = function()
     end
   end
 
+  local function dangerProvider()
+      local error_num, error_icon = require("feline.providers.lsp").diagnostic_errors()
+      if error_num ~= nil and error_num ~= "" and tonumber(error_num) > 0 then
+        return " 危 "
+      end
+      return ""
+  end
+
   local components = {
     -- components when buffer is active
     active = {
