@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# NIX_LDFLAGS
+
+unset MANPATH
+IFS=':' read -r -a manpaths <<<"$(manpath)"
+
+# NIX_LDFLAGS
+extract_nix_flags_manpath() {
+  if [[ -z "${NIX_LDFLAGS}" ]]; then
+    return
+  fi
+  IFS=' ' read -r -a ldflags <<<"${NIX_LDFLAGS}"
+  for ldflag in "${ldflags[@]}"; do
+    if case "$ldflag" in -L*) false ;; *) true ;; esac then
+      continue
+    fi
+
+    # remove '-L'
+    libpath=${ldflag#'-L'}
+
+    # lib and man in same output
+    manpath_same_out="${libpath}/../share/man"
+
+    # lib and man in different output (example: xorg.libxcb)
+    IFS=$'\n' read -r -d '' -a nix_outputs <<<"$(nix-store --query --outputs "$(nix-store --query --deriver "$libpath")")"
+    for nix_output in "${nix_outputs[@]}"; do
+      if [[ $nix_output == *-man ]] ; then
+        manpath_diff_out="$nix_output/share/man"
+        break
+      fi
+    done
+
+    # check dir exist
+    manpath=""
+    if [[ -d "$manpath_same_out" ]]; then
+      manpath="$manpath_same_out"
+    elif [[ -d "$manpath_diff_out" ]]; then
+      manpath="$manpath_diff_out"
+    fi
+
+    if [[ -z "$manpath" ]]; then
+      continue
+    fi
+    manpath=$(realpath "${manpath}")
+
+    manpaths=("${manpaths[@]}" "$manpath")
+  done
+}
+
+# PKG_CONFIG_PATH PKG_CONFIG_LIBDIR PKG_CONFIG_PATH_FOR_TARGET
+# extract_pkg_config_manpath() {
+#   echo -n ""
+# }
+
+sort_uniq_manpath() {
+  uniq_manpaths="$(printf "%s\n" "${manpaths[@]}" | sort -u)"
+  unset manpaths
+  IFS=$'\n' read -r -d '' -a manpaths <<<"${uniq_manpaths}"
+}
+
+extract_nix_flags_manpath
+sort_uniq_manpath
+
+echo "export MANPATH=$(echo "${manpaths[@]}" | tr ' ' ':')"
+
