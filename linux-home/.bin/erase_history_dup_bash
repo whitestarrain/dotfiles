@@ -60,7 +60,7 @@ if [[ -n "$OUTPUT_FILE" && $(realpath "$HISTORY_FILE_PATH") == $(realpath "$OUTP
   echo "create backup file: ${bak_file}"
 
   # delete old file, remain 10 files
-  max_backup_num=10
+  max_backup_num=30
   # -d '' will cause read return 1
   IFS=$'\n' read -d '' -r -a logfiles < <(find ~/.bash_history.bak -type f -name ".bash_history.*" | sort -r) || echo ''
   if [[ ${#logfiles[@]} -gt ${max_backup_num} ]]; then

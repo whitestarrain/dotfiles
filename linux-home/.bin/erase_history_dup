@@ -8,7 +8,7 @@ from collections import OrderedDict
 
 HOME = os.environ.get("HOME")
 HISTORY_FILE_PATH = f"{HOME}/.bash_history"
-MAX_BAK_FILES = 10
+MAX_BAK_FILES = 30
 HISTORY_FILE_BAK_DIR_PATH = f"{HOME}/.bash_history.bak"
 
 if not HOME:
