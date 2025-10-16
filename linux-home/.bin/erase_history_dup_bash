@@ -2,7 +2,7 @@
 
 set -e
 
-HISTORY_FILE_PATH="$HOME/.bash_history"
+HISTORY_FILE_PATH="${HISTFILE:-"$HOME/.bash_history"}"
 SEPARATE_BY_TIMESTAMP="true"
 USELESS_COMMAND_PREFIX=""
 
@@ -11,7 +11,7 @@ while [ $# -gt 0 ]; do
   -h | --help)
     echo "usage: $(basename "$0") [-o | -f]"
     echo '  -o, --output                    Default stdin, file to output'
-    echo '  -f, --history_file              Default ~/.bash_history, history file path'
+    echo '  -f, --history_file              Default $HISTFILE, history file path'
     echo '  -s, --separate_by_timestamp     Default true, separate each command from an other based on its timestamp'
     echo '  -d, --useless_command_prefix    Default empty, split by ","'
     exit

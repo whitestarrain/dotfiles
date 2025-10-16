@@ -7,7 +7,9 @@ import time
 from collections import OrderedDict
 
 HOME = os.environ.get("HOME")
-HISTORY_FILE_PATH = f"{HOME}/.bash_history"
+HISTORY_FILE_PATH = (
+    os.path.expandvars(os.environ.get("HISTFILE")) or f"{HOME}/.bash_history"
+)
 MAX_BAK_FILES = 30
 HISTORY_FILE_BAK_DIR_PATH = f"{HOME}/.bash_history.bak"
 
@@ -27,8 +29,8 @@ parser.add_argument(
     "--history_file",
     "-f",
     type=str,
-    default=f"{HOME}/.bash_history",
-    help="History file path, default is ~/.bash_history, ",
+    default=HISTORY_FILE_PATH,
+    help="History file path, default is $HISTFILE, ",
 )
 parser.add_argument(
     "--useless_command_prefix",
