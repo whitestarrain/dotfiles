@@ -2,7 +2,7 @@
 
 set -e
 
-IMAGE_DEST_DIR_RELATIVE_PATH="image"
+IMAGE_DEST_DIR_RELATIVE_PATH="./image"
 SKIP_CONFIRM=false
 SKIP_ERROR=false
 
