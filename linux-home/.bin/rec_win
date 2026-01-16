@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# https://github.com/sk1418/myScripts/blob/master/shell/recWin.sh
+
+D=$1
+EXPORT_DIR="$HOME/myTmp/GIF"
+#check argument, if not number or empty, set default duration
+if [[ -z "$D" || -n ${D//[0-9]/} ]]; then
+	D=10 #default 10s
+fi
+echo "Durtion of animation: ${D}"
+
+#the tmp file to store xwindow info
+TMP=/tmp/wsize.tmp
+
+#the recorded file path
+GIF=$EXPORT_DIR/$(date +%Y%m%d_%H%M%S).gif
+
+echo "please click the window you want to record.."
+xwininfo -frame > $TMP
+
+X=$(awk -F: '/Absolute upper-left X:/{print $2}' $TMP)
+Y=$(awk -F: '/Absolute upper-left Y:/{print $2}' $TMP)
+WIDTH=$(grep -Po "(?<=Width: )\d+" $TMP)
+HEIGHT=$(grep -Po "(?<=Height: )\d+" $TMP)
+
+byzanz-record --delay=2 -v -d "$D" -x $((X/2)) -y $((Y/2)) -w $((WIDTH/2)) -h $((HEIGHT/2)) "$GIF"
+echo "GIF animation was saved as ${GIF}"
+rm -f $TMP
