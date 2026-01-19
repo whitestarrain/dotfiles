@@ -1,4 +1,4 @@
-elpa
-eln-cache
-auto-save-list
-games
+*
+!list
+!early-init.el
+!init.el
