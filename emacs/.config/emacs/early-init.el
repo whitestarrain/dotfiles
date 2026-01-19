@@ -13,7 +13,5 @@
 (setq inhibit-splash-screen t)
 (setq use-file-dialog nil)
 
-(setq comp-deferred-compilation nil)
-
 (provide 'early-init)
 
