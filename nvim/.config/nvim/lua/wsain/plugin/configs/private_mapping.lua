@@ -6,7 +6,7 @@ require("wsain.plugin.whichkey").register({
   { "<leader>z", group = "+others", mode = "v" },
   { "<leader>zm", group = "+mode", mode = "n" },
   { "<leader>zp", ":syntax sync fromstart<cr>", desc = "syntax sync" },
-  { "<leader>zl", ":%s/\\v(\\n\\s*){2,}/\\r\\r/<cr> :/jkjk<cr>", desc = "compress blank line" },
+  { "<leader>zl", ":%s/\\n\\n\\+/\\r\\r/g<cr>", desc = "compress blank line" },
   { "<leader>zf", ':echo expand("%:p")<cr>', desc = "show file path" },
   -- can use gx replaced
   { "<leader>zu", require("wsain.utils").openFileUnderCursor, desc = "open file under cursor" },
