@@ -3,3 +3,6 @@
 !lisp/**/*
 !early-init.el
 !init.el
+!straight
+!straight/versions
+!straight/versions/**/*
