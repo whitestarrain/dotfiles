@@ -4,11 +4,6 @@
 ;; mouse cursor
 (set-mouse-color "White")
 
-;; theme
-;; (add-to-list 'custom-theme-load-path
-;;              "~/dotfiles/emacs/.config/emacs/lisp/custom-theme")
-
-
 (setq use-dialog-box nil)
 (setq inhibit-default-init t)
 (setq inhibit-startup-screen t)
@@ -112,21 +107,6 @@
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 
 (set-face-attribute 'default nil :height 140)
-
-(when (display-graphic-p)
-  (let ((top    (round (* (x-display-pixel-height) 0.125)))
-        (left   (round (* (x-display-pixel-width) 0.125)))
-        (height (round (* 0.75
-                          (/ (x-display-pixel-height)
-                             (frame-char-height))))))
-    (let ((width  (round (* 0.75
-                          (/ (x-display-pixel-width)
-                             (frame-char-width))))))
-      (setq default-frame-alist nil)
-      (add-to-list 'default-frame-alist (cons 'top top))
-      (add-to-list 'default-frame-alist (cons 'left left))
-      (add-to-list 'default-frame-alist (cons 'height height))
-      (add-to-list 'default-frame-alist (cons 'width width)))))
 
 (provide 'init-ui)
 
