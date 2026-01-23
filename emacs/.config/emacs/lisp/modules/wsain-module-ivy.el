@@ -1,6 +1,14 @@
 (straight-use-package 'ivy)
+(straight-use-package 'swiper)
 
 (ivy-mode)
+
+;; ivy fuzzy search
+;; (with-eval-after-load 'ivy
+;;   (push (cons #'swiper (cdr (assq t ivy-re-builders-alist)))
+;;         ivy-re-builders-alist)
+;;   (push (cons t #'ivy--regex-fuzzy) ivy-re-builders-alist))
+
 ;; (setopt ivy-use-virtual-buffers t)
 ;; (setopt enable-recursive-minibuffers t)
 ;; ;; Enable this if you want `swiper' to use it:
@@ -22,5 +30,7 @@
 ;; (keymap-global-set "C-x l" #'counsel-locate)
 ;; (keymap-global-set "C-S-o" #'counsel-rhythmbox)
 ;; (keymap-set minibuffer-local-map "C-r" #'counsel-minibuffer-history)
-;;
+
+
+
 (provide 'wsain-module-ivy)
