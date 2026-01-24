@@ -16,16 +16,11 @@
 (require 'wsain-module-org)
 (require 'wsain-module-pdf)
 (require 'wsain-module-ui)
+(require 'wsain-module-nav)
 
 ;; lang modules
 (require 'wsain-module-lisp)
+(require 'wsain-module-markdown)
 
-;; others
-(straight-use-package 'markdown-mode)
-(straight-use-package 'imenu-list)
-
-(straight-use-package 'treemacs)
-
-(straight-use-package 'zoxide)
 
 (provide 'init-modules)
