@@ -5,9 +5,9 @@
     '(
         (shell . t)
         (emacs-lisp . t)
-        (python . t)
-    )
-)
+        (python . t)))
+    
+
 
 (provide 'wsain-module-org)
 

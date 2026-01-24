@@ -1,3 +1,5 @@
+;;;;;;;;;;UI;;;;;;;;;;
+
 ;; make emacs fill the window
 (setq frame-resize-pixelwise t)
 
@@ -74,7 +76,6 @@
 (defalias 'y-or-n-p 'default-yes-sometimes)
 
 (setq kill-ring-max 200)
-
 (setq kill-do-not-save-duplicates t)
 
 (setq mark-ring-max 6)
@@ -108,6 +109,19 @@
 
 (set-face-attribute 'default nil :height 140)
 
-(provide 'init-ui)
+;;;;;;;;;;EDIT;;;;;;;;;;
+
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
+;;;;;;;;;;DEFAULT PATH;;;;;;;;;;
+
+(setq doc-view-cache-directory (expand-file-name ".doc-view-cache" wsain-dir))
+
+;;;;;;;;;;MODES;;;;;;;;;;
+
+(electric-pair-mode)
 
 
+;;;;;;;;;;END;;;;;;;;;;
+(provide 'init-opts)
