@@ -6,6 +6,9 @@
 (push '(vertical-scroll-bars) default-frame-alist)
 
 (setq frame-inhibit-implied-resize t)
+;; make emacs work well with tiling window managers
+(setq frame-resize-pixelwise t)
+
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)

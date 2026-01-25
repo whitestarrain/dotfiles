@@ -1,8 +1,5 @@
 ;;;;;;;;;;UI;;;;;;;;;;
 
-;; make emacs fill the window
-(setq frame-resize-pixelwise t)
-
 ;; mouse cursor
 (set-mouse-color "White")
 
