@@ -1,5 +1,4 @@
 (straight-use-package 'ivy)
-(straight-use-package 'swiper)
 
 (ivy-mode)
 
