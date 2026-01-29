@@ -1,4 +1,4 @@
-(straight-use-package 'org-noter)
+(straight-use-package '(org-noter :type git :host github :repo "org-noter/org-noter"))
 (setq org-noter-always-create-frame nil)
 
 (straight-use-package 'pdf-tools)

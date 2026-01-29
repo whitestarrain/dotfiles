@@ -20,7 +20,7 @@
  ("org" . "7e805803247d50d70e235957c3ad10b5bb6892e5")
  ("org-download" . "c8be2611786d1d8d666b7b4f73582de1093f25ac")
  ("org-mode" . "7e805803247d50d70e235957c3ad10b5bb6892e5")
- ("org-noter" . "81765d267e51efd8b4f5b7276000332ba3eabbf5")
+ ("org-noter" . "9ead81d42dd4dd5074782d239b2efddf9b8b7b3d")
  ("parinfer-rust-mode" . "6ee9f905c41f6368689ad12aa99516b9ee4fb06d")
  ("pdf-tools" . "365f88238f46f9b1425685562105881800f10386")
  ("pfuture" . "19b53aebbc0f2da31de6326c495038901bffb73c")
