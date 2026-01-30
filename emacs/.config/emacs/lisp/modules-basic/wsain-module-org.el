@@ -6,6 +6,10 @@
 
 (straight-use-package 'org-download)
 
+(with-eval-after-load 'org-download-autoloads
+    (org-download-enable)
+    (setq-default org-download-image-dir "./image"))
+
 ;; (straight-use-package 'org-tidy)
 ;; (add-hook 'org-mode-hook #'org-tidy-mode)
 
