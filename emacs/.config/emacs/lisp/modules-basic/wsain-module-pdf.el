@@ -6,12 +6,17 @@
 (with-eval-after-load 'pdf-tools-autoloads
     (pdf-tools-install)
     (add-hook 'pdf-view-mode-hook 'pdf-view-fit-height-to-window)
-    (add-hook 'pdf-view-mode-hook 'pdf-view-roll-minor-mode))
-(add-to-list 'auto-mode-alist '("\\.[pP][dD][fF]\\'" . pdf-view-mode))
-(add-to-list 'magic-mode-alist '("%PDF" . pdf-view-mode))
+    (add-hook 'pdf-view-mode-hook 'pdf-view-roll-minor-mode)
+    (add-to-list 'auto-mode-alist '("\\.[pP][dD][fF]\\'" . pdf-view-mode))
+    (add-to-list 'magic-mode-alist '("%PDF" . pdf-view-mode)))
+
 
 ;; extract scanned pdf toc
 ;;  https://github.com/dalanicolai/doc-tools-toc
 ;;  https://github.com/yuchen-lea/pdfhelper
+
+;; (straight-use-package '(doc-tools-toc :type git :host github :repo "dalanicolai/doc-tools-toc"))
+;; (with-eval-after-load 'pdf-tools-autoloads
+;;                       (setq doc-toc-ocr-languages "eng+chi_sim"))
 
 (provide 'wsain-module-pdf)
