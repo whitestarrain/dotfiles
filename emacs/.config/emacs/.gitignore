@@ -6,3 +6,6 @@
 !straight
 !straight/versions
 !straight/versions/**/*
+!rime
+!rime/default.custom.yaml
+!rime/rime_ice.custom.yaml
