@@ -15,9 +15,10 @@
   (setq dashboard-items '((recents   . 10)
                           (bookmarks . 5)
                           (projects  . 10)
-                          (agenda    . 10)
+                          ;; (agenda    . 9)
                           (registers . 5)))
   (dashboard-setup-startup-hook))
+
 
 
 (straight-use-package 'rainbow-delimiters)
