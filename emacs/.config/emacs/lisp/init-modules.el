@@ -17,7 +17,7 @@
 
 ;; basic modules
 (require 'wsain-module-git)
-(require 'wsain-module-gtd)
+(require 'wsain-module-agenda)
 (require 'wsain-module-ivy)
 (require 'wsain-module-which-key)
 (require 'wsain-module-org)
