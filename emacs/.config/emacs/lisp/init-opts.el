@@ -91,6 +91,7 @@
 ;; Mark Ring
 (setq mark-ring-max 32)                   ; Max items in mark ring
 (setq global-mark-ring-max 32)            ; Max items in global mark ring
+(delete-selection-mode 1)                 ; Inerting text whill delete region while mark is active
 
 ;; File Backup
 (setq make-backup-files nil)              ; Disable backup files
