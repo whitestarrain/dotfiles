@@ -157,5 +157,28 @@
 (put 'list-threads 'disabled nil)         ; Enable list-threads command
 
 ;;;===================================================
+;;; CALC
+;;;===================================================
+
+(setq symbol-function 'calc-convert-exact-units)
+(setq math-additional-units  '((b nil "Bit")
+                                (B "8 * b" "Byte")
+                                (Kb "10^3 * b" "KiloBit")
+                                (Mb "10^6 * b" "MegaBit")
+                                (Gb "10^9 * b" "GigaBit")
+                                (Tb "10^12 * b" "TeraBit")
+                                (KB "2^10 * B" "KibiByte")
+                                (MB "2^20 * B" "MebiByte")
+                                (GB "2^30 * B" "GibiByte")
+                                (TB "2^40 * B" "TebiByte")
+                                (PB "2^50 * B" "PebiByte")
+                                (EB "2^60 * B" "ExbiByte")
+
+                                (ms "10^-3 * s" "Millesecond")
+                                (us "10^-6 * s" "Microsecond")
+                                (ns "10^-9 * s" "Nanosecond")))
+(setq math-units-table nil)
+
+;;;===================================================
 
 (provide 'init-opts)
