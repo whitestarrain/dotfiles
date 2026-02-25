@@ -12,6 +12,13 @@
 (blink-cursor-mode -1)                    ; Disable cursor blinking
 (column-number-mode t)                    ; Show column number in mode-line
 
+;; Line
+(setq display-line-numbers-type 'relative)                    ; Set the line number type to relative
+(dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
+    (progn
+      ;; (add-hook hook 'hl-line-mode)                           ; Highlighting current line
+      (add-hook hook 'display-line-numbers-mode)))            ; Enable line numbers globally
+
 ;; Audio/Visual Feedback
 (setq ring-bell-function 'ignore)         ; Disable bell sound
 

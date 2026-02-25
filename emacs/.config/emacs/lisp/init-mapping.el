@@ -19,7 +19,12 @@
   (interactive)
   (previous-line (/ (window-body-height) 2)))
 
-(global-set-key (kbd "M-]") 'move-point-half-page-down)
-(global-set-key (kbd "M-[") 'move-point-half-page-up)
+(global-set-key (kbd "M-p") 'move-point-half-page-up)
+(global-set-key (kbd "M-n") 'move-point-half-page-down)
+
+;; terminal emacs, shift-tab
+;; https://stackoverflow.com/questions/3518846/shift-tab-produces-cryptic-error-in-emacs
+(add-hook 'term-setup-hook
+          (lambda () (define-key input-decode-map "\e[Z" [backtab])))
 
 (provide 'init-mapping)
