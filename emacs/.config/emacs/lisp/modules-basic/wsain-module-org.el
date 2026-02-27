@@ -7,6 +7,9 @@
                               '((shell . t)
                                 (emacs-lisp . t)
                                 (python . t)))
+
+  ;; TODO: style (https://sophiebos.io/posts/beautifying-emacs-org-mode/)
+
   ;; todo (run org-mode-restart after using `#+TODO:`)
   (setq org-startup-folded 'fold)
   (setq org-enforce-todo-dependencies t)
@@ -28,7 +31,11 @@
   ;; agenda
   (make-directory "~/Agenda" t)
   (setq org-agenda-files '("~/Agenda"))
-  (setq org-default-notes-file "~/Agenda/default.org"))
+  (setq org-default-notes-file "~/Agenda/default.org")
+
+  ;; mapping
+  (define-key org-mode-map (kbd "C-c C-t") nil)
+  (define-key org-mode-map (kbd "C-c o") 'org-todo))
 
 (straight-use-package 'org-download)
 (with-eval-after-load 'org-download-autoloads
@@ -40,7 +47,17 @@
 ;; (straight-use-package 'org-tidy)
 ;; (add-hook 'org-mode-hook #'org-tidy-mode)
 
-;; (straight-use-package 'org-modern)
+;; org-inhibit-startup can break org-modern's indent, such like function 'org-toggle-tags-groups
+(straight-use-package 'org-modern)
+(with-eval-after-load 'org-modern-autoloads
+    (global-org-modern-mode)
+    (setq org-modern-star '("◉" "○" "◈" "◇" "▸" "▹"))
+    (unless window-system
+      (setq org-modern-table nil)))
+
+(straight-use-package '(org-modern-indent :type git :host github :repo "jdtsmith/org-modern-indent"))
+(with-eval-after-load 'org-modern-indent-autoloads
+    (add-hook 'org-mode-hook #'org-modern-indent-mode 90))
 
 (provide 'wsain-module-org)
 
