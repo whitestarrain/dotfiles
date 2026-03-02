@@ -1,8 +1,9 @@
 (straight-use-package 'org-mode)
 (with-eval-after-load 'org-mode-autoloads
-  ;; basic
+  ;; BASIC
   (setq org-startup-indented t)
-  (setq org-indent-indentation-per-level 2)
+  (setq org-indent-indentation-per-level 1)
+  (setq org-read-date-force-compatible-dates nil)
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((shell . t)
                                  (emacs-lisp . t)
@@ -10,31 +11,59 @@
 
   ;; TODO: style (https://sophiebos.io/posts/beautifying-emacs-org-mode/)
 
-  ;; todo (run org-mode-restart after using `#+TODO:`)
+  ;; TODO (run org-mode-restart after using `#+TODO:`)
   (setq org-startup-folded 'fold)
   (setq org-enforce-todo-dependencies t)
   (setq org-log-into-drawer t)
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "DOING(d!)" "WAIT(w@/!)" "|" "DONE(o!)" "CANCELED(c@)")
+        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(o!)" "CANCELED(c@)")
           (sequence "REPORT" "BUG" "KNOWNCAUSE" "|" "FIXED")))
 
-  ;; tag
+  ;; [/] [%A] statistic
+  (setq org-hierarchical-todo-statistics nil) ; recursive statistics cookie count TODO entries
+
+  ;; TAG
   (setq org-tag-alist (setq org-tag-alist '((:startgrouptag)
                                             ("SCENE")
                                             (:grouptags)
                                             ("@life" . ?l)
                                             ("@study" . ?s)
                                             ("@work" . ?w)
-                                            (:endgrouptag)
-                                            ("journal"))))
+                                            (:endgrouptag))))
 
-  ;; agenda
+  ;; AGENDA
   (setq-default org-agenda-dir "~/Agenda")
   (make-directory org-agenda-dir t)
   (setq org-agenda-files (cons org-agenda-dir nil))
   (setq org-default-notes-file nil)
+  (setq org-agenda-clockreport-parameter-plist
+        '(:link t
+                :maxlevel 5
+                :fileskip0 t
+                :compact nil
+                :narrow 80))
+  ;; (setq org-agenda-skip-scheduled-if-done t)
+  ;; (setq org-agenda-skip-deadline-if-done t)
+  (setq org-log-note-clock-out t)
 
-  ;; capture
+  ;; REFILE && ARCHIVE
+  (setq org-refile-targets
+        '((nil :maxlevel . 3)
+          (org-agenda-files :maxlevel . 3)))
+  (setq org-archive-location "archive/%s_archive::")
+  (setq org-archive-file-header-format nil)
+  ;; https://emacs-china.org/t/todo/15701/9?u=wsain
+  ;; (defun archive-done-tasks ()
+  ;; (interactive)
+  ;; (save-excursion
+  ;;   (goto-char (point-min))
+  ;;   (while (re-search-forward
+  ;;           (concat "\\* " (regexp-opt org-done-keywords) " ") nil t)
+  ;;     (goto-char (line-beginning-position))
+  ;;     (org-archive-subtree))))
+  ;; (add-to-list 'safe-local-variable-values '(after-save-hook . (archive-done-tasks)))
+
+  ;; CAPTURE
   ;; TODO: journal defualt add tag 'journal', org-agenda default filter journal tag
   (setq org-capture-templates
         `(
@@ -42,17 +71,25 @@
            "Inbox"
            entry
            (file ,(expand-file-name "inbox.org" org-agenda-dir))
-           "* TODO %? %U \n %i")
-          ("j"
-           "Journal"
+           "* TODO %? \n %i")
+          ("w"
+           "Work_Journal"
            entry
-           (file+olp+datetree ,(expand-file-name "journal.org" org-agenda-dir))
-           "* %? %T \n %i")
+           (file+olp+datetree ,(expand-file-name "work_journal.org" org-agenda-dir))
+           "* %? %U \n %i")
+          ("d"
+           "Diary"
+           entry
+           (file+olp+datetree ,(expand-file-name "diary.org" org-agenda-dir))
+           "* %? %U %^g \n %i")
           ))
 
-  ;; mapping
+  ;; MAPPING
   (define-key org-mode-map (kbd "C-c C-t") nil)
-  (define-key org-mode-map (kbd "C-c o") 'org-todo))
+  (define-key org-mode-map (kbd "C-c o") 'org-todo)
+  (add-hook 'org-agenda-mode-hook
+            (lambda ()
+              (define-key org-agenda-mode-map "k" 'org-capture))))
 
 (straight-use-package 'org-download)
 (with-eval-after-load 'org-download-autoloads
@@ -60,9 +97,6 @@
   (setq-default org-download-image-dir "./image"))
 
 (straight-use-package 'org-ql)
-
-;; (straight-use-package 'org-tidy)
-;; (add-hook 'org-mode-hook #'org-tidy-mode)
 
 ;; org-inhibit-startup can break org-modern's indent, such like function 'org-toggle-tags-groups
 (straight-use-package 'org-modern)
@@ -75,6 +109,19 @@
 (straight-use-package '(org-modern-indent :type git :host github :repo "jdtsmith/org-modern-indent"))
 (with-eval-after-load 'org-modern-indent-autoloads
   (add-hook 'org-mode-hook #'org-modern-indent-mode 90))
+
+
+;; TODO: recurive search (directory-files-recursively), set org-id-extra-files
+(straight-use-package '(org-super-links :type git :host github :repo "toshism/org-super-links"))
+(with-eval-after-load 'org-super-links-autoloads
+  (require 'org-id)
+  (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
+  (define-key org-mode-map (kbd "C-c s l") 'org-super-links-link)
+  (define-key org-mode-map (kbd "C-c s s") 'org-super-links-store-link)
+  (define-key org-mode-map (kbd "C-c s i") 'org-super-links-insert-link))
+
+;; (straight-use-package 'org-tidy)
+;; (add-hook 'org-mode-hook #'org-tidy-mode)
 
 (provide 'wsain-module-org)
 
