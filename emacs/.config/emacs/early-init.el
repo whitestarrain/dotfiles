@@ -9,10 +9,10 @@
 ;; make emacs work well with tiling window managers
 (setq frame-resize-pixelwise t)
 
+(dolist (func '(menu-bar-mode tool-bar-mode scroll-bar-mode))
+  (if (functionp func)
+      (funcall func -1)))
 
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
 (setq inhibit-splash-screen t)
 (setq use-file-dialog nil)
 
