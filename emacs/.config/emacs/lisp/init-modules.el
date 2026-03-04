@@ -23,6 +23,7 @@
 (require 'wsain-module-pdf)
 (require 'wsain-module-ui)
 (require 'wsain-module-nav)
+(require 'wsain-module-completion)
 (require 'wsain-module-themes)
 
 ;; lang modules

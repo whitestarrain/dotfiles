@@ -9,24 +9,23 @@
                                  (emacs-lisp . t)
                                  (python . t)))
 
-  ;; TODO: style (https://sophiebos.io/posts/beautifying-emacs-org-mode/)
-
   ;; TODO (run org-mode-restart after using `#+TODO:`)
   (setq org-startup-folded 'fold)
   (setq org-enforce-todo-dependencies t)
   (setq org-log-into-drawer t)
   (setq org-log-reschedule t)
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(o!)" "CANCELED(c@)")
+        '((sequence "TODO(t)" "WAIT(w@/!)" "HOLD(h@/!)" "|" "DONE(o!)" "CANCELED(c@)")
           (sequence "INBOX(i)" "|" "CANCELED(c@)")
           (sequence "REPORT" "BUG" "KNOWNCAUSE" "|" "FIXED")))
   (setq org-todo-keyword-faces
-        '(("TODO" . (:background "#fabd2f" :foreground "#3c3836" :weight bold))
+        '(("TODO" . (:background "#63d0d4" :foreground "#3c3836" :weight bold))
+          ("HOLD" . (:background "#d79921" :foreground "#3c3836" :weight bold))
           ("WAIT" . (:background "#fe8019" :foreground "#3c3836" :weight bold))
-          ("DONE" . (:background "#b8bb26" :foreground "#3c3836" :weight bold))
+          ("DONE" . (:background "#8ec07c" :foreground "#3c3836" :weight bold))
           ("CANCELED" . (:background "#fb4934" :foreground "#3c3836" :weight bold :strike-through t))
 
-          ("INBOX" . (:background "#83a598" :foreground "#3c3836" :weight bold))
+          ("INBOX" . (:background "#fabd2f" :foreground "#3c3836" :weight bold))
 
           ("REPORT" . (:background "#d3869b" :foreground "#3c3836" :weight bold))
           ("BUG" . (:background "#fb4934" :foreground "#3c3836" :weight bold))
@@ -51,8 +50,9 @@
   (make-directory org-agenda-dir t)
   (setq org-agenda-files (cons org-agenda-dir nil))
   (setq org-default-notes-file nil)
+  (setq org-agenda-log-mode-items '(state clock))
   (setq org-agenda-clockreport-parameter-plist
-        '(:link t
+              '(:link t
                 :maxlevel 5
                 :fileskip0 t
                 :compact nil
@@ -96,8 +96,13 @@
            "Diary"
            entry
            (file+olp+datetree ,(expand-file-name "diary.org" org-agenda-dir))
-           "* %? %U %^g \n %i")
+           "* %? %U \n %i")
           ))
+
+  (add-hook 'org-capture-before-finalize-hook
+            (lambda ()
+              (when (eq major-mode 'org-mode)
+                (org-align-tags t))))
 
   ;; MAPPING
   (define-key org-mode-map (kbd "C-c C-t") nil)
