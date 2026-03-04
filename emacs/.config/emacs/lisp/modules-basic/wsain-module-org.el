@@ -15,9 +15,24 @@
   (setq org-startup-folded 'fold)
   (setq org-enforce-todo-dependencies t)
   (setq org-log-into-drawer t)
+  (setq org-log-reschedule t)
   (setq org-todo-keywords
         '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(o!)" "CANCELED(c@)")
+          (sequence "INBOX(i)" "|" "CANCELED(c@)")
           (sequence "REPORT" "BUG" "KNOWNCAUSE" "|" "FIXED")))
+  (setq org-todo-keyword-faces
+        '(("TODO" . (:foreground "#fabd2f" :background "#3c3836" :weight bold))
+          ("WAIT" . (:foreground "#fe8019" :background "#3c3836" :weight bold))
+          ("DONE" . (:foreground "#b8bb26" :background "#3c3836" :weight bold))
+          ("CANCELED" . (:foreground "#fb4934" :background "#3c3836" :weight bold :strike-through t))
+
+          ("INBOX" . (:foreground "#83a598" :background "#3c3836" :weight bold))
+
+          ("REPORT" . (:foreground "#d3869b" :background "#3c3836" :weight bold))
+          ("BUG" . (:foreground "#fb4934" :background "#3c3836" :weight bold))
+          ("KNOWNCAUSE" . (:foreground "#b16286" :background "#3c3836" :weight bold))
+          ("FIXED" . (:foreground "#8ec07c" :background "#3c3836" :weight bold))))
+  (setq org-modern-todo-faces org-todo-keyword-faces)
 
   ;; [/] [%A] statistic
   (setq org-hierarchical-todo-statistics nil) ; recursive statistics cookie count TODO entries
@@ -71,7 +86,7 @@
            "Inbox"
            entry
            (file ,(expand-file-name "inbox.org" org-agenda-dir))
-           "* TODO %? \n %i")
+           "* INBOX %? %T \n %i")
           ("w"
            "Work_Journal"
            entry
