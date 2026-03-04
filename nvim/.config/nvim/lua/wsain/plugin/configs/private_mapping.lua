@@ -1,7 +1,18 @@
 local plugin = require("wsain.plugin.template"):new()
 local utils = require("wsain.utils")
 require("wsain.plugin.whichkey").register({
-  { "<leader>d", ":bp|bd #<cr>", desc = "delete buffer" },
+  {
+    "<leader>d",
+    function()
+      local current_buf = vim.api.nvim_get_current_buf()
+      local prev_buf = vim.fn.bufnr("#")
+      if prev_buf ~= -1 and vim.api.nvim_buf_is_valid(prev_buf) and vim.fn.buflisted(prev_buf) == 1 then
+        vim.api.nvim_set_current_buf(prev_buf)
+      end
+      vim.api.nvim_buf_delete(current_buf, {})
+    end,
+    desc = "delete buffer",
+  },
   { "<leader>z", group = "+others", mode = "n" },
   { "<leader>z", group = "+others", mode = "v" },
   { "<leader>zm", group = "+mode", mode = "n" },
