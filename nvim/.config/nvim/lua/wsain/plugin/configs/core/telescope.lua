@@ -246,6 +246,14 @@ plugin.config = function()
       desc = "zoxide",
       mode = "n",
     },
+    {
+      "<leader>f,",
+      function()
+        require('telescope.builtin').find_files({ search_dirs = vim.split(vim.o.runtimepath, ',') })
+      end,
+      desc = "rtp file",
+      mode = "n",
+    },
     { "<leader>c", group = "code", mode = "n" },
     {
       "<leader>cj",
