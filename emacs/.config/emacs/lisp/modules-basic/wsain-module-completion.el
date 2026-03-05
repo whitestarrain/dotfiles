@@ -5,4 +5,8 @@
   (global-set-key (kbd "M-.") #'company-indent-or-complete-common)
   (global-set-key (kbd "M-/") #'xref-find-definitions))
 
+(straight-use-package 'company-box)
+(with-eval-after-load 'company-box-autoloads
+  (add-hook 'company-mode-hook 'company-box-mode))
+
 (provide 'wsain-module-completion)
