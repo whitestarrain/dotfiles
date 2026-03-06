@@ -6,9 +6,9 @@
 (add-to-list 'load-path wsain-lisp-dir)
 
 ;; basic config
+(require 'init-functions)
 (require 'init-opts)
 (require 'init-mapping)
-(require 'init-utils)
 ;; plugin manager
 (require 'init-straight)
 ;; plugins
@@ -16,4 +16,6 @@
 
 ;; theme
 (load-theme 'gruvbox-dark-medium t)
+(unless window-system
+  (set-face-background 'default "unspecified-bg"))
 

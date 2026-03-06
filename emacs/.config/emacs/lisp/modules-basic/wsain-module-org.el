@@ -15,11 +15,12 @@
   (setq org-log-into-drawer t)
   (setq org-log-reschedule t)
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "WAIT(w@/!)" "HOLD(h@/!)" "|" "DONE(o!)" "CANCELED(c@)")
+        '((sequence "TODO(t)" "DOING(d@/!)""WAIT(w@/!)" "HOLD(h@/!)" "|" "DONE(o!)" "CANCELED(c@)")
           (sequence "INBOX(i)" "|" "CANCELED(c@)")
           (sequence "REPORT" "BUG" "KNOWNCAUSE" "|" "FIXED")))
   (setq org-todo-keyword-faces
         '(("TODO" . (:background "#63d0d4" :foreground "#3c3836" :weight bold))
+          ("DOING" . (:background "#63a0d5" :foreground "#3c3836" :weight bold))
           ("HOLD" . (:background "#d79921" :foreground "#3c3836" :weight bold))
           ("WAIT" . (:background "#fe8019" :foreground "#3c3836" :weight bold))
           ("DONE" . (:background "#8ec07c" :foreground "#3c3836" :weight bold))
@@ -109,7 +110,8 @@
   (define-key org-mode-map (kbd "C-c o") 'org-todo)
   (add-hook 'org-agenda-mode-hook
             (lambda ()
-              (define-key org-agenda-mode-map "k" 'org-capture))))
+              (define-key org-agenda-mode-map "k" 'org-capture)
+              (define-key org-agenda-mode-map "K" 'org-agenda-capture))))
 
 (straight-use-package 'org-download)
 (with-eval-after-load 'org-download-autoloads

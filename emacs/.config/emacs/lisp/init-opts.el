@@ -123,33 +123,8 @@
 
 ;; Dialog Box Behavior
 (setq use-dialog-box nil)                 ; Disable GUI dialog boxes
-
-;; Yes/No Prompt Customization
-(setq original-y-or-n-p 'y-or-n-p)
-(defalias 'original-y-or-n-p (symbol-function 'y-or-n-p))
-
-(defun default-yes-sometimes (prompt)
-  "Automatically say 'yes' when prompt matches certain patterns"
-  (if (or
-       (string-match "has a running process" prompt)
-       (string-match "does not exist; create" prompt)
-       (string-match "modified; kill anyway" prompt)
-       (string-match "Delete buffer using" prompt)
-       (string-match "Kill buffer of" prompt)
-       (string-match "still connected.  Kill it?" prompt)
-       (string-match "Shutdown the client's kernel" prompt)
-       (string-match "kill them and exit anyway" prompt)
-       (string-match "Revert buffer from file" prompt)
-       (string-match "Kill Dired buffer of" prompt)
-       (string-match "delete buffer using" prompt)
-       (string-match "Kill all pass entry" prompt)
-       (string-match "for all cursors" prompt)
-       (string-match "Do you want edit the entry" prompt))
-      t
-    (original-y-or-n-p prompt)))
-
-(defalias 'yes-or-no-p 'default-yes-sometimes)
-(defalias 'y-or-n-p 'default-yes-sometimes)
+(defalias 'yes-or-no-p 'wsain/default-yes-sometimes)
+(defalias 'y-or-n-p 'wsain/default-yes-sometimes)
 
 ;;;===================================================
 ;;; SYSTEM & PERFORMANCE
