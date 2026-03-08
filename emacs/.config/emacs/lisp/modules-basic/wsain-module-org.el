@@ -61,6 +61,7 @@
   ;; (setq org-agenda-skip-scheduled-if-done t)
   ;; (setq org-agenda-skip-deadline-if-done t)
   (setq org-log-note-clock-out t)
+  (advice-add 'org-agenda-get-timestamps :override #'wsain/org-agenda-get-timestamps)
 
   ;; REFILE && ARCHIVE
   (setq org-refile-targets
