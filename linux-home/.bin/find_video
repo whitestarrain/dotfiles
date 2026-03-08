@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+
+find . -type f -name "*.mp4" -printf '%T@\0"%p"\n' | sort -n -r | awk -F'\0' '{print($2)}'
