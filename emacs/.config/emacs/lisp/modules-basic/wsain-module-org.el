@@ -15,18 +15,23 @@
   (setq org-log-into-drawer t)
   (setq org-log-reschedule t)
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "DOING(d@/!)""WAIT(w@/!)" "HOLD(h@/!)" "|" "DONE(o!)" "CANCELED(c@)")
+        '((sequence "TODO(t)" "|" "DONE(o!)" "CANCELED(c@)")
+          (sequence "DOING(d@/!)" "WAIT(w@/!)" "HOLD(h@/!)" "QA(q!)")
           (sequence "INBOX(i)" "|" "CANCELED(c@)")
+          (sequence "HABIT(a)" "|" "DONE(o!)")
           (sequence "REPORT" "BUG" "KNOWNCAUSE" "|" "FIXED")))
   (setq org-todo-keyword-faces
-        '(("TODO" . (:background "#63d0d4" :foreground "#3c3836" :weight bold))
-          ("DOING" . (:background "#63a0d5" :foreground "#3c3836" :weight bold))
+        '(("TODO" . (:background "#63a0d5" :foreground "#3c3836" :weight bold))
+          ("CANCELED" . (:background "#fb4934" :foreground "#3c3836" :weight bold :strike-through t))
+
+          ("DOING" . (:background "#63d0d4" :foreground "#3c3836" :weight bold))
           ("HOLD" . (:background "#d79921" :foreground "#3c3836" :weight bold))
           ("WAIT" . (:background "#fe8019" :foreground "#3c3836" :weight bold))
           ("DONE" . (:background "#8ec07c" :foreground "#3c3836" :weight bold))
-          ("CANCELED" . (:background "#fb4934" :foreground "#3c3836" :weight bold :strike-through t))
+          ("QA" . (:background "#c4c071" :foreground "#3c3836" :weight bold))
 
           ("INBOX" . (:background "#fabd2f" :foreground "#3c3836" :weight bold))
+          ("HABIT" . (:background "#1E90FF" :foreground "#3c3836" :weight bold))
 
           ("REPORT" . (:background "#d3869b" :foreground "#3c3836" :weight bold))
           ("BUG" . (:background "#fb4934" :foreground "#3c3836" :weight bold))

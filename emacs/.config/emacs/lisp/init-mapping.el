@@ -8,6 +8,7 @@
 
 ;; edit
 (global-set-key (kbd "M-j") 'join-line)
+(global-set-key (kbd "C-,") 'wsain/duplicate-line)
 
 ;; navigation
 (global-set-key (kbd "C-c i m") 'imenu)
