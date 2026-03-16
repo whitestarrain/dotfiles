@@ -19,7 +19,7 @@
 (setq org-refile-allow-creating-parent-nodes 'confirm) ; M-i to insert ivy current item
 
 (straight-use-package 'ivy-posframe)
-(setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
+(setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-bottom-center)))
 (setq ivy-posframe-parameters
       '((left-fringe . 16)
         (right-fringe . 16)

@@ -3,7 +3,9 @@
 ;;;===================================================
 
 ;; Font and Text Display
-(set-face-attribute 'default nil :height 140)
+(if (string= system-type "darwin")
+  (set-face-attribute 'default nil :height 160)
+  (set-face-attribute 'default nil :height 140))
 
 ;; Mouse Cursor
 (set-mouse-color "White")
