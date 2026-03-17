@@ -17,8 +17,8 @@ local put_empty_line = function(put_above)
 end
 
 -- normal mode moving
-set_mapping({ "n", "x", "v" }, "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
-set_mapping({ "n", "x", "v" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
+set_mapping({ "n", "x" }, "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
+set_mapping({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
 
 -- command mode moving (help  tcsh-style)
 vim.cmd([[
