@@ -109,7 +109,8 @@
   (add-hook 'org-capture-before-finalize-hook
             (lambda ()
               (when (eq major-mode 'org-mode)
-                (org-align-tags t))))
+                (org-align-tags t)
+                (wsain/org-sort-when-capture))))
 
   ;; MAPPING
   (define-key org-mode-map (kbd "C-c C-t") nil)

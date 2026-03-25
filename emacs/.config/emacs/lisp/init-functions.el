@@ -197,6 +197,13 @@ displayed in agenda view."
 	      (outline-next-heading))))
     (nreverse timestamp-items)))
 
+(defun wsain/org-sort-when-capture ()
+  "Sort entries when capture."
+  (when (derived-mode-p 'org-mode)
+    (save-excursion
+      (when (> (org-outline-level) 1)
+        (outline-up-heading 1)
+        (org-sort-entries nil ?t)))))
 
 (defun show-file-name ()
   "Show the full path file name in the minibuffer."
