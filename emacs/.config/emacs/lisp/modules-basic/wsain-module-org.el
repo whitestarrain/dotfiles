@@ -43,14 +43,17 @@
   (setq org-hierarchical-todo-statistics nil) ; recursive statistics cookie count TODO entries
 
   ;; TAG
-  (setq org-tag-alist (setq org-tag-alist '((:startgrouptag)
-                                            ("SCENE")
-                                            (:grouptags)
+  ;; (setq org-tag-alist (setq org-tag-alist '((:startgrouptag)
+  ;;                                           ("SCENE")
+  ;;                                           (:grouptags)
+  ;;                                           ("@life" . ?l)
+  ;;                                           ("@study" . ?s)
+  ;;                                           ("@work" . ?w)
+  ;;                                           (:endgrouptag))))
+  (setq org-tag-persistent-alist (setq org-tag-alist '(
                                             ("@life" . ?l)
                                             ("@study" . ?s)
-                                            ("@work" . ?w)
-                                            (:endgrouptag))))
-
+                                            ("@work" . ?w))))
   ;; AGENDA
   (setq-default org-agenda-dir "~/Agenda")
   (make-directory org-agenda-dir t)
