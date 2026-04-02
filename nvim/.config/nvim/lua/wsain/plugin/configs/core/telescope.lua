@@ -14,6 +14,36 @@ plugin.dependencies = {
 
 plugin.config = function()
   local actions = require("telescope.actions")
+
+  local transform_mod = require("telescope.actions.mt").transform_mod
+  local action_state = require("telescope.actions.state")
+  local select_default = require("telescope.actions").select_default
+
+  local custom_actions = transform_mod({
+    safe_select_default = function(prompt_bufnr)
+      -- current win
+      local picker = action_state.get_current_picker(prompt_bufnr)
+      local original_win_id = picker.original_win_id
+      local origin_buf_hidden =
+        vim.api.nvim_get_option_value("bufhidden", { buf = vim.api.nvim_win_get_buf(original_win_id) })
+
+      -- if open telescope under nvim-tree, select other window.
+      if origin_buf_hidden == "wipe" then
+        local win_ids = vim.api.nvim_tabpage_list_wins(0)
+        for _, win_id in ipairs(win_ids) do
+          local buf_id = vim.api.nvim_win_get_buf(win_id)
+          local buf_hidden = vim.api.nvim_get_option_value("bufhidden", { buf = buf_id })
+          if buf_hidden == nil or buf_hidden == "" then
+            picker.original_win_id = win_id
+            break
+          end
+        end
+      end
+
+      select_default(prompt_bufnr)
+    end,
+  })
+
   local mappings = {
     n = {
       ["q"] = actions.close,
@@ -24,10 +54,12 @@ plugin.config = function()
       ["l"] = actions.cycle_history_next,
       ["<C-s>"] = actions.select_vertical,
       ["<C-k>"] = require("telescope.actions.layout").toggle_preview,
+      ["<CR>"] = custom_actions.safe_select_default,
     },
     i = {
       ["<C-k>"] = require("telescope.actions.layout").toggle_preview,
       ["<C-s>"] = actions.select_vertical,
+      ["<CR>"] = custom_actions.safe_select_default,
     },
   }
 
@@ -249,7 +281,7 @@ plugin.config = function()
     {
       "<leader>f,",
       function()
-        require('telescope.builtin').find_files({ search_dirs = vim.split(vim.o.runtimepath, ',') })
+        require("telescope.builtin").find_files({ search_dirs = vim.split(vim.o.runtimepath, ",") })
       end,
       desc = "rtp file",
       mode = "n",
