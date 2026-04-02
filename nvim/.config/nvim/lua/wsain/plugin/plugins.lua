@@ -26,7 +26,6 @@ return {
   require("wsain.plugin.configs.edit.nvim-autopairs"),
   require("wsain.plugin.configs.edit.undotree"),
   require("wsain.plugin.configs.edit.nvim-surround"),
-  require("wsain.plugin.configs.edit.tabular"),
   require("wsain.plugin.configs.edit.md-img-paste"),
   require("wsain.plugin.configs.edit.md-section-number"),
   require("wsain.plugin.configs.edit.comment"),
@@ -67,6 +66,9 @@ return {
 
   -- file manger
   require("wsain.plugin.configs.nvim-tree"),
+
+  -- mini
+  require("wsain.plugin.configs.mini.align"),
 
   -- extra
   require("wsain.plugin.configs.extra.zoomwintab"),
