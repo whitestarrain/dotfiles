@@ -19,8 +19,9 @@ plugin.config = function()
     delete_to_trash = false,
     use_default_keymaps = false,
     keymaps = {
-      ["g?"] = { "actions.show_help", mode = "n" },
-      ["gs"] = { "actions.change_sort", mode = "n" },
+      ["?"] = { "actions.show_help", mode = "n" },
+      ["t"] = { "actions.change_sort", mode = "n" },
+      ["."] = { "actions.toggle_hidden", mode = "n" },
       ["gx"] = "actions.open_external",
       ["gy"] = {
         function()
@@ -41,7 +42,6 @@ plugin.config = function()
         end,
         mode = "n",
       },
-      ["g."] = { "actions.toggle_hidden", mode = "n" },
       ["g\\"] = { "actions.toggle_trash", mode = "n" },
       ["gr"] = "actions.refresh",
       ["<CR>"] = "actions.select",
