@@ -25,6 +25,7 @@
 (require 'wsain-module-ui)
 (require 'wsain-module-nav)
 (require 'wsain-module-completion)
+(require 'wsain-module-translate)
 (require 'wsain-module-themes)
 
 ;; lang modules

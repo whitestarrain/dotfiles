@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+while true; do
+  read -r input_text
+
+  [ -z "$input_text" ] && continue
+
+  case "$input_text" in
+  /quit | /exit | /q) exit 0 ;;
+  /help | /h)
+    echo "command: /quit /clear"
+    continue
+    ;;
+  /clear)
+    clear
+    continue
+    ;;
+  esac
+
+  ctrans "$input_text"
+done

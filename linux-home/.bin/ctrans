@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+detect_language() {
+  if echo "$*" | grep -qP '\p{Script=Han}'; then
+    echo "zh"
+  else
+    echo "en"
+  fi
+}
+
+translate_with_crow() {
+  local target_code=""
+
+  if [ "$2" = "zh" ]; then
+    target_code="en"
+  else
+    target_code="zh-CN"
+  fi
+
+  crow -b -s auto -t "$target_code" "$1" 2>/dev/null
+}
+
+main() {
+  if [ $# -gt 0 ]; then
+    input="$*"
+  else
+    if read -t 0; then
+      input=$(cat)
+    else
+      echo "Error: Pipe is open but contains no data." >&2
+      exit 1
+    fi
+  fi
+  if [ -z "$input" ]; then
+    return
+  fi
+  lang=$(detect_language "$input")
+  translated=$(translate_with_crow "$input" "$lang")
+  if [ -z "$translated" ]; then
+    echo "failed"
+  else
+    echo "$translated" | lolcat 2>/dev/null || echo "$translated"
+  fi
+  echo ""
+}
+
+main "$@"
