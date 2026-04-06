@@ -205,9 +205,22 @@ displayed in agenda view."
         (outline-up-heading 1)
         (org-sort-entries nil ?t)))))
 
+(defun wsain/pdf-view-sdcv-trans-mark ()
+  "Trnas word"
+  (when (eq major-mode 'pdf-view-mode)
+    (let ((active-text (pdf-view-active-region-text)))
+      (if active-text
+        (sdcv-search-input+ (car active-text))))
+    ))
+
 (defun show-file-name ()
   "Show the full path file name in the minibuffer."
   (interactive)
   (message (buffer-file-name)))
+
+(defun reload-file ()
+    "Revert buffer without confirmation."
+    (interactive)
+    (revert-buffer :ignore-auto :noconfirm))
 
 (provide 'init-functions)
