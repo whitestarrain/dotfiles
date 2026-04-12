@@ -209,7 +209,7 @@ displayed in agenda view."
   "Trnas word"
   (when (eq major-mode 'pdf-view-mode)
     (let ((active-text (pdf-view-active-region-text)))
-      (if active-text
+      (if (and active-text (= (length active-text) 1) (not (string-match "\n" (car active-text))))
         (sdcv-search-input+ (car active-text))))
     ))
 

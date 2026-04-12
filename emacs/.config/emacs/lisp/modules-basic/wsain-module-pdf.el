@@ -9,9 +9,14 @@
   (add-hook 'pdf-view-mode-hook 'pdf-view-roll-minor-mode)
   (add-to-list 'auto-mode-alist '("\\.[pP][dD][fF]\\'" . pdf-view-mode))
   (add-to-list 'magic-mode-alist '("%PDF" . pdf-view-mode))
-  ;; 为获取选中文本的函数添加 advice
+
+  ;; auto translate word
   (add-hook 'pdf-view-mode-hook (lambda()
                                   (add-hook 'activate-mark-hook 'wsain/pdf-view-sdcv-trans-mark)))
+
+  ;; delete annotation
+  (define-key pdf-view-mode-map (kbd "C-c C-a D") nil)
+  (define-key pdf-view-mode-map (kbd "C-c C-a d") 'pdf-annot-delete)
   )
 
 
