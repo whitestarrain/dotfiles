@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 while true; do
-  read -r input_text
+  read -e -r input_text
 
   [ -z "$input_text" ] && continue
 
