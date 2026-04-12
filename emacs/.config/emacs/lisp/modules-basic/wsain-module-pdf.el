@@ -16,7 +16,9 @@
 
   ;; delete annotation
   (define-key pdf-view-mode-map (kbd "C-c C-a D") nil)
-  (define-key pdf-view-mode-map (kbd "C-c C-a d") 'pdf-annot-delete)
+  (define-key pdf-view-mode-map (kbd "a") 'pdf-annot-add-highlight-markup-annotation)
+  (define-key pdf-view-mode-map (kbd "s") 'pdf-annot-add-squiggly-markup-annotation)
+  (define-key pdf-view-mode-map (kbd "d") 'pdf-annot-delete)
   )
 
 
