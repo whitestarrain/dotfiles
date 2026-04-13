@@ -16,7 +16,7 @@
   (setq org-log-reschedule t)
   (setq org-todo-keywords
         '((sequence "TODO(t)" "|" "DONE(o!)" "CANCELED(c@)")
-          (sequence "DOING(d@/!)" "WAIT(w@/!)" "HOLD(h@/!)" "QA(q!)")
+          (sequence "DOING(d@/!)" "WAIT(w@/!)" "HOLD(h@/!)" "QA(q!)" "|")
           (sequence "INBOX(i)" "|" "CANCELED(c@)")
           (sequence "HABIT(a)" "|" "DONE(o!)")
           (sequence "REPORT" "BUG" "KNOWNCAUSE" "|" "FIXED")))
