@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # TODO: copy absolute path (https://github.com/jarun/nnn/issues/1368)
-export FZF_DEFAULT_COMMAND='fd -H --type f --strip-cwd-prefix'
+export FZF_DEFAULT_COMMAND='fd -H --type f --exclude .git --strip-cwd-prefix'
 export NNN_PLUG='p:preview-tui;s:preview-tabbed;z:autojump;f:fzcd;F:finder;n:fixname;o:nuke;m:nmount;c:-!_nnn_copypath*;'
 
 # n -c to allow window swallow
