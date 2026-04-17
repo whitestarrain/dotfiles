@@ -7,7 +7,6 @@ return {
   require("wsain.plugin.configs.theme.onedark"),
 
   -- core
-  require("wsain.plugin.configs.core.treesitter"),
   require("wsain.plugin.configs.core.telescope"),
   require("wsain.plugin.configs.core.nvim-cmp"),
 
@@ -18,7 +17,6 @@ return {
   require("wsain.plugin.configs.ui.feline"),
   require("wsain.plugin.configs.ui.statuscol"),
   require("wsain.plugin.configs.ui.dressing"),
-  require("wsain.plugin.configs.ui.rainbow-delimiters"),
 
   -- edit
   require("wsain.plugin.configs.edit.todo-comments"),
@@ -29,7 +27,6 @@ return {
   require("wsain.plugin.configs.edit.md-img-paste"),
   require("wsain.plugin.configs.edit.md-section-number"),
   require("wsain.plugin.configs.edit.comment"),
-  require("wsain.plugin.configs.edit.treesj"),
   require("wsain.plugin.configs.edit.guess_indent"),
   require("wsain.plugin.configs.edit.suda"),
   require("wsain.plugin.configs.edit.oil"),
@@ -56,7 +53,7 @@ return {
   require("wsain.plugin.configs.git.diffview"),
 
   -- ide
-  require("wsain.plugin.configs.ide.refactoring"),
+  require("wsain.plugin.configs.ide.vim-polyglot"),
   require("wsain.plugin.configs.ide.outline"),
   require("wsain.plugin.configs.ide.mason"),
   require("wsain.plugin.configs.ide.fmt"),

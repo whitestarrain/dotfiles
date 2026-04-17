@@ -3,27 +3,7 @@ local utils = require("wsain.utils")
 
 local M = {}
 
-local special_file_types = {
-  "NvimTree",
-  "TelescopePrompt",
-  "checkhealth",
-  "dirbuf",
-  "dirvish",
-  "floaterm",
-  "floaterm",
-  "fugitive",
-  "help",
-  "leadf",
-  "lspinfo",
-  "man",
-  "msnumber",
-  "packer",
-  "startify",
-}
-
 local bigfile_check_flag = "wsain_bigfile_check_flag"
-local bigfile_disable_treesitter = "wsain_bigfile_disable_treesitter"
-local is_ts_configured = false
 
 local function check_bigfile(bufnr, max_file_size, max_lines, max_line_length)
   local status_ok, flag = pcall(vim.api.nvim_buf_get_var, bufnr, bigfile_check_flag)
@@ -35,30 +15,6 @@ local function check_bigfile(bufnr, max_file_size, max_lines, max_line_length)
   return is_bigfile
 end
 
-local function configure_treesitter()
-  local status_ok, ts_config = pcall(require, "nvim-treesitter.configs")
-  if not status_ok then
-    return
-  end
-
-  local disable_cb = function(_, buf)
-    local success, detected = pcall(vim.api.nvim_buf_get_var, buf, bigfile_disable_treesitter)
-    return success and detected
-  end
-
-  for _, mod_name in ipairs(ts_config.available_modules()) do
-    local module_config = ts_config.get_module(mod_name) or {}
-    local old_disabled = module_config.disable
-    module_config.disable = function(lang, buf)
-      return disable_cb(lang, buf)
-        or (type(old_disabled) == "table" and vim.tbl_contains(old_disabled, lang))
-        or (type(old_disabled) == "function" and old_disabled(lang, buf))
-    end
-  end
-
-  is_ts_configured = true
-end
-
 local function pcall_wrap(model_name, callback)
   local status, lua_model = pcall(require, model_name)
   if not status then
@@ -68,14 +24,6 @@ local function pcall_wrap(model_name, callback)
 end
 
 local features = {
-  disable_treesitter = function(buf)
-    if not is_ts_configured then
-      configure_treesitter()
-    end
-
-    vim.api.nvim_buf_set_var(buf, bigfile_disable_treesitter, 1)
-  end,
-
   disable_illuminate = function(bufnr)
     pcall_wrap("illuminate.engine", function(m)
       m.stop_buf(bufnr)
@@ -92,18 +40,6 @@ local features = {
 }
 
 local defer_features = {
-  enable_treesitter_highlight = function(_bufnr)
-    pcall_wrap("nvim-treesitter", function()
-      vim.cmd("TSBufEnable highlight")
-    end)
-  end,
-
-  enable_rainbow = function(bufnr)
-    pcall_wrap("rainbow-delimiters", function(m)
-      m.enable(bufnr)
-    end)
-  end,
-
   enable_indent_blankline = function(bufnr)
     pcall_wrap("ibl", function(m)
       m.setup_buffer(bufnr, { enabled = true })
@@ -134,25 +70,16 @@ function M.bigfile_handler(bufnr)
     local expand_name = vim.fn.expand("%:e")
     if expand_name == "markdown" or expand_name == "md" then
       table.insert(defer_flist, defer_features.enable_indent_blankline)
-      if not check_bigfile(bufnr, nil, utils.big_file_markdown_max_line_length, nil) then
-        table.insert(defer_flist, defer_features.enable_treesitter_highlight)
-      end
       return
     end
 
     local is_bigfile = check_bigfile(bufnr)
     -- bigfile
     if is_bigfile then
-      table.insert(flist, features.disable_treesitter)
       table.insert(flist, features.disable_vimopts)
       table.insert(flist, features.disable_illuminate)
       return
     end
-
-    -- common file
-    table.insert(defer_flist, defer_features.enable_treesitter_highlight)
-    table.insert(defer_flist, defer_features.enable_rainbow)
-    table.insert(defer_flist, defer_features.enable_indent_blankline)
   end
   get_features()
 
