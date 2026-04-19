@@ -4,8 +4,17 @@ plugin.shortUrl = "nvim-treesitter/nvim-treesitter"
 plugin.dependencies = {
   "nvim-lua/plenary.nvim",
 }
+
+if vim.version().major == 0 and vim.version().minor <= 11 then
+  plugin.branch = "master"
+else
+  plugin.branch = "main"
+end
+
 plugin.opts = {
   auto_install = false,
+
+  install_dir = vim.g.absolute_config_path .. ".treesitter-parsers",
 
   highlight = {
     enable = false,
@@ -38,7 +47,7 @@ plugin.opts = {
 }
 
 plugin.config = function()
-  require("nvim-treesitter.configs").setup(plugin.opts)
+  require("nvim-treesitter").setup(plugin.opts)
   --[[
   vim.o.foldmethod = "expr"
   vim.o.foldexpr = "nvim_treesitter#foldexpr()"
@@ -92,6 +101,13 @@ plugin.config = function()
     "TSInstall" .. " " .. table.concat(lang_module, " "),
     { desc = "install default ts parser" }
   )
+
+  -- treesitter fold
+  -- vim.opt_local.foldmethod = "expr"
+  -- vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+  -- treesitter indent
+  -- vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
 end
 
 return plugin

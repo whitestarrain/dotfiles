@@ -100,6 +100,19 @@ plugin.config = function()
       ["@text.quote.markdown"] = { link = "Comment" },
       ["@keyword.directive.define.cpp"] = { link = "Macro" },
 
+      -- treesitter, use white instead of red to highlight variables
+      ["@variable"] = { fg = nil },
+      ["@property"] = { fg = nil },
+      ["@variable"] = {fg = nil },
+      ["@variable.parameter"] = {fg = nil },
+      ["@variable.member"] = {fg = nil },
+      ["@variable.typescript"] = {fg = nil },
+      ["@variable.rust"] = {fg = nil },
+      ["@variable.go"] = {fg = nil },
+      ["@variable.parameter.c"] = {fg = nil },
+      ["@variable.javascript"] = {fg = nil },
+
+
       -- rainbow
       RainbowDelimiterYellow = { fg = "#d19a66" },
       RainbowDelimiterBlue = { fg = "dodgerblue2" },

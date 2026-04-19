@@ -94,7 +94,7 @@ local features = {
 local defer_features = {
   enable_treesitter_highlight = function(_bufnr)
     pcall_wrap("nvim-treesitter", function()
-      vim.cmd("TSBufEnable highlight")
+      pcall(vim.treesitter.start)
     end)
   end,
 
