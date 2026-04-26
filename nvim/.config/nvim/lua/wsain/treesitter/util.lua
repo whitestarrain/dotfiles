@@ -17,4 +17,19 @@ function M.write_file(filename, content)
   file:close()
 end
 
+
+--- @param content table
+function M.unique(arr)
+  local seen = {}
+  local result = {}
+  for _, v in ipairs(arr) do
+    if not seen[v] then
+      seen[v] = true
+      table.insert(result, v)
+    end
+  end
+  return result
+end
+
+
 return M

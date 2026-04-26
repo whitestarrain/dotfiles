@@ -1,5 +1,7 @@
 local M = {}
 
+local util = require('wsain.treesitter.util')
+
 M.tiers = { "stable", "unstable", "unmaintained", "unsupported" }
 
 ---@class TSConfig
@@ -168,7 +170,7 @@ function M.norm_languages(languages, skip)
     end
   end
 
-  return vim.list.unique(languages)
+  return util.unique(languages)
 end
 
 return M
