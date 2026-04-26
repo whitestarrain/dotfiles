@@ -12,6 +12,7 @@ plugin.dependencies = {
   "lukas-reineke/cmp-under-comparator",
   "onsails/lspkind-nvim",
   "rcarriga/cmp-dap",
+  "mfussenegger/nvim-dap",
   {
     "L3MON4D3/LuaSnip",
     -- make sure build env is prepared

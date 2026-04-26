@@ -32,9 +32,6 @@ pacman -Qqet > pkglist.txt
   - run `:Mason` in nvim to install lsp, dap, etc.
     - lsp will be installed under `{this_repo}/nvim/.config/nvim/.mason/`
     - can run `MasonInstall Custom` install default tools
-  - run `:TSInstall <lang>` in nvim to install treesitter parsers
-    - run `:TSInstallCustom` to install default treesitter parsers
-    - `CC=/path/to/gcc nvim` can specify the compiler version
   - run `:checkhealth`, install dependencies
 - pacman
 
@@ -60,9 +57,6 @@ TODO
 - [git](https://git-scm.com/)
 - [fd](https://github.com/sharkdp/fd)
 - lsp: can installed by `:Mason`
-- treesitter parser: can installed by `:TSInstall`
-  - linux/mac: gcc is required
-  - win: zig or gcc is required
 
 # Keybinding
 

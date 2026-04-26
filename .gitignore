@@ -9,7 +9,9 @@ nvim/mason
 nvim/.config/nvim/.plugins
 nvim/.config/nvim/.managers
 nvim/.config/nvim/.mason
+nvim/.config/nvim/.treesitter-parsers
 **/__pycache__
 todo.md
 dot_bak
 MANIFEST.local
+.treesitter-parsers
