@@ -61,3 +61,12 @@ end, {
   complete = complete_available_parsers,
   desc = "Install treesitter parsers",
 })
+
+vim.api.nvim_create_user_command("TSUpdate", function(args)
+  ins.update(args.fargs, { summary = true })
+end, {
+  nargs = "*",
+  bar = true,
+  complete = complete_installed_parsers,
+  desc = "Update installed treesitter parsers",
+})
