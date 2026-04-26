@@ -13,6 +13,9 @@ require("wsain.opts")
 require("wsain.autocmd")
 require("wsain.commands")
 
+-- treesitter installer
+require("wsain.treesitter")
+
 -- mapping manager
 local wk_plugin_data = require("wsain.plugin.whichkey").plugin
 
@@ -21,6 +24,9 @@ local pluginDatas = require("wsain.plugin.plugins")
 local pluginManager = require("wsain.plugin.lazy")
 table.insert(pluginDatas, 1, wk_plugin_data)
 pluginManager.load(pluginDatas)
+
+-- disable deprecate info
+vim.deprecate = function() end
 
 -- base mapping override plugin mapping
 require("wsain.base_mappings")

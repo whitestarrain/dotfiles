@@ -4,13 +4,12 @@ local utils = require("wsain.utils")
 plugin.shortUrl = "stevearc/aerial.nvim"
 plugin.loadEvent = "VeryLazy"
 plugin.dependencies = {
-  "nvim-treesitter/nvim-treesitter",
   "nvim-tree/nvim-web-devicons",
 }
 plugin.config = function()
   require("aerial").setup({
     backends = {
-      ["_"] = { "lsp", "treesitter" },
+      ["_"] = { "treesitter", "markdown", "asciidoc", "man" },
     },
     layout = {
       width = 30,
@@ -43,7 +42,7 @@ plugin.config = function()
       ["l"] = "actions.tree_toggle",
     },
     icons = {
-      Collapsed     = "",
+      Collapsed = "",
     },
     attach_mode = "global",
     link_folds_to_tree = false,
