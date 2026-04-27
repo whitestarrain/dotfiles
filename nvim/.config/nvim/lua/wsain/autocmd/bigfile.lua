@@ -46,6 +46,10 @@ local defer_features = {
     end)
   end,
 
+  enable_treesitter = function(bufnr)
+    pcall(vim.treesitter.start, bufnr)
+  end,
+
   disable_syntax = function()
     vim.cmd("syntax clear")
     vim.opt_local.syntax = "OFF"
@@ -66,6 +70,7 @@ function M.bigfile_handler(bufnr)
   local defer_flist = {}
 
   local function get_features()
+    local is_bigfile
     local expand_name = vim.fn.expand("%:e")
     if expand_name == "markdown" or expand_name == "md" then
       -- markdown, I often edit large markdown files, so just skip
