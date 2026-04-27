@@ -3,7 +3,6 @@ local M = {}
 
 M.big_file_max_line = 10000
 M.big_file_max_line_length = 1000
-M.big_file_markdown_max_line_length = 1000
 
 M.colors = {
   dark_blue = "#081633",
@@ -568,6 +567,25 @@ function M.flash_highlight(bufnr, lnum, durationMs, hl_group)
     vim.api.nvim_buf_del_extmark(bufnr, ns, ext_id)
   end
   vim.defer_fn(remove_highlight, durationMs)
+end
+
+-- treesitter function --
+
+---@param lang string
+---@param module string ts module name, suck as 'highlights', 'indents', 'folds'
+---@return bool
+function M.check_treesitter_support(lang, module)
+  local status, _ = pcall(require, "nvim-treesitter")
+  if not status then
+    return false
+  end
+
+  lang = vim.treesitter.language.get_lang(lang)
+  if not lang then
+    return false
+  end
+
+  return vim.treesitter.query.get(lang, module) ~= nil
 end
 
 -- history function --

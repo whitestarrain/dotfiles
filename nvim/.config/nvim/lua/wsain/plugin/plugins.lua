@@ -9,6 +9,7 @@ return {
   -- core
   require("wsain.plugin.configs.core.telescope"),
   require("wsain.plugin.configs.core.nvim-cmp"),
+  require("wsain.plugin.configs.core.treesitter"),
 
   -- ui
   require("wsain.plugin.configs.ui.startify"),

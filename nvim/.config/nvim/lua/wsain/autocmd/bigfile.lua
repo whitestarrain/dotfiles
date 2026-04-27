@@ -46,8 +46,26 @@ local defer_features = {
     end)
   end,
 
-  enable_treesitter = function(bufnr)
-    pcall(vim.treesitter.start, bufnr)
+  enable_treesitter_highlight = function(bufnr)
+    if not utils.check_treesitter_support(vim.opt_local.filetype._value, "highlights") then
+      return
+    end
+    pcall(vim.g.ts_start, bufnr)
+  end,
+
+  enable_treesitter_indent = function(_)
+    if not utils.check_treesitter_support(vim.opt_local.filetype._value, "indents") then
+      return
+    end
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
+
+  enable_treesitter_folds = function(_)
+    if not utils.check_treesitter_support(vim.opt_local.filetype._value, "folds") then
+      return
+    end
+    vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.wo[0][0].foldmethod = "expr"
   end,
 
   disable_syntax = function()
@@ -74,7 +92,7 @@ function M.bigfile_handler(bufnr)
     local expand_name = vim.fn.expand("%:e")
     if expand_name == "markdown" or expand_name == "md" then
       -- markdown, I often edit large markdown files, so just skip
-      is_bigfile = false
+      is_bigfile = true
     else
       -- check big file
       is_bigfile = check_bigfile(bufnr)
@@ -87,6 +105,7 @@ function M.bigfile_handler(bufnr)
     else
       -- small file, enable some feature
       table.insert(defer_flist, defer_features.enable_indent_blankline)
+      table.insert(defer_flist, defer_features.enable_treesitter_indent)
     end
   end
 
