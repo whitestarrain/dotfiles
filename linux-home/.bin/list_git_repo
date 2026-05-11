@@ -2,7 +2,7 @@
 
 current_path="$(realpath .)"
 
-for dir_name in *
+for dir_name in $(ls -t -r .)
 do
   cd "$current_path" || exit
   if [ ! -d "$dir_name" ]; then
@@ -17,6 +17,6 @@ do
     continue
   fi
   remote_repo="${remote_repos[0]}"
-  echo "$dir_name:$(git remote get-url "$remote_repo")"
+  echo -e "$dir_name\t $(git remote get-url "$remote_repo")"
 done
 

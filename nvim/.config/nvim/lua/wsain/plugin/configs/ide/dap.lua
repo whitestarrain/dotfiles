@@ -261,5 +261,31 @@ plugin.config = function()
       desc = "toggle visual text",
     },
   })
+
+  -- reset dapui layout when dapui_scopes resize
+  local vim_dapui_gruop = vim.api.nvim_create_augroup("vim_dapui_group", { clear = true })
+  vim.api.nvim_create_autocmd("WinResized", {
+    group = vim_dapui_gruop,
+    pattern = "*",
+    callback = function(args)
+      local ft = vim.api.nvim_get_option_value("filetype", { buf = args.buf })
+      if ft ~= "dapui_scopes" then
+        return
+      end
+      require("dapui").open({ reset = true })
+    end,
+  })
+  vim.api.nvim_create_autocmd("VimResized", {
+    group = vim_dapui_gruop,
+    callback = function()
+      if not utils.check_buffer_open("dapui_scopes") then
+        return
+      end
+      require("dapui").open({ reset = true })
+    end,
+  })
+
+  -- close dapui before saving session
+  utils.addCommandBeforeSaveSession('lua require("dapui").close()')
 end
 return plugin
