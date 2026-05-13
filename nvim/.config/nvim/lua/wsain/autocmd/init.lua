@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd("WinLeave", {
   end,
 })
 
+-- bigfile autocmd
 local WsainBigFileHandleGroup = vim.api.nvim_create_augroup("WsainBigFileHandleGroup", { clear = true })
 vim.api.nvim_create_autocmd("BufReadPre", {
   group = WsainBigFileHandleGroup,

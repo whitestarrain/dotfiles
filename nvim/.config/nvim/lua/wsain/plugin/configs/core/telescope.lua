@@ -109,6 +109,7 @@ plugin.config = function()
       mappings = mappings,
       preview = {
         hide_on_startup = true, -- hide previewer when picker starts
+        treesitter = false,
       },
     },
     path_display = { "truncate" },

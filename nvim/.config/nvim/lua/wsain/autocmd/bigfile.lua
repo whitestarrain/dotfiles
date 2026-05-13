@@ -80,9 +80,10 @@ local defer_features = {
 
 -- bigfile autocmd
 function M.bigfile_handler(bufnr)
-  if not vim.bo.buflisted then
-    return
-  end
+  -- for buffers opened through dapui or lspsaga, buflisted may be false at first.
+  -- if not vim.bo.buflisted then
+  --   return
+  -- end
 
   local flist = {}
   local defer_flist = {}
