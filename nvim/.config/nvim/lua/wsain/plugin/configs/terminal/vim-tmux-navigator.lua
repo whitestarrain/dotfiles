@@ -1,5 +1,5 @@
 local plugin = require("wsain.plugin.template"):new()
-plugin.shortUrl = "christoomey/vim-tmux-navigator"
+plugin.short_url = "christoomey/vim-tmux-navigator"
 plugin.init = function()
   vim.g.tmux_navigator_no_mappings = 1
   vim.g.tmux_navigator_save_on_switch = 1

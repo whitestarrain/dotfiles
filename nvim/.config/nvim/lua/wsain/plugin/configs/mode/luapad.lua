@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "rafcamlet/nvim-luapad"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "rafcamlet/nvim-luapad"
+plugin.load_event = "VeryLazy"
 
 plugin.config = function()
   require("luapad").setup({

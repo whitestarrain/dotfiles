@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "nvim-pack/nvim-spectre"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "nvim-pack/nvim-spectre"
+plugin.load_event = "VeryLazy"
 plugin.config = function()
   require("spectre").setup({
     find_engine = {

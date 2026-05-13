@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "jbyuki/venn.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "jbyuki/venn.nvim"
+plugin.load_event = "VeryLazy"
 
 local toggle_venn = function()
   local venn_enabled = vim.b.venn_enabled

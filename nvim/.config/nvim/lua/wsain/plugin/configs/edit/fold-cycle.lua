@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "jghauser/fold-cycle.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "jghauser/fold-cycle.nvim"
+plugin.load_event = "VeryLazy"
 plugin.config = function()
   require("fold-cycle").setup()
 

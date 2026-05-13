@@ -1,6 +1,6 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "lukas-reineke/indent-blankline.nvim"
+plugin.short_url = "lukas-reineke/indent-blankline.nvim"
 plugin.config = function()
   local utils = require("wsain.utils")
   utils.highlight("IndentBlanklineChar", { fg = utils.colors.grey, gui = "nocombine" })

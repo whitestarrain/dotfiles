@@ -1,6 +1,6 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "whitestarrain/neosolarized.nvim"
+plugin.short_url = "whitestarrain/neosolarized.nvim"
 plugin.dependencies = { "tjdevries/colorbuddy.nvim" }
 plugin.priority = 100
 plugin.opts = {

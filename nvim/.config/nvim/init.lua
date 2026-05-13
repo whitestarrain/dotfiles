@@ -14,15 +14,15 @@ require("wsain.autocmd")
 require("wsain.commands")
 
 -- mapping manager
-local wk_plugin_data = require("wsain.plugin.whichkey").plugin
+local whichkey_plugin_spec = require("wsain.plugin.whichkey").plugin
 
 -- plugin config
-local pluginDatas = require("wsain.plugin.plugins")
-local pluginManager = require("wsain.plugin.lazy")
-table.insert(pluginDatas, 1, wk_plugin_data)
-pluginManager.load(pluginDatas)
+local plugin_specs = require("wsain.plugin.plugins")
+local plugin_manager = require("wsain.plugin.lazy")
+table.insert(plugin_specs, 1, whichkey_plugin_spec)
+plugin_manager.load(plugin_specs)
 
--- disable deprecate info
+-- hide deprecate info
 vim.deprecate = function() end
 
 -- disable treesiter by default

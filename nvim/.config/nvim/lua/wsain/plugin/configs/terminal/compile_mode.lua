@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "whitestarrain/compile-mode.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "whitestarrain/compile-mode.nvim"
+plugin.load_event = "VeryLazy"
 plugin.dependencies = {
   "nvim-lua/plenary.nvim",
   { "m00qek/baleia.nvim", tag = "v1.3.0" },

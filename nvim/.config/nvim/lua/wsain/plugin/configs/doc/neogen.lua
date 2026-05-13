@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "danymat/neogen"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "danymat/neogen"
+plugin.load_event = "VeryLazy"
 plugin.config = function()
   require("neogen").setup({
     enabled = true,

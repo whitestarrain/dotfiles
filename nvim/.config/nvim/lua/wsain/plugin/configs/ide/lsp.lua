@@ -1,6 +1,6 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "neovim/nvim-lspconfig"
+plugin.short_url = "neovim/nvim-lspconfig"
 plugin.dependencies = {
   "glepnir/lspsaga.nvim",
   "folke/trouble.nvim",
@@ -13,7 +13,7 @@ plugin.dependencies = {
   "ray-x/lsp_signature.nvim",
   "williamboman/mason.nvim",
 }
-plugin.loadEvent = "VeryLazy"
+plugin.load_event = "VeryLazy"
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
@@ -28,7 +28,6 @@ local on_attach = function(client, bufnr)
 
   buf_set_keymap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts("code action"))
   buf_set_keymap("n", "<M-enter>", "<cmd>Lspsaga code_action<CR>", opts("code action"))
-  -- buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts("code action"))
 
   buf_set_keymap("v", "<leader>ca", ":<C-U><cmd>lua vim.lsp.buf.code_action()<CR>", opts("code action"))
   buf_set_keymap("v", "<M-enter>", ":<C-U><cmd>lua vim.lsp.buf.code_action()<CR>", opts("code action"))
@@ -53,39 +52,19 @@ local on_attach = function(client, bufnr)
   end
 
   buf_set_keymap("n", "<leader>cD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts("declaration"))
-
   buf_set_keymap("n", "<leader>cd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts("definition"))
   buf_set_keymap("n", "<leader>cp", "<cmd>Lspsaga peek_definition<CR>", opts("definition"))
-  -- buf_set_keymap("n", "<leader>cd", "<cmd>Lspsaga goto_definition<CR>", opts("definition"))
-
-  -- buf_set_keymap("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts("definition"))
   buf_set_keymap("n", "<c-]>", "<cmd>Lspsaga goto_definition<CR>", opts("definition"))
-
   buf_set_keymap("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts("implementation"))
-
-  -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts("references"))
-  -- [lspsaga] definition 和 references都会显示
   buf_set_keymap("n", "<leader>cr", "<cmd>Lspsaga finder ref+imp+def<CR>", opts("references"))
-
   buf_set_keymap("n", "<leader>cs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts("signature_help"))
-
-  -- <C-p><C-p> to enter hover win
-  -- buf_set_keymap("i", "<c-p>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts("signature_help"))
-  buf_set_keymap("i", "<c-p>", function()
-    require("lsp_signature").toggle_float_win()
-  end, opts("signature_help")) -- <C-p><C-p> to enter hover win
-
   buf_set_keymap("n", "<leader>ce", "<cmd>Lspsaga rename<CR>", opts("edit signature"))
-
-  -- buf_set_keymap('n', 'go', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  -- buf_set_keymap("n", "<leader>ce", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("show diagnostics"))
-
-  -- buf_set_keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts("prev diagnostics"))
-  -- buf_set_keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts("next diagnostics"))
-
-  -- format
   buf_set_keymap("n", "<space>cf", ":Format<CR>", opts("format"))
   buf_set_keymap("v", "<space>cf", ":Format<CR>", opts("format"))
+
+  buf_set_keymap("i", "<c-p>", function()
+    require("lsp_signature").toggle_float_win()
+  end, opts("signature_help"))
 end
 
 local on_init = function(client, _)
@@ -128,7 +107,7 @@ local function lsp_signature_setup()
   })
 end
 
-local function fidgetSetup()
+local function setup_fidget()
   if package.loaded["fidget"] ~= nil then
     return
   end
@@ -140,7 +119,7 @@ local function fidgetSetup()
   })
 end
 
-local function troubleSetup()
+local function setup_trouble()
   if package.loaded["trouble"] ~= nil then
     return
   end
@@ -154,7 +133,7 @@ local function troubleSetup()
   })
 end
 
-local function lspsagaSetup()
+local function setup_lspsaga()
   if package.loaded["lspsaga"] ~= nil then
     return
   end
@@ -170,11 +149,11 @@ local function lspsagaSetup()
   })
 end
 
-local function setupStatusCol()
+local function setup_statuscol()
   require("wsain.plugin.configs.ui.statuscol").setForLspConfig()
 end
 
-local function enableAutoCmp()
+local function enable_auto_cmp()
   require("wsain.utils").toggle_auto_cmp(true)
 end
 
@@ -192,21 +171,21 @@ local attach_lsp_to_existing_buffers = vim.schedule_wrap(function()
   end
 end)
 
-local function ensureDepLoaded()
-  setupStatusCol()
+local function ensure_deps_loaded()
+  setup_statuscol()
   lsp_signature_setup()
-  fidgetSetup()
-  lspsagaSetup()
-  troubleSetup()
-  enableAutoCmp()
+  setup_fidget()
+  setup_lspsaga()
+  setup_trouble()
+  enable_auto_cmp()
 end
 
-local function setupLspWrap(fun, auto_attach)
+local function setup_lsp_wrap(fun, auto_attach)
   if auto_attach == nil then
     auto_attach = true
   end
   return function()
-    ensureDepLoaded()
+    ensure_deps_loaded()
     fun()
     if auto_attach then
       attach_lsp_to_existing_buffers()
@@ -214,7 +193,7 @@ local function setupLspWrap(fun, auto_attach)
   end
 end
 
-local function setupLuaLsp()
+local function setup_lua_lsp()
   local lspconfig = require("lspconfig")
   local luadev = require("lua-dev")
 
@@ -227,7 +206,7 @@ local function setupLuaLsp()
 
   local command = "lua-language-server"
 
-  local luadevConfig = luadev.setup({
+  local luadev_config = luadev.setup({
     lspconfig = {
       cmd = { command },
       settings = {
@@ -259,10 +238,10 @@ local function setupLuaLsp()
     },
   })
 
-  lspconfig.lua_ls.setup(luadevConfig)
+  lspconfig.lua_ls.setup(luadev_config)
 end
 
-local function setupBashLsp()
+local function setup_bash_lsp()
   local lspconfig = require("lspconfig")
   lspconfig.bashls.setup({
     on_attach = on_attach,
@@ -271,7 +250,7 @@ local function setupBashLsp()
   })
 end
 
-local function setupCLsp()
+local function setup_c_lsp()
   local lspconfig = require("lspconfig")
   lspconfig.clangd.setup({
     -- https://clangd.llvm.org/design/compile-commands#compilation-databases
@@ -291,7 +270,7 @@ local function setupCLsp()
   })
 end
 
-local function setupGoLsp()
+local function setup_go_lsp()
   local lspconfig = require("lspconfig")
   lspconfig.gopls.setup({
     on_attach = on_attach,
@@ -301,7 +280,7 @@ local function setupGoLsp()
   })
 end
 
-local function setupVimLsp()
+local function setup_vim_lsp()
   local lspconfig = require("lspconfig")
   lspconfig.vimls.setup({
     on_attach = on_attach,
@@ -310,7 +289,7 @@ local function setupVimLsp()
   })
 end
 
-local function setupFrontEndLsp()
+local function setup_frontend_lsp()
   local lspconfig = require("lspconfig")
   local servers = {
     tsserver = "typescript-language-server",
@@ -384,7 +363,7 @@ local function setupFrontEndLsp()
   })
 end
 
-local function setupPythonLsp()
+local function setup_python_lsp()
   local lspconfig = require("lspconfig")
   lspconfig.pylsp.setup({
     on_attach = on_attach,
@@ -401,7 +380,7 @@ local function setupPythonLsp()
   })
 end
 
-local function setupPyright()
+local function setup_pyright()
   local lspconfig = require("lspconfig")
   lspconfig.basedpyright.setup({
     on_attach = on_attach,
@@ -435,7 +414,7 @@ local function setupPyright()
   })
 end
 
-local function setupJedi()
+local function setup_jedi()
   local lspconfig = require("lspconfig")
   lspconfig.jedi_language_server.setup({
     on_attach = on_attach,
@@ -452,7 +431,7 @@ local function setupJedi()
   })
 end
 
-local function setupPhpLsp()
+local function setup_php_lsp()
   local lspconfig = require("lspconfig")
   lspconfig.intelephense.setup({
     on_attach = on_attach,
@@ -461,7 +440,7 @@ local function setupPhpLsp()
   })
 end
 
-local function setupJavaLsp()
+local function setup_java_lsp()
   -- https://github.com/bmihovski/dusk.nvim/blob/1e595a4/nvim/lua/pluginconfigs/jdtls.lua
   local java_cmds = vim.api.nvim_create_augroup("java_cmds", { clear = true })
   local cache_vars = {}
@@ -509,7 +488,6 @@ local function setupJavaLsp()
 
     ---
     -- Include java-test bundle if present
-    ---
     local java_test_path = require("mason-registry").get_package("java-test"):get_install_path()
 
     local java_test_bundle = vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar"), "\n")
@@ -529,9 +507,7 @@ local function setupJavaLsp()
       vim.list_extend(path.bundles, java_test_bundle)
     end
 
-    ---
     -- Include java-debug-adapter bundle if present
-    ---
     local java_debug_path = require("mason-registry").get_package("java-debug-adapter"):get_install_path()
 
     local java_debug_bundle =
@@ -541,25 +517,7 @@ local function setupJavaLsp()
       vim.list_extend(path.bundles, java_debug_bundle)
     end
 
-    ---
-    -- Useful if you're starting jdtls with a Java version that's
-    -- different from the one the project uses.
-    ---
-    path.runtimes = {
-      -- Note: the field `name` must be a valid `ExecutionEnvironment`,
-      -- you can find the list here:
-      -- https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-      --
-      -- This example assume you are using sdkman: https://sdkman.io
-      -- {
-      --   name = 'JavaSE-17',
-      --   path = vim.fn.expand('~/.sdkman/candidates/java/17.0.6-tem'),
-      -- },
-      -- {
-      --   name = 'JavaSE-18',
-      --   path = vim.fn.expand('~/.sdkman/candidates/java/18.0.2-amzn'),
-      -- },
-    }
+    path.runtimes = {}
 
     cache_vars.paths = path
 
@@ -687,11 +645,6 @@ local function setupJavaLsp()
 
     local lsp_settings = {
       java = {
-        -- jdt = {
-        --   ls = {
-        --     vmargs = "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx4G -Xms256m"
-        --   }
-        -- },
         eclipse = {
           downloadSources = true,
         },
@@ -709,16 +662,8 @@ local function setupJavaLsp()
         referencesCodeLens = {
           enabled = true,
         },
-        -- inlayHints = {
-        --   parameterNames = {
-        --     enabled = 'all' -- literals, all, none
-        --   }
-        -- },
         format = {
           enabled = true,
-          -- settings = {
-          --   profile = 'asdf'
-          -- },
         },
       },
       signatureHelp = {
@@ -797,7 +742,7 @@ local function setupJavaLsp()
   vim.api.nvim_exec_autocmds("FileType", { group = java_cmds, buffer = 0 })
 end
 
-local function setupNixLsp()
+local function setup_nix_lsp()
   local lspconfig = require("lspconfig")
   lspconfig.nil_ls.setup({
     on_attach = on_attach,
@@ -806,19 +751,12 @@ local function setupNixLsp()
   })
 end
 
-local function setupRustLsp()
+local function setup_rust_lsp()
   local lspconfig = require("lspconfig")
   -- https://github.com/rust-lang/rust-analyzer/blob/master/docs/book/src/configuration_generated.md
   lspconfig.rust_analyzer.setup({
     settings = {
-      ["rust-analyzer"] = {
-        -- diagnostics = {
-        --   enable = false,
-        -- },
-        -- inlay_hints = {
-        --   enabled = true,
-        -- },
-      },
+      ["rust-analyzer"] = {},
     },
     on_attach = on_attach,
     on_init = on_init,
@@ -826,7 +764,7 @@ local function setupRustLsp()
   })
 end
 
-local function setupCmakeLsp()
+local function setup_cmake_lsp()
   local lspconfig = require("lspconfig")
   lspconfig.cmake.setup({
     on_attach = on_attach,
@@ -835,22 +773,22 @@ local function setupCmakeLsp()
   })
 end
 
-local function selectLSP()
+local function select_lsp()
   local lspconfig_map = {
-    lua = setupLspWrap(setupLuaLsp),
-    bash = setupLspWrap(setupBashLsp),
-    ["c/cpp"] = setupLspWrap(setupCLsp),
-    go = setupLspWrap(setupGoLsp),
-    vim = setupLspWrap(setupVimLsp),
-    frontend = setupLspWrap(setupFrontEndLsp),
-    pylsp = setupLspWrap(setupPythonLsp),
-    basedpyright = setupLspWrap(setupPyright),
-    jedi = setupLspWrap(setupJedi),
-    php = setupLspWrap(setupPhpLsp),
-    java = setupLspWrap(setupJavaLsp, false),
-    nix = setupLspWrap(setupNixLsp),
-    rust = setupLspWrap(setupRustLsp),
-    cmake = setupLspWrap(setupCmakeLsp),
+    lua = setup_lsp_wrap(setup_lua_lsp),
+    bash = setup_lsp_wrap(setup_bash_lsp),
+    ["c/cpp"] = setup_lsp_wrap(setup_c_lsp),
+    go = setup_lsp_wrap(setup_go_lsp),
+    vim = setup_lsp_wrap(setup_vim_lsp),
+    frontend = setup_lsp_wrap(setup_frontend_lsp),
+    pylsp = setup_lsp_wrap(setup_python_lsp),
+    basedpyright = setup_lsp_wrap(setup_pyright),
+    jedi = setup_lsp_wrap(setup_jedi),
+    php = setup_lsp_wrap(setup_php_lsp),
+    java = setup_lsp_wrap(setup_java_lsp, false),
+    nix = setup_lsp_wrap(setup_nix_lsp),
+    rust = setup_lsp_wrap(setup_rust_lsp),
+    cmake = setup_lsp_wrap(setup_cmake_lsp),
   }
 
   local n = 1
@@ -884,12 +822,7 @@ plugin.config = function()
         [vim.diagnostic.severity.HINT] = "",
         [vim.diagnostic.severity.INFO] = "",
       },
-      linehl = {
-        -- [vim.diagnostic.severity.ERROR ]= "DiagnosticSignError",
-        -- [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
-        -- [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
-        -- [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
-      },
+      linehl = {},
       numhl = {
         [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
         [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
@@ -940,7 +873,7 @@ plugin.config = function()
     { "<leader>c", group = "code", mode = "v" },
     { "<leader>cf", ":Format<cr>", desc = "format" },
     { "<leader>cf", ":Format<cr>", desc = "format", mode = "v" },
-    { "<leader>cS", selectLSP, desc = "lsp server" },
+    { "<leader>cS", select_lsp, desc = "lsp server" },
   })
 end
 

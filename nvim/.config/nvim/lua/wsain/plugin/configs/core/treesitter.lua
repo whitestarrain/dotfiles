@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "whitestarrain/nvim-treesitter"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "whitestarrain/nvim-treesitter"
+plugin.load_event = "VeryLazy"
 plugin.branch = "main"
 plugin.config = function()
   require("nvim-treesitter").setup({ install_dir = vim.g.absolute_config_path .. ".treesitter-parsers" })

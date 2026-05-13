@@ -1,5 +1,5 @@
 local plugin = require("wsain.plugin.template"):new()
-plugin.shortUrl = "luukvbaal/statuscol.nvim"
+plugin.short_url = "luukvbaal/statuscol.nvim"
 plugin.customConfig = function(lsp_mode)
   local status, builtin = pcall(require, "statuscol.builtin")
   if not status then

@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "lewis6991/gitsigns.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "lewis6991/gitsigns.nvim"
+plugin.load_event = "VeryLazy"
 plugin.branch = "main"
 plugin.dependencies = {
   "junegunn/gv.vim",

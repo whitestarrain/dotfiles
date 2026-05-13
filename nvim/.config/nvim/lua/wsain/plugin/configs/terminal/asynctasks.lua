@@ -1,6 +1,6 @@
 local plugin = require("wsain.plugin.template"):new()
-plugin.shortUrl = "skywind3000/asynctasks.vim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "skywind3000/asynctasks.vim"
+plugin.load_event = "VeryLazy"
 plugin.dependencies = {
   "skywind3000/asyncrun.vim",
 }

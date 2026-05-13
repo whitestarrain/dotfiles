@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "numToStr/Comment.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "numToStr/Comment.nvim"
+plugin.load_event = "VeryLazy"
 plugin.config = function()
   require("Comment").setup()
 end

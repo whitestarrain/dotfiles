@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "mfussenegger/nvim-lint"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "mfussenegger/nvim-lint"
+plugin.load_event = "VeryLazy"
 
 -- support toggle. l
 vim.g.enable_linter = false

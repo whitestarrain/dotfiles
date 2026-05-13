@@ -55,30 +55,30 @@ local opt = {
 }
 
 -- plugin config handler
-local pluginConfigConvert = function(pluginDatas)
+local convert_plugin_specs = function(plugin_specs)
   local result = {}
-  for _, originConfig in pairs(pluginDatas) do
-    if type(originConfig) == "table" and originConfig.shortUrl ~= nil then
-      if originConfig.dir ~= nil then
-        originConfig.dev = true
+  for _, spec in pairs(plugin_specs) do
+    if type(spec) == "table" and spec.short_url ~= nil then
+      if spec.dir ~= nil then
+        spec.dev = true
       end
       table.insert(result, {
-        originConfig.shortUrl,
-        dir = originConfig.dir,
-        cond = originConfig.cond,
-        init = originConfig.init,
-        config = originConfig.config,
-        dependencies = originConfig.dependencies,
-        opts = originConfig.opts,
-        build = originConfig.build,
-        branch = originConfig.branch,
-        commit = originConfig.commit,
-        tag = originConfig.tag,
-        version = originConfig.version,
-        pin = originConfig.pin,
-        priority = originConfig.priority,
-        event = originConfig.loadEvent,
-        dev = originConfig.dev,
+        spec.short_url,
+        dir = spec.dir,
+        cond = spec.cond,
+        init = spec.init,
+        config = spec.config,
+        dependencies = spec.dependencies,
+        opts = spec.opts,
+        build = spec.build,
+        branch = spec.branch,
+        commit = spec.commit,
+        tag = spec.tag,
+        version = spec.version,
+        pin = spec.pin,
+        priority = spec.priority,
+        event = spec.load_event,
+        dev = spec.dev,
       })
     end
   end
@@ -86,13 +86,13 @@ local pluginConfigConvert = function(pluginDatas)
 end
 
 -- return load interface
-local loadPlugins = function(pluginDatas)
-  local plugins = pluginConfigConvert(pluginDatas)
+local load_plugins = function(plugin_specs)
+  local plugins = convert_plugin_specs(plugin_specs)
 
   -- lazy will delete custom runtimepath
   require("lazy").setup(plugins, opt)
 end
 
 return {
-  load = loadPlugins,
+  load = load_plugins,
 }

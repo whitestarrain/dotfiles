@@ -1,12 +1,12 @@
 local plugin = require("wsain.plugin.template"):new()
 local utils = require("wsain.utils")
 
-plugin.shortUrl = "voldikss/vim-floaterm"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "voldikss/vim-floaterm"
+plugin.load_event = "VeryLazy"
 
 plugin.init = function()
   vim.g.floaterm_opener = "edit"
-  local os = utils.getOs()
+  local os = utils.get_os()
   if os == "win" then
     vim.g.floaterm_shell = "cmd"
   elseif os == "mac" then
@@ -40,7 +40,7 @@ plugin.init = function()
 end
 
 local file_exploer = "lf"
-if utils.getOs() ~= "win" and vim.fn.executable(file_exploer) == 0 then
+if utils.get_os() ~= "win" and vim.fn.executable(file_exploer) == 0 then
   file_exploer = "ranger"
 end
 

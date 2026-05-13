@@ -1,11 +1,11 @@
 local plugin = require("wsain.plugin.template"):new()
 local utils = require("wsain.utils")
 
-plugin.shortUrl = "stevearc/conform.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "stevearc/conform.nvim"
+plugin.load_event = "VeryLazy"
 plugin.config = function()
   -- formatter config
-  local python_formater = utils.getOs() == "win" and "black" or "darker"
+  local python_formater = utils.get_os() == "win" and "black" or "darker"
   require("conform").setup({
     formatters = {
       sqlfmt = {

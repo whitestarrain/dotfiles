@@ -20,8 +20,8 @@ require("wsain.plugin.whichkey").register({
   { "<leader>zl", ":%s/\\n\\n\\+/\\r\\r/g<cr>", desc = "compress blank line" },
   { "<leader>zf", ':echo expand("%:p")<cr>', desc = "show file path" },
   -- can use gx replaced
-  { "<leader>zu", require("wsain.utils").openFileUnderCursor, desc = "open file under cursor" },
-  { "<leader>zo", require("wsain.utils").openCurrentFile, desc = "open current file" },
+  { "<leader>zu", require("wsain.utils").open_file_under_cursor, desc = "open file under cursor" },
+  { "<leader>zo", require("wsain.utils").open_current_file, desc = "open current file" },
   { "<leader>m", group = "markdown" },
   { "<leader>md", group = "download" },
   {
@@ -42,7 +42,7 @@ require("wsain.plugin.whichkey").register({
     "<leader>e",
     function()
       local path_separator = "/"
-      if utils.getOs() == "win" then
+      if utils.get_os() == "win" then
         path_separator = "\\"
       end
       local file_path = vim.fn.expand("%")

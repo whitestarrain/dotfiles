@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "folke/todo-comments.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "folke/todo-comments.nvim"
+plugin.load_event = "VeryLazy"
 plugin.config = function()
   local todoComments = require("todo-comments")
 

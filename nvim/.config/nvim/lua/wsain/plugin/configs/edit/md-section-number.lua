@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "whitestarrain/md-section-number.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "whitestarrain/md-section-number.nvim"
+plugin.load_event = "VeryLazy"
 plugin.opts = {
   max_level = 4,
   min_level = 1,
@@ -13,7 +13,7 @@ plugin.opts = {
 }
 plugin.config = function()
   require("md_section_number").setup(plugin.opts)
-  require("wsain.utils").addCommandBeforeSaveSession('lua require("md_section_number.toc").closeToc()')
+  require("wsain.utils").add_command_before_save_session('lua require("md_section_number.toc").closeToc()')
   require("wsain.plugin.whichkey").register({
     { "<leader>m", group = "markdown" },
     {

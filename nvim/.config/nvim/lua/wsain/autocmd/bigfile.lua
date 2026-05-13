@@ -15,12 +15,12 @@ local function check_bigfile(bufnr, max_file_size, max_lines, max_line_length)
   return is_bigfile
 end
 
-local function pcall_wrap(model_name, callback)
-  local status, lua_model = pcall(require, model_name)
+local function pcall_wrap(module_name, callback)
+  local status, lua_module = pcall(require, module_name)
   if not status then
     return
   end
-  callback(lua_model)
+  callback(lua_module)
 end
 
 local features = {

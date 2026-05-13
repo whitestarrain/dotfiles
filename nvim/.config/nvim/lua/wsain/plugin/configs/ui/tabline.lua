@@ -1,6 +1,6 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "crispgm/nvim-tabline"
+plugin.short_url = "crispgm/nvim-tabline"
 plugin.config = function()
   require("tabline").setup({
     show_index = true,

@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "stevearc/dressing.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "stevearc/dressing.nvim"
+plugin.load_event = "VeryLazy"
 plugin.config = function()
   require("dressing").setup({
     input = {

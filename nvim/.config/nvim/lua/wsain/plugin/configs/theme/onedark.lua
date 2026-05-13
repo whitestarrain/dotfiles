@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
 local gui_running = vim.fn.has("gui_running")
-plugin.shortUrl = "olimorris/onedarkpro.nvim"
+plugin.short_url = "olimorris/onedarkpro.nvim"
 plugin.priority = 1000
 plugin.config = function()
   local config = require("onedarkpro.config").config

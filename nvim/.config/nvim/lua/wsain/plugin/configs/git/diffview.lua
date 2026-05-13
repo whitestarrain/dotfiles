@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "sindrets/diffview.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "sindrets/diffview.nvim"
+plugin.load_event = "VeryLazy"
 plugin.branch = "main"
 plugin.dependencies = {}
 

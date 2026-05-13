@@ -1,9 +1,9 @@
 local plugin = require("wsain.plugin.template"):new()
 local utils = require("wsain.utils")
 
-plugin.shortUrl = "kyazdani42/nvim-tree.lua"
+plugin.short_url = "kyazdani42/nvim-tree.lua"
 plugin.dependencies = { "nvim-tree/nvim-web-devicons" }
-plugin.loadEvent = "VeryLazy"
+plugin.load_event = "VeryLazy"
 local function relative_path_under_cursor()
   local node = require("nvim-tree.api").tree.get_node_under_cursor()
   local current_path = node.absolute_path
@@ -157,7 +157,7 @@ plugin.opts = {
 }
 plugin.config = function()
   require("nvim-tree").setup(plugin.opts)
-  require("wsain.utils").addCommandBeforeSaveSession("silent! NvimTreeClose")
+  require("wsain.utils").add_command_before_save_session("silent! NvimTreeClose")
 
   local api = require("nvim-tree.api")
 

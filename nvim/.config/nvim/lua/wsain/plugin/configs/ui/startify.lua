@@ -1,6 +1,6 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "mhinz/vim-startify"
+plugin.short_url = "mhinz/vim-startify"
 plugin.dependencies = { "ryanoasis/vim-devicons" }
 plugin.init = function()
   vim.g.startify_session_before_save = {}

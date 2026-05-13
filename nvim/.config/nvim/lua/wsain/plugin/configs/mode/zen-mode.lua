@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "folke/zen-mode.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "folke/zen-mode.nvim"
+plugin.load_event = "VeryLazy"
 
 plugin.config = function()
   require("zen-mode").setup()

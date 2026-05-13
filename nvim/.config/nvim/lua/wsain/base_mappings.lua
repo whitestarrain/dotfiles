@@ -6,7 +6,7 @@ local utils = require("wsain.utils")
 local keymap = vim.keymap
 local default_opts = { silent = true, noremap = true }
 local set_mapping = function(mode, key, action, opts)
-  vim.keymap.set(mode, key, action, utils.merge_tb(default_opts, opts))
+  vim.keymap.set(mode, key, action, utils.deep_merge(default_opts, opts))
 end
 
 local put_empty_line = function(put_above)
@@ -151,7 +151,7 @@ end
 keymap.set("n", "<Esc>", esc_func)
 
 -- disable `K` query mandoc in windows
-if require("wsain.utils").getOs() == "win" then
+if require("wsain.utils").get_os() == "win" then
   keymap.set("n", "K", "<nop>")
 end
 
@@ -162,6 +162,6 @@ vim.cmd([[
   cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
 ]])
 
--- duplidate line in insert mode
+-- duplicate line in insert mode
 -- keymap.set("i", "<C-l>", "<C-o>:execute('.copy.')<cr>")
 

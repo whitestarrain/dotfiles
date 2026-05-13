@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "NMAC427/guess-indent.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "NMAC427/guess-indent.nvim"
+plugin.load_event = "VeryLazy"
 plugin.config = function()
   require("guess-indent").setup({
     auto_cmd = true,

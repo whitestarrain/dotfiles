@@ -1,14 +1,14 @@
 -- check install
-local whichkeyPath = vim.g.absolute_config_path .. ".plugins/which-key.nvim"
-if not vim.loop.fs_stat(whichkeyPath) then
-  vim.notify("start clone whichkey to " .. whichkeyPath)
+local whichkey_path = vim.g.absolute_config_path .. ".plugins/which-key.nvim"
+if not vim.loop.fs_stat(whichkey_path) then
+  vim.notify("start clone whichkey to " .. whichkey_path)
   vim.fn.system({
     "git",
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/which-key.nvim",
     "--branch=main",
-    whichkeyPath,
+    whichkey_path,
   })
   local lazy_lock_file = vim.g.absolute_config_path .. "/lazy-lock.json"
   if vim.loop.fs_stat(lazy_lock_file) then
@@ -20,13 +20,13 @@ if not vim.loop.fs_stat(whichkeyPath) then
     vim.fn.system({
       "git",
       "-C",
-      whichkeyPath,
+      whichkey_path,
       "checkout",
       commit,
     })
   end
 end
-vim.opt.rtp:prepend(whichkeyPath)
+vim.opt.rtp:prepend(whichkey_path)
 
 ---@class wk.Opts
 local opts = {
@@ -206,6 +206,6 @@ end
 return {
   register = register,
   plugin = require("wsain.plugin.template"):new({
-    shortUrl = "folke/which-key.nvim",
+    short_url = "folke/which-key.nvim",
   }),
 }

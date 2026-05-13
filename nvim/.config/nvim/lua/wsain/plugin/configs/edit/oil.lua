@@ -1,6 +1,6 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "stevearc/oil.nvim"
+plugin.short_url = "stevearc/oil.nvim"
 plugin.dependencies = {
   "nvim-tree/nvim-web-devicons",
 }

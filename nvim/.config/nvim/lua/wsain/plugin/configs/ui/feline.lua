@@ -1,5 +1,5 @@
 local plugin = require("wsain.plugin.template"):new()
-plugin.shortUrl = "famiu/feline.nvim"
+plugin.short_url = "famiu/feline.nvim"
 
 local colors = {
   neosolarized = {
@@ -71,12 +71,12 @@ local mode_colors = {
 }
 
 local theme = colors[vim.g.colors_name or "onedark"]
-local modeColors = mode_colors[vim.g.colors_name or "onedark"]
+local mode_hl_map = mode_colors[vim.g.colors_name or "onedark"]
 
 plugin.config = function()
   local feline = require("feline")
-  local modeProvider = require("feline.providers.vi_mode")
-  local cursorProvider = require("feline.providers.cursor")
+  local mode_provider = require("feline.providers.vi_mode")
+  local cursor_provider = require("feline.providers.cursor")
 
   local icons = {
     locker = "", -- #f023
@@ -112,15 +112,15 @@ plugin.config = function()
     git_removed = "",
   }
 
-  local function modeHl()
-    local hl = modeColors[modeProvider.get_vim_mode()]
+  local function get_mode_hl()
+    local hl = mode_hl_map[mode_provider.get_vim_mode()]
     if hl == nil then
-      hl = modeColors["NORMAL"]
+      hl = mode_hl_map["NORMAL"]
     end
     return hl
   end
 
-  local function getLspClientName()
+  local function get_lsp_client_name()
     local msg = ""
     local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
     local clients = vim.lsp.get_clients()
@@ -136,7 +136,7 @@ plugin.config = function()
     return msg
   end
 
-  local function getDiffStatus(type)
+  local function get_diff_status(type)
     -- { added = add_count, modified = modified_count, removed = removed_count }
     local diffStatus = vim.b.gitsigns_status_dict
     if diffStatus == nil then
@@ -145,13 +145,13 @@ plugin.config = function()
     return diffStatus[type]
   end
 
-  local function columnsWidthCondition(width)
+  local function columns_width_condition(width)
     return function()
       return vim.o.columns > width
     end
   end
 
-  local function dangerProvider()
+  local function danger_provider()
       local error_num, error_icon = require("feline.providers.lsp").diagnostic_errors()
       if error_num ~= nil and error_num ~= "" and tonumber(error_num) > 0 then
         return " 危 "
@@ -165,15 +165,15 @@ plugin.config = function()
       {
         {
           provider = function()
-            return " " .. modeProvider.get_vim_mode() .. " "
+            return " " .. mode_provider.get_vim_mode() .. " "
           end,
-          hl = modeHl,
+          hl = get_mode_hl,
           right_sep = {
             str = icons.right_filled,
             hl = function()
-              local hl = modeColors[modeProvider.get_vim_mode()]
+              local hl = mode_hl_map[mode_provider.get_vim_mode()]
               if hl == nil then
-                hl = modeColors["NORMAL"]
+                hl = mode_hl_map["NORMAL"]
               end
               local bg = theme.bg
               if vim.b.gitsigns_head ~= nil then
@@ -230,7 +230,7 @@ plugin.config = function()
         },
         {
           provider = function()
-            local status = getDiffStatus("added")
+            local status = get_diff_status("added")
             if status == nil or status == 0 then
               return ""
             end
@@ -239,11 +239,11 @@ plugin.config = function()
           hl = {
             fg = theme.green,
           },
-          enabled = columnsWidthCondition(90),
+          enabled = columns_width_condition(90),
         },
         {
           provider = function()
-            local status = getDiffStatus("changed")
+            local status = get_diff_status("changed")
             if status == nil or status == 0 then
               return ""
             end
@@ -252,11 +252,11 @@ plugin.config = function()
           hl = {
             fg = theme.yellow,
           },
-          enabled = columnsWidthCondition(90),
+          enabled = columns_width_condition(90),
         },
         {
           provider = function()
-            local status = getDiffStatus("removed")
+            local status = get_diff_status("removed")
             if status == nil or status == 0 then
               return ""
             end
@@ -265,7 +265,7 @@ plugin.config = function()
           hl = {
             fg = theme.red1,
           },
-          enabled = columnsWidthCondition(90),
+          enabled = columns_width_condition(90),
         },
       }, -- left section
       {
@@ -277,34 +277,34 @@ plugin.config = function()
           right_sep = "",
         },
         {
-          provider = getLspClientName,
+          provider = get_lsp_client_name,
           icon = " LSP:",
           hl = {
             fg = theme.oceanblue,
           },
-          enabled = columnsWidthCondition(110),
+          enabled = columns_width_condition(110),
         },
       }, -- mid section
       {
         {
           provider = "diagnostic_errors",
           hl = { fg = theme.red1 },
-          enabled = columnsWidthCondition(102),
+          enabled = columns_width_condition(102),
         },
         {
           provider = "diagnostic_warnings",
           hl = { fg = theme.yellow },
-          enabled = columnsWidthCondition(102),
+          enabled = columns_width_condition(102),
         },
         {
           provider = "diagnostic_hints",
           hl = { fg = theme.cyan },
-          enabled = columnsWidthCondition(102),
+          enabled = columns_width_condition(102),
         },
         {
           provider = "diagnostic_info",
           hl = { fg = theme.blue },
-          enabled = columnsWidthCondition(102),
+          enabled = columns_width_condition(102),
         },
         {
           provider = function()
@@ -340,7 +340,7 @@ plugin.config = function()
         },
         {
           provider = function()
-            return " " .. cursorProvider.line_percentage() .. " "
+            return " " .. cursor_provider.line_percentage() .. " "
           end,
           hl = {
             bg = theme.second_bg,
@@ -356,19 +356,19 @@ plugin.config = function()
         },
         {
           provider = function()
-            local position = cursorProvider.position("", {})
+            local position = cursor_provider.position("", {})
             if #position < 7 then
               return string.format("%07s  ", position)
             end
             return " " .. position .. "  "
           end,
-          hl = modeHl,
+          hl = get_mode_hl,
           left_sep = {
             str = icons.left_filled,
             hl = function()
-              local hl = modeColors[modeProvider.get_vim_mode()]
+              local hl = mode_hl_map[mode_provider.get_vim_mode()]
               if hl == nil then
-                hl = modeColors["NORMAL"]
+                hl = mode_hl_map["NORMAL"]
               end
               return {
                 fg = hl.bg,
@@ -384,15 +384,15 @@ plugin.config = function()
       {
         {
           provider = function()
-            return " " .. modeProvider.get_vim_mode() .. " "
+            return " " .. mode_provider.get_vim_mode() .. " "
           end,
-          hl = modeHl,
+          hl = get_mode_hl,
           right_sep = {
             str = icons.right_filled .. " ",
             hl = function()
-              local hl = modeColors[modeProvider.get_vim_mode()]
+              local hl = mode_hl_map[mode_provider.get_vim_mode()]
               if hl == nil then
-                hl = modeColors["NORMAL"]
+                hl = mode_hl_map["NORMAL"]
               end
               return {
                 fg = hl.bg,

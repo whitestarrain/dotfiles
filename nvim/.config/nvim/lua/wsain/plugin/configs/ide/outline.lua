@@ -1,8 +1,8 @@
 local plugin = require("wsain.plugin.template"):new()
 local utils = require("wsain.utils")
 
-plugin.shortUrl = "stevearc/aerial.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "stevearc/aerial.nvim"
+plugin.load_event = "VeryLazy"
 plugin.dependencies = {
   "nvim-tree/nvim-web-devicons",
 }
@@ -48,7 +48,7 @@ plugin.config = function()
     link_folds_to_tree = false,
     link_tree_to_folds = false,
   })
-  utils.addCommandBeforeSaveSession("silent! AerialClose")
+  utils.add_command_before_save_session("silent! AerialClose")
   require("wsain.plugin.whichkey").register({
     { "<leader>ct", ":AerialToggle<CR>", desc = "outline" },
   })

@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "williamboman/mason.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "williamboman/mason.nvim"
+plugin.load_event = "VeryLazy"
 plugin.dependencies = {
   "mason-org/mason-registry",
 }

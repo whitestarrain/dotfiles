@@ -1,7 +1,7 @@
 local plugin = require("wsain.plugin.template"):new()
 
-plugin.shortUrl = "tpope/vim-surround"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "tpope/vim-surround"
+plugin.load_event = "VeryLazy"
 plugin.dependencies = {
   "tpope/vim-repeat",
 }

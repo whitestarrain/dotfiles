@@ -1,8 +1,8 @@
 local plugin = require("wsain.plugin.template"):new()
 local utils = require("wsain.utils")
 
-plugin.shortUrl = "nvim-telescope/telescope.nvim"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "nvim-telescope/telescope.nvim"
+plugin.load_event = "VeryLazy"
 plugin.dependencies = {
   "GustavoKatel/telescope-asynctasks.nvim",
   "benfowler/telescope-luasnip.nvim",

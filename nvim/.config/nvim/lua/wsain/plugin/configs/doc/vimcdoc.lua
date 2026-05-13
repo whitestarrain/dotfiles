@@ -1,4 +1,4 @@
 local plugin = require("wsain.plugin.template"):new()
-plugin.shortUrl = "yianwillis/vimcdoc"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "yianwillis/vimcdoc"
+plugin.load_event = "VeryLazy"
 return plugin

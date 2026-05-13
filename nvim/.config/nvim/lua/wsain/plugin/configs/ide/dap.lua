@@ -1,8 +1,8 @@
 local plugin = require("wsain.plugin.template"):new()
 local utils = require("wsain.utils")
 
-plugin.shortUrl = "mfussenegger/nvim-dap"
-plugin.loadEvent = "VeryLazy"
+plugin.short_url = "mfussenegger/nvim-dap"
+plugin.load_event = "VeryLazy"
 plugin.dependencies = {
   "rcarriga/nvim-dap-ui",
   "theHamsta/nvim-dap-virtual-text",
@@ -15,7 +15,7 @@ plugin.dependencies = {
 local default_launch_json_path = "./.vscode/dap.json"
 
 local function cmdWrap(cmd)
-  if utils.getOs() == "win" then
+  if utils.get_os() == "win" then
     return cmd .. ".cmd"
   end
   return cmd
@@ -28,7 +28,7 @@ local function ensureDepWrap()
 end
 
 local function executableSuffix()
-  if utils.getOs() == "win" then
+  if utils.get_os() == "win" then
     return ".exe"
   end
   return ""
@@ -85,7 +85,7 @@ local function setupCodelldb()
       type = "codelldb",
       request = "launch",
       args = function()
-        return utils.str_split(vim.fn.input("execute args: "), " ")
+        return utils.split_string(vim.fn.input("execute args: "), " ")
       end,
       program = function()
         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
@@ -286,6 +286,6 @@ plugin.config = function()
   })
 
   -- close dapui before saving session
-  utils.addCommandBeforeSaveSession('lua require("dapui").close()')
+  utils.add_command_before_save_session('lua require("dapui").close()')
 end
 return plugin
