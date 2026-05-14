@@ -18,13 +18,18 @@ plugin.config = function()
         options = {
           ["ignore-case"] = {
             value = "--ignore-case",
-            icon = "[I]",
             desc = "ignore case",
+            icon = "[I]",
           },
           ["hidden"] = {
             value = "--hidden",
             desc = "hidden file",
             icon = "[H]",
+          },
+          ["no-ignore"] = {
+            value = "--no-ignore",
+            desc = "no ignore file",
+            icon = "[G]",
           },
         },
       },
@@ -35,22 +40,13 @@ plugin.config = function()
         cmd = ":q<cr>",
         desc = "quit",
       },
+      ["toggle_no_ignore"] = {
+        map = "tg",
+        cmd = "<cmd>lua require('spectre').change_options('no-ignore')<CR>",
+        desc = "toggle no ignore",
+      },
     },
   })
-  require("spectre.search.rg").get_path_args = function(_, paths)
-    if #paths == 0 then
-      return {}
-    end
-
-    local args = {}
-    for _, path in ipairs(paths) do
-      table.insert(args, "--no-ignore")
-      table.insert(args, "--hidden")
-      table.insert(args, "-g")
-      table.insert(args, path)
-    end
-    return args
-  end
 end
 
 return plugin
