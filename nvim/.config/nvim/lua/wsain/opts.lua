@@ -65,7 +65,7 @@ vim.opt.backspace = "indent,eol,start"
 
 -- enable(default) editorconfig
 vim.g.editorconfig = true
--- disable auto wrap line
+-- HACK: disable auto wrap line
 require("editorconfig").properties.max_line_length = function() end
 
 -- pair match

@@ -5,7 +5,7 @@ plugin.load_event = "VeryLazy"
 plugin.config = function()
   local todoComments = require("todo-comments")
 
-  -- to fix error report when open command line (q:)
+  -- HACK: to fix error report when open command line (q:)
   local hl = require("todo-comments.highlight")
   local highlight_win = hl.highlight_win
   hl.highlight_win = function(win, force)

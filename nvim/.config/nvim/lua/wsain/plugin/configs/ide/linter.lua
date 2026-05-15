@@ -45,7 +45,7 @@ local lint_toggle = function()
   -- set marker value
   vim.g.enable_linter = not vim.g.enable_linter
   -- re-calculate statusline
-  vim.cmd([[let &stl=&stl]])
+  vim.cmd.redrawstatus()
 end
 
 plugin.config = function()

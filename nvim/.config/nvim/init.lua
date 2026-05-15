@@ -22,10 +22,10 @@ local plugin_manager = require("wsain.plugin.lazy")
 table.insert(plugin_specs, 1, whichkey_plugin_spec)
 plugin_manager.load(plugin_specs)
 
--- hide deprecate info
+-- HACK: hide deprecate info
 vim.deprecate = function() end
 
--- disable treesiter by default
+-- HACK: disable treesiter by default
 vim.g.ts_start = vim.treesitter.start
 vim.treesitter.start = function() end
 

@@ -27,7 +27,7 @@ plugin.config = function()
       local origin_buf_hidden =
         vim.api.nvim_get_option_value("bufhidden", { buf = vim.api.nvim_win_get_buf(original_win_id) })
 
-      -- if open telescope under nvim-tree, select other window.
+      -- HACK: if open telescope under nvim-tree, select other window.
       if origin_buf_hidden == "wipe" then
         local win_ids = vim.api.nvim_tabpage_list_wins(0)
         for _, win_id in ipairs(win_ids) do
