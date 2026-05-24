@@ -10,7 +10,7 @@
 ---@field pin? boolean pin plugin version
 ---@field priority? integer load priority (default 50)
 ---@field load_event? string|string[] lazy.nvim event trigger
----@field dev? boolean whether this is a local dev plugin
+---@field build? string build command
 local Template = {
   short_url = nil,
   dir = nil,
@@ -23,6 +23,7 @@ local Template = {
   pin = nil,
   priority = 50,
   load_event = nil,
+  build = nil,
 }
 
 Template.__index = Template
