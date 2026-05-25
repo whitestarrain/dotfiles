@@ -146,6 +146,9 @@ local function setup_lspsaga()
       enable = false,
       sign = false,
     },
+    hover = {
+      max_width = 0.6,
+    },
   })
 end
 
@@ -810,6 +813,10 @@ end
 plugin.config = function()
   -- diagnostic config
   vim.diagnostic.config({
+    underline = true,
+    update_in_insert = false,
+    virtual_text = false,
+    severity_sort = true,
     float = {
       header = "",
       border = "single",
@@ -839,34 +846,30 @@ plugin.config = function()
   end
 
   -- lsp handler
-  -- help vim.lsp.util.open_floating_preview() and according to the lua source code
   local lsp = vim.lsp
-  -- Global handlers.
-  lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, {
-    border = "single",
-    offset_x = 1,
-    max_width = 100,
-    max_height = 20,
-  })
 
-  lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, {
-    border = "single",
-    max_width = 100,
-    max_height = 20,
-  })
-
-  -- enable semantic_tokens and under_line will gray out unused variable
-  lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
-    underline = false,
-    update_in_insert = false,
-    -- virtual_text = { spacing = 4, prefix = "\u{ea71}" },
-    virtual_text = false,
-    severity_sort = true,
-    float = {
-      header = "",
+  -- HACK: add default opts for lsp.buf.hover
+  local orig_hover = lsp.buf.hover
+  lsp.buf.hover = function(opts)
+    opts = vim.tbl_deep_extend("force", {
       border = "single",
-    },
-  })
+      offset_x = 1,
+      max_width = 100,
+      max_height = 20,
+    }, opts or {})
+    return orig_hover(opts)
+  end
+
+  -- HACK: add default opts for lsp.buf.signature_help
+  local orig_signature_help = lsp.buf.signature_help
+  lsp.buf.signature_help = function(opts)
+    opts = vim.tbl_deep_extend("force", {
+      border = "single",
+      max_width = 100,
+      max_height = 20,
+    }, opts or {})
+    return orig_signature_help(opts)
+  end
 
   require("wsain.plugin.whichkey").register({
     { "<leader>c", group = "code" },
@@ -878,3 +881,4 @@ plugin.config = function()
 end
 
 return plugin
+
