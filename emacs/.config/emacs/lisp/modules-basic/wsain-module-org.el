@@ -116,8 +116,6 @@
                 (wsain/org-sort-when-capture))))
 
   ;; MAPPING
-  (define-key org-mode-map (kbd "C-c C-t") nil)
-  (define-key org-mode-map (kbd "C-c o") 'org-todo)
   (add-hook 'org-agenda-mode-hook
             (lambda ()
               (define-key org-agenda-mode-map "k" 'org-capture)
