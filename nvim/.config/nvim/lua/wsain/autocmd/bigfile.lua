@@ -32,7 +32,7 @@ local features = {
 
   disable_vimopts = function()
     vim.opt_local.swapfile = false
-    vim.opt_local.foldmethod = "manual"
+    vim.opt_local.foldmethod = "indent"
     vim.opt_local.undolevels = 10
     vim.opt_local.undoreload = 0
     vim.opt_local.list = false
