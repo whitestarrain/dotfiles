@@ -121,7 +121,7 @@ set_mapping("n", "]e", function()
     pcall(vim.fn.execute, "NextError")
     return
   end
-end, {desc="next quick fix"})
+end, { desc = "next quick fix" })
 set_mapping("n", "[e", function()
   if utils.check_quickfix_open() then
     pcall(vim.fn.execute, "cprevious")
@@ -131,7 +131,7 @@ set_mapping("n", "[e", function()
     pcall(vim.fn.execute, "PrevError")
     return
   end
-end, {desc="prev quick fix"})
+end, { desc = "prev quick fix" })
 
 -- esc mapping
 local esc_func = function()
@@ -164,4 +164,3 @@ vim.cmd([[
 
 -- duplicate line in insert mode
 -- keymap.set("i", "<C-l>", "<C-o>:execute('.copy.')<cr>")
-

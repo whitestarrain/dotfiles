@@ -25,7 +25,7 @@ vim.opt.sidescrolloff = 8
 vim.opt.smoothscroll = true
 vim.opt.linespace = 0
 vim.opt.showmode = true
-vim.opt.showcmd = true
+vim.opt.showcmd = false -- hide gj, gk
 vim.opt.regexpengine = 0
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
@@ -36,6 +36,7 @@ vim.opt.laststatus = 3
 vim.opt.hidden = true
 vim.opt.signcolumn = "auto:2"
 vim.opt.list = false
+vim.opt.conceallevel = 0
 
 vim.cmd([[
   syntax enable
@@ -84,10 +85,6 @@ vim.opt.matchpairs:append({
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
 
--- other config
-vim.opt.conceallevel = 0
-vim.opt.maxmempattern = 5000
-
 -- complete opt
 vim.opt.completeopt = "menu,menuone"
 
@@ -113,3 +110,8 @@ vim.g.omni_sql_no_default_maps = 1
 
 -- add extra pack
 vim.cmd([[packadd cfilter]])
+
+-- others
+vim.opt.maxmempattern = 5000
+vim.opt.exrc = true
+

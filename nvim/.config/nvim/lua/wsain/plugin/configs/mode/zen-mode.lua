@@ -13,8 +13,7 @@ plugin.config = function()
       function()
         require("zen-mode").toggle({
           window = {
-            -- width will be 85% of the editor width
-            width = 0.6,
+            width = 100,
           },
         })
       end,
