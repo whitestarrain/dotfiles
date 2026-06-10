@@ -1,8 +1,6 @@
 -- https://github.com/LunarVim/bigfile.nvim/blob/main/lua/bigfile/features.lua
 local utils = require("wsain.utils")
 
-local M = {}
-
 local bigfile_check_flag = "wsain_bigfile_check_flag"
 
 local function check_bigfile(bufnr, max_file_size, max_lines, max_line_length)
@@ -79,7 +77,7 @@ local defer_features = {
 }
 
 -- bigfile autocmd
-function M.bigfile_handler(bufnr)
+local function bigfile_handler(bufnr)
   -- for buffers opened through dapui or lspsaga, buflisted may be false at first.
   -- if not vim.bo.buflisted then
   --   return
@@ -127,4 +125,11 @@ function M.bigfile_handler(bufnr)
   })
 end
 
-return M
+-- bigfile autocmd
+local bigfile_handle_augroup = vim.api.nvim_create_augroup("WsainBigFileHandleGroup", { clear = true })
+vim.api.nvim_create_autocmd("BufReadPre", {
+  group = bigfile_handle_augroup,
+  callback = function(args)
+    bigfile_handler(args.buf)
+  end,
+})

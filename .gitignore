@@ -10,6 +10,8 @@ nvim/.config/nvim/.plugins
 nvim/.config/nvim/.managers
 nvim/.config/nvim/.mason
 nvim/.config/nvim/.treesitter-parsers
+nvim/.config/nvim/.local/**/*
+!nvim/.config/nvim/.local/.gitkeep
 **/__pycache__
 todo.md
 dot_bak
