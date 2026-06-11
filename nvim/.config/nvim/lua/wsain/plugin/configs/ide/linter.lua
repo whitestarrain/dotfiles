@@ -60,6 +60,7 @@ plugin.config = function()
     make = { "checkmake" },
     cpp = { "cpplint" },
     c = { "cpplint" },
+    rust = { "clippy" },
   }
   require("wsain.plugin.whichkey").register({
     { "<leader>l", lint_toggle, desc = "toggle lint" },
