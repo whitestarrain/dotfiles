@@ -19,6 +19,7 @@ function M.prettier_range_format(bufnr, range_start, range_end)
   end
   local format_cmd = {
     "prettier",
+    "--ignore-path=.prettierignore",
     "--parser=" .. vim.o.filetype,
     "--stdin-filepath=" .. vim.fn.expand("%"),
   }
