@@ -213,13 +213,6 @@ displayed in agenda view."
         (sdcv-search-input+ (car active-text))))
     ))
 
-(defun wsain/org-agenda-todo-with-date (date)
-  "Mark task as DONE in agenda view with custom DATE."
-  (interactive (list (org-read-date nil t nil "Done date: ")))
-  (let ((current-time-function (lambda () date)))
-    (org-agenda-todo))
-  (org-agenda-redo))
-
 (defun show-file-name ()
   "Show the full path file name in the minibuffer."
   (interactive)
@@ -229,6 +222,5 @@ displayed in agenda view."
     "Revert buffer without confirmation."
     (interactive)
     (revert-buffer :ignore-auto :noconfirm))
-
 
 (provide 'init-functions)

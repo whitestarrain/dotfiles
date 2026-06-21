@@ -118,9 +118,8 @@
   ;; MAPPING
   (add-hook 'org-agenda-mode-hook
             (lambda ()
-              (define-key org-agenda-mode-map "k" #'org-capture)
-              (define-key org-agenda-mode-map "K" #'org-agenda-capture)
-              (define-key org-agenda-mode-map (kbd "T") #'wsain/org-agenda-todo-with-date))))
+              (define-key org-agenda-mode-map "k" 'org-capture)
+              (define-key org-agenda-mode-map "K" 'org-agenda-capture))))
 
 (straight-use-package 'org-download)
 (with-eval-after-load 'org-download-autoloads
