@@ -9,6 +9,13 @@ local function scandir(dir)
     if not name then
       break
     end
+    -- unable to get file type on some old file systems or nfs
+    if name and not type then
+      local stat = vim.loop.fs_stat(dir .. "/" .. name)
+      if stat then
+        type = stat.type
+      end
+    end
     if name ~= "_unused" then
       if type == "file" and name:match("%.lua$") then
         files[#files + 1] = dir .. "/" .. name
@@ -25,7 +32,7 @@ end
 
 local function load_plugins()
   local plugins = {}
-  local config_dir = vim.g.absolute_config_path .. "/lua/wsain/plugin/configs"
+  local config_dir = vim.g.absolute_config_path .. "lua/wsain/plugin/configs"
   local prefix_len = #config_dir + 1
 
   local files = scandir(config_dir)

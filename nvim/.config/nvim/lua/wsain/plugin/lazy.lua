@@ -10,7 +10,7 @@ if not vim.loop.fs_stat(lazypath) then
     "--branch=stable", -- latest stable release
     lazypath,
   })
-  local lazy_lock_file = vim.g.absolute_config_path .. "/lazy-lock.json"
+  local lazy_lock_file = vim.g.absolute_config_path .. "lazy-lock.json"
   if vim.loop.fs_stat(lazy_lock_file) then
     local f = io.open(lazy_lock_file)
     local json_str = f:read("*all")
@@ -51,7 +51,7 @@ local opt = {
   checker = {
     enabled = false,
   },
-  lockfile = vim.g.absolute_config_path .. "/lazy-lock.json", -- lockfile generated after running update.
+  lockfile = vim.g.absolute_config_path .. "lazy-lock.json", -- lockfile generated after running update.
 }
 
 -- plugin config handler

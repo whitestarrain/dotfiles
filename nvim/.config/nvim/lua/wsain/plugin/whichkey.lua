@@ -10,7 +10,7 @@ if not vim.loop.fs_stat(whichkey_path) then
     "--branch=main",
     whichkey_path,
   })
-  local lazy_lock_file = vim.g.absolute_config_path .. "/lazy-lock.json"
+  local lazy_lock_file = vim.g.absolute_config_path .. "lazy-lock.json"
   if vim.loop.fs_stat(lazy_lock_file) then
     local f = io.open(lazy_lock_file)
     local json_str = f:read("*all")
