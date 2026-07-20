@@ -29,7 +29,6 @@ plugin.config = function()
       "Operator",
       "Package",
       "Struct",
-      "Struct",
     },
     keymaps = {
       ["o"] = "actions.scroll",
