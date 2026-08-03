@@ -17,6 +17,7 @@ plugin.config = function()
     },
   })
   local tools = {
+    "asmfmt",
     "basedpyright",
     "bash-language-server",
     "black",
