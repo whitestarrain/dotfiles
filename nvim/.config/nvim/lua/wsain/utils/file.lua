@@ -47,12 +47,7 @@ end
 
 ---@param dir_path string
 function M.check_dir_or_create(dir_path)
-  local os_type = require("wsain.utils.system").get_os()
-  if os_type == "win" then
-    vim.fn.system(string.format([[if not exist "%s" mkdir "%s"]], dir_path, dir_path))
-    return
-  end
-  vim.fn.system(string.format("[[ ! -d %s ]] && mkdir -p %s", dir_path, dir_path))
+  vim.fn.mkdir(dir_path, "p")
 end
 
 ---@param url string

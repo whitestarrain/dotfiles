@@ -1,6 +1,6 @@
 -- check install
 local lazypath = vim.g.absolute_config_path .. ".plugins/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.notify("start clone lazy to " .. lazypath)
   vim.fn.system({
     "git",
@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
   local lazy_lock_file = vim.g.absolute_config_path .. "lazy-lock.json"
-  if vim.loop.fs_stat(lazy_lock_file) then
+  if vim.uv.fs_stat(lazy_lock_file) then
     local f = io.open(lazy_lock_file)
     local json_str = f:read("*all")
     f:close()
@@ -78,6 +78,11 @@ local convert_plugin_specs = function(plugin_specs)
         pin = spec.pin,
         priority = spec.priority,
         event = spec.load_event,
+        -- other lazy-loading triggers
+        ft = spec.ft,
+        cmd = spec.cmd,
+        keys = spec.keys,
+        lazy = spec.lazy,
         dev = spec.dev,
       })
     end

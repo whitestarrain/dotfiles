@@ -39,11 +39,6 @@ plugin.init = function()
   })
 end
 
-local file_exploer = "lf"
-if utils.get_os() ~= "win" and vim.fn.executable(file_exploer) == 0 then
-  file_exploer = "ranger"
-end
-
 plugin.config = function()
   local mappings = {
     { "<M-+>", ":FloatermNew<cr>" },
@@ -52,15 +47,6 @@ plugin.config = function()
     { "<M-=>", "<c-\\><c-n>:FloatermToggle<cr>", mode = "t" },
   }
 
-  if vim.fn.executable(file_exploer) then
-    table.insert(mappings, {
-      "<leader>K",
-      function()
-        vim.fn.execute("FloatermNew " .. " --title=" .. file_exploer .. " " .. file_exploer .. " . ")
-      end,
-      desc = "ranger",
-    })
-  end
   require("wsain.plugin.whichkey").register({
     mappings,
   })

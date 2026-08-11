@@ -10,6 +10,10 @@
 ---@field pin? boolean pin plugin version
 ---@field priority? integer load priority (default 50)
 ---@field load_event? string|string[] lazy.nvim event trigger
+---@field ft? string|string[] lazy.nvim filetype trigger
+---@field cmd? string|string[] lazy.nvim command trigger
+---@field keys? string|table lazy.nvim key trigger
+---@field lazy? boolean whether to lazy-load the plugin
 ---@field build? string build command
 local Template = {
   short_url = nil,
@@ -23,6 +27,10 @@ local Template = {
   pin = nil,
   priority = 50,
   load_event = nil,
+  ft = nil,
+  cmd = nil,
+  keys = nil,
+  lazy = nil,
   build = nil,
 }
 

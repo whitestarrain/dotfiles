@@ -1,6 +1,6 @@
 -- check install
 local whichkey_path = vim.g.absolute_config_path .. ".plugins/which-key.nvim"
-if not vim.loop.fs_stat(whichkey_path) then
+if not vim.uv.fs_stat(whichkey_path) then
   vim.notify("start clone whichkey to " .. whichkey_path)
   vim.fn.system({
     "git",
@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(whichkey_path) then
     whichkey_path,
   })
   local lazy_lock_file = vim.g.absolute_config_path .. "lazy-lock.json"
-  if vim.loop.fs_stat(lazy_lock_file) then
+  if vim.uv.fs_stat(lazy_lock_file) then
     local f = io.open(lazy_lock_file)
     local json_str = f:read("*all")
     f:close()

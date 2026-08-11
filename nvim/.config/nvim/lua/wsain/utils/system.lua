@@ -33,10 +33,10 @@ function M.system_open(link)
     cmd = open_cmd.cmd,
     args = open_cmd.args,
     errors = "\n",
-    stderr = vim.loop.new_pipe(false),
+    stderr = vim.uv.new_pipe(false),
   }
   table.insert(process.args, link)
-  process.handle, process.pid = vim.loop.spawn(
+  process.handle, process.pid = vim.uv.spawn(
     process.cmd,
     { args = process.args, stdio = { nil, nil, process.stderr }, detached = true },
     function(code)
@@ -52,7 +52,7 @@ function M.system_open(link)
     vim.notify(string.format("system_open failed to spawn command '%s': %s", process.cmd, process.pid))
     return
   end
-  vim.loop.read_start(process.stderr, function(err, data)
+  vim.uv.read_start(process.stderr, function(err, data)
     if err then
       return
     end
@@ -60,7 +60,7 @@ function M.system_open(link)
       process.errors = process.errors .. data
     end
   end)
-  vim.loop.unref(process.handle)
+  vim.uv.unref(process.handle)
 end
 
 ---@return string

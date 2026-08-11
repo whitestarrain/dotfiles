@@ -78,7 +78,7 @@ local onAttach = function(bufnr)
       table.insert(dir_paths, vim.fn.getcwd(win_id))
     end
     for _, buf_id in ipairs(buf_ids) do
-      local ft = vim.api.nvim_buf_get_option(buf_id, "ft")
+      local ft = vim.bo[buf_id].filetype
       if ft ~= "NvimTree" then
         local path = vim.fn.expand(string.format("#%d:p:h", buf_id))
         if path ~= nil and path ~= "" then

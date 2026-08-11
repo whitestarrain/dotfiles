@@ -1,17 +1,17 @@
 local function scandir(dir)
   local files = {}
-  local handle = vim.loop.fs_scandir(dir)
+  local handle = vim.uv.fs_scandir(dir)
   if not handle then
     return files
   end
   while true do
-    local name, type = vim.loop.fs_scandir_next(handle)
+    local name, type = vim.uv.fs_scandir_next(handle)
     if not name then
       break
     end
     -- unable to get file type on some old file systems or nfs
     if name and not type then
-      local stat = vim.loop.fs_stat(dir .. "/" .. name)
+      local stat = vim.uv.fs_stat(dir .. "/" .. name)
       if stat then
         type = stat.type
       end

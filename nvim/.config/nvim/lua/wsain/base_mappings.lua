@@ -85,14 +85,25 @@ set_mapping("n", "]t", ":tabnext<cr>")
 set_mapping("n", "[t", ":tabpre<cr>")
 
 -- diagnostic
-set_mapping("n", "[d", function()
-  vim.diagnostic.goto_prev()
-end, {
+-- vim.diagnostic.jump was added in 0.11, goto_prev/goto_next deprecated
+local diagnostic_goto = function(count)
+  if vim.diagnostic.jump ~= nil then
+    return function()
+      vim.diagnostic.jump({ count = count, float = true })
+    end
+  end
+  return function()
+    if count < 0 then
+      vim.diagnostic.goto_prev()
+    else
+      vim.diagnostic.goto_next()
+    end
+  end
+end
+set_mapping("n", "[d", diagnostic_goto(-1), {
   desc = "goto prev diagnostic",
 })
-set_mapping("n", "]d", function()
-  vim.diagnostic.goto_next()
-end, {
+set_mapping("n", "]d", diagnostic_goto(1), {
   desc = "goto next diagnostic",
 })
 

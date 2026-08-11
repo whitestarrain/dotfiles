@@ -3,7 +3,6 @@ local plugin = require("wsain.plugin.template"):new()
 plugin.short_url = "neovim/nvim-lspconfig"
 plugin.dependencies = {
   "glepnir/lspsaga.nvim",
-  "folke/trouble.nvim",
   "whitestarrain/lua-dev.nvim",
   {
     "j-hui/fidget.nvim",
@@ -17,7 +16,7 @@ plugin.load_event = "VeryLazy"
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
   local function buf_set_keymap(...)
     vim.keymap.set(...)
@@ -119,20 +118,6 @@ local function setup_fidget()
   })
 end
 
-local function setup_trouble()
-  if package.loaded["trouble"] ~= nil then
-    return
-  end
-  require("trouble").setup({
-    mode = "document_diagnostics",
-    auto_open = false,
-    auto_close = false,
-    auto_preview = false,
-    auto_fold = false,
-    auto_jump = { "lsp_definitions" },
-  })
-end
-
 local function setup_lspsaga()
   if package.loaded["lspsaga"] ~= nil then
     return
@@ -166,7 +151,7 @@ local attach_lsp_to_existing_buffers = vim.schedule_wrap(function()
   -- this can be easily achieved by firing an autocmd event for the open buffers.
   -- See lspconfig.configs (config.autostart)
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    local valid = vim.api.nvim_buf_is_valid(bufnr) and vim.api.nvim_buf_get_option(bufnr, "buflisted")
+    local valid = vim.api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].buflisted
     if valid and vim.bo[bufnr].buftype == "" then
       local augroup_lspconfig = vim.api.nvim_create_augroup("lspconfig", { clear = false })
       vim.api.nvim_exec_autocmds("FileType", { group = augroup_lspconfig, buffer = bufnr })
@@ -179,7 +164,6 @@ local function ensure_deps_loaded()
   lsp_signature_setup()
   setup_fidget()
   setup_lspsaga()
-  setup_trouble()
   enable_auto_cmp()
 end
 
@@ -704,7 +688,7 @@ local function setup_java_lsp()
     local jdtls_on_init = function(client, _)
       client.notify("workspace/didChangeConfiguration", { settings = lsp_settings })
       for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-        local valid = vim.api.nvim_buf_is_valid(bufnr) and vim.api.nvim_buf_get_option(bufnr, "buflisted")
+        local valid = vim.api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].buflisted
         if valid and vim.bo[bufnr].buftype == "" and vim.bo[bufnr].filetype == "java" then
           vim.lsp.buf_attach_client(bufnr, client.id)
         end
@@ -838,12 +822,6 @@ plugin.config = function()
       },
     },
   })
-  -- diagnostic sign config
-  local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-  for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-  end
 
   -- lsp handler
   local lsp = vim.lsp
